@@ -58,10 +58,6 @@ def genprog_run(chal_name, pos_tests, neg_tests):
 	#cmd = ' '.join(repair_cmd)
 	with open("log.txt", "w") as log:
 		subprocess.call(repair_cmd, shell=True, stdout=log, stderr=subprocess.STDOUT)
-	
-	with open("log.txt") as data_file:
-		return data_file.read()
-
 
 def main():
 	"""

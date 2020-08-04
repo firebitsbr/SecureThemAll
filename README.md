@@ -27,10 +27,17 @@ Install the necessary dependencies for cb-multios and GenProg before running the
 * [GenProg v3.2](https://github.com/squaresLab/genprog-code.git)
 * [cb-multios](https://github.com/trailofbits/cb-multios.git)
 
-#### 1) Clone this repo
+#### 1) Clone this repo with submodule
+``` console
+$ git clone --recurse-submodules -j8 https://github.com/epicosy/SecureThemAll.git
+```
+
+Or
 
 ``` console
 $ git clone https://github.com/epicosy/SecureThemAll.git
+$ cd SecureThemAll
+$ git submodule update --init --recursive
 ```
 
 #### 2) Install Prerequisites

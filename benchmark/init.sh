@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 echo "Updating build system's config file..."
-mv CMakeLists.txt ./cb-multios/MakeLists.txt
+mv CMakeLists.txt ./cb-multios/CMakeLists.txt
 
 echo "Building challenges..."
 ./cb-multios/build.sh
