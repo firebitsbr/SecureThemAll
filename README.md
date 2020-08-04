@@ -71,3 +71,12 @@ The number of positive and negative tests (Polls and POVs respectively) can be s
 ``` console
 $ python repair.py -c BitBlaster ---pos_tests 50 --neg_tests 1
 ```
+
+## Challenges
+The initial set of challenges considered for the framework are the ones listed in the ```linux-final.txt``` file from ```benchmark``` folder. The file was created by choosing the challenges in the ```linux-working.txt``` file from the **cb-multios** project and from those excluding the ones that contain extra folders (cb, include, support) and challenges that have vulns in the header source files, with the purpose to eliminate complexity and have a simple baseline.
+
+To list the challenges covered, execute:
+
+``` console
+$ python repair.py -ls
+```
