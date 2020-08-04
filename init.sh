@@ -4,15 +4,24 @@ workingdir=`pwd`
 echo $workingdir
 
 cd repair_tools/genprog-code/
-echo "Installing Genprog dependencies"
-add-apt-repository ppa:avsm/ppa
-apt update
-apt install opam
-opam init
-opam depext conf-m4.1
-opam install cil
-opam config env
-cd src/
+echo "Installing Genprog dependencies..."
+echo "Installing OCAML..."
+apt install ocaml ocamlbuild
+echo "Downloading CIL..."
+wget http://downloads.sourceforge.net/project/cil/cil/cil-1.7.3.tar.gz
+echo "Extracting..."
+tar xvzf cil-1.7.3.tar.gz
+echo "Removing tar..."
+rm cil-1.7.3.tar.gz
+cd cil-1.7.3
+echo "Configuring CIL..."
+sh ./configure
+echo "Building CIL..."
+make
+make cillib
+export CIL=`pwd`
+echo "Building GenProg..."
+cd ..
 make
 cd $workingdir
 

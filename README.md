@@ -4,10 +4,19 @@ Automatic Repair Framework based on Cyber Grand Challenge Event Corpus modified 
 ###### This project is under development. The current status supports GenProg and works on Linux OS. The repair tools to be added are Angelix, RSRepair, SearchRepair, SOSRepair, MUT-APR, Prophet, SPR, DeepFix.
 
 ---
-Disclaimer:
+**Disclaimer**:
 
 * I don't have any particular expertise with CMake, therefore, there might be better/simpler ways to implement the link between the tools and DARPA's CGC Event Corpus. If you know other approach, post an issue related to it.
 ---
+
+### Notes
+
+---
+These notes might save you some time:
+
+* The script ```repair.py``` at the end of the run will ```make clean``` and ```make``` to remove the changes the tools apply to the binaries. If that is not performed by the script, there are big chances that in the next run the tests will fail. If that happens run the script ```make_cb.sh``` in the ```benchmark``` folder to have a fresh challenge binary.
+---
+
 
 ## Framework 
 
@@ -50,7 +59,7 @@ The script builds the challenges and POVs, generates the polls and creates the f
 $ ./init.sh
 ```
 
-##Usage
+## Usage
 ``` console
 $ python repair.py -c BitBlaster
 ```

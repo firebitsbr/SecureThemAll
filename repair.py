@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import os
 import sys
@@ -20,8 +20,6 @@ GENPROG_SRC = os.path.join(GENPROG_DIR, "src")
 with open(METADATA_FILE, "r") as json_file:
 	metadata = json.loads(json_file.read())
 
-CHAL = "Accel"
-
 
 def get_preprocessed_dir(chal_name):
 	return f"{BUILD_DIR}/challenges/{chal_name}/CMakeFiles/{chal_name}.dir"
@@ -38,11 +36,19 @@ def write_manifest(chal_name ,challenge):
 			mf.write('.'.join(file) + "\n")
 
 
+def make_fresh_cb(challenge_name):
+	chal_build_dir = f"{BIN_DIR}/{challenge_name}"
+	previous_dir = os.getcwd()
+	os.chdir(chal_build_dir)
+	os.system(f"make clean")
+	os.system(f"make")
+	os.chdir(previous_dir)
+
 def genprog_run(chal_name, pos_tests, neg_tests):
 	repair_cmd = [f"{GENPROG_SRC}/repair", 
 				"--search" ,"ga",
-				"--compiler-command", f"python {COMPILE_SCRIPT} __SOURCE_NAME__ {chal_name} &> /dev/null",
-				"--test-command", f"python {TEST_SCRIPT} {chal_name} __TEST_NAME__ >& /dev/null",
+				"--compiler-command", f"\"python {COMPILE_SCRIPT} __SOURCE_NAME__ {chal_name} &> /dev/null\"",
+				"--test-command", f"\"python {TEST_SCRIPT} {chal_name} __TEST_NAME__ >& /dev/null\"",
 				"--crossover", "subset",
 				"--rep", "cilpatch",
 				"--describe-machine",
@@ -55,9 +61,11 @@ def genprog_run(chal_name, pos_tests, neg_tests):
 				"--rep-cache", "default.cache"
 				]
 
-	#cmd = ' '.join(repair_cmd)
+	cmd = ' '.join(repair_cmd)
+	print(cmd)
 	with open("log.txt", "w") as log:
-		subprocess.call(repair_cmd, shell=True, stdout=log, stderr=subprocess.STDOUT)
+		subprocess.call(cmd, shell=True, stdout=log, stderr=subprocess.STDOUT)
+	make_fresh_cb(chal_name)
 
 def main():
 	"""
