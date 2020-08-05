@@ -1,0 +1,377 @@
+GenProg Version: qua jul 22 23:28:22 WEST 2020
+
+--allow-coverage-fail false
+--appp 0.33333
+--best-edit-rule "1 * fault_loc_weight ; 1 * max_test_fail_prob ; -1 * num_tests"
+--best-test-rule "1 * test_fail_prob ; 1 * test_fail_count ; -1 * test_pass_count"
+--clone-file ""
+--compiler "gcc"
+--compiler-command "python3 /home/epicosy/thesis/implementation/repair/SecureThemAll2/benchmark/compile.py __SOURCE_NAME__ BitBlaster &> /dev/null"
+--compiler-opts ""
+--continue false
+--coverage-info ""
+--coverage-per-test false
+--crossover "subset"
+--crossp 0.5
+--delp 0.33333
+--describe-machine true
+--disable-reduce-fix-space false
+--disable-reduce-search-space false
+--diversity-selection 0
+--edit-script false
+--eviction-strategy "random"
+--exclude-edits ""
+--exp-diff false
+--fault-file ""
+--fault-path "coverage.path.neg"
+--fault-scheme "path"
+--fitness-in-parallel 1
+--fitness-log ""
+--fix-file ""
+--fix-oracle ""
+--fix-path "coverage.path.pos"
+--fix-scheme "default"
+--flatten-path "last"
+--format "txt"
+--gen-per-exchange 1
+--generations 10
+--geomp 0.5
+--gui false
+--hostname "127.0.0.1"
+--ignore-dead-code false
+--ignore-equiv-appends false
+--ignore-standard-headers false
+--ignore-string-equiv-fixes false
+--ignore-untyped-returns false
+--incoming-pop ""
+--keep-source false
+--label-repair false
+--lase-deallocation-api "free"
+--lase-paired-functions ""
+--lasep 0
+--max-evals 0
+--minimization false
+--mt-cov true
+--multiopt-minimize false
+--multiopt-no-inf false
+--name-in-test-cache false
+--neg-tests 1
+--neg-weight 1
+--negative-test-weight 2
+--nested false
+--neutral-walk-max-size 0
+--neutral-walk-weight ""
+--nht-id "global"
+--nht-port 51000
+--nht-server ""
+--no-rep-cache false
+--no-test-cache false
+--num-comps 2
+--num-fitness-samples 1
+--num-objectives 2
+--oracle-genome ""
+--pd-mutp 0.25
+--popsize 40
+--port 60000
+--pos-tests 100
+--pos-weight 0.1
+--prefix "/home/epicosy/thesis/implementation/repair/SecureThemAll2/benchmark/cb-multios/build/challenges/BitBlaster/CMakeFiles/BitBlaster.dir"
+--preprocessor ""
+--print-incremental-evals false
+--print-source-name false
+--program "/home/epicosy/thesis/implementation/repair/SecureThemAll2/manifest.txt"
+--promut 1
+--quiet false
+--regen-paths false
+--rep "cilpatch"
+--rep-cache "default.cache"
+--repp 0
+--samp-strat "variant"
+--sample 1
+--sample-runs 100
+--sanity "default"
+--search "ga"
+--seed 0
+--semantic-check "exact"
+--single-fitness false
+--skip-failed-sanity-tests false
+--skip-tests ""
+--split-search 0
+--sport 65000
+--subatom-constp 0.5
+--subatom-mutp 0
+--swap-bug false
+--swapp 0.33333
+--template-cache ""
+--templates ""
+--test-command "python3 /home/epicosy/thesis/implementation/repair/SecureThemAll2/benchmark/test.py BitBlaster __TEST_NAME__ >& /dev/null"
+--test-script "./test.sh"
+--tournament-size 2
+--uniq false
+--use-global-source-cache false
+--use-partition -1
+--valgrind false
+--variants-exchanged 50
+--version false
+uname -a: Linux eduard 5.3.0-64-generic #58-Ubuntu SMP Fri Jul 10 19:33:51 UTC 2020 x86_64 x86_64 x86_64 GNU/Linux
+date: ter ago  4 17:41:32 WEST 2020
+id: uid=1000(epicosy) gid=1000(epicosy) groups=1000(epicosy),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev),119(lpadmin),130(lxd),131(sambashare)
+cat /etc/redhat-release: End_of_file
+grep model name /proc/cpuinfo: model name	: Intel(R) Core(TM) i7-4720HQ CPU @ 2.60GHz
+grep MemTotal /proc/meminfo: MemTotal:        7588192 kB
+grep SwapTotal /proc/meminfo: SwapTotal:       2097148 kB
+cilRep: preprocessing IO function signatures: /tmp/tmp06dba5.c /tmp/tmpa2b0db.c
+cilRep: done preprocessing IO function signatures
+Exception in loading: Sys_error("default.cache: No such file or directory")
+cilrep: from_source: pre: stmt_count = 0
+cilRep: /home/epicosy/thesis/implementation/repair/SecureThemAll2/benchmark/cb-multios/build/challenges/BitBlaster/CMakeFiles/BitBlaster.dir/src/main.i: parsing
+cilRep: /home/epicosy/thesis/implementation/repair/SecureThemAll2/benchmark/cb-multios/build/challenges/BitBlaster/CMakeFiles/BitBlaster.dir/src/main.i: parsed (0.0248623 MB)
+cilrep: from_source: post: stmt_count: 129
+cilRep: shared size: 0.0352259 MB
+cilRep: private size: 0.00711918 MB
+cachingRepresentation: sanity checking begins
+	n1: false (0)
+	p1: true (1)
+	p2: true (1)
+	p3: true (1)
+	p4: true (1)
+	p5: true (1)
+	p6: true (1)
+	p7: true (1)
+	p8: true (1)
+	p9: true (1)
+	p10: true (1)
+	p11: true (1)
+	p12: true (1)
+	p13: true (1)
+	p14: true (1)
+	p15: true (1)
+	p16: true (1)
+	p17: true (1)
+	p18: true (1)
+	p19: true (1)
+	p20: true (1)
+	p21: true (1)
+	p22: true (1)
+	p23: true (1)
+	p24: true (1)
+	p25: true (1)
+	p26: true (1)
+	p27: true (1)
+	p28: true (1)
+	p29: true (1)
+	p30: true (1)
+	p31: true (1)
+	p32: true (1)
+	p33: true (1)
+	p34: true (1)
+	p35: true (1)
+	p36: true (1)
+	p37: true (1)
+	p38: true (1)
+	p39: true (1)
+	p40: true (1)
+	p41: true (1)
+	p42: true (1)
+	p43: true (1)
+	p44: true (1)
+	p45: true (1)
+	p46: true (1)
+	p47: true (1)
+	p48: true (1)
+	p49: true (1)
+	p50: true (1)
+	p51: true (1)
+	p52: true (1)
+	p53: true (1)
+	p54: true (1)
+	p55: true (1)
+	p56: true (1)
+	p57: true (1)
+	p58: true (1)
+	p59: true (1)
+	p60: true (1)
+	p61: true (1)
+	p62: true (1)
+	p63: true (1)
+	p64: true (1)
+	p65: true (1)
+	p66: true (1)
+	p67: true (1)
+	p68: true (1)
+	p69: true (1)
+	p70: true (1)
+	p71: true (1)
+	p72: true (1)
+	p73: true (1)
+	p74: true (1)
+	p75: true (1)
+	p76: true (1)
+	p77: true (1)
+	p78: true (1)
+	p79: true (1)
+	p80: true (1)
+	p81: true (1)
+	p82: true (1)
+	p83: true (1)
+	p84: true (1)
+	p85: true (1)
+	p86: true (1)
+	p87: true (1)
+	p88: true (1)
+	p89: true (1)
+	p90: true (1)
+	p91: true (1)
+	p92: true (1)
+	p93: true (1)
+	p94: true (1)
+	p95: true (1)
+	p96: true (1)
+	p97: true (1)
+	p98: true (1)
+	p99: true (1)
+	p100: true (1)
+cachingRepresentation: sanity checking passed (time_taken = 33.3324)
+faultLocRep: compute_localization: fault_scheme: path, fix_scheme: default
+Rep: coverage_sourcename: /home/epicosy/thesis/implementation/repair/SecureThemAll2/coverage/coverage.c
+cilRep: instrumenting for fault localization
+cilRep: done instrumenting for fault localization
+coverage negative:
+	test: 1
+coverage positive:
+	test: 1
+	test: 2
+	test: 3
+	test: 4
+	test: 5
+	test: 6
+	test: 7
+	test: 8
+	test: 9
+	test: 10
+	test: 11
+	test: 12
+	test: 13
+	test: 14
+	test: 15
+	test: 16
+	test: 17
+	test: 18
+	test: 19
+	test: 20
+	test: 21
+	test: 22
+	test: 23
+	test: 24
+	test: 25
+	test: 26
+	test: 27
+	test: 28
+	test: 29
+	test: 30
+	test: 31
+	test: 32
+	test: 33
+	test: 34
+	test: 35
+	test: 36
+	test: 37
+	test: 38
+	test: 39
+	test: 40
+	test: 41
+	test: 42
+	test: 43
+	test: 44
+	test: 45
+	test: 46
+	test: 47
+	test: 48
+	test: 49
+	test: 50
+	test: 51
+	test: 52
+	test: 53
+	test: 54
+	test: 55
+	test: 56
+	test: 57
+	test: 58
+	test: 59
+	test: 60
+	test: 61
+	test: 62
+	test: 63
+	test: 64
+	test: 65
+	test: 66
+	test: 67
+	test: 68
+	test: 69
+	test: 70
+	test: 71
+	test: 72
+	test: 73
+	test: 74
+	test: 75
+	test: 76
+	test: 77
+	test: 78
+	test: 79
+	test: 80
+	test: 81
+	test: 82
+	test: 83
+	test: 84
+	test: 85
+	test: 86
+	test: 87
+	test: 88
+	test: 89
+	test: 90
+	test: 91
+	test: 92
+	test: 93
+	test: 94
+	test: 95
+	test: 96
+	test: 97
+	test: 98
+	test: 99
+	test: 100
+cilRep: default.cache: saved
+cachingRep: default.cache: saved
+faultlocRep: default.cache: saved
+cilrep done serialize
+cilRep: stmt_count = 129
+cilRep: stmts in weighted_path = 113
+cilRep: total weight = 7.5
+cilRep: stmts in weighted_path with weight >= 1.0 = 2
+cilRep: src/main.i (code bank/base file; atoms [1,136])
+cilRep: 1 file(s) total in representation
+search: genetic algorithm begins (|original| = 0.0417738 MB)
+cilRep: shared size: 0.0358534 MB
+cilRep: private size: 0.00912571 MB
+search: initial population (sizeof one variant = 0.0417948 MB)
+	100 original
+	201 s(117,118)
+	100 a(42,95)
+	  0 a(105,134)
+	300 d(134)
+
+Repair Found: d(134)
+Repair Name: d(134)
+Test Cases Skipped: ""
+Current Time: 1596571515.932997
+cilRep: shared size: 0.0358534 MB
+cilRep: private size: 0.0200701 MB
+Rep: saving test cache
+
+Variant Test Case Queries: 505
+"Test Suite Evaluations": 5
+
+Compile Failures: 0
+Wall-Clock Seconds Elapsed: 12223.7
+  Activity Name                     Count Seconds = Percent of Total Time
+  test                                707 12221.204 = 99.9908%
+  TOTAL                                   12222.325 = 99.9885% (avg CPU usage)

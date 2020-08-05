@@ -80,3 +80,6 @@ To list the challenges covered, execute:
 ``` console
 $ python repair.py -ls
 ```
+
+## Results
+During the brief experimentation of the framework's functionality, **GenProg** was able to generate in 3 hours and 24 minutes a patch for the challenge **BitBlaster**, which contains [CWE-824: Access of Uninitialized Pointer](http://cwe.mitre.org/data/definitions/824.html) and [CWE-476: Null Pointer Derefernece](http://cwe.mitre.org/data/definitions/476.html) vulnerabilities. The results can be found in the ```results``` folder.
