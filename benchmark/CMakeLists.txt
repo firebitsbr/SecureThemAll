@@ -233,7 +233,9 @@ if(LINUX)
     set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -z execstack -z norelro")
 endif()
 
-file(GLOB challenge_binaries challenges/*)
+SET(CHAL "" CACHE STRING "challenge name")
+
+file(GLOB challenge_binaries challenges/${CHAL})
 foreach(cb_path ${challenge_binaries})
     if(IS_DIRECTORY ${cb_path} AND EXISTS ${cb_path}/CMakeLists.txt)
         # Get filename
@@ -243,7 +245,6 @@ foreach(cb_path ${challenge_binaries})
         list(FIND cb_exclude ${cb_id} idx)
         list(FIND cb_final ${cb_id} idf)
         if(${idx} EQUAL -1 AND ${idf} GREATER_EQUAL 0)
-            message("${cb_id}")
             add_subdirectory(${cb_path})
         else()
             message(STATUS "EXCLUDE: ${cb_id}")

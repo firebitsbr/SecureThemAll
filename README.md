@@ -1,5 +1,5 @@
 # SecureThemAll
-Automatic Repair Framework based on Cyber Grand Challenge Event Corpus modified for Linux
+Automatic Repair Framework based on the modified Cyber Grand Challenge Event Corpus for Linux
 
 ###### This project is under development. The current status supports GenProg and works on Linux OS. The repair tools to be added are Angelix, RSRepair, SearchRepair, SOSRepair, MUT-APR, Prophet, SPR, DeepFix.
 
@@ -14,13 +14,9 @@ Automatic Repair Framework based on Cyber Grand Challenge Event Corpus modified 
 ---
 These notes might save you some time:
 
-* The script ```repair.py``` at the end of the run will ```make clean``` and ```make``` to remove the changes the tools apply to the binaries. If that is not performed by the script, there are big chances that in the next run the tests will fail. If that happens run the script ```make_cb.sh``` in the ```benchmark``` folder to have a fresh challenge binary.
----
-
-
-## Framework 
-
-![SecureThemAll scripts flows and executions](framework.png)
+* The script ```benchmark/init.sh``` builds all the challenges and polls for the metadata generation. 
+The original ```CMakeLists.txt``` config file is replaced to enable the checkout command.
+The ```CMakeLists.txt``` changed file builds one specified challenge at a time.
 
 ## Getting Started
 
@@ -61,25 +57,32 @@ $ ./init.sh
 
 ## Usage
 ``` console
-$ python repair.py -c BitBlaster
+$ python3 repair.py GenProg -c BitBlaster --pos_tests 10 --seed 1 --config_path ../repair_tools/genprog.json 
 ```
 
 By default, the count of generate polls is 100. The number can be changed in the ```benchmark\cb-multios\genpolls.sh``` script.
 
 The number of positive and negative tests (Polls and POVs respectively) can be supplied with ```--pos_tests``` and ```--neg_tests``` arguments to the repair script.
 
-``` console
-$ python repair.py -c BitBlaster ---pos_tests 50 --neg_tests 1
-```
 
 ## Challenges
-The initial set of challenges considered for the framework are the ones listed in the ```linux-final.txt``` file from ```benchmark``` folder. The file was created by choosing the challenges in the ```linux-working.txt``` file from the **cb-multios** project and from those excluding the ones that contain extra folders (cb, include, support) and challenges that have vulns in the header source files, with the purpose to eliminate complexity and have a simple baseline.
+The initial set of challenges considered for the framework are the ones listed in the ```linux-final.txt``` file from ```benchmark``` folder. 
+The file was created by choosing the challenges in the ```linux-working.txt``` file from the **cb-multios** project and from those excluding the 
+ones that contain extra folders (cb, include, support) and challenges that have vulns in the header source files, with the purpose to eliminate complexity and have a simple baseline.
 
 To list the challenges covered, execute:
 
 ``` console
-$ python repair.py -ls
+$ python3 cb_multi_os_apr.py -o info
 ```
 
 ## Results
-During the brief experimentation of the framework's functionality, **GenProg** was able to generate in 3 hours and 24 minutes a patch for the challenge **BitBlaster**, which contains [CWE-824: Access of Uninitialized Pointer](http://cwe.mitre.org/data/definitions/824.html) and [CWE-476: Null Pointer Derefernece](http://cwe.mitre.org/data/definitions/476.html) vulnerabilities. The results can be found in the ```results``` folder.
+During the brief experimentation of the framework's functionality, **GenProg** was able to generate in 2 minutes a patch for the challenge **BitBlaster**, 
+which contains [CWE-824: Access of Uninitialized Pointer](http://cwe.mitre.org/data/definitions/824.html) and [CWE-476: Null Pointer Derefernece](http://cwe.mitre.org/data/definitions/476.html) vulnerabilities. 
+The results can be found in the ```results``` folder.
+
+
+## Acknowledgments
+Guidance and ideas for some parts from:
+
+* Project structure and abstractions from [The RepairThemAll Framework](https://github.com/program-repair/RepairThemAll)
