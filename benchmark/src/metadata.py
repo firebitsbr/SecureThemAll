@@ -21,8 +21,8 @@ if __name__ == "__main__":
 
 		metadata[challenge] = create_challenge_metadata(configuration, challenge)
 
-	print(metadata)
-	#with configuration.metadata.open('w') as json_file:
-	#	json.dump(metadata, json_file, sort_keys=True, indent=4)
+	with configuration.metadata.open('w') as json_file:
+		json.dump(metadata, json_file, sort_keys=True, indent=4)
 
 	print("Metadata file successfully generated.")
+

@@ -30,14 +30,21 @@ def get_challenge_source_files(challenge_name: str, source_path: str):
 def get_challenge_manifest(paths: ChallengePaths):
     src_files = get_challenge_source_files(paths.name, paths.source)
     manifest = {}
+    total_lines = 0
+    vuln_lines = 0
+    patch_lines = 0
 
     for file_path, src_file in src_files.items():
+        total_lines += src_file.total_lines
+        vuln_lines += src_file.vuln_lines
+        patch_lines += src_file.patch_lines
+
         if len(src_file) == 0 or (src_file.ext == "h" and len(src_file) > 0):
             continue
 
         manifest[file_path] = src_file.manifest()
 
-    return manifest
+    return manifest, total_lines, vuln_lines, patch_lines
 
 
 def get_challenge_tests(paths: ChallengePaths):
@@ -60,6 +67,7 @@ def get_challenge_tests(paths: ChallengePaths):
 def create_challenge_metadata(config, challenge_name: str):
     paths = get_challenge_paths(config, challenge_name)
     tests = get_challenge_tests(paths)
-    manifest = get_challenge_manifest(paths)
+    manifest, total_lines, vuln_lines, patch_lines = get_challenge_manifest(paths)
 
-    return {"tests": tests, "manifest": manifest}
+    return {"tests": tests, "manifest": manifest, "lines": {"total": total_lines, "vuln": vuln_lines, "patch": patch_lines}}
+

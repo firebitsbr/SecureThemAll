@@ -21,3 +21,4 @@ class Snippet:
 
     def __len__(self):
         return self.end - self.start
+

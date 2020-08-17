@@ -14,8 +14,15 @@ class SourceFile:
 		self.file = file
 		self.name, self.ext = file.split(".")
 		self.snippets = []
+
 		with open(f"{self.path}/{self.file}", "r") as file:
 			self.lines = file.readlines()
+
+		self.total_lines = len(self.lines)
+
+		self.vuln_lines = 0
+		self.patch_lines = 0
+
 		self.extract_snippets()
 
 	def __len__(self):
@@ -26,16 +33,17 @@ class SourceFile:
 
 		for snippet in self.snippets:
 			if snippet.change is not None:
-				patch = list(range(snippet.start, snippet.change))
-				vuln = list(range(snippet.change, snippet.end))
+				patch = list(range(snippet.start+1, snippet.change))
+				vuln = list(range(snippet.change+1, snippet.end))
 			else:
-				patch = list(range(snippet.start, snippet.end))
+				patch = list(range(snippet.start+1, snippet.end))
 				vuln = []
+
 			manifest["patches"].append(patch)
 			manifest["vulns"].append(vuln)
 
 		return manifest
-	
+
 	def extract_snippets(self):
 		snippet = None
 
@@ -57,11 +65,16 @@ class SourceFile:
 				else:
 					snippet(line=line)
 
+					if snippet.state == "patch":
+						self.patch_lines += 1
+					else:
+						self.vuln_lines += 1
+
 	def transform(self):
 		for snippet in self.snippets:
 			patch_size = snippet.change - snippet.start
 			vuln_size = snippet.end - snippet.change
-			
+
 			for i in range(1, patch_size):
 				self.lines[snippet.start+i] = f"+{self.lines[snippet.start+i]}"
 
@@ -69,4 +82,5 @@ class SourceFile:
 				self.lines[snippet.change+i] = f"-{self.lines[snippet.change+i]}"
 
 		return self.lines
+
 
