@@ -42,7 +42,7 @@ class GenProg(RepairTool):
                 log.write(' '.join(repair_cmd))
                 log.flush()
 
-                cmd = Command(repair_cmd, cwd=self.working_dir.root.absolute())
+                cmd = Command(repair_cmd, cwd=str(self.working_dir.root.absolute()))
                 cmd(verbose=True, file=log)
 
                 return log.read()
@@ -55,18 +55,19 @@ class GenProg(RepairTool):
             }
             repair_task.status = "FINISHED"
             results_path = os.path.join(self.working_dir.root, "repair")
+            sanity_path = os.path.join(self.working_dir.root, "sanity")
 
             for file_path in challenge.manifest:
                 ccp_file = c_to_ccp(file_path)
                 repaired_file = os.path.join(results_path, ccp_file)
-                ccp_file = os.path.join(challenge.paths.cmake, ccp_file)
+                sanity_file = os.path.join(sanity_path, ccp_file)
 
-                if os.path.exists(repaired_file):
+                if os.path.exists(repaired_file) and os.path.exists(sanity_file):
                     patch = {
                         "edits": []
                     }
 
-                    diff_cmd = f"diff {repaired_file} {ccp_file}"
+                    diff_cmd = f"diff {sanity_file} {repaired_file}"
                     cmd = Command(diff_cmd)
                     out, err = cmd()
 
@@ -153,3 +154,4 @@ def genprog_args(input_parser):
 
 parser = add_repair_tool("GenProg", init, 'Repair the challenge with GenProg')
 genprog_args(parser)
+

@@ -48,7 +48,7 @@ class Test(Operation):
 
         cmd = Command(cb_cmd, cwd=tools_dir.absolute())
         out, _ = cmd(exit_err=True, timeout=int(self.context.configuration.tests_timeout))
-        total, passed = parse_results(out.decode(), self.is_pov)
+        total, passed = parse_results(out, self.is_pov)
 
         if passed == '0':
             exit(1)
@@ -65,3 +65,4 @@ def test_args(input_parser):
 
 t_parser = add_operation("test", Test, 'Runs specified test against challenge binary.')
 test_args(t_parser)
+

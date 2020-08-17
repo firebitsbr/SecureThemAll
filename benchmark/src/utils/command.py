@@ -23,17 +23,23 @@ class Command:
             proc.kill()
             out, err = proc.communicate()
 
+        if isinstance(out, bytes):
+            out = out.decode()
+
+        if isinstance(err, bytes):
+            err = err.decode()
+
         if self.verbose:
-            print(out.decode())
+            print(out)
 
             if err:
-                print(err.decode())
+                print(err)
 
         if self.file:
-            self.file.write(out.decode())
+            self.file.write(out)
 
             if err:
-                self.file.write(err.decode())
+                self.file.write(err)
 
         return out, err
 
@@ -42,25 +48,26 @@ class Command:
         err = None
 
         for line in proc.stdout:
-            out += line
+            decoded = line.decode()
+            out += decoded
 
             if self.verbose:
-                print(line.decode())
+                print(decoded)
 
             if self.file:
-                self.file.write(line.decode())
+                self.file.write(decoded)
 
         if proc.returncode and proc.returncode != 0:
             proc.kill()
-            err = proc.stderr.read()
+            err = proc.stderr.read().decode()
 
             if self.verbose:
                 print(err)
 
             if self.file and err:
-                self.file.write(err.decode())
+                self.file.write(err)
 
-        return out, err
+        return ''.join(out), err
 
     def __call__(self, verbose: bool = False, timeout: int = None, exit_err: bool = False, file: IO = None):
         self.verbose = verbose
@@ -82,3 +89,4 @@ class Command:
                 exit(proc.returncode)
 
             return out, err
+
