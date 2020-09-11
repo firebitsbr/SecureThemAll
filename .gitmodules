@@ -1,3 +1,6 @@
 [submodule "repair_tools/genprog-code"]
 	path = repair_tools/genprog-code
 	url = https://github.com/squaresLab/genprog-code.git
+[submodule "benchmark/cb-repair"]
+	path = benchmark/cb-repair
+	url = https://github.com/epicosy/cb-repair
