@@ -7,9 +7,9 @@ import os
 from .bash_renderer import BashRenderer
 from .empty_renderer import EmptyRenderer
 
-def get_renderer(runner):
+def get_renderer(runner, output_path):
     """
     :param runner:
     :return: EmptyRenderer
     """
-    return BashRenderer(runner)
+    return BashRenderer(runner, output_path)

@@ -7,6 +7,7 @@
 		"--seed": "0",
 		"--rep-cache": "default.cache",
 		"--ignore-dead-code": "",
-		"--no-rep-cache":""
+		"--no-rep-cache":"",
+		"--keep-source": ""
 	}
 }

@@ -9,18 +9,17 @@ import traceback
 
 from .repair_task import RepairTask
 from .runner import Runner
-from scripts.core.renderer import get_renderer
-from scripts.config import LOCAL_THREAD
+#from scripts.core.renderer import get_renderer
 from typing import List
 
 
 class RunnerWorker(Thread):
-    def __init__(self, local_runner, callback):
+    def __init__(self, local_runner, callback, threads: int):
         Thread.__init__(self)
         self.local_runner = local_runner
         self.callback = callback
         self.daemon = True
-        self.pool = RepairThreadPool(LOCAL_THREAD)
+        self.pool = RepairThreadPool(threads)
 
     def run(self):
         for task in self.local_runner.tasks:
@@ -74,12 +73,13 @@ class RepairThreadPool:
 
 class LocalRunner(Runner):
 
-    def __init__(self, tasks: List[RepairTask], args):
+    def __init__(self, tasks: List[RepairTask], threads: int, args):
         """
         :type tasks: list of RepairTask
         """
         super(LocalRunner, self).__init__(tasks, args)
         self.tasks = tasks
+        self.threads = threads
         self.finished = []
         self.running = []
         self.waiting = []
@@ -93,7 +93,7 @@ class LocalRunner(Runner):
         pass
 
     def execute(self):
-        worker = RunnerWorker(self, self.repair_done)
+        worker = RunnerWorker(self, self.repair_done, threads=self.threads)
         #renderer = get_renderer(self)
         worker.start()
 

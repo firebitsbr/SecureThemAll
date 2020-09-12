@@ -1,51 +1,56 @@
 import json
-import os
 import datetime
+from pathlib import Path
 
-from config import REPAIR_TOOLS_DIR
+from core.input_parser import add_repair_tool
 from core.repair_tool import RepairTool
-from scripts.core.input_parser import add_repair_tool
 from core.runner.repair_task import RepairTask
-from scripts.core.utils import test_command, compile_cpp_command, c_to_ccp
-
-from benchmark.src.utils.command import Command
-from benchmark.src.config import SOURCE_DIR
+from ..utils.parse import c_to_cpp
 
 
 class GenProg(RepairTool):
     """GenProg"""
 
-    def __init__(self, config_path: str, pos_tests: int, neg_tests: int, seed: int = 0):
-        super(GenProg, self).__init__("GenProg", config_path)
+    def __init__(self, config_path: str, pos_tests: int, neg_tests: int, seed: int = 0, **kwargs):
+        super(GenProg, self).__init__(name="GenProg", config_path=config_path, **kwargs)
         self.seed = seed
         self.pos_tests = pos_tests
         self.neg_tests = neg_tests
-        self.manifest_file = "manifest.txt"
 
     def repair(self, repair_task: RepairTask):
         """"
         :type repair_task: RepairTask
         """
-        challenge = repair_task.challenge
         # checkouts the challenge binary to a temporary path
-        self.init_challenge(challenge)
-
+        challenge = self.init_challenge(repair_task.benchmark, repair_task.challenge)
+        repair_task.benchmark.compile(challenge, preprocessed=True)
         try:
-            log_path = os.path.join(repair_task.log_dir, "repair.log")
+            arguments = self.config["arguments"]
+            arguments["--compiler-command"] = repair_task.benchmark.compile(challenge,
+                                                                            instrumented_files=["__SOURCE_NAME__"])
+            arguments["--test-command"] = repair_task.benchmark.test(challenge, tests=["__TEST_NAME__"], exit_fail=True)
+            arguments["--prefix"] = repair_task.benchmark.prefix(challenge)
 
-            if not os.path.exists(os.path.dirname(log_path)):
-                os.makedirs(os.path.dirname(log_path))
+            pos_tests, neg_tests = repair_task.benchmark.count_tests(challenge)
 
-            repair_cmd = self.get_command(challenge)
+            arguments["--pos-tests"] = str(pos_tests)
+            arguments["--neg-tests"] = str(neg_tests)
+            arguments["--rep"] = "cilpatch" if challenge.multi_file else "c"
+            arguments["--program"] = challenge.manifest_path if challenge.multi_file else \
+                challenge.get_manifest(preprocessed=True, string=True)
 
-            with open(log_path, 'w+') as log:
-                log.write(' '.join(repair_cmd))
-                log.flush()
+            repair_cmd = [str(self.program)]
 
-                cmd = Command(repair_cmd, cwd=str(self.working_dir.root.absolute()))
-                cmd(verbose=True, file=log)
+            for opt, arg in arguments.items():
+                if arg != "":
+                    repair_cmd.extend((opt, arg))
+                else:
+                    repair_cmd.extend([opt])
 
-                return log.read()
+            out, err = repair_task(cmd_str=repair_cmd,
+                                   cmd_cwd=str(challenge.working_dir))
+
+            return out
 
         finally:
             result = {
@@ -54,30 +59,31 @@ class GenProg(RepairTool):
                 "patches": []
             }
             repair_task.status = "FINISHED"
-            results_path = os.path.join(self.working_dir.root, "repair")
-            sanity_path = os.path.join(self.working_dir.root, "sanity")
+            repair_path = challenge.working_dir / Path("repair")
+            sanity_path = challenge.working_dir / Path("sanity")
 
             for file_path in challenge.manifest:
-                ccp_file = c_to_ccp(file_path)
-                repaired_file = os.path.join(results_path, ccp_file)
-                sanity_file = os.path.join(sanity_path, ccp_file)
+                ccp_file = c_to_cpp(file_path)
+                repaired_file = repair_path / Path(ccp_file)
+                sanity_file = sanity_path / Path(ccp_file)
 
-                if os.path.exists(repaired_file) and os.path.exists(sanity_file):
+                if repaired_file.exists() and sanity_file.exists():
                     patch = {
                         "edits": []
                     }
 
                     diff_cmd = f"diff {sanity_file} {repaired_file}"
-                    cmd = Command(diff_cmd)
-                    out, err = cmd()
+                    out, err = repair_task(cmd_str=diff_cmd, cmd_cwd=challenge.working_dir)
 
                     patch["patch"] = out
                     # TODO: Add edits to the patch
                     # patch['edits'].append(edit)
                     result["patches"].append(patch)
 
-            with open(os.path.join(repair_task.log_dir, "result.json"), "w+") as fd2:
-                json.dump(result, fd2, indent=2)
+            results_path = repair_task.log_dir / Path("result.json")
+
+            with results_path.open("w+") as res:
+                json.dump(result, res, indent=2)
 
             repair_task.results = result
 
@@ -87,71 +93,10 @@ class GenProg(RepairTool):
             rm_cmd = f"rm -rf {self.working_dir};"
             # subprocess.call(cmd, shell=True)
 
-    def write_manifest(self, manifest):
-        path = f"{self.working_dir}/{self.manifest_file}"
-
-        with open(path, "w") as mf:
-            for file in manifest:
-                mf.write(f"{c_to_ccp(file)}\n")
-
-        return path
-
-    def get_command(self, challenge):
-        # parse the config
-        arguments = self.config["arguments"]
-        compile_cmd = compile_cpp_command(self.working_dir.root, challenge.name, ["__SOURCE_NAME__"])
-        arguments["--compiler-command"] = f'python3 {compile_cmd}'
-        test_cmd = test_command(self.working_dir.root, challenge.name, test="__TEST_NAME__")
-        arguments["--test-command"] = f'python3 {test_cmd}'
-        arguments["--prefix"] = str(self.working_dir.cmake)
-
-        pos_tests = challenge.pos_tests
-        neg_tests = challenge.neg_tests
-
-        if self.pos_tests and self.pos_tests <= pos_tests:
-            pos_tests = self.pos_tests
-
-        if self.neg_tests and self.neg_tests <= neg_tests:
-            neg_tests = self.neg_tests
-
-        arguments["--pos-tests"] = str(pos_tests)
-        arguments["--neg-tests"] = str(neg_tests)
-
-        if challenge.multifile:
-            manifest_path = self.write_manifest(challenge.manifest)
-            arguments["--rep"] = "cilpatch"
-            arguments["--program"] = manifest_path
-
-        else:
-            arguments["--rep"] = "c"
-            arguments["--program"] = c_to_ccp(list(challenge.manifest.keys())[0])
-
-        repair_cmd = [os.path.join(REPAIR_TOOLS_DIR, self.config["program"])]
-
-        for opt, arg in arguments.items():
-            if arg != "":
-                repair_cmd.extend((opt, arg))
-            else:
-                repair_cmd.extend([opt])
-
-        return repair_cmd
-
-
-def init(args):
-    return GenProg(config_path=args.config_path,
-                   pos_tests=args.pos_tests,
-                   neg_tests=args.neg_tests,
-                   seed=args.seed)
-
 
 def genprog_args(input_parser):
-    input_parser.add_argument("--seed", help="The random seed", default=0, type=int)
-    input_parser.add_argument("--pos_tests", help="Number of positive tests.", type=int, default=None)
-    input_parser.add_argument("--neg_tests", help="Number of negative tests", type=int, default=None)
-    input_parser.add_argument("--config_path", help="Path to the configuration file", type=str, required=True)
     input_parser.add_argument('--version', action='version', version='GenProg e720256')
 
 
-parser = add_repair_tool("GenProg", init, 'Repair the challenge with GenProg')
+parser = add_repair_tool("GenProg", GenProg, 'Repair the challenge with GenProg')
 genprog_args(parser)
-
