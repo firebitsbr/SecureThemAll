@@ -18,7 +18,8 @@ challenge_parser.add_argument("--challenges", "-c", nargs='+', help="The challen
 challenge_parser.add_argument("--seed", help="The random seed", default=0, type=int)
 challenge_parser.add_argument("--pos_tests", help="Number of positive tests.", type=int, default=None)
 challenge_parser.add_argument("--neg_tests", help="Number of negative tests", type=int, default=None)
-challenge_parser.add_argument("--config_path", help="Path to the configuration file", type=str, required=True)
+challenge_parser.add_argument("--repair_config", help="Path to the repair configuration file", type=str, required=True)
+challenge_parser.add_argument('-v', '--verbose', help='Verbose output.', action='store_true')
 
 
 subparsers = parser.add_subparsers()

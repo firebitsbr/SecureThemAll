@@ -14,12 +14,12 @@ from typing import List
 
 
 class RunnerWorker(Thread):
-    def __init__(self, local_runner, callback, threads: int):
+    def __init__(self, local_runner, callback):
         Thread.__init__(self)
         self.local_runner = local_runner
         self.callback = callback
         self.daemon = True
-        self.pool = RepairThreadPool(threads)
+        self.pool = RepairThreadPool(local_runner.threads)
 
     def run(self):
         for task in self.local_runner.tasks:
@@ -93,7 +93,7 @@ class LocalRunner(Runner):
         pass
 
     def execute(self):
-        worker = RunnerWorker(self, self.repair_done, threads=self.threads)
+        worker = RunnerWorker(local_runner=self, callback=self.repair_done)
         #renderer = get_renderer(self)
         worker.start()
 

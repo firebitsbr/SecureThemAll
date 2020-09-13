@@ -4,85 +4,55 @@
 
 import os
 import json
-import time
-import random
 import shutil
 import datetime
 from pathlib import Path
 
-from core.challenge import Challenge
-from core.benchmark import Benchmark
+from core.setting import Setting
+from .lock_file import LockFile
 
 
-LOCK_FILE = "LOCK_CHALS_INIT"
-
-
-def is_lock(root_dir: str):
-    return os.path.exists(os.path.join(root_dir, LOCK_FILE))
-
-
-def wait_lock(root_dir: str):
-    while is_lock(root_dir):
-        secs = random.randrange(2, 8)
-        time.sleep(secs)
-
-
-def lock(root_dir: str):
-    f = open(os.path.join(root_dir, LOCK_FILE), "w+")
-    f.close()
-    pass
-
-
-def unlock(root_dir):
-    path = os.path.join(root_dir, LOCK_FILE)
-    if os.path.exists(path):
-        os.remove(path)
-
-
-class RepairTool(object):
+class RepairTool(Setting):
     def __init__(self,
-                 name: str,
-                 config_path: str,
-                 working_dir: str,
-                 tools_path: Path,
-                 root_path: Path,
+                 repair_config: str,
                  **kwargs):
-        self.config = None
-        self.name = name
+        super(RepairTool, self).__init__(**kwargs)
+        self.repair_config = None
         self.repair_begin = None
         self.seed = 0
-        self.working_dir = working_dir
-        self.root = root_path
-        program = self._set_config(config_path)
-        self.program = tools_path / program
+        self.timeout = self.configuration.tools_timeout
+        self.working_dir = self.configuration.paths.working_dir
+        self.lock = LockFile(self.configuration.paths.root, self.configuration.lock_file)
+        program = self._set_repair_config(repair_config)
+        self.program = self.get_repair_tools_path() / program
 
         print(f"Discarded arguments {kwargs}")
 
-    def _set_config(self, config_file: str) -> Path:
+    def _set_repair_config(self, config_file: str) -> Path:
         path = os.path.realpath(config_file)
         
         if not os.path.exists(path):
             raise ValueError(f"No such file {path}.")
         
         with open(path) as config_file:
-            self.config = json.load(config_file)
+            self.repair_config = json.load(config_file)
 
-            if "program" in self.config:
-                return Path(self.config["program"])
+            if "program" in self.repair_config:
+                return Path(self.repair_config["program"])
 
             return Path("")
 
-    def init_challenge(self, benchmark: Benchmark, challenge_name: str) -> Challenge:
+    def init_challenge(self, benchmark, challenge_name: str):
         wd = os.path.join(self.working_dir, f"{self.name}_{challenge_name}_{self.seed}")
 
-        #if os.path.exists(wd):
-            #shutil.rmtree(wd)
+        if os.path.exists(wd):
+            shutil.rmtree(wd)
         try:
-            wait_lock(str(self.root))
-            lock(str(self.root))
+            self.lock.wait_lock()
+            self.lock()
             challenge = benchmark.checkout(working_directory=wd, challenge_name=challenge_name)
         finally:
-            unlock(str(self.root))
+            self.lock.unlock()
         self.repair_begin = datetime.datetime.now().__str__()
 
         return challenge

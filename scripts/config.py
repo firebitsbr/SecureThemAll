@@ -14,12 +14,14 @@ class Configuration:
     paths: ConfigPaths
     bench_paths: BenchPaths
     dirs: ConfigDirs
-    tools_timeout: str  # In seconds
+    lock_file: str
+    tools_timeout: int  # In seconds
+    command_timeout: int    # In seconds
     local_threads: int
 
     def validate(self):
         return self.paths.validate() and self.bench_paths.validate() \
-               and int(self.tools_timeout) > 0 and self.local_threads > 0
+               and self.tools_timeout > 0 and self.local_threads > 0
 
 
 config_paths = ConfigPaths(root=Path(ROOT_DIR),
@@ -44,6 +46,8 @@ configuration = Configuration(
     paths=config_paths,
     bench_paths=bench_paths,
     dirs=config_dirs,
-    tools_timeout="1200",
+    lock_file="LOCK_CHALS_INIT",
+    tools_timeout=1200,
+    command_timeout=20,
     local_threads=2
 )

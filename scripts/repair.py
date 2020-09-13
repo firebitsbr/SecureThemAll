@@ -12,10 +12,8 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     tasks = []
-    benchmark = Benchmark(paths=configuration.bench_paths,
-                          out_dir=configuration.paths.out_dir,
-                          tool_name="GenProg",
-                          tool_seed=args.seed)
+    var_args = dict(vars(args))
+    benchmark = Benchmark(config=configuration, **var_args)
 
     challenges = benchmark.get_challenges()
 
@@ -26,16 +24,12 @@ if __name__ == "__main__":
 
     for challenge in challenges:
 
-        tool = args.repair_tool(**dict(vars(args)),
-                                tools_path=configuration.paths.repair_tools,
-                                working_dir=str(configuration.paths.working_dir),
-                                root_path=configuration.paths.root)
+        tool = args.repair_tool(config=configuration, **var_args)
 
-        task = RepairTask(tool=tool,
+        task = RepairTask(config=configuration,
+                          tool=tool,
                           benchmark=benchmark,
-                          challenge_name=challenge,
-                          out_dir=configuration.paths.out_dir,
-                          timeout=configuration.tools_timeout)
+                          challenge_name=challenge)
 
         if not args.continue_execution or not os.path.exists(os.path.join(task.log_dir(), "repair.log")):
             tasks.append(task)
