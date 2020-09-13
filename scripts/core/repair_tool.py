@@ -4,25 +4,20 @@
 
 import os
 import json
-import shutil
 import datetime
 from pathlib import Path
 
 from core.setting import Setting
-from .lock_file import LockFile
 
 
 class RepairTool(Setting):
     def __init__(self,
                  repair_config: str,
                  **kwargs):
-        super(RepairTool, self).__init__(**kwargs)
+        super(RepairTool, self).__init__(**kwargs, timeout=self.configuration.tools_timeout)
         self.repair_config = None
         self.repair_begin = None
-        self.seed = 0
-        self.timeout = self.configuration.tools_timeout
         self.working_dir = self.configuration.paths.working_dir
-        self.lock = LockFile(self.configuration.paths.root, self.configuration.lock_file)
         program = self._set_repair_config(repair_config)
         self.program = self.get_repair_tools_path() / program
 
@@ -42,22 +37,11 @@ class RepairTool(Setting):
 
             return Path("")
 
-    def init_challenge(self, benchmark, challenge_name: str):
-        wd = os.path.join(self.working_dir, f"{self.name}_{challenge_name}_{self.seed}")
-
-        if os.path.exists(wd):
-            shutil.rmtree(wd)
-        try:
-            self.lock.wait_lock()
-            self.lock()
-            challenge = benchmark.checkout(working_directory=wd, challenge_name=challenge_name)
-        finally:
-            self.lock.unlock()
+    def begin(self):
         self.repair_begin = datetime.datetime.now().__str__()
 
-        return challenge
-
     def repair(self, repair_task):
+        self.begin()
         pass
 
     def __str__(self):

@@ -1,21 +1,24 @@
 #!/usr/bin/env python3
 
+import shutil
+
 from pathlib import Path
 from typing import List
 
 from core.challenge import Challenge
 from core.setting import Setting
+from .utils.lock_file import LockFile
 
 
 class Benchmark(Setting):
     """Benchmark"""
 
-    def __init__(self, seed: int, **kwargs):
+    def __init__(self, **kwargs):
         super(Benchmark, self).__init__(name="Benchmark", **kwargs)
         self.paths = self.configuration.bench_paths
         self.challenges = None
         self.verbose = True
-        self._init_log_file(folder=Path("benchmark", str(seed)),
+        self._init_log_file(folder=Path("benchmark", str(self.seed)),
                             file=Path("benchmark.log"))
         self.get_challenges()
 
@@ -27,6 +30,26 @@ class Benchmark(Setting):
 
         return None
 
+    def init_challenge(self, tool_name: str, challenge_name: str) -> Challenge:
+        wd = Path(self.configuration.paths.working_dir, f"{tool_name}_{challenge_name}_{self.seed}")
+        lock = LockFile(self.configuration.paths.root, self.configuration.lock_file)
+        cmd_str = self.checkout(working_directory=wd, challenge_name=challenge_name)
+
+        if wd.exists():
+            shutil.rmtree(wd)
+        try:
+            lock.wait_lock()
+            lock()
+            out, err = super().__call__(cmd_str=cmd_str,
+                                        msg=f"Checking out challenge {challenge_name} to {wd}.\n")
+        finally:
+            lock.unlock()
+
+        if not err:
+            return Challenge(challenge_name, wd)
+
+        return Challenge("", "")
+
     def get_challenges(self):
         if not self.challenges:
             out, err = super().__call__(cmd_str=f"{self.paths.program} catalog",
@@ -36,15 +59,13 @@ class Benchmark(Setting):
 
         return self.challenges
 
-    def checkout(self, working_directory: str, challenge_name: str) -> Challenge:
-        out, err = super().__call__(
-            cmd_str=f"{self.paths.program} checkout -wd {working_directory} -cn {challenge_name}",
-            msg=f"Checking out challenge {challenge_name} to {working_directory}.\n")
+    def checkout(self, working_directory: Path, challenge_name: str, remove_patch: bool = False) -> Challenge:
+        cmd_str = f"{self.paths.program} checkout -wd {working_directory} -cn {challenge_name}"
 
-        if not err:
-            return Challenge(challenge_name, working_directory)
-        self._log(err)
-        return Challenge("", "")
+        if remove_patch:
+            cmd_str += " -rp"
+
+        return cmd_str
 
     def compile(self, challenge: Challenge, instrumented_files: List[str] = None, preprocessed=False):
         cmd_str = f"{self.paths.program} compile -wd {challenge.working_dir} -cn {challenge.name} --log_file bench.log "

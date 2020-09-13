@@ -11,9 +11,8 @@ from ..utils.parse import c_to_cpp
 class GenProg(RepairTool):
     """GenProg"""
 
-    def __init__(self, pos_tests: int, neg_tests: int, seed: int = 0, **kwargs):
+    def __init__(self, pos_tests: int, neg_tests: int, **kwargs):
         super(GenProg, self).__init__(name="GenProg", **kwargs)
-        self.seed = seed
         self.pos_tests = pos_tests
         self.neg_tests = neg_tests
 
@@ -23,11 +22,15 @@ class GenProg(RepairTool):
         """
         # checkouts the challenge binary to a temporary path
         benchmark = repair_task.benchmark
-        challenge = self.init_challenge(benchmark, repair_task.challenge)
+        challenge = benchmark.init_challenge(self.name, repair_task.challenge)
         benchmark.compile(challenge, preprocessed=True)
+
+        self._init_log_file(folder=Path(self.name, self.challenge, str(self.seed)),
+                            file=Path("tool.log"))
 
         try:
             repair_cmd = self._get_repair_cmd(benchmark=benchmark, challenge=challenge)
+            self.begin()
             out, err = super().__call__(cmd_str=repair_cmd,
                                         cmd_cwd=str(challenge.working_dir))
 
@@ -61,7 +64,7 @@ class GenProg(RepairTool):
                     # patch['edits'].append(edit)
                     result["patches"].append(patch)
 
-            results_path = repair_task.log_dir / Path("result.json")
+            results_path = self.log_dir / Path("result.json")
 
             with results_path.open("w+") as res:
                 json.dump(result, res, indent=2)

@@ -7,7 +7,7 @@ from .utils.parse import c_to_cpp
 class Challenge:
 	def __init__(self, name: str, working_dir: Path):
 		self.name = name
-		self.working_dir = Path(working_dir)
+		self.working_dir = working_dir
 		self._load_manifest()
 
 	def _load_manifest(self):

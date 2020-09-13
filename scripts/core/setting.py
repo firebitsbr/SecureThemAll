@@ -12,12 +12,14 @@ class Setting:
                  config: Configuration,
                  verbose: bool = False,
                  timeout: int = None,
+                 seed: int = 0,
                  **kwargs):
         self.name = name
         self.configuration = config
         self.verbose = verbose
         self.timeout = timeout if timeout else config.command_timeout
         self.log_file = None
+        self.seed = seed
 
         if kwargs:
             self._log(f"{name}: unknown arguments {kwargs}\n.")

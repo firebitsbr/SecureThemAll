@@ -26,7 +26,7 @@ class RepairTask(Setting):
         self.tool = tool
         self.challenge = challenge_name
         self.benchmark = benchmark
-        self._init_log_file(folder=Path(self.challenge, self.tool.name, str(self.tool.seed)),
+        self._init_log_file(folder=Path(self.tool.name, self.challenge, str(self.tool.seed)),
                             file=Path("repair.log"))
 
         self.status = None
