@@ -1,0 +1,25 @@
+{
+	"program" : "mut-aprfl/modify",
+	"args": {
+		"--mut" : 0.01,
+		"--seed" : 1
+	},
+	"regex": {
+		"compile": ".*\\s*(?P<fix_files>\\d{5}-file.c)\\s*.*",
+		"bad": ".*\\s*(?P<out_file>\\d{5}-bad)\\s*.*",
+		"good": ".*\\s*(?P<out_file>\\d{5}-good)\\s*.*"
+	},
+	"inst": {
+		"program" : "mut-aprfl/coverage",
+		"args": {
+			"--fixfun" : "",
+			"--mt-cov" : ""
+		}
+	},
+	"fault":{
+		"program" : "mut-aprfl/faultLoc",
+		"args": {
+			"--fl" : "Ochiai"
+		}
+	}
+}

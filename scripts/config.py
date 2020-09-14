@@ -38,8 +38,8 @@ bench_paths = BenchPaths(
 )
 
 config_dirs = ConfigDirs(
-    coverage=Path(),
-    instrument=Path()
+    coverage=Path("coverage"),
+    instrument=Path("instrument")
 )
 
 configuration = Configuration(

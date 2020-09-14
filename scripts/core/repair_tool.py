@@ -14,7 +14,7 @@ class RepairTool(Setting):
     def __init__(self,
                  repair_config: str,
                  **kwargs):
-        super(RepairTool, self).__init__(**kwargs, timeout=self.configuration.tools_timeout)
+        super(RepairTool, self).__init__(**kwargs)
         self.repair_config = None
         self.repair_begin = None
         self.working_dir = self.configuration.paths.working_dir

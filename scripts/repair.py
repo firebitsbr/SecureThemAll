@@ -24,7 +24,7 @@ if __name__ == "__main__":
 
     for challenge in challenges:
 
-        tool = args.repair_tool(config=configuration, **var_args)
+        tool = args.repair_tool(config=configuration, **var_args, timeout=configuration.tools_timeout)
 
         task = RepairTask(config=configuration,
                           tool=tool,

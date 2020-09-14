@@ -32,3 +32,4 @@ def add_repair_tool(name, tool, description):
 
 
 import core.repair_tools.genprog
+import core.repair_tools.mut_apr

@@ -67,21 +67,36 @@ class Benchmark(Setting):
 
         return cmd_str
 
-    def compile(self, challenge: Challenge, instrumented_files: List[str] = None, preprocessed=False):
-        cmd_str = f"{self.paths.program} compile -wd {challenge.working_dir} -cn {challenge.name} --log_file bench.log "
+    def compile(self, challenge: Challenge, instrumented_files: List[str] = None, preprocess=False, regex: str = None,
+                prefix: str = None, log_file: str = None):
+        cmd_str = f"{self.paths.program} compile -wd {challenge.working_dir} -cn {challenge.name}"
 
         if instrumented_files:
             inst_files_str = ' '.join(instrumented_files)
             cmd_str += f" -ifs {inst_files_str}"
 
-        if preprocessed:
+        if regex:
+            cmd_str += f" -r {regex}"
+
+        if prefix:
+            cmd_str += f" -pf {prefix}"
+
+        if log_file:
+            cmd_str += f" -l {log_file}"
+
+        if preprocess:
             out, err = super().__call__(cmd_str=cmd_str,
                                         msg=f"Compiling {challenge.name}.\n")
+
+            if out:
+                return out
+            return err
 
         return cmd_str
 
     def test(self, challenge: Challenge, tests: List[str] = None, pos_tests: bool = False, neg_tests: bool = False,
-             exit_fail=False):
+             exit_fail: bool = False, write_fail: bool = False, out_file: str = None, coverage: dict = None,
+             regex: str = None, prefix: str = None,  log_file: str = None):
         cmd_str = f"{self.paths.program} test -wd {challenge.working_dir} -cn {challenge.name}"
 
         if tests:
@@ -94,6 +109,29 @@ class Benchmark(Setting):
 
         if exit_fail:
             cmd_str += " -ef"
+
+        if write_fail:
+            cmd_str += " -wf"
+
+        if out_file:
+            cmd_str += f" -of {out_file}"
+
+        if regex:
+            cmd_str += f" -r {regex}"
+
+        if prefix:
+            cmd_str += f" -pf {prefix}"
+
+        if log_file:
+            cmd_str += f" -l {log_file}"
+
+        if coverage:
+            cmd_str += " " + ' '.join([f"--{opt} {arg}" for opt, arg in coverage.items()])
+            out, err = super().__call__(cmd_str=cmd_str, msg=f"Testing {challenge.name}.\n")
+
+            if out:
+                return out
+            return err
 
         return cmd_str
 

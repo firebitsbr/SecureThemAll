@@ -21,12 +21,17 @@ class Challenge:
 			self.manifest = []
 			self.multi_file = 0
 
-	def get_manifest(self, path: bool = False, preprocessed: bool = False, string=False):
+	def get_manifest(self, path: bool = False, preprocessed: bool = False, string=False, prefix: Path = None):
 		if path:
 			return self.manifest_path
 
 		if preprocessed:
-			files = [c_to_cpp(file) for file in self.manifest]
+			files = []
+
+			for file in self.manifest:
+				cpp_file = Path(c_to_cpp(file))
+				files.append((prefix / cpp_file) if prefix else cpp_file)
+
 			return '\n'.join(files) if string else files
 
 		return self.manifest

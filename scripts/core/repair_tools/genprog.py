@@ -23,9 +23,9 @@ class GenProg(RepairTool):
         # checkouts the challenge binary to a temporary path
         benchmark = repair_task.benchmark
         challenge = benchmark.init_challenge(self.name, repair_task.challenge)
-        benchmark.compile(challenge, preprocessed=True)
+        benchmark.compile(challenge, preprocess=True)
 
-        self._init_log_file(folder=Path(self.name, self.challenge, str(self.seed)),
+        self._init_log_file(folder=Path(self.name, challenge.name, str(self.seed)),
                             file=Path("tool.log"))
 
         try:
