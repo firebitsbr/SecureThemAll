@@ -8,6 +8,7 @@ from pathlib import Path
 class ConfigDirs:
     coverage: Path
     instrument: Path
+    repair: Path
 
 
 @dataclass

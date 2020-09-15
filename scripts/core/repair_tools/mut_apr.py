@@ -1,5 +1,4 @@
-import json
-import datetime
+#!/usr/bin/env python3
 
 from typing import List
 from pathlib import Path
@@ -33,15 +32,15 @@ class MutApr(RepairTool):
         # checkouts the challenge binary to a temporary path
         benchmark = repair_task.benchmark
         challenge = benchmark.init_challenge(self.name, repair_task.challenge)
+        # tool works with preprocessed files, makes part of the init
         benchmark.compile(challenge, preprocess=True)
-
-        # checkouts the challenge binary to a temporary path
         self._init_log_file(folder=Path(self.name, challenge.name, str(self.seed)),
                             file=Path("tool.log"))
 
         try:
             self.begin()
             results = ""
+            repair_dir = challenge.working_dir / self.configuration.dirs.repair
             prefix = benchmark.prefix(challenge)
             vuln_files = challenge.get_manifest(preprocessed=True)
             # instrument manifest files
@@ -57,52 +56,43 @@ class MutApr(RepairTool):
                            prefix=prefix)
 
             for file in vuln_files:
-                results += self._modify(prefix / file, benchmark, challenge)
+                results += self._modify(prefix / file, benchmark=benchmark, challenge=challenge,
+                                        repair_dir=repair_dir / Path(file.parent, file.stem))
+
+            self.end()
+
+            for file in vuln_files:
+                self._get_patches(prefix=prefix, target_file=file,
+                                  edits_path=repair_dir / Path(file.parent, file.stem))
 
             return results
 
         finally:
             result = {
                 "repair_begin": self.repair_begin,
-                "repair_end": datetime.datetime.now().__str__(),
-                "patches": []
+                "repair_end": self.repair_end,
+                "patches": self.patches
             }
-            repair_task.status = "FINISHED"
-            '''
-            results_path = os.path.join(self.working_dir.root, "repair")
-            sanity_path = os.path.join(self.working_dir.root, "sanity")
-
-            for file_path in challenge.manifest:
-                ccp_file = c_to_ccp(file_path)
-                repaired_file = os.path.join(results_path, ccp_file)
-                sanity_file = os.path.join(sanity_path, ccp_file)
-
-                if os.path.exists(repaired_file) and os.path.exists(sanity_file):
-                    patch = {
-                        "edits": []
-                    }
-
-                    diff_cmd = f"diff {sanity_file} {repaired_file}"
-                    cmd = Command(diff_cmd)
-                    out, err = cmd()
-
-                    patch["patch"] = out
-                    # TODO: Add edits to the patch
-                    # patch['edits'].append(edit)
-                    result["patches"].append(patch)
-            '''
-            results_path = self.log_dir / Path("result.json")
-
-            with results_path.open("w+") as res:
-                json.dump(result, res, indent=2)
-
             repair_task.results = result
+            # self.dispose(challenge)
 
-            if len(result['patches']) > 0:
-                repair_task.status = "PATCHED"
+    def _get_patches(self, prefix: Path, target_file: Path, edits_path: Path):
+        target_file_str = str(target_file)
+        patch = {"target_file": target_file_str, "fix": "", "edits": []}
 
-            rm_cmd = f"rm -rf {self.working_dir};"
-            # subprocess.call(cmd, shell=True)
+        baseline_path = prefix / Path(target_file_str + "-baseline.c")
+        best_path = prefix / Path(target_file_str + "--best.c")
+
+        if baseline_path.exists():
+            if best_path.exists():
+                patch["fix"] = self.diff(baseline_path, best_path)
+
+            if edits_path.exists():
+                for file in edits_path.iterdir():
+                    if not file.is_dir() and file.suffix == ".c" and file.stat().st_size > 0:
+                        patch["edits"].append(self.diff(baseline_path, file))
+
+        self.patches.append(patch)
 
     def _instrument(self, working_dir: Path, program_path: Path, args: dict, files: List[Path],
                     prefix: Path) -> List[str]:
@@ -162,7 +152,8 @@ class MutApr(RepairTool):
         # fix faults
         pass
 
-    def _modify(self, file: Path, benchmark, challenge):
+    def _modify(self, target_file: Path, benchmark, challenge, repair_dir: Path):
+        repair_dir.mkdir(parents=True, exist_ok=True)
         args_str = ' '.join([f"{opt} {arg}" for opt, arg in self.repair_config["args"].items()])
 
         cre = _regex_file(challenge.working_dir, "compile.txt", self.repair_config["regex"]["compile"])
@@ -170,22 +161,22 @@ class MutApr(RepairTool):
         bre = _regex_file(challenge.working_dir, "bad.txt", self.repair_config["regex"]["bad"])
         log_arg = f"{benchmark.log_file}"
 
-        test_good = benchmark.test(challenge=challenge, regex=str(gre), pos_tests=True, prefix=challenge.working_dir,
+        test_good = benchmark.test(challenge=challenge, regex=str(gre), pos_tests=True, prefix=str(repair_dir),
                                    log_file=log_arg)
-        test_bad = benchmark.test(challenge=challenge, regex=str(bre), neg_tests=True, prefix=challenge.working_dir,
+        test_bad = benchmark.test(challenge=challenge, regex=str(bre), neg_tests=True, prefix=str(repair_dir),
                                   log_file=log_arg)
-        compile_cmd = benchmark.compile(challenge=challenge, instrumented_files=[str(file)], regex=str(cre),
-                                        log_file=log_arg, prefix=challenge.working_dir)
+        compile_cmd = benchmark.compile(challenge=challenge, instrumented_files=[str(target_file)], regex=str(cre),
+                                        log_file=log_arg, prefix=str(repair_dir))
 
         modify_cmd = str(self.program)
-        modify_cmd = modify_cmd + f" {args_str} {file}"
+        modify_cmd = modify_cmd + f" {args_str} {target_file}"
         # fix_cmd += f" --faultpath {fl_out_file}"
         modify_cmd += f" --gcc \"python3 {compile_cmd}\""
         modify_cmd += f" --good \"python3 {test_good}\""
         modify_cmd += f" --bad \"python3 {test_bad}\""
 
         out, err = super().__call__(cmd_str=modify_cmd,
-                                    cmd_cwd=challenge.working_dir)
+                                    cmd_cwd=repair_dir)
 
         return out
 
