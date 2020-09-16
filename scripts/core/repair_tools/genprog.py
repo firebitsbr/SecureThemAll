@@ -1,11 +1,9 @@
-import json
-import datetime
+import re
 from pathlib import Path
 
 from core.input_parser import add_repair_tool
 from core.repair_tool import RepairTool
 from core.runner.repair_task import RepairTask
-from ..utils.parse import c_to_cpp
 
 
 class GenProg(RepairTool):
@@ -31,51 +29,47 @@ class GenProg(RepairTool):
         try:
             repair_cmd = self._get_repair_cmd(benchmark=benchmark, challenge=challenge)
             self.begin()
+            self.verbose = True
+            self.timeout = None
             out, err = super().__call__(cmd_str=repair_cmd,
                                         cmd_cwd=str(challenge.working_dir))
+
+            self.end()
+
+            for file_path in challenge.get_manifest(preprocessed=True):
+                self._get_patches(challenge.working_dir, file_path, challenge.working_dir)
 
             return out
 
         finally:
             result = {
                 "repair_begin": self.repair_begin,
-                "repair_end": datetime.datetime.now().__str__(),
-                "patches": []
+                "repair_end": self.repair_end,
+                "patches": self.patches
             }
-            repair_task.status = "FINISHED"
-            repair_path = challenge.working_dir / Path("repair")
-            sanity_path = challenge.working_dir / Path("sanity")
-
-            for file_path in challenge.manifest:
-                ccp_file = c_to_cpp(file_path)
-                repaired_file = repair_path / Path(ccp_file)
-                sanity_file = sanity_path / Path(ccp_file)
-
-                if repaired_file.exists() and sanity_file.exists():
-                    patch = {
-                        "edits": []
-                    }
-
-                    diff_cmd = f"diff {sanity_file} {repaired_file}"
-                    out, err = super().__call__(cmd_str=diff_cmd, cmd_cwd=challenge.working_dir)
-
-                    patch["patch"] = out
-                    # TODO: Add edits to the patch
-                    # patch['edits'].append(edit)
-                    result["patches"].append(patch)
-
-            results_path = self.log_dir / Path("result.json")
-
-            with results_path.open("w+") as res:
-                json.dump(result, res, indent=2)
-
             repair_task.results = result
+            # self.dispose(challenge.working_dir)
 
-            if len(result['patches']) > 0:
-                repair_task.status = "PATCHED"
+    def _get_patches(self, prefix: Path, target_file: Path, edits_path: Path):
+        target_file_str = str(target_file)
+        patch = {"target_file": target_file_str, "fix": "", "edits": []}
 
-            rm_cmd = f"rm -rf {self.working_dir};"
-            # subprocess.call(cmd, shell=True)
+        repaired_file = prefix / Path("repair") / target_file
+        sanity_file = prefix / Path("sanity") / target_file
+
+        if sanity_file.exists():
+            if repaired_file.exists():
+                diff = self.diff(path=sanity_file, path_compare=repaired_file)
+                patch['fix'] = diff
+            if edits_path.exists():
+                for f in edits_path.iterdir():
+                    if f.is_dir() and re.match(r"^\d{6}$", str(f.name)):
+                        edit_file = f / target_file
+                        if not edit_file.is_dir() and edit_file.stat().st_size > 0:
+                            diff = self.diff(path=sanity_file, path_compare=edit_file)
+                            patch['edits'].append(diff)
+
+        self.patches.append(patch)
 
     def _get_repair_cmd(self, benchmark, challenge):
         arguments = self.repair_config["arguments"]

@@ -29,8 +29,16 @@ class Challenge:
 			files = []
 
 			for file in self.manifest:
-				cpp_file = Path(c_to_cpp(file))
-				files.append((prefix / cpp_file) if prefix else cpp_file)
+				cpp_file = c_to_cpp(file)
+
+				if prefix:
+					cpp_file_prefix = prefix / Path(cpp_file)
+					if string:
+						files.append(str(cpp_file_prefix))
+					else:
+						files.append(cpp_file_prefix)
+				else:
+					files.append(cpp_file)
 
 			return '\n'.join(files) if string else files
 
