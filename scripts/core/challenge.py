@@ -38,9 +38,12 @@ class Challenge:
 					else:
 						files.append(cpp_file_prefix)
 				else:
-					files.append(cpp_file)
+					if string:
+						files.append(cpp_file)
+					else:
+						files.append(Path(cpp_file))
 
-			return '\n'.join(files) if string else files
+			return files
 
 		return self.manifest
 

@@ -42,12 +42,8 @@ class GenProg(RepairTool):
             return out
 
         finally:
-            result = {
-                "repair_begin": self.repair_begin,
-                "repair_end": self.repair_end,
-                "patches": self.patches
-            }
-            repair_task.results = result
+            repair_task.status = repair_task.results(self.reair_begin, self.repair_end, self.patches)
+            repair_task.results.write()
             # self.dispose(challenge.working_dir)
 
     def _get_patches(self, prefix: Path, target_file: Path, edits_path: Path):

@@ -40,6 +40,8 @@ class MutApr(RepairTool):
         try:
             self.begin()
             results = ""
+            self.verbose = True
+            self.timeout = None
             repair_dir = challenge.working_dir / self.configuration.dirs.repair
             prefix = benchmark.prefix(challenge)
             vuln_files = challenge.get_manifest(preprocessed=True)
@@ -68,12 +70,8 @@ class MutApr(RepairTool):
             return results
 
         finally:
-            result = {
-                "repair_begin": self.repair_begin,
-                "repair_end": self.repair_end,
-                "patches": self.patches
-            }
-            repair_task.results = result
+            repair_task.status = repair_task.results(self.repair_begin, self.repair_end, self.patches)
+            repair_task.results.write()
             # self.dispose(challenge)
 
     def _get_patches(self, prefix: Path, target_file: Path, edits_path: Path):

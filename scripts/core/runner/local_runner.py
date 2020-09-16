@@ -43,7 +43,6 @@ class RepairWorker(Thread):
             task.status = "STARTED"
             try:
                 task.run()
-                task.write_results()
             except Exception as e:
                 task.status = "ERROR"
                 print(e)
