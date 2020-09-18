@@ -1,0 +1,38 @@
+{
+  "repair_begin": "2020-09-17 23:12:18.769970",
+  "repair_end": "2020-09-17 23:22:19.451433",
+  "patches": [
+    {
+      "target_file": "src/uwfc.i",
+      "fix": "",
+      "edits": [
+        "342c342\n<     track->data = (char *)tmp___2;\n---\n> \n",
+        "193c193\n<   sub_chunk2_id = (char *)\"data\";\n---\n> \n",
+        "225,228d224\n<   if ((int )header->num_channels != 1) {\n<     if ((int )header->num_channels != 2) {\n<       return (- (1 << 6));\n<     } else {\n230,233d225\n<     }\n<   } else {\n< \n<   }\n",
+        "207c207,211\n<   tmp___0 = cgc_memcmp((void *)temp, (void const   *)audio_fmt, (cgc_size_t )4);\n---\n>   if (tmp___1 != 0) {\n>     return (- (1 << 4));\n>   } else {\n> \n>   }\n215,219c219\n<   if (tmp___1 != 0) {\n<     return (- (1 << 4));\n<   } else {\n< \n<   }\n---\n>   tmp___0 = cgc_memcmp((void *)temp, (void const   *)audio_fmt, (cgc_size_t )4);\n",
+        "635c635\n<   dft_output_l = (complex_t *)0;\n---\n> \n",
+        "280a281\n>       {\n281a283,288\n>       if (tmp___2 != 0) {\n>         return (- (1 << 11));\n>       } else {\n> \n>       }\n>       }\n",
+        "311a312\n>   {\n312a314,315\n> \n>   }\n",
+        "203a204\n>     {\n204a206,207\n>     cgc_printf(\"|-----|\");\n>     }\n",
+        "272,274d271\n<   if ((int )header->block_align != ((int )header->num_channels * (int )header->bits_per_sample) / 8) {\n<     return (- (1 << 8));\n<   } else {\n276d272\n<   }\n",
+        "272,276c272\n<   if ((int )header->block_align != ((int )header->num_channels * (int )header->bits_per_sample) / 8) {\n<     return (- (1 << 8));\n<   } else {\n< \n<   }\n---\n>   return ((int )(header->chunk_size + 8U));\n293c289,293\n<   return ((int )(header->chunk_size + 8U));\n---\n>   if ((int )header->block_align != ((int )header->num_channels * (int )header->bits_per_sample) / 8) {\n>     return (- (1 << 8));\n>   } else {\n> \n>   }\n",
+        "238,251c238,239\n<           if (header->sample_rate != 32000U) {\n<             if (header->sample_rate != 44100U) {\n<               if (header->sample_rate != 48000U) {\n<                 if (header->sample_rate != 4000U) {\n<                   return (- (1 << 7));\n<                 } else {\n< \n<                 }\n<               } else {\n< \n<               }\n<             } else {\n< \n<             }\n---\n>           if ((int )header->block_align != ((int )header->num_channels * (int )header->bits_per_sample) / 8) {\n>             return (- (1 << 8));\n272,273c260,273\n<   if ((int )header->block_align != ((int )header->num_channels * (int )header->bits_per_sample) / 8) {\n<     return (- (1 << 8));\n---\n>   if (header->sample_rate != 32000U) {\n>     if (header->sample_rate != 44100U) {\n>       if (header->sample_rate != 48000U) {\n>         if (header->sample_rate != 4000U) {\n>           return (- (1 << 7));\n>         } else {\n> \n>         }\n>       } else {\n> \n>       }\n>     } else {\n> \n>     }\n",
+        "346a347\n>       {\n347a349,350\n>       return;\n>       }\n",
+        "310a311\n>   {\n311a313,314\n>   return;\n>   }\n",
+        "293c293\n<   return ((int )(header->chunk_size + 8U));\n---\n> \n",
+        "213,214c213\n<   tmp___1 = cgc_memcmp((void *)(header->sub_chunk1_id),\n<                        (void const   *)sub_chunk1_id, (cgc_size_t )4);\n---\n> \n",
+        "318a319\n>   {\n319a321,322\n> \n>   }\n",
+        "290a291\n>     {\n291a293,294\n> \n>     }\n",
+        "255a256\n>           {\n256a258,259\n> \n>           }\n",
+        "193a194\n>   {\n195a197,202\n>   if (header->byte_rate != ((header->sample_rate * (unsigned int )header->num_channels) * (unsigned int )header->bits_per_sample) / 8U) {\n>     return (- (1 << 8));\n>   } else {\n> \n>   }\n>   }\n",
+        "309c309,320\n<   track_size = 0;\n---\n>   if (track_size == 0) {\n>     track->data = (char *)0;\n>   } else {\n>     tmp___2 = cgc_malloc((cgc_size_t )track_size);\n>     track->data = (char *)tmp___2;\n>     if ((unsigned long )track->data == (unsigned long )((char *)0)) {\n>       cgc_free((void *)track);\n>       return ((uwfc_t *)0);\n>     } else {\n> \n>     }\n>   }\n338,349c349\n<   if (track_size == 0) {\n<     track->data = (char *)0;\n<   } else {\n<     tmp___2 = cgc_malloc((cgc_size_t )track_size);\n<     track->data = (char *)tmp___2;\n<     if ((unsigned long )track->data == (unsigned long )((char *)0)) {\n<       cgc_free((void *)track);\n<       return ((uwfc_t *)0);\n<     } else {\n< \n<     }\n<   }\n---\n>   track_size = 0;\n",
+        "313c313\n<   track = (uwfc_t *)tmp;\n---\n> \n",
+        "197a198,200\n>   } else\n>   if (tmp___2 != 0) {\n>     return (- (1 << 11));\n288,290d290\n<   if (tmp___2 != 0) {\n<     return (- (1 << 11));\n<   } else {\n292d291\n<   }\n",
+        "236,243d235\n<       if (header->sample_rate != 16000U) {\n<         if (header->sample_rate != 22050U) {\n<           if (header->sample_rate != 32000U) {\n<             if (header->sample_rate != 44100U) {\n<               if (header->sample_rate != 48000U) {\n<                 if (header->sample_rate != 4000U) {\n<                   return (- (1 << 7));\n<                 } else {\n245,260d236\n<                 }\n<               } else {\n< \n<               }\n<             } else {\n< \n<             }\n<           } else {\n< \n<           }\n<         } else {\n< \n<         }\n<       } else {\n< \n<       }\n",
+        "323,326d322\n<   } else\n<   if (rx != (cgc_size_t )UWFC_HEADER_SIZE) {\n<     cgc_free((void *)track);\n<     return ((uwfc_t *)0);\n328c324\n< \n---\n>     tmp___2 = cgc_malloc((cgc_size_t )track_size);\n341c337,342\n<     tmp___2 = cgc_malloc((cgc_size_t )track_size);\n---\n>     if (rx != (cgc_size_t )UWFC_HEADER_SIZE) {\n>       cgc_free((void *)track);\n>       return ((uwfc_t *)0);\n>     } else {\n> \n>     }\n",
+        "370a371\n>   {\n371a373,374\n>   return;\n>   }\n",
+        "285a286\n>   {\n287a289,290\n> \n>   }\n"
+      ]
+    }
+  ]
+}

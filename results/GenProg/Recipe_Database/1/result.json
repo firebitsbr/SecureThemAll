@@ -1,0 +1,26 @@
+{
+  "repair_begin": "2020-09-18 01:32:50.080773",
+  "repair_end": "2020-09-18 01:33:10.809553",
+  "patches": [
+    {
+      "target_file": "lib/new_printf.i",
+      "fix": "",
+      "edits": []
+    },
+    {
+      "target_file": "src/print_recipe.i",
+      "fix": "",
+      "edits": []
+    },
+    {
+      "target_file": "src/get_instructions.i",
+      "fix": "",
+      "edits": []
+    },
+    {
+      "target_file": "src/find_recipe.i",
+      "fix": "",
+      "edits": []
+    }
+  ]
+}

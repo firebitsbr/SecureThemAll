@@ -1,0 +1,29 @@
+{
+  "repair_begin": "2020-09-18 02:22:23.545871",
+  "repair_end": "2020-09-18 02:32:24.253277",
+  "patches": [
+    {
+      "target_file": "src/strinfo.i",
+      "fix": "",
+      "edits": [
+        "139,143c139\n<           if (1 == (int )tmp) {\n<             r->letters = (unsigned short )((int )r->letters + 1);\n<           } else {\n<             r->symbols = (unsigned short )((int )r->symbols + 1);\n<           }\n---\n> \n",
+        "212c212\n<   ch = input;\n---\n> \n",
+        "214c214,222\n<   while ((int const   )term != (int const   )*ch) {\n---\n>   while (1) {\n>     if ((int const   )term != (int const   )*ch) {\n>       {\n> \n>       tmp___1 = cgc_is_paragraph_end_char(*ch);\n>       }\n>     } else {\n>       break;\n>     }\n",
+        "276c276\n<   offset = (unsigned short )((int )*((unsigned short *)input) % 4086);\n---\n> \n",
+        "135,144c135\n<         if (1 == (int )tmp___0) {\n<           r->numbers = (unsigned short )((int )r->numbers + 1);\n<         } else {\n<           tmp = cgc_is_letter((unsigned char const   )*ch);\n<           if (1 == (int )tmp) {\n<             r->letters = (unsigned short )((int )r->letters + 1);\n<           } else {\n<             r->symbols = (unsigned short )((int )r->symbols + 1);\n<           }\n<         }\n---\n> \n",
+        "269a270\n>     {\n270a272,273\n>     return (0);\n>     }\n",
+        "274c274\n<     checksum[(int )tmp % 4] = (char )((int )checksum[(int )tmp % 4] ^ (int )*tmp___0);\n---\n> \n",
+        "219,220c219,230\n<       if (1 == (int )tmp___0) {\n<         r->words = (unsigned short )((int )r->words + 1);\n---\n>       if (1 == (int )tmp___2) {\n>         if (32 == (int )*ch) {\n>           r->sentences = (unsigned short )((int )r->sentences + 1);\n>         } else {\n>           tmp___1 = cgc_is_paragraph_end_char(*ch);\n>           if (1 == (int )tmp___1) {\n>             r->sentences = (unsigned short )((int )r->sentences + 1);\n>             r->paragraphs = (unsigned short )((int )r->paragraphs + 1);\n>           } else {\n> \n>           }\n>         }\n228,239c238,239\n<     if (1 == (int )tmp___2) {\n<       if (32 == (int )*ch) {\n<         r->sentences = (unsigned short )((int )r->sentences + 1);\n<       } else {\n<         tmp___1 = cgc_is_paragraph_end_char(*ch);\n<         if (1 == (int )tmp___1) {\n<           r->sentences = (unsigned short )((int )r->sentences + 1);\n<           r->paragraphs = (unsigned short )((int )r->paragraphs + 1);\n<         } else {\n< \n<         }\n<       }\n---\n>     if (1 == (int )tmp___0) {\n>       r->words = (unsigned short )((int )r->words + 1);\n",
+        "232c232\n<         tmp___1 = cgc_is_paragraph_end_char(*ch);\n---\n> \n",
+        "293c293\n<   magic_sauce = (char const   *)1128775680;\n---\n> \n",
+        "301c301\n<   session_id[0] = (char )((int const   )*(magic_sauce + 0) ^ (int const   )*(magic_sauce + 1000));\n---\n> \n",
+        "316c316\n<   return (0);\n---\n> \n",
+        "268a269,272\n>   checksum[2] = (char )((int )checksum[2] ^ (int )*((magic_sauce + (int )offset) + 3));\n>   offset = (unsigned short )((int )*((unsigned short *)input) % 4086);\n>   checksum[0] = (char )((int )checksum[0] ^ (int )*((magic_sauce + (int )offset) + 9));\n>   checksum[1] = (char )((int )checksum[1] ^ (int )*((magic_sauce + (int )offset) + 7));\n276,279d279\n<   offset = (unsigned short )((int )*((unsigned short *)input) % 4086);\n<   checksum[0] = (char )((int )checksum[0] ^ (int )*((magic_sauce + (int )offset) + 9));\n<   checksum[1] = (char )((int )checksum[1] ^ (int )*((magic_sauce + (int )offset) + 7));\n<   checksum[2] = (char )((int )checksum[2] ^ (int )*((magic_sauce + (int )offset) + 3));\n",
+        "219a220\n>         {\n220a222,223\n>         return ((char)1);\n>         }\n",
+        "295c295\n<   tmp = 1U;\n---\n>   session_id[tmp] = (char)0;\n297c297\n<     session_id[tmp] = (char)0;\n---\n>     tmp = 1U;\n",
+        "268a269\n>   {\n274a276,277\n>   }\n>   checksum[(int )tmp % 4] = (char )((int )checksum[(int )tmp % 4] ^ (int )*tmp___0);\n",
+        "193a194\n>   {\n197a199,200\n>   }\n>   return;\n"
+      ]
+    }
+  ]
+}

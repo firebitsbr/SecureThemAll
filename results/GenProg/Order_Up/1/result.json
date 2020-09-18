@@ -1,0 +1,51 @@
+{
+  "repair_begin": "2020-09-18 01:08:26.021097",
+  "repair_end": "2020-09-18 01:08:26.055066",
+  "patches": [
+    {
+      "target_file": "cb_8/src/table.i",
+      "fix": "",
+      "edits": []
+    },
+    {
+      "target_file": "cb_10/src/table.i",
+      "fix": "",
+      "edits": []
+    },
+    {
+      "target_file": "cb_3/src/table.i",
+      "fix": "",
+      "edits": []
+    },
+    {
+      "target_file": "cb_2/src/table.i",
+      "fix": "",
+      "edits": []
+    },
+    {
+      "target_file": "cb_4/src/table.i",
+      "fix": "",
+      "edits": []
+    },
+    {
+      "target_file": "cb_9/src/table.i",
+      "fix": "",
+      "edits": []
+    },
+    {
+      "target_file": "cb_7/src/table.i",
+      "fix": "",
+      "edits": []
+    },
+    {
+      "target_file": "cb_6/src/table.i",
+      "fix": "",
+      "edits": []
+    },
+    {
+      "target_file": "cb_5/src/table.i",
+      "fix": "",
+      "edits": []
+    }
+  ]
+}

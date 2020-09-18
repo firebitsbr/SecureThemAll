@@ -1,0 +1,33 @@
+{
+  "repair_begin": "2020-09-18 02:15:32.691933",
+  "repair_end": "2020-09-18 02:25:33.048317",
+  "patches": [
+    {
+      "target_file": "src/squarerabbit.i",
+      "fix": "",
+      "edits": [
+        "475,508c475\n<   while (1) {\n<     tmp___4 = cgc_split_len();\n<     if (i < tmp___4) {\n< \n<     } else {\n<       break;\n<     }\n<     srabbit = & split_hand[i];\n<     player_score = cgc_calc_score(srabbit->player_hand, (int *)0);\n<     tmp___3 = cgc_check_player_squarerabbit(srabbit);\n<     if (tmp___3) {\n<       if (dealer_score != 21) {\n<         winnings += (srabbit->current_bet * 3) / 2;\n<       } else {\n<         goto _L___0;\n<       }\n<     } else\n<     _L___0: /* CIL Label */ \n<     if (srabbit->busted) {\n<       winnings -= srabbit->current_bet;\n<     } else\n<     if (dealer_score > 21) {\n<       winnings += srabbit->current_bet;\n<     } else\n<     if (dealer_score > player_score) {\n<       winnings -= srabbit->current_bet;\n<     } else\n<     if (dealer_score < player_score) {\n<       winnings += srabbit->current_bet;\n<     } else {\n< \n<     }\n<     i ++;\n<   }\n---\n>   _L___0: ;\n",
+        "474c474\n<   i = 0;\n---\n> \n",
+        "617,619d616\n<   if ((unsigned int )(dealer->card)->face != 1U) {\n<     return (0);\n<   } else {\n621d617\n<   }\n",
+        "875c875\n<   tmp___7 = cgc_draw_card(split_srabbit->deck);\n---\n> \n",
+        "530c530,531\n<   while (i < 2) {\n---\n>   while (1) {\n> \n",
+        "458,470d457\n<   } else\n<   _L: /* CIL Label */ \n<   if (srabbit->busted) {\n<     winnings -= srabbit->current_bet;\n<   } else\n<   if (dealer_score > 21) {\n<     winnings += srabbit->current_bet;\n<   } else\n<   if (dealer_score > player_score) {\n<     winnings -= srabbit->current_bet;\n<   } else\n<   if (dealer_score < player_score) {\n<     winnings += srabbit->current_bet;\n472c459\n< \n---\n>     _L: ;\n",
+        "207c207\n<   i = 0;\n---\n> \n",
+        "315a316\n>   {\n319a321,322\n>   }\n>   g_srabbit->player_finished = (char)0;\n",
+        "853a854\n>   {\n855a857,858\n> \n>   }\n",
+        "435c435,442\n<   dealer_score = tmp;\n---\n>   if (dealer_score > player_score) {\n>     winnings -= srabbit->current_bet;\n>   } else\n>   if (dealer_score < player_score) {\n>     winnings += srabbit->current_bet;\n>   } else {\n> \n>   }\n498,503d504\n<     } else\n<     if (dealer_score > player_score) {\n<       winnings -= srabbit->current_bet;\n<     } else\n<     if (dealer_score < player_score) {\n<       winnings += srabbit->current_bet;\n505c506\n< \n---\n>       dealer_score = tmp;\n",
+        "305c305\n<   return (tmp);\n---\n> \n",
+        "540a541\n>         {\n541a543,544\n> \n>         }\n",
+        "412c412\n< \n---\n>     return (3);\n571c571\n<           return (3);\n---\n> \n",
+        "449c449\n<   winnings -= srabbit->paid_insurance;\n---\n> \n478c478\n< \n---\n>       winnings -= srabbit->paid_insurance;\n",
+        "781,783d780\n<     } else\n<     if ((unsigned int )(((srabbit->player_hand)->next)->card)->face < 10U) {\n<       return (0);\n784a782,785\n>       {\n>       if ((unsigned int )(((srabbit->player_hand)->next)->card)->face < 10U) {\n>         return (0);\n>       } else {\n785a787,789\n>       }\n>       return (0);\n>       }\n",
+        "432c432\n<   i = 0;\n---\n> \n",
+        "528,546d527\n<   cgc_new_srabbit_game(bet);\n<   i = 0;\n<   while (i < 2) {\n<     tmp = cgc_draw_card(g_srabbit->deck);\n<     tmp___0 = cgc_get_card(& g_srabbit->player_hand, tmp);\n<     if (tmp___0 != 0) {\n<       return (-1);\n<     } else {\n<       tmp___1 = cgc_draw_card(g_srabbit->deck);\n<       tmp___2 = cgc_get_card(& g_srabbit->dealer_hand, tmp___1);\n<       if (tmp___2 != 0) {\n<         return (-1);\n<       } else {\n< \n<       }\n<     }\n<     i ++;\n<   }\n<   tmp___6 = cgc_calc_score(srabbit->player_hand, (int *)0);\n553c534\n<       goto _L;\n---\n>       goto _L__0;\n556c537\n<     _L: /* CIL Label */ \n---\n>     _L__0: /* CIL Label */ \n575a557,576\n>   i = 0;\n>   while (i < 2) {\n>     tmp = cgc_draw_card(g_srabbit->deck);\n>     tmp___0 = cgc_get_card(& g_srabbit->player_hand, tmp);\n>     if (tmp___0 != 0) {\n>       return (-1);\n>     } else {\n>       tmp___1 = cgc_draw_card(g_srabbit->deck);\n>       tmp___2 = cgc_get_card(& g_srabbit->dealer_hand, tmp___1);\n>       if (tmp___2 != 0) {\n>         return (-1);\n>       } else {\n> \n>       }\n>     }\n>     i ++;\n>   }\n>   tmp___6 = cgc_calc_score(srabbit->player_hand, (int *)0);\n>   _L: \n>   cgc_new_srabbit_game(bet);\n",
+        "395a396\n>   {\n412a414,415\n>   }\n>   cgc_clear_squarerabbit(g_srabbit);\n",
+        "905c905\n<   score = cgc_calc_score(g_srabbit->dealer_hand, & is_soft);\n---\n> \n",
+        "261a262\n>   {\n262a264,265\n>   g_srabbit->split_len = (char )((int )g_srabbit->split_len + 1);\n>   }\n",
+        "846a847\n>   {\n847a849,850\n> \n>   }\n"
+      ]
+    }
+  ]
+}

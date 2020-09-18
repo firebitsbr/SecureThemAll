@@ -1,0 +1,11 @@
+{
+  "repair_begin": "2020-09-18 00:28:53.962431",
+  "repair_end": "2020-09-18 00:28:53.992112",
+  "patches": [
+    {
+      "target_file": "src/cgc_emulator.h",
+      "fix": "",
+      "edits": []
+    }
+  ]
+}

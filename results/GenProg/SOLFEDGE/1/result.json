@@ -1,0 +1,21 @@
+{
+  "repair_begin": "2020-09-18 01:43:52.513825",
+  "repair_end": "2020-09-18 01:53:54.658438",
+  "patches": [
+    {
+      "target_file": "src/operation.i",
+      "fix": "",
+      "edits": [
+        "427c427\n<       bytes_count --;\n---\n> \n",
+        "150c150\n<   return (2);\n---\n> \n",
+        "424c424\n<     note_id = cgc_get_next_note_id((char const   *)n_buf_ptr);\n---\n> \n",
+        "413a414\n>           {\n414a416,417\n> \n>           }\n",
+        "132c132\n<   *(syllable_buf + 1) = (char )'e';\n---\n>   return (3);\n146c146\n<   return (3);\n---\n>   *(syllable_buf + 1) = (char )'e';\n",
+        "498c498\n<   tmp = cgc_recv_bytes_count();\n---\n> \n",
+        "330c330\n<   ret = cgc_get_syllable_for_note_id(note_id, syllable);\n---\n> \n",
+        "132c132\n<   *(syllable_buf + 1) = (char )'e';\n---\n>   *(syllable_buf + 2) = (char )'l';\n145c145\n<   *(syllable_buf + 2) = (char )'l';\n---\n>   *(syllable_buf + 1) = (char )'e';\n",
+        "410a411\n>     {\n422a424,425\n>     }\n>     ret = cgc_write_syllable_to_buf(note_id, s_buf_ptr);\n"
+      ]
+    }
+  ]
+}

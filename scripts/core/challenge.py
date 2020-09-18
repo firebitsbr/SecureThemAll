@@ -17,6 +17,11 @@ class Challenge:
 			with self.manifest_path.open(mode="r") as m:
 				self.manifest = m.read().splitlines()
 				self.multi_file = len(self.manifest) > 1
+			# FIX THIS MONSTROSITY
+			if self.multi_file:
+				with self.manifest_path.open(mode="w") as m:
+					m.write(self.get_manifest(string=True, preprocessed=True))
+
 		else:
 			self.manifest = []
 			self.multi_file = 0
@@ -24,7 +29,7 @@ class Challenge:
 	def get_manifest(self, path: bool = False, preprocessed: bool = False, string=False, prefix: Path = None):
 		if path:
 			return self.manifest_path
-
+		# FIX THIS PIECE OF SHIET
 		if preprocessed:
 			files = []
 
@@ -43,7 +48,7 @@ class Challenge:
 					else:
 						files.append(Path(cpp_file))
 
-			return files
+			return '\n'.join(files) if string else files
 
 		return self.manifest
 

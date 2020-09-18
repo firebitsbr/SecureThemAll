@@ -1,0 +1,16 @@
+{
+  "repair_begin": "2020-09-18 01:06:22.715614",
+  "repair_end": "2020-09-18 01:06:22.766292",
+  "patches": [
+    {
+      "target_file": "src/service.i",
+      "fix": "",
+      "edits": []
+    },
+    {
+      "target_file": "src/cgc_service.h",
+      "fix": "",
+      "edits": []
+    }
+  ]
+}

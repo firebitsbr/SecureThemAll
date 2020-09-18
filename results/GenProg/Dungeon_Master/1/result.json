@@ -1,0 +1,16 @@
+{
+  "repair_begin": "2020-09-18 00:05:43.773792",
+  "repair_end": "2020-09-18 00:06:43.990098",
+  "patches": [
+    {
+      "target_file": "src/service.i",
+      "fix": "",
+      "edits": []
+    },
+    {
+      "target_file": "src/dungeon.i",
+      "fix": "",
+      "edits": []
+    }
+  ]
+}

@@ -96,7 +96,7 @@ class Benchmark(Setting):
 
     def test(self, challenge: Challenge, tests: List[str] = None, pos_tests: bool = False, neg_tests: bool = False,
              exit_fail: bool = False, write_fail: bool = False, out_file: str = None, coverage: dict = None,
-             regex: str = None, prefix: str = None,  log_file: str = None):
+             regex: str = None, prefix: str = None,  log_file: str = None, neg_pov: bool = False):
         cmd_str = f"{self.paths.program} test -wd {challenge.working_dir} -cn {challenge.name}"
 
         if tests:
@@ -112,6 +112,9 @@ class Benchmark(Setting):
 
         if write_fail:
             cmd_str += " -wf"
+
+        if neg_pov:
+            cmd_str += " -np"
 
         if out_file:
             cmd_str += f" -of {out_file}"

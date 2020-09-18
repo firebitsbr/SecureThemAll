@@ -1,0 +1,11 @@
+{
+  "repair_begin": "2020-09-18 03:15:25.631270",
+  "repair_end": "2020-09-18 03:15:25.663022",
+  "patches": [
+    {
+      "target_file": "cb_2/src/bin2.i",
+      "fix": "",
+      "edits": []
+    }
+  ]
+}

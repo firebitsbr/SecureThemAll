@@ -1,0 +1,36 @@
+{
+  "repair_begin": "2020-09-18 00:55:47.021575",
+  "repair_end": "2020-09-18 01:05:51.832906",
+  "patches": [
+    {
+      "target_file": "src/main.i",
+      "fix": "",
+      "edits": [
+        "1172c1172\n<   welcome[12] = (char )'v';\n---\n> \n",
+        "898,902c898\n<   while ((unsigned long )node != (unsigned long )((movie_node_t *)0)) {\n<     num_movies ++;\n<     (*((node->movie)->print_info))((int )num_movies, node->movie);\n<     node = node->next;\n<   }\n---\n> \n",
+        "222c222,230\n<   while ((unsigned long )i < sizeof(default_movies) / sizeof(default_movies[0])) {\n---\n>   while (1) {\n>     if ((unsigned long )i < sizeof(default_movies) / sizeof(default_movies[0])) {\n>       {\n> \n>       cgc_strcpy(movie->title, (char const   *)default_movies[i].title);\n>       }\n>     } else {\n>       break;\n>     }\n",
+        "965,971d964\n<   if (tmp___8 != 0UL) {\n<     tmp___6 = cgc_strlen((char const   *)(buf));\n<     tmp___7 = cgc_malloc(tmp___6 + 1UL);\n<     new_desc = (char *)tmp___7;\n<     if ((unsigned long )new_desc == (unsigned long )((char *)0)) {\n<       goto fail;\n<     } else {\n973,979d965\n<     }\n<     cgc_strcpy(new_desc, (char const   *)(buf));\n<     cgc_free((void *)movie->desc);\n<     movie->desc = new_desc;\n<   } else {\n< \n<   }\n",
+        "938a939\n>     {\n939a941,942\n> \n>     }\n",
+        "1016c1016\n<     tmp___14 = cgc_strlen((char const   *)(buf));\n---\n> \n",
+        "809,813c809\n<   while ((unsigned long )node != (unsigned long )((movie_node_t *)0)) {\n<     num_movies ++;\n<     (*((node->movie)->print_info))((int )num_movies, node->movie);\n<     node = node->next;\n<   }\n---\n> \n",
+        "945a946\n>     {\n949a951,953\n>     }\n>     cgc_printf(\"Select a genre (current: [%s])\\n 1. Action\\n 2. Romance\\n 3. Comeda\\n 4. Horror\\n 5. Other\\nChoice: \",\n>                tmp___15);\n",
+        "813a814\n>   {\n814a816,817\n> \n>   }\n",
+        "1253c1253\n<   menu[47] = (char )'.';\n---\n> \n",
+        "1356a1357\n>   {\n1357a1359,1360\n>   welcome[16] = (char )'R';\n>   }\n",
+        "917a918\n>     {\n918a920,925\n>     while ((unsigned long )node != (unsigned long )((movie_node_t *)0)) {\n>       num_movies ++;\n>       (*((node->movie)->print_info))((int )num_movies, node->movie);\n>       node = node->next;\n>     }\n>     }\n",
+        "910,923d909\n<   while (1) {\n<     cgc_printf(\"Enter movie id: \");\n<     tmp = cgc_readuntil(0, buf, sizeof(buf), (char )'\\n');\n<     if (tmp < 0) {\n<       return;\n<     } else {\n< \n<     }\n<     tmp___0 = cgc_strtoul((char const   *)(buf), (char **)0, 10);\n<     movie_id = (unsigned int )tmp___0;\n<     if (movie_id >= 1U) {\n<       if (movie_id <= num_movies) {\n<         break;\n<       } else {\n925,930d910\n<       }\n<     } else {\n< \n<     }\n<     cgc_printf(\"[ERROR] Invalid movie id. Try again.\\n\");\n<   }\n1013a994,1007\n>       while (1) {\n>         cgc_printf(\"Enter movie id: \");\n>         tmp = cgc_readuntil(0, buf, sizeof(buf), (char )'\\n');\n>         if (tmp < 0) {\n>           return;\n>         } else {\n> \n>         }\n>         tmp___0 = cgc_strtoul((char const   *)(buf), (char **)0, 10);\n>         movie_id = (unsigned int )tmp___0;\n>         if (movie_id >= 1U) {\n>           if (movie_id <= num_movies) {\n>             break;\n>           } else {\n1014a1009,1014\n>           }\n>         } else {\n> \n>         }\n>         cgc_printf(\"[ERROR] Invalid movie id. Try again.\\n\");\n>       }\n",
+        "964c964\n<   tmp___8 = cgc_strlen((char const   *)(buf));\n---\n> \n",
+        "952c952\n<     cgc_free((void *)movie->title);\n---\n> \n",
+        "1360c1360\n<   cgc_initialize();\n---\n>   tmp = cgc_readuntil(0, buf, sizeof(buf), (char )'\\n');\n1365c1365\n<       tmp = cgc_readuntil(0, buf, sizeof(buf), (char )'\\n');\n---\n>       cgc_initialize();\n",
+        "933c933\n<   cgc_printf(\"\\nUpdate a movie\\n--------------\\nJust leave it empty to keep the old value.\\n\");\n---\n>   cgc_printf(\"Enter new review score (0-100) (current: [%d/100]: \", movie->score);\n1008,1009c1008\n<     cgc_printf(\"Enter new review score (0-100) (current: [%d/100]: \",\n<                movie->score);\n---\n>     cgc_printf(\"\\nUpdate a movie\\n--------------\\nJust leave it empty to keep the old value.\\n\");\n",
+        "1046a1047\n>     {\n1073a1075,1076\n>     }\n>     cgc_printf(\"\\nMovies (Full)\\n--------------\\n\");\n",
+        "1177c1177\n<   welcome[17] = (char )'e';\n---\n> \n",
+        "845,851c845\n<   if (tmp___1 != 0) {\n<     cgc_printf(\"[ERROR] Failed to remove.\\n\");\n<   } else {\n<     cgc_g_num_movies --;\n<     cgc_free_movie(movie);\n<     cgc_printf(\"Successfully removed the movie!\\n\");\n<   }\n---\n>   cgc_free_movie(movie);\n",
+        "911a912\n>     {\n912a914,915\n> \n>     }\n",
+        "821,826d820\n<   while (1) {\n<     cgc_printf(\"Enter movie id: \");\n<     tmp = cgc_readuntil(0, buf, sizeof(buf), (char )'\\n');\n<     if (tmp < 0) {\n<       return;\n<     } else {\n828,841d821\n<     }\n<     tmp___0 = cgc_strtoul((char const   *)(buf), (char **)0, 10);\n<     movie_id = (unsigned int )tmp___0;\n<     if (movie_id >= 1U) {\n<       if (movie_id <= num_movies) {\n<         break;\n<       } else {\n< \n<       }\n<     } else {\n< \n<     }\n<     cgc_printf(\"[ERROR] Invalid movie id. Try again.\\n\");\n<   }\n",
+        "941a942\n>   {\n955a957,984\n>   }\n>   while (1) {\n>     cgc_printf(\"Enter new year (1800-2015) (current: [%d]): \", movie->year);\n>     tmp___9 = cgc_readuntil(0, buf, sizeof(buf), (char )'\\n');\n>     if (tmp___9 < 0) {\n>       goto fail__0;\n>     } else {\n> \n>     }\n>     tmp___11 = cgc_strlen((char const   *)(buf));\n>     if (tmp___11 != 0UL) {\n>       tmp___10 = cgc_strtoul((char const   *)(buf), (char **)0, 10);\n>       new_year = (int )tmp___10;\n>       if (new_year >= 1800) {\n>         if (new_year <= 2015) {\n>           movie->year = new_year;\n>           break;\n>         } else {\n> \n>         }\n>       } else {\n> \n>       }\n>       cgc_printf(\"[ERROR] Invalid year. Try again.\\n\");\n>     } else {\n>       break;\n>     }\n>   }\n",
+        "244a245\n>     {\n245a247,252\n>     if ((unsigned long )i <= sizeof(g_password) / sizeof(g_password[0])) {\n> \n>     } else {\n>       break;\n>     }\n>     }\n"
+      ]
+    }
+  ]
+}

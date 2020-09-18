@@ -1,0 +1,21 @@
+{
+  "repair_begin": "2020-09-18 00:31:03.343924",
+  "repair_end": "2020-09-18 00:31:03.390807",
+  "patches": [
+    {
+      "target_file": "src/safari_zone.i",
+      "fix": "",
+      "edits": []
+    },
+    {
+      "target_file": "src/lesson_in_futility.i",
+      "fix": "",
+      "edits": []
+    },
+    {
+      "target_file": "src/hugman.i",
+      "fix": "",
+      "edits": []
+    }
+  ]
+}

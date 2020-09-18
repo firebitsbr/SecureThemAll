@@ -1,0 +1,36 @@
+{
+  "repair_begin": "2020-09-18 00:58:42.871549",
+  "repair_end": "2020-09-18 01:08:48.499604",
+  "patches": [
+    {
+      "target_file": "src/cmdb_backend.i",
+      "fix": "",
+      "edits": [
+        "589c589\n<     i ++;\n---\n> \n",
+        "505c505\n<   id --;\n---\n> \n",
+        "534,538c534\n<     while ((cgc_size_t )i < g_list_length) {\n<       cgc_fdprintf(1, \"[%d] \", i + 1);\n<       cgc_print_entry(g_cmdb + i);\n<       i ++;\n<     }\n---\n> \n",
+        "513a514\n>   {\n515a517,518\n>   cgc_fdprintf(1, \"\\nMovies (Rented)\\n\");\n>   }\n",
+        "370,371c370\n<   cgc_memcpy((void *)(g_cmdb + tmp___1), (void const   *)entry,\n<              sizeof(cmdb_entry_t ));\n---\n> \n",
+        "528,540d527\n<   } else\n<   if ((unsigned int )filter == 1U) {\n<     _L: /* CIL Label */ \n<     cgc_fdprintf(1, \"\\nMovies (Full)\\n\");\n<     cgc_fdprintf(1, \"--------------\\n\");\n<     i = 0;\n<     while ((cgc_size_t )i < g_list_length) {\n<       cgc_fdprintf(1, \"[%d] \", i + 1);\n<       cgc_print_entry(g_cmdb + i);\n<       i ++;\n<     }\n<     cgc_fdprintf(1, \"--------------\\n\");\n<     cgc_fdprintf(1, \"%d movie(s)\\n\", g_list_length);\n542c529,530\n< \n---\n>     _L: \n>     cgc_fdprintf(1, \"--------------\\n\");\n",
+        "614,616d613\n<   if (! new_genre) {\n<     return;\n<   } else {\n618d614\n<   }\n",
+        "284c284\n<   if (! genre) {\n---\n>   if ((int )year < 1800) {\n287c287\n<   if (! rating) {\n---\n>   if ((int )year > 2015) {\n292c292\n<   if ((int )year < 1800) {\n---\n>   if (! genre) {\n295c295\n<   if ((int )year > 2015) {\n---\n>   if (! rating) {\n",
+        "613a614\n>   {\n617a619,620\n>   }\n>   return;\n",
+        "499,501d498\n<   } else\n<   if ((cgc_size_t )id > g_list_length) {\n<     return ((cmdb_entry_t *)0);\n",
+        "588a589\n>     {\n589a591,596\n>     if (g_num_rented) {\n> \n>     } else {\n>       break;\n>     }\n>     }\n",
+        "584a585\n>   {\n585a587,588\n> \n>   }\n",
+        "497,502d496\n<   if (id < 1) {\n<     return ((cmdb_entry_t *)0);\n<   } else\n<   if ((cgc_size_t )id > g_list_length) {\n<     return ((cmdb_entry_t *)0);\n<   } else {\n504d497\n<   }\n",
+        "208,209c208\n<     tmp = cgc_strcmp((char const   *)rating,\n<                      (char const   *)g_all_mpaa_ratings[i]);\n---\n> \n",
+        "496a497\n>   {\n502a504,505\n> \n>   }\n",
+        "504a505\n>   {\n505a507,508\n>   cgc_fdprintf(1, \"--------------\\n\");\n>   }\n",
+        "306c306\n< \n---\n>     return (0);\n463c463\n<       return (0);\n---\n> \n",
+        "586c586,587\n<   while ((cgc_size_t )i < g_num_genres) {\n---\n>   while (1) {\n> \n",
+        "588c588\n<     cgc_fdprintf(1, (char const   *)g_all_genres[i]);\n---\n> \n",
+        "586,587c586\n<   while ((cgc_size_t )i < g_num_genres) {\n<     cgc_fdprintf(1, \"\\n %d. \", i + 1);\n---\n>   while (1) {\n588a588,593\n>     cgc_fdprintf(1, \"\\n %d. \", i + 1);\n>     if ((cgc_size_t )i < g_num_genres) {\n> \n>     } else {\n>       break;\n>     }\n",
+        "297a298\n>     {\n298a300,301\n>     row->is_checked_out = (char)0;\n>     }\n",
+        "342c342\n<     tmp = cgc_malloc(sizeof(cmdb_entry_t ) * 16UL);\n---\n> \n",
+        "585a586\n>   {\n589a591,592\n>   }\n> \n",
+        "620a621\n>     {\n621a623,628\n>     if (! g_cmdb) {\n>       return (-1);\n>     } else {\n> \n>     }\n>     }\n"
+      ]
+    }
+  ]
+}

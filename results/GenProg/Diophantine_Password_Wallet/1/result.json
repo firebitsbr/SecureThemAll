@@ -1,0 +1,38 @@
+{
+  "repair_begin": "2020-09-18 00:04:59.724280",
+  "repair_end": "2020-09-18 00:15:09.666318",
+  "patches": [
+    {
+      "target_file": "src/main.i",
+      "fix": "",
+      "edits": [
+        "764c764\n<   cgc_largeIntMul(& tempProduct, px, px);\n---\n> \n",
+        "300,306c300,302\n<   while ((unsigned long )i < 32UL / sizeof(uint32_t )) {\n<     if (px->bytes[i] > py->bytes[i]) {\n<       return (1);\n<     } else\n<     if (px->bytes[i] < py->bytes[i]) {\n<       return (-1);\n<     } else {\n---\n>   if (px->bytes[i] < py->bytes[i]) {\n>     return (-1);\n>   } else {\n308,309d303\n<     }\n<     i ++;\n",
+        "293,295d292\n<   } else\n<   if ((unsigned long )py == (unsigned long )((ulargeint_t *)0)) {\n<     return (0);\n",
+        "810a811\n>     {\n811a813,814\n> \n>     }\n",
+        "299c299\n<   i = 0;\n---\n> \n",
+        "250,251c250\n<     while ((unsigned long )_i < 32UL / sizeof(uint32_t )) {\n<       tempProduct.bytes[_i] = (uint32_t )0;\n---\n>     while (1) {\n252a252,257\n>       tempProduct.bytes[_i] = (uint32_t )0;\n>       if ((unsigned long )_i < 32UL / sizeof(uint32_t )) {\n> \n>       } else {\n>         break;\n>       }\n",
+        "180c180\n<     tempOp1 = (uint64_t )op1->bytes[(32UL / sizeof(uint32_t ) - 1UL) - (unsigned long )i];\n---\n> \n",
+        "202c202,207\n<   while ((unsigned long )i < 32UL / sizeof(uint32_t ) - 1UL) {\n---\n>   while (1) {\n>     if ((unsigned long )i < 32UL / sizeof(uint32_t ) - 1UL) {\n>       return (-1);\n>     } else {\n>       break;\n>     }\n305c310\n<       return (-1);\n---\n> \n",
+        "766a767\n>   {\n767a769,770\n> \n>   }\n",
+        "293,295d292\n<   } else\n<   if ((unsigned long )py == (unsigned long )((ulargeint_t *)0)) {\n<     return (0);\n296a294,297\n>     {\n>     if ((unsigned long )py == (unsigned long )((ulargeint_t *)0)) {\n>       return (0);\n>     } else {\n297a299,301\n>     }\n> \n>     }\n",
+        "766c766\n<   cgc_largeIntAdd(& tempSum, & tempSum, & tempProduct);\n---\n> \n",
+        "102a103\n>   {\n105a107,108\n> \n>   }\n",
+        "758,761c758\n<     while ((unsigned long )_i < 32UL / sizeof(uint32_t )) {\n<       tempSum.bytes[_i] = (uint32_t )0;\n<       _i ++;\n<     }\n---\n> \n",
+        "641c641\n<   return (-1);\n---\n> \n752c752\n< \n---\n>         return (-1);\n",
+        "202c202,203\n<   while ((unsigned long )i < 32UL / sizeof(uint32_t ) - 1UL) {\n---\n>   while (1) {\n> \n",
+        "795a796\n>   {\n796a798,799\n> \n>   }\n",
+        "516c516,524\n<   while (i < 50) {\n---\n>   while (1) {\n>     {\n>     if (i < 50) {\n> \n>     } else {\n>       break;\n>     }\n> \n>     }\n",
+        "179,186c179\n<   while ((unsigned long )i < 32UL / sizeof(uint32_t )) {\n<     tempOp1 = (uint64_t )op1->bytes[(32UL / sizeof(uint32_t ) - 1UL) - (unsigned long )i];\n<     tempOp2 = (uint64_t )op2->bytes[(32UL / sizeof(uint32_t ) - 1UL) - (unsigned long )i];\n<     tempSum = (tempSum + tempOp1) + tempOp2;\n<     sum->bytes[(32UL / sizeof(uint32_t ) - 1UL) - (unsigned long )i] = (uint32_t )(tempSum & 4294967295ULL);\n<     tempSum >>= sizeof(uint32_t ) * 8UL;\n<     i ++;\n<   }\n---\n> \n",
+        "207c207\n<   op->bytes[32UL / sizeof(uint32_t ) - 1UL] <<= 1;\n---\n> \n",
+        "802c802\n<     cgc_readLine(0, buf, (cgc_size_t )64);\n---\n> \n",
+        "533c533\n<   handlerTable[7][14][17] = & cgc_userMenu6;\n---\n>   cgc_initTable();\n797c797\n<   cgc_initTable();\n---\n>   handlerTable[7][14][17] = & cgc_userMenu6;\n",
+        "518c518,523\n<     while (j < 50) {\n---\n>     while (1) {\n>       if (j < 50) {\n>         cgc_my_printf(\"First Secret\\n\");\n>       } else {\n>         break;\n>       }\n804c809\n<     cgc_my_printf(\"First Secret\\n\");\n---\n> \n",
+        "565a566\n>   {\n566a568,569\n> \n>   }\n",
+        "796a797\n>   {\n797a799,800\n> \n>   }\n",
+        "169,174d168\n<   } else\n<   if ((unsigned long )op1 == (unsigned long )((ulargeint_t *)0)) {\n<     return;\n<   } else\n<   if ((unsigned long )op2 == (unsigned long )((ulargeint_t *)0)) {\n<     return;\n175a170,176\n>     {\n>     if ((unsigned long )op1 == (unsigned long )((ulargeint_t *)0)) {\n>       return;\n>     } else\n>     if ((unsigned long )op2 == (unsigned long )((ulargeint_t *)0)) {\n>       return;\n>     } else {\n176a178,180\n>     }\n>     cgc_my_printf(\" , \");\n>     }\n",
+        "179c179,187\n<   while ((unsigned long )i < 32UL / sizeof(uint32_t )) {\n---\n>   while (1) {\n>     {\n>     if ((unsigned long )i < 32UL / sizeof(uint32_t )) {\n> \n>     } else {\n>       break;\n>     }\n> \n>     }\n"
+      ]
+    }
+  ]
+}

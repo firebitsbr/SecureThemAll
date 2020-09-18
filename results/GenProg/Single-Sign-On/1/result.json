@@ -1,0 +1,29 @@
+{
+  "repair_begin": "2020-09-18 02:11:25.801560",
+  "repair_end": "2020-09-18 02:21:29.938030",
+  "patches": [
+    {
+      "target_file": "src/service.i",
+      "fix": "",
+      "edits": [
+        "513,517d512\n<     if (tmp___0 == 0) {\n<       if (! user) {\n<         auth_val = cgc_getAuthVal();\n<         user = cgc_createNewUser(& userList, auth_val, command.id);\n<       } else {\n519,533d513\n<       }\n<       auth_val = user->token;\n<       tmp = cgc_do_auth(user->token, command.token, command.input);\n<       result = (unsigned long )tmp;\n<       if (result > 0UL) {\n<         newRequest = 0;\n<         cgc_addResource(& user, result, command.input);\n<         auth_val = 0UL;\n<       } else {\n< \n<       }\n<       continue;\n<     } else {\n< \n<     }\n",
+        "308c308\n<     tmp___0 = cgc_auth_success(res);\n---\n> \n",
+        "402c402\n<   user_ptr = userList;\n---\n> \n",
+        "263a264\n>   {\n264a266,267\n>   return (0);\n>   }\n",
+        "162,166c162,163\n<   b = 0;\n<   while (b < 4) {\n<     byte = (char)0;\n<     while (1) {\n<       if ((int )byte == 0) {\n---\n>   while (1) {\n>     if ((int )byte == 0) {\n168,169c165,166\n<       } else\n<       if ((int )byte == 10) {\n---\n>     } else\n>     if ((int )byte == 10) {\n171,177c168,174\n<       } else {\n<         break;\n<       }\n<       ret = cgc_random((void *)(& byte), sizeof(byte), & rnd_bytes);\n<       if (ret != 0) {\n<         cgc__terminate(5U);\n<       } else {\n---\n>     } else {\n>       break;\n>     }\n>     ret = cgc_random((void *)(& byte), sizeof(byte), & rnd_bytes);\n>     if (ret != 0) {\n>       cgc__terminate(5U);\n>     } else {\n179d175\n<       }\n180a177,180\n>   }\n>   while (b < 4) {\n>     byte = (char)0;\n>     b = 0;\n",
+        "507a508\n>     {\n508a510,511\n> \n>     }\n",
+        "504c504\n<   auth_val = 0UL;\n---\n>   user = cgc_createNewUser(& userList, auth_val, command.id);\n516c516\n<         user = cgc_createNewUser(& userList, auth_val, command.id);\n---\n>         auth_val = 0UL;\n",
+        "265c265\n<   tmp = cgc_strlen(resource);\n---\n> \n",
+        "163,166d162\n<   while (b < 4) {\n<     byte = (char)0;\n<     while (1) {\n<       if ((int )byte == 0) {\n168,183d163\n<       } else\n<       if ((int )byte == 10) {\n< \n<       } else {\n<         break;\n<       }\n<       ret = cgc_random((void *)(& byte), sizeof(byte), & rnd_bytes);\n<       if (ret != 0) {\n<         cgc__terminate(5U);\n<       } else {\n< \n<       }\n<     }\n<     *((unsigned char *)(& auth_val) + b) = (unsigned char )byte;\n<     b ++;\n<   }\n",
+        "266a267\n>   {\n276a278,279\n>   }\n>   return;\n",
+        "244a245\n>   {\n245a247,248\n>   cgc_memset((void *)message_buf, (char)0, message_size);\n>   }\n",
+        "264c264\n<   token[1] = 0UL;\n---\n>   cgc_memset((void *)message_buf, (char)0, (cgc_size_t )message_size);\n279c279\n<   cgc_memset((void *)message_buf, (char)0, (cgc_size_t )message_size);\n---\n>   token[1] = 0UL;\n",
+        "266c266\n<   message_size = (int )((((sizeof(\"Access to \") + tmp) + sizeof(\" is granted!\")) + sizeof(token)) + sizeof(\"\\n\"));\n---\n>   token[0] = cgc_getAuthVal();\n278c278\n<   token[0] = cgc_getAuthVal();\n---\n>   message_size = (int )((((sizeof(\"Access to \") + tmp) + sizeof(\" is granted!\")) + sizeof(token)) + sizeof(\"\\n\"));\n",
+        "389c389\n<   newUser->id = id;\n---\n> \n",
+        "516c516\n<         user = cgc_createNewUser(& userList, auth_val, command.id);\n---\n> \n",
+        "277a278\n>   {\n278a280,281\n> \n>   }\n",
+        "510a511\n>     {\n511a513,514\n>     cgc_memset((void *)(command.input), (char)0, (cgc_size_t )4600);\n>     }\n"
+      ]
+    }
+  ]
+}

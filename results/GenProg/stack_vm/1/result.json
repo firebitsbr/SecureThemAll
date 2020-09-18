@@ -1,0 +1,42 @@
+{
+  "repair_begin": "2020-09-18 03:11:33.923643",
+  "repair_end": "2020-09-18 03:21:43.823226",
+  "patches": [
+    {
+      "target_file": "src/service.i",
+      "fix": "",
+      "edits": [
+        "149c149\n<       cgc_initStack(& programStack, 256, (int )sizeof(Program *));\n---\n> \n",
+        "",
+        "155c155\n<       program = (Program *)0;\n---\n> \n",
+        "153c153\n<     arg_pos = cgc_parseCmd((char *)\"program\", buf);\n---\n> \n",
+        "141a142\n>     {\n142a144,145\n> \n>     }\n",
+        "176d175\n<           program_ptr = (Program **)(programStack.elements + (unsigned long )program_num * sizeof(Program *));\n177a177\n>           program_ptr = (Program **)(programStack.elements + (unsigned long )program_num * sizeof(Program *));\n",
+        "",
+        "",
+        "155d154\n<       program = (Program *)0;\n156a156\n>       program = (Program *)0;\n",
+        "176a177\n>           {\n177a179,191\n>           if (program_num > programStack.top) {\n>             ret = cgc_transmit_all(1, \"Invalid Program!\\n\",\n>                                    (cgc_size_t const   )sizeof(\"Too many lines in program!\\n\"));\n>             if (ret != 0) {\n>               cgc__terminate(13U);\n>             } else {\n> \n>             }\n>           } else {\n>             program_ptr = (Program **)(programStack.elements + (unsigned long )program_num * sizeof(Program *));\n>             cgc_executeProgram(*program_ptr);\n>           }\n>           }\n",
+        "175a176\n>           {\n176a178,179\n> \n>           }\n",
+        ""
+      ]
+    },
+    {
+      "target_file": "src/stack.i",
+      "fix": "",
+      "edits": [
+        "",
+        "182a183\n>   {\n184a186,191\n>   if (ret != 0) {\n>     cgc__terminate(18U);\n>   } else {\n> \n>   }\n>   }\n",
+        "",
+        "",
+        "",
+        "",
+        "125c125\n<   return;\n---\n> \n",
+        "122c122\n<   stack->numElements = numElements;\n---\n> \n",
+        "",
+        "",
+        "",
+        "207a208\n>   {\n208a210,211\n>   (stack->top) --;\n>   }\n"
+      ]
+    }
+  ]
+}

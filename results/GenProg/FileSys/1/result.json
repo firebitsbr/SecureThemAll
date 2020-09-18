@@ -1,0 +1,11 @@
+{
+  "repair_begin": "2020-09-18 00:29:04.281399",
+  "repair_end": "2020-09-18 00:29:04.314541",
+  "patches": [
+    {
+      "target_file": "src/file_manager.ii",
+      "fix": "",
+      "edits": []
+    }
+  ]
+}

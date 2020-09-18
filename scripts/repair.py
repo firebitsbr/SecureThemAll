@@ -18,20 +18,21 @@ if __name__ == "__main__":
     challenges = benchmark.get_challenges()
 
     if args.challenges is not None:
-        challenges = []
-        for challenge_name in args.challenges:
-            challenges.append(challenge_name)
+        challenges = args.challenges
 
     for challenge in challenges:
+        try:
+            tool = args.repair_tool(config=configuration, **var_args, timeout=configuration.tools_timeout)
 
-        tool = args.repair_tool(config=configuration, **var_args, timeout=configuration.tools_timeout)
+            task = RepairTask(config=configuration,
+                              tool=tool,
+                              benchmark=benchmark,
+                              challenge_name=challenge)
 
-        task = RepairTask(config=configuration,
-                          tool=tool,
-                          benchmark=benchmark,
-                          challenge_name=challenge)
-
-        if not args.continue_execution or not os.path.exists(os.path.join(task.log_dir(), "repair.log")):
-            tasks.append(task)
+            if not args.continue_execution or not os.path.exists(os.path.join(task.log_dir(), "repair.log")):
+                tasks.append(task)
+        except Exception as e:
+            with open("repair_exceptions.log", "w") as f:
+                f.write(challenge + ": " + str(e)+"\n")
 
     LocalRunner(tasks, configuration.local_threads, args).execute()

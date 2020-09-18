@@ -1,0 +1,29 @@
+{
+  "repair_begin": "2020-09-18 01:40:45.595844",
+  "repair_end": "2020-09-18 01:50:47.674909",
+  "patches": [
+    {
+      "target_file": "src/eval.i",
+      "fix": "",
+      "edits": [
+        "192c192\n<     return ((exp_t *)0);\n---\n> \n",
+        "770,775d769\n<         while (! ((unsigned long )(& li->__annonCompField2.cdr) == (unsigned long )((struct exp_t **)0))) {\n<           tmp___1 = cgc_calloc((cgc_size_t )1, sizeof(exp_t ));\n<           li->__annonCompField2.cdr = (struct exp_t *)tmp___1;\n<           if ((unsigned long )li->__annonCompField2.cdr == (unsigned long )((struct exp_t *)0)) {\n<             break;\n<           } else {\n777,784d770\n<           }\n<           (li->__annonCompField2.cdr)->t = (enum exp_type )3;\n<           (li->__annonCompField2.cdr)->__annonCompField1.car = cgc_subst(z,\n<                                                                          e->__annonCompField1.car);\n<           (li->__annonCompField2.cdr)->__annonCompField2.cdr = (struct exp_t *)0;\n<           (li->__annonCompField2.cdr)->name = (char *)0;\n<           break;\n<         }\n",
+        "968a969\n>     {\n969a971,972\n>     cake = cake->__annonCompField2.cdr;\n>     }\n",
+        "956c956\n<     n___0 = (exp_t *)tmp___7;\n---\n> \n",
+        "375c375\n<     list = list->next;\n---\n> \n",
+        "191a192\n>     {\n192a194,195\n>     c->t = (enum exp_type )3;\n>     }\n",
+        "1237a1238\n>     {\n1238a1240,1241\n>     return ((exp_t *)0);\n>     }\n",
+        "772d771\n<           li->__annonCompField2.cdr = (struct exp_t *)tmp___1;\n777a777\n>           li->__annonCompField2.cdr = (struct exp_t *)tmp___1;\n",
+        "823c823\n<   return (0);\n---\n> \n",
+        "331,344c331\n<   while (1) {\n<     if (c) {\n<       if (c->value) {\n<         if ((c->value)->key) {\n< \n<         } else {\n<           break;\n<         }\n<       } else {\n<         break;\n<       }\n<     } else {\n<       break;\n<     }\n---\n>   while (c) {\n",
+        "926,931c926\n<                 if ((unsigned int )(cake->__annonCompField2.cdr)->t == 3U) {\n<                   cake = cake->__annonCompField2.cdr;\n<                   goto __Cont;\n<                 } else {\n< \n<                 }\n---\n>                 (cake->__annonCompField2.cdr)->__annonCompField2.cdr = n___0;\n972c967,972\n<     (cake->__annonCompField2.cdr)->__annonCompField2.cdr = n___0;\n---\n>     if ((unsigned int )(cake->__annonCompField2.cdr)->t == 3U) {\n>       cake = cake->__annonCompField2.cdr;\n>       goto __Cont__0;\n>     } else {\n> \n>     }\n",
+        "804,806d803\n<   if ((unsigned long )list == (unsigned long )((exptup_list *)0)) {\n<     return (-1);\n<   } else {\n808d804\n<   }\n",
+        "914,931c914,925\n<   cake = ret;\n<   cnt = (cgc_size_t )0;\n<   while (cnt < 4UL) {\n<     if (cake) {\n<       if (cake->__annonCompField1.car) {\n<         if ((unsigned int )(cake->__annonCompField1.car)->t == 1U) {\n<           tmp___5 = cgc_strlen(\"CAKE\");\n<           tmp___6 = cgc_strncmp((char const   *)(cake->__annonCompField1.car)->name,\n<                                 \"CAKE\", tmp___5);\n<           if (tmp___6 == 0) {\n<             if (cake) {\n<               if (cake->__annonCompField2.cdr) {\n<                 if ((unsigned int )(cake->__annonCompField2.cdr)->t == 3U) {\n<                   cake = cake->__annonCompField2.cdr;\n<                   goto __Cont;\n<                 } else {\n< \n<                 }\n---\n>   if (cake) {\n>     if (cake->__annonCompField1.car) {\n>       if ((unsigned int )(cake->__annonCompField1.car)->t == 1U) {\n>         tmp___5 = cgc_strlen(\"CAKE\");\n>         tmp___6 = cgc_strncmp((char const   *)(cake->__annonCompField1.car)->name,\n>                               \"CAKE\", tmp___5);\n>         if (tmp___6 == 0) {\n>           if (cake) {\n>             if (cake->__annonCompField2.cdr) {\n>               if ((unsigned int )(cake->__annonCompField2.cdr)->t == 3U) {\n>                 cake = cake->__annonCompField2.cdr;\n>                 goto __Cont__0;\n949a944,949\n>   } else {\n> \n>   }\n>   cnt = (cgc_size_t )0;\n>   while (cnt < 4UL) {\n>     cake = ret;\n",
+        "1109a1110\n>     {\n1110a1112,1113\n>     return ((exp_t *)0);\n>     }\n",
+        "970c970\n<     n___0->__annonCompField1.car = a;\n---\n> \n",
+        "740a741\n>     {\n748a750,751\n>     }\n> \n",
+        "680a681\n>   {\n693a695,696\n>   }\n> \n"
+      ]
+    }
+  ]
+}

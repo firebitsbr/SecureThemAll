@@ -1,0 +1,40 @@
+{
+  "repair_begin": "2020-09-17 23:55:11.225844",
+  "repair_end": "2020-09-18 00:05:12.959323",
+  "patches": [
+    {
+      "target_file": "src/service.i",
+      "fix": "",
+      "edits": [
+        "1517c1517\n<   i = 0;\n---\n> \n",
+        "1276c1276\n<       next_offset = chapter->offset_next_chapter;\n---\n> \n",
+        "1533a1534\n>     {\n1534a1536,1537\n>     cgc_test_win();\n>     }\n",
+        "654c654\n<   num ++;\n---\n> \n",
+        "959a960\n>   {\n960a962,963\n> \n>   }\n",
+        "829a830\n>   {\n831a833,834\n>   tmp___11 = cgc_strlen(ss);\n>   }\n",
+        "565,566c565\n<   cgc_populate_entry(entry, tmp___60, ss, (int )tmp___59, (uint8_t )0,\n<                      (uint8_t )0, (uint8_t )3);\n---\n> \n",
+        "609,610c609,610\n<   cgc_populate_entry(entry, tmp___74, ss, (int )tmp___73, (uint8_t )1,\n<                      (uint8_t )0, (uint8_t )2);\n---\n>   cgc_populate_entry(entry, tmp___76, ss, (int )tmp___75, (uint8_t )0,\n>                      (uint8_t )0, (uint8_t )5);\n617,618c617,618\n<   cgc_populate_entry(entry, tmp___76, ss, (int )tmp___75, (uint8_t )0,\n<                      (uint8_t )0, (uint8_t )5);\n---\n>   cgc_populate_entry(entry, tmp___74, ss, (int )tmp___73, (uint8_t )1,\n>                      (uint8_t )0, (uint8_t )2);\n",
+        "1555c1555\n<   cgc_memset((void *)(success_info), 0, 10UL * sizeof(uint16_t ));\n---\n> \n",
+        "1028a1029\n>   {\n1029a1031,1032\n>   cgc_strcpy(ss, (char *)\"injury\");\n>   }\n",
+        "1515a1516\n>   {\n1516a1518,1519\n>   return (0);\n>   }\n",
+        "517c517\n<   cgc_strcpy(ss, (char *)\"summary\");\n---\n> \n",
+        "886a887\n>   {\n887a889,890\n>   cgc_strcpy(ss, (char *)\"model\");\n>   }\n",
+        "649c649\n<   num = 0;\n---\n> \n",
+        "260c260\n<   return;\n---\n> \n1285c1285\n< \n---\n>       return;\n",
+        "1004c1004\n<   tmp___68 = num;\n---\n> \n",
+        "1061c1061\n<   tmp___85 = cgc_strlen(ss);\n---\n> \n",
+        "1062,1063d1061\n<   tmp___86 = num;\n<   num ++;\n1065a1064,1065\n>   num ++;\n>   tmp___86 = num;\n",
+        "1524c1524\n<     i ++;\n---\n> \n",
+        "809a810\n>   {\n810a812,813\n>   tmp___69 = cgc_strlen(ss);\n>   }\n",
+        "868,869c868\n<   cgc_populate_sub_entry(entry, tmp___24, ss, (int )tmp___23, (uint8_t )1,\n<                          (uint8_t )0, (uint8_t )3);\n---\n> \n",
+        "577c577\n<   tmp___64 = num;\n---\n> \n",
+        "1517d1516\n<   i = 0;\n1525a1525\n>   i = 0;\n",
+        "1112a1113\n>     {\n1113a1115,1120\n>     if ((int )entry->format > 5) {\n>       return (3);\n>     } else {\n> \n>     }\n>     }\n",
+        "794,795c794\n<   cgc_populate_sub_entry(entry, tmp___0, ss, (int )tmp, (uint8_t )1,\n<                          (uint8_t )1, (uint8_t )3);\n---\n>   tmp___39 = cgc_strlen(ss);\n917c916,917\n<   tmp___39 = cgc_strlen(ss);\n---\n>   cgc_populate_sub_entry(entry, tmp___0, ss, (int )tmp, (uint8_t )1,\n>                          (uint8_t )1, (uint8_t )3);\n",
+        "894,895c894\n<   cgc_populate_sub_entry(entry, tmp___32, ss, (int )tmp___31, (uint8_t )1,\n<                          (uint8_t )0, (uint8_t )1);\n---\n>   tmp___51 = cgc_strlen(ss);\n953c952,953\n<   tmp___51 = cgc_strlen(ss);\n---\n>   cgc_populate_sub_entry(entry, tmp___32, ss, (int )tmp___31, (uint8_t )1,\n>                          (uint8_t )0, (uint8_t )1);\n",
+        "1606a1607\n>   {\n1607a1609,1610\n> \n>   }\n",
+        "458a459\n>   {\n459a461,463\n>   cgc_populate_entry(entry, tmp___18, ss, (int )tmp___17, (uint8_t )1,\n>                      (uint8_t )0, (uint8_t )3);\n>   }\n"
+      ]
+    }
+  ]
+}

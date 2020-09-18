@@ -1,0 +1,25 @@
+{
+  "repair_begin": "2020-09-17 23:22:38.251562",
+  "repair_end": "2020-09-17 23:32:41.394560",
+  "patches": [
+    {
+      "target_file": "src/moves.i",
+      "fix": "",
+      "edits": [
+        "316c316\n<       return (1);\n---\n> \n",
+        "257c257\n<         return (0);\n---\n> \n",
+        "381d380\n<     if (tmp___3) {\n383,390d381\n<     } else {\n<       tmp___4 = cgc_IsMemberPiece((char *)\"jhilkg\", (*(b + dstx))[dsty]);\n<       if (tmp___4) {\n<         return (0);\n<       } else {\n< \n<       }\n<     }\n",
+        "353c353\n< \n---\n>     cgc_puts((char *)\"incorrect input\");\n627c627\n<       cgc_puts((char *)\"incorrect input\");\n---\n> \n",
+        "381a382\n>       {\n382a384,385\n>       return;\n>       }\n",
+        "652,656d651\n<     if ((unsigned long )coord1 == (unsigned long )((char *)0)) {\n<       cgc_puts((char *)\"incorrect input\");\n<       cgc_puts((char *)\"Not a legal move format\");\n<       continue;\n<     } else {\n658d652\n<     }\n",
+        "588c588\n<   s.allowed_chars[5] = (char )'5';\n---\n> \n",
+        "611a612\n>     {\n612a614,615\n> \n>     }\n",
+        "619c619\n<     tmp___3 = cgc_strcmp(\"666\", (char const   *)(s.input));\n---\n> \n",
+        "578d577\n<   tmp = 1U;\n582a582\n>   tmp = 1U;\n",
+        "354a355\n>   {\n355a357,358\n> \n>   }\n",
+        "638a639\n>         {\n639a641,642\n>         return (0);\n>         }\n",
+        "579c579,587\n<   while (! (tmp >= 15U)) {\n---\n>   while (1) {\n>     if (tmp >= 15U) {\n>       break;\n>     } else {\n>       {\n> \n>       return;\n>       }\n>     }\n"
+      ]
+    }
+  ]
+}

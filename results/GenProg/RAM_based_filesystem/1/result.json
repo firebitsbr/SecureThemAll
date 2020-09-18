@@ -1,0 +1,39 @@
+{
+  "repair_begin": "2020-09-18 01:20:22.721863",
+  "repair_end": "2020-09-18 01:30:25.029658",
+  "patches": [
+    {
+      "target_file": "src/fs.i",
+      "fix": "",
+      "edits": [
+        "512,513c512\n<       tmp = cgc_allocate((cgc_size_t )4096, 0,\n<                          (void **)((void *)(& free_list[i].page)));\n---\n> \n",
+        "1286d1285\n<           if (tmp___1) {\n1288,1290d1286\n<           } else {\n<             break;\n<           }\n",
+        "465a466\n>       {\n466a468,469\n> \n>       }\n",
+        "472a473\n>       {\n473a475,476\n> \n>       }\n",
+        "504c504,512\n<   while (i < 256) {\n---\n>   while (1) {\n>     {\n>     if (i < 256) {\n> \n>     } else {\n>       break;\n>     }\n> \n>     }\n",
+        "878a879\n>   {\n879a881,882\n> \n>   }\n",
+        "520c520\n<       cgc_bzero((void *)free_list[i].page, (cgc_size_t )4096);\n---\n> \n",
+        "352a353\n>     {\n376a378,379\n>     }\n>     return (-1);\n",
+        "441a442\n>       {\n442a444,445\n> \n>       }\n",
+        "467,470d466\n<       if (tmp) {\n<         cgc_puts((char *)\"Failed to allocate inode page\\n\");\n<         return ((inode *)0);\n<       } else {\n472d467\n<       }\n",
+        "623,625d622\n<   } else\n<   if (! contents) {\n<     return ((inode *)0);\n",
+        "1537a1538\n>     {\n1538a1540,1541\n> \n>     }\n",
+        "1273,1286d1272\n<       if (tmp___2) {\n<         cgc_deallocate((void *)f, sizeof(FILE ));\n<         return ((FILE *)0);\n<       } else {\n<         f->pos = file_inode->fsize;\n<         f->mode = (uint32_t )2;\n<         f->curr_pos_inode = file_inode;\n<         inode_depth = file_inode->fsize / 4096U;\n<         f->index = (file_inode->fsize % 4096U) / 512U;\n<         f->b_index = (file_inode->fsize % 4096U) % 512U;\n<         while (1) {\n<           tmp___1 = inode_depth;\n<           inode_depth --;\n<           if (tmp___1) {\n1288,1293d1273\n<           } else {\n<             break;\n<           }\n<           f->curr_pos_inode = (f->curr_pos_inode)->indirect_inode;\n<         }\n<       }\n",
+        "682c682\n< \n---\n>       i ++;\n700c700\n<     i ++;\n---\n> \n",
+        "1285c1285\n<           inode_depth --;\n---\n> \n",
+        "1458,1468d1457\n<     if (b_index) {\n<       if (b_index % 512 == 0) {\n<         index ++;\n<         if (index) {\n<           if (index % 8 == 0) {\n<             if (in2->indirect_inode) {\n<               stream->curr_pos_inode = in2;\n<               stream->index = (uint32_t )index;\n<               stream->b_index = (uint32_t )b_index;\n<               return ((cgc_size_t )i);\n<             } else {\n1470,1515d1458\n<             }\n<             in = cgc_FindFreeInode();\n<             if ((unsigned long )in == (unsigned long )((inode *)0)) {\n<               cgc_puts((char *)\"out of inodes\");\n<               return ((cgc_size_t )0);\n<             } else {\n< \n<             }\n<             in->type = (stream->i)->type;\n<             in->fsize = (stream->i)->fsize;\n<             in->num_blocks = (stream->i)->num_blocks;\n<             in->indirect_inode = (struct _inode *)0;\n<             cgc_strncpy(in->fname, (char const   *)((stream->i)->fname),\n<                         (cgc_size_t )207);\n<             in2->indirect_inode = in;\n<             index = 0;\n<           } else {\n< \n<           }\n<         } else {\n< \n<         }\n<         b = cgc_FindFreeDataBlock();\n<         if ((unsigned long )b == (unsigned long )((block *)0)) {\n<           cgc_puts((char *)\"out of space\");\n<           stream->curr_pos_inode = in2;\n<           stream->index = (uint32_t )index;\n<           stream->b_index = (uint32_t )b_index;\n<           while (in2) {\n<             last_inode = in2;\n<             in2 = in2->indirect_inode;\n<             cgc_bzero((void *)last_inode, sizeof(inode ));\n<           }\n<           return ((cgc_size_t )i);\n<         } else {\n< \n<         }\n<         in2->blocks[index] = b;\n<         b_index = 0;\n<         ((stream->i)->num_blocks) ++;\n<       } else {\n< \n<       }\n<     } else {\n< \n<     }\n",
+        "1272c1272\n<       tmp___2 = cgc_strcmp(mode, \"a\");\n---\n> \n",
+        "641,644d640\n<   } else\n<   if (i == 1) {\n<     cgc_puts((char *)\"file exists\");\n<     return ((inode *)0);\n",
+        "1283,1284c1283\n<         while (1) {\n<           tmp___1 = inode_depth;\n---\n>         while (tmp___1) {\n1286,1290c1285\n<           if (tmp___1) {\n< \n<           } else {\n<             break;\n<           }\n---\n>           tmp___1 = inode_depth;\n",
+        "474c474\n<       ipage = fs.inode_pages[i];\n---\n> \n",
+        "466c466\n<       tmp = cgc_allocate((cgc_size_t )4096, 0, (void **)(& fs.inode_pages[i]));\n---\n> \n",
+        "467,472c467\n<       if (tmp) {\n<         cgc_puts((char *)\"Failed to allocate inode page\\n\");\n<         return ((inode *)0);\n<       } else {\n< \n<       }\n---\n>       return (in);\n482c477,482\n<         return (in);\n---\n>         if (tmp) {\n>           cgc_puts((char *)\"Failed to allocate inode page\\n\");\n>           return ((inode *)0);\n>         } else {\n> \n>         }\n",
+        "1252,1255d1251\n<   } else\n<   if (i == 2) {\n<     cgc_puts((char *)\"file is a directory\");\n<     return ((FILE *)0);\n1256a1253,1257\n>     {\n>     if (i == 2) {\n>       cgc_puts((char *)\"file is a directory\");\n>       return ((FILE *)0);\n>     } else {\n1257a1259,1261\n>     }\n>     return (0);\n>     }\n",
+        "1277c1277\n<         f->pos = file_inode->fsize;\n---\n>         cgc_FreeDataBlock(file_inode->blocks[i]);\n1297c1297\n<         cgc_FreeDataBlock(file_inode->blocks[i]);\n---\n>         f->pos = file_inode->fsize;\n",
+        "437c437\n<         *file_inode = i2;\n---\n> \n442c442\n< \n---\n>       *file_inode = i2;\n",
+        "1451a1452\n>   {\n1452a1454,1455\n> \n>   }\n",
+        "509a510\n>         {\n510a512,513\n> \n>         }\n"
+      ]
+    }
+  ]
+}

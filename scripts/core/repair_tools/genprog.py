@@ -29,8 +29,6 @@ class GenProg(RepairTool):
         try:
             repair_cmd = self._get_repair_cmd(benchmark=benchmark, challenge=challenge)
             self.begin()
-            self.verbose = True
-            self.timeout = None
             out, err = super().__call__(cmd_str=repair_cmd,
                                         cmd_cwd=str(challenge.working_dir))
 
@@ -42,9 +40,10 @@ class GenProg(RepairTool):
             return out
 
         finally:
-            repair_task.status = repair_task.results(self.reair_begin, self.repair_end, self.patches)
+            repair_task.status = repair_task.results(self.repair_begin, self.repair_end, self.patches)
             repair_task.results.write()
-            # self.dispose(challenge.working_dir)
+            rm_cmd = f"rm -rf {challenge.working_dir}"
+            #super().__call__(cmd_str=rm_cmd)
 
     def _get_patches(self, prefix: Path, target_file: Path, edits_path: Path):
         target_file_str = str(target_file)
@@ -57,6 +56,8 @@ class GenProg(RepairTool):
             if repaired_file.exists():
                 diff = self.diff(path=sanity_file, path_compare=repaired_file)
                 patch['fix'] = diff
+            else:
+                patch['fix'] = "no repair found"
             if edits_path.exists():
                 for f in edits_path.iterdir():
                     if f.is_dir() and re.match(r"^\d{6}$", str(f.name)):
@@ -70,11 +71,14 @@ class GenProg(RepairTool):
     def _get_repair_cmd(self, benchmark, challenge):
         arguments = self.repair_config["arguments"]
         arguments["--compiler-command"] = benchmark.compile(challenge, instrumented_files=["__SOURCE_NAME__"])
-        arguments["--test-command"] = benchmark.test(challenge, tests=["__TEST_NAME__"], exit_fail=True)
+        arguments["--test-command"] = benchmark.test(challenge, tests=["__TEST_NAME__"], exit_fail=True, neg_pov=True)
         arguments["--prefix"] = benchmark.prefix(challenge)
 
         pos_tests, neg_tests = benchmark.count_tests(challenge)
-
+        if int(pos_tests) > 100:
+            raise ValueError("Too many tests")
+        if int(neg_tests) == 0:
+            raise ValueError("No negative tests")
         arguments["--pos-tests"] = str(pos_tests)
         arguments["--neg-tests"] = str(neg_tests)
         arguments["--rep"] = "cilpatch" if challenge.multi_file else "c"

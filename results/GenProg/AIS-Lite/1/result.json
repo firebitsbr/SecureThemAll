@@ -1,0 +1,18 @@
+{
+  "repair_begin": "2020-09-17 23:01:57.703430",
+  "repair_end": "2020-09-17 23:12:02.452137",
+  "patches": [
+    {
+      "target_file": "src/sentence.i",
+      "fix": "",
+      "edits": [
+        "489c489\n<   ss->msg_status = (unsigned char)1;\n---\n> \n",
+        "470a471\n>     {\n471a473,475\n>     ss->p_ais_msg_idx = cgc_fieldncpy(p_buf, ss->p_ais_msg_idx,\n>                                       (int )(end - p_buf));\n>     }\n",
+        "488c488\n<   ss->session_id = 0U;\n---\n>   ss->p_ais_msg_idx = ss->ais_msg;\n492c492\n<   ss->p_ais_msg_idx = ss->ais_msg;\n---\n>   ss->session_id = 0U;\n",
+        "554,563c554\n<   while (1) {\n<     if (0 != (int )*ptr) {\n<       if (42 != (int )*ptr) {\n< \n<       } else {\n<         break;\n<       }\n<     } else {\n<       break;\n<     }\n---\n>   while (0 != (int )*ptr) {\n",
+        "386d385\n<   p_buf = cgc_get_next_field(p_buf);\n396a396\n>   p_buf = cgc_get_next_field(p_buf);\n",
+        "655a656\n>     {\n656a658,659\n>     return (1);\n>     }\n"
+      ]
+    }
+  ]
+}

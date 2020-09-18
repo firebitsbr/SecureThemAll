@@ -62,6 +62,4 @@ class RepairTool(Setting):
         return self.name
 
     def dispose(self, working_dir: Path):
-        rm_cmd = f"rm -rf {working_dir};"
-        super().__call__(cmd_str=rm_cmd, cmd_cwd=self.configuration.paths.working_dir)
         pass

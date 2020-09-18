@@ -1,0 +1,25 @@
+{
+  "repair_begin": "2020-09-18 01:21:34.756250",
+  "repair_end": "2020-09-18 01:31:34.928961",
+  "patches": [
+    {
+      "target_file": "src/service.i",
+      "fix": "",
+      "edits": [
+        "351c351\n<     return;\n---\n> \n",
+        "262a263\n>       {\n263a265,266\n> \n>       }\n",
+        "321c321\n<       tmp___4 = cgc_CreateInstance(instanceLength - j);\n---\n> \n",
+        "279c279\n<       listItem2 = listItem2->next;\n---\n> \n",
+        "350a351\n>     {\n351a353,354\n> \n>     }\n",
+        "241c241\n< \n---\n>       cgc_InitializeSimulation();\n393c393\n<   cgc_InitializeSimulation();\n---\n> \n",
+        "283c283\n<   return ((instanceInfo *)0);\n---\n> \n",
+        "313c313\n<     server = tmp___1;\n---\n> \n",
+        "192c192\n<   pServer->instances = cgc_NewList(2);\n---\n> \n",
+        "351c351\n<     return;\n---\n> \n420c420\n< \n---\n>         return;\n",
+        "280a281\n>     {\n281a283,284\n> \n>     }\n",
+        "349a350\n>     {\n350a352,353\n>     cgc_printf(\"Query One\\n\");\n>     }\n",
+        "322a323\n>       {\n323a325,326\n> \n>       }\n"
+      ]
+    }
+  ]
+}
