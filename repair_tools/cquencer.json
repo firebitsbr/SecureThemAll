@@ -1,0 +1,7 @@
+{
+	"program" : "CquenceR/CquenceR.py",
+	"arguments": {
+		"repair": "",
+		"--beam_size" : "50"
+	}
+}

@@ -30,10 +30,12 @@ class Benchmark(Setting):
 
         return None
 
-    def init_challenge(self, tool_name: str, challenge_name: str) -> Challenge:
+    def init_challenge(self, tool_name: str, challenge_name: str, remove_patch: bool = False,
+                 vuln_lines: bool = False) -> Challenge:
         wd = Path(self.configuration.paths.working_dir, f"{tool_name}_{challenge_name}_{self.seed}")
         lock = LockFile(self.configuration.paths.root, self.configuration.lock_file)
-        cmd_str = self.checkout(working_directory=wd, challenge_name=challenge_name)
+        cmd_str = self.checkout(working_directory=wd, challenge_name=challenge_name, vuln_lines=vuln_lines,
+                                remove_patch=remove_patch)
 
         if wd.exists():
             shutil.rmtree(wd)
@@ -59,21 +61,29 @@ class Benchmark(Setting):
 
         return self.challenges
 
-    def checkout(self, working_directory: Path, challenge_name: str, remove_patch: bool = False) -> Challenge:
+    def checkout(self, working_directory: Path, challenge_name: str, remove_patch: bool = False,
+                 vuln_lines: bool = False) -> Challenge:
         cmd_str = f"{self.paths.program} checkout -wd {working_directory} -cn {challenge_name}"
 
         if remove_patch:
             cmd_str += " -rp"
 
+        if vuln_lines:
+            cmd_str += " -vl"
+
         return cmd_str
 
     def compile(self, challenge: Challenge, instrumented_files: List[str] = None, preprocess=False, regex: str = None,
-                prefix: str = None, log_file: str = None):
+                prefix: str = None, log_file: str = None, fix_files: List[str] = None):
         cmd_str = f"{self.paths.program} compile -wd {challenge.working_dir} -cn {challenge.name}"
 
         if instrumented_files:
             inst_files_str = ' '.join(instrumented_files)
             cmd_str += f" -ifs {inst_files_str}"
+
+        if fix_files:
+            fix_files_str = ' '.join(fix_files)
+            cmd_str += f" -ffs {fix_files_str}"
 
         if regex:
             cmd_str += f" -r {regex}"

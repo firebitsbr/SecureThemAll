@@ -4,3 +4,6 @@
 [submodule "benchmark/cb-repair"]
 	path = benchmark/cb-repair
 	url = https://github.com/epicosy/cb-repair
+[submodule "repair_tools/CquenceR"]
+	path = repair_tools/CquenceR
+	url = https://github.com/epicosy/CquenceR.git

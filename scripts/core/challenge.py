@@ -1,56 +1,60 @@
 #!/usr/bin/env python3
 
 from pathlib import Path
+from typing import List
+
 from .utils.parse import c_to_cpp
 
 
 class Challenge:
-	def __init__(self, name: str, working_dir: Path):
-		self.name = name
-		self.working_dir = working_dir
-		self._load_manifest()
+    def __init__(self, name: str, working_dir: Path):
+        self.name = name
+        self.working_dir = working_dir
+        self.source = working_dir / Path(name)
+        self.manifest = Manifest(path=self.working_dir / Path(self.name, "manifest.txt"))
 
-	def _load_manifest(self):
-		self.manifest_path = self.working_dir / Path(self.name, "manifest.txt")
+    def __str__(self):
+        return f"{self.name}: {self.manifest}"
 
-		if self.manifest_path.exists():
-			with self.manifest_path.open(mode="r") as m:
-				self.manifest = m.read().splitlines()
-				self.multi_file = len(self.manifest) > 1
-			# FIX THIS MONSTROSITY
-			if self.multi_file:
-				with self.manifest_path.open(mode="w") as m:
-					m.write(self.get_manifest(string=True, preprocessed=True))
 
-		else:
-			self.manifest = []
-			self.multi_file = 0
+class Manifest:
+    def __init__(self, path: Path):
+        self.path = path
+        # {"file_path": [vuln_lines]}
+        self.files = {}
+        self.preprocessed = {}
 
-	def get_manifest(self, path: bool = False, preprocessed: bool = False, string=False, prefix: Path = None):
-		if path:
-			return self.manifest_path
-		# FIX THIS PIECE OF SHIET
-		if preprocessed:
-			files = []
+        if self.path.exists():
+            with self.path.open(mode="r") as m:
+                files = m.read().splitlines()
 
-			for file in self.manifest:
-				cpp_file = c_to_cpp(file)
+                for file in files:
+                    vuln_lines = file.split()
+                    file_path = vuln_lines[0]
+                    vuln_lines = vuln_lines[1:] if len(vuln_lines) > 1 else []
+                    self.files[file_path] = vuln_lines
+                    cpp_file_name = c_to_cpp(file_path)
+                    self.preprocessed[cpp_file_name] = vuln_lines
 
-				if prefix:
-					cpp_file_prefix = prefix / Path(cpp_file)
-					if string:
-						files.append(str(cpp_file_prefix))
-					else:
-						files.append(cpp_file_prefix)
-				else:
-					if string:
-						files.append(cpp_file)
-					else:
-						files.append(Path(cpp_file))
+        self.multi_file = len(self.files) > 1
 
-			return '\n'.join(files) if string else files
+    def get_vuln_lines(self):
+        return [self.files[file] for file in self.files]
 
-		return self.manifest
+    def __call__(self, preprocessed=False, prefix: Path = None) -> List[Path]:
+        if preprocessed:
+            if prefix:
+                return [prefix / Path(cpp_file) for cpp_file in self.preprocessed.keys()]
+            return list(self.preprocessed.keys())
 
-	def __str__(self):
-		return f"{self.name}: {';'.join(self.manifest)}"
+        if prefix:
+            return [prefix / Path(file) for file in self.files.keys()]
+        return [Path(file) for file in self.files.keys()]
+
+    # FIX THIS MONSTROSITY
+    # if self.multi_file:
+    #	with self.path.open(mode="w") as m:
+    #		m.write(self.get_manifest(string=True, preprocessed=True))
+
+    def __str__(self, preprocessed=False, prefix: Path = None):
+        return ' '.join([str(file) for file in self(preprocessed=preprocessed, prefix=prefix)])
