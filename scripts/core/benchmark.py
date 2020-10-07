@@ -31,10 +31,10 @@ class Benchmark(Setting):
         return None
 
     def init_challenge(self, tool_name: str, challenge_name: str, remove_patch: bool = False,
-                 vuln_lines: bool = False) -> Challenge:
+                       vuln_hunks: bool = False) -> Challenge:
         wd = Path(self.configuration.paths.working_dir, f"{tool_name}_{challenge_name}_{self.seed}")
         lock = LockFile(self.configuration.paths.root, self.configuration.lock_file)
-        cmd_str = self.checkout(working_directory=wd, challenge_name=challenge_name, vuln_lines=vuln_lines,
+        cmd_str = self.checkout(working_directory=wd, challenge_name=challenge_name, vuln_hunks=vuln_hunks,
                                 remove_patch=remove_patch)
 
         if wd.exists():
@@ -62,14 +62,14 @@ class Benchmark(Setting):
         return self.challenges
 
     def checkout(self, working_directory: Path, challenge_name: str, remove_patch: bool = False,
-                 vuln_lines: bool = False) -> Challenge:
+                 vuln_hunks: bool = False) -> Challenge:
         cmd_str = f"{self.paths.program} checkout -wd {working_directory} -cn {challenge_name}"
 
         if remove_patch:
             cmd_str += " -rp"
 
-        if vuln_lines:
-            cmd_str += " -vl"
+        if vuln_hunks:
+            cmd_str += " -vh"
 
         return cmd_str
 
@@ -106,7 +106,7 @@ class Benchmark(Setting):
 
     def test(self, challenge: Challenge, tests: List[str] = None, pos_tests: bool = False, neg_tests: bool = False,
              exit_fail: bool = False, write_fail: bool = False, out_file: str = None, coverage: dict = None,
-             regex: str = None, prefix: str = None,  log_file: str = None, neg_pov: bool = False):
+             regex: str = None, prefix: str = None, log_file: str = None, neg_pov: bool = False):
         cmd_str = f"{self.paths.program} test -wd {challenge.working_dir} -cn {challenge.name}"
 
         if tests:

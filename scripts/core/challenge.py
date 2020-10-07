@@ -20,41 +20,30 @@ class Challenge:
 class Manifest:
     def __init__(self, path: Path):
         self.path = path
-        # {"file_path": [vuln_lines]}
-        self.files = {}
-        self.preprocessed = {}
+        self.files = []
+        self.preprocessed = []
 
         if self.path.exists():
             with self.path.open(mode="r") as m:
                 files = m.read().splitlines()
 
                 for file in files:
-                    vuln_lines = file.split()
-                    file_path = vuln_lines[0]
-                    vuln_lines = vuln_lines[1:] if len(vuln_lines) > 1 else []
-                    self.files[file_path] = vuln_lines
+                    file_path = file.split(':')[0]
+                    self.files.append(file_path)
                     cpp_file_name = c_to_cpp(file_path)
-                    self.preprocessed[cpp_file_name] = vuln_lines
+                    self.preprocessed.append(cpp_file_name)
 
         self.multi_file = len(self.files) > 1
 
-    def get_vuln_lines(self):
-        return [self.files[file] for file in self.files]
-
-    def __call__(self, preprocessed=False, prefix: Path = None) -> List[Path]:
+    def __call__(self, preprocessed: bool = False, prefix: Path = None) -> List[Path]:
         if preprocessed:
             if prefix:
-                return [prefix / Path(cpp_file) for cpp_file in self.preprocessed.keys()]
-            return list(self.preprocessed.keys())
+                return [prefix / Path(cpp_file) for cpp_file in self.preprocessed]
+            return [Path(file) for file in self.preprocessed]
 
         if prefix:
-            return [prefix / Path(file) for file in self.files.keys()]
-        return [Path(file) for file in self.files.keys()]
-
-    # FIX THIS MONSTROSITY
-    # if self.multi_file:
-    #	with self.path.open(mode="w") as m:
-    #		m.write(self.get_manifest(string=True, preprocessed=True))
+            return [prefix / Path(file) for file in self.files]
+        return [Path(file) for file in self.files]
 
     def __str__(self, preprocessed=False, prefix: Path = None):
         return ' '.join([str(file) for file in self(preprocessed=preprocessed, prefix=prefix)])

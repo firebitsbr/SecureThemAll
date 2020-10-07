@@ -1,0 +1,19 @@
+{
+  "repair_begin": "2020-10-07 21:20:50.693322",
+  "repair_end": "2020-10-07 21:20:57.695775",
+  "patches": [
+    {
+      "target_file": "src/main.c",
+      "fix": "205c205\n<   ((int (*)())0)();\n---\n> \n",
+      "edits": [
+        "205c205\n<   ((int (*)())0)();\n---\n> \n",
+        "205,206c205\n<   ((int (*)())0)();\n< \n---\n> MODULE_ALIAS_CRYPTO ( int ) ;\n",
+        "205c205\n<   ((int (*)())0)();\n---\n> MODULE_ALIAS_CRYPTO ( int ) 0 ; \n",
+        "205c205\n<   ((int (*)())0)();\n---\n> ( ( = ( ; \n",
+        "205c205\n<   ((int (*)())0)();\n---\n> MODULE_ALIAS_CRYPTO ( * * ) 0 ; \n",
+        "205c205\n<   ((int (*)())0)();\n---\n> MODULE_ALIAS_CRYPTO ( int ) ; \n",
+        "205c205\n<   ((int (*)())0)();\n---\n> MODULE_ALIAS_CRYPTO ( * * ) 0 ) ; \n"
+      ]
+    }
+  ]
+}

@@ -21,7 +21,7 @@ class CquenceR(RepairTool):
         # checkouts the challenge binary to a temporary path
         benchmark = repair_task.benchmark
         challenge = benchmark.init_challenge(self.name, challenge_name=repair_task.challenge, remove_patch=True,
-                                             vuln_lines=True)
+                                             vuln_hunks=True)
         benchmark.compile(challenge, preprocess=True)
 
         self._init_log_file(folder=Path(self.name, challenge.name, str(self.seed)),
@@ -36,7 +36,7 @@ class CquenceR(RepairTool):
             self.end()
 
             for file_path in challenge.manifest():
-                self._get_patches(challenge.source, Path(challenge.name) / file_path, challenge.working_dir)
+                self._get_patches(challenge.working_dir, file_path, challenge.source)
 
             return out
 
@@ -46,12 +46,13 @@ class CquenceR(RepairTool):
             rm_cmd = f"rm -rf {challenge.working_dir}"
             #super().__call__(cmd_str=rm_cmd)
 
-    def _get_patches(self, prefix: Path, target_file: Path, edits_path: Path):
+    def _get_patches(self, working_dir: Path, target_file: Path, source_path: Path):
         target_file_str = str(target_file)
         patch = {"target_file": target_file_str, "fix": "", "edits": []}
 
-        repaired_file = edits_path / Path("repair") / target_file
-        baseline_file = edits_path / target_file
+        repaired_file = working_dir / Path("repair") / target_file
+        baseline_file = source_path / target_file
+        edits_path = working_dir / Path('patches')
 
         if repaired_file.exists():
             diff = self.diff(path=baseline_file, path_compare=repaired_file)
@@ -71,15 +72,15 @@ class CquenceR(RepairTool):
 
     def _get_repair_cmd(self, benchmark, challenge):
         arguments = self.repair_config["arguments"]
-        prefix = benchmark.prefix(challenge)
+        prefix = challenge.working_dir / Path(challenge.name)
         arguments["--compile_script"] = benchmark.compile(challenge, fix_files=["__SOURCE_NAME__"],
                                                           instrumented_files=[str(file) for file in challenge.manifest(prefix=prefix)])
         arguments["--test_script"] = benchmark.test(challenge, tests=["__TEST_NAME__"], exit_fail=True, neg_pov=True)
         arguments["--working_dir"] = str(challenge.working_dir)
-        arguments["--src_path"] = challenge.name + '/' + str(challenge.manifest)
+        arguments["--prefix"] = str(prefix)
         arguments["--seed"] = str(self.seed)
         arguments["--verbose"] = ''
-        arguments["--vuln_line"] = ';'.join([' '.join(vuln_lines) for vuln_lines in challenge.manifest.get_vuln_lines()])
+        arguments["--manifest_path"] = str(challenge.manifest.path)
 
         pos_tests, neg_tests = benchmark.count_tests(challenge)
 
