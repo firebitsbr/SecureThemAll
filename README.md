@@ -1,8 +1,8 @@
 # SecureThemAll
 Automatic Repair Framework based on the modified Cyber Grand Challenge Event Corpus for Linux
 
-###### This project is under development. The current version supports GenProg and MUT-APR, and works on Linux OS.
-###### The repair tools to be added are Angelix, RSRepair, SearchRepair, SOSRepair, Prophet, SPR, DeepFix.
+###### This project is under development. The current version supports GenProg, MUT-APR and CquenceR, and works on Linux OS.
+###### The repair tools to be added are RSRepair, SOSRepair, Prophet, SPR.
 
 ### Notes
 
