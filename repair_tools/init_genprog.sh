@@ -2,7 +2,7 @@
 
 CURRENT_DIR=$(pwd)
 DOWNLOAD_DIR="/tmp/genprog"
-WORKING_DIR=$CURRENT_DIR/genprog-code/
+WORKING_DIR=$CURRENT_DIR/genprog-code
 CIL_DIR=$WORKING_DIR/cil-cg
 
 echo "Installing Genprog dependencies..."
