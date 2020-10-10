@@ -12,6 +12,7 @@ pushd $DOWNLOAD_DIR || (echo "Failed to move to download directory." && exit 1)
 echo "Downloading CIL..."
 wget -O cil.tar.gz http://downloads.sourceforge.net/project/cil/cil/cil-1.7.3.tar.gz
 echo "Extracting..."
+mkdir "$CIL_DIR" -p
 tar xvzf cil.tar.gz -C "$CIL_DIR"
 echo "Removing tar..."
 rm cil.tar.gz
