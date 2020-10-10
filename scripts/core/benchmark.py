@@ -74,7 +74,7 @@ class Benchmark(Setting):
         return cmd_str
 
     def compile(self, challenge: Challenge, instrumented_files: List[str] = None, preprocess=False, regex: str = None,
-                prefix: str = None, log_file: str = None, fix_files: List[str] = None):
+                prefix: str = None, log_file: str = None, fix_files: List[str] = None, cpp_files: bool = False):
         cmd_str = f"{self.paths.program} compile -wd {challenge.working_dir} -cn {challenge.name}"
 
         if instrumented_files:
@@ -84,6 +84,9 @@ class Benchmark(Setting):
         if fix_files:
             fix_files_str = ' '.join(fix_files)
             cmd_str += f" -ffs {fix_files_str}"
+
+        if cpp_files:
+            cmd_str += f" -cpp"
 
         if regex:
             cmd_str += f" -r {regex}"

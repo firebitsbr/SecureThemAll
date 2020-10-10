@@ -42,7 +42,7 @@ class MutApr(RepairTool):
             results = ""
             repair_dir = challenge.working_dir / self.configuration.dirs.repair
             prefix = benchmark.prefix(challenge)
-            vuln_files = challenge.get_manifest(preprocessed=True)
+            vuln_files = challenge.manifest(preprocessed=True)
             # instrument manifest files
             inst_program_path = self.get_repair_tools_path() / Path(self.repair_config["inst"]["program"])
             inst_files = self._instrument(working_dir=challenge.working_dir,
@@ -71,7 +71,7 @@ class MutApr(RepairTool):
             repair_task.status = repair_task.results(self.repair_begin, self.repair_end, self.patches)
             repair_task.results.write()
             rm_cmd = f"rm -rf {challenge.working_dir};"
-            super().__call__(cmd_str=rm_cmd)
+            #super().__call__(cmd_str=rm_cmd)
 
     def _get_patches(self, prefix: Path, target_file: Path, edits_path: Path):
         target_file_str = str(target_file)
@@ -121,7 +121,7 @@ class MutApr(RepairTool):
         return inst_files
 
     def _coverage(self, inst_files: List[str], benchmark, challenge, prefix):
-        benchmark.compile(challenge, inst_files, preprocess=True)
+        benchmark.compile(challenge, inst_files, preprocess=True, cpp_files=True)
 
         # creates folder for coverage files
         cov_dir = challenge.working_dir / self.configuration.dirs.coverage
@@ -163,7 +163,7 @@ class MutApr(RepairTool):
         test_bad = benchmark.test(challenge=challenge, regex=str(bre), neg_tests=True, prefix=str(repair_dir),
                                   log_file=log_arg)
         compile_cmd = benchmark.compile(challenge=challenge, instrumented_files=[str(target_file)], regex=str(cre),
-                                        log_file=log_arg, prefix=str(repair_dir))
+                                        log_file=log_arg, prefix=str(repair_dir), cpp_files=True)
 
         modify_cmd = str(self.program)
         modify_cmd = modify_cmd + f" {args_str} {target_file}"

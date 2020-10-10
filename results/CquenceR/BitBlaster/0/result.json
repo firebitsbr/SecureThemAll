@@ -1,11 +1,19 @@
 {
-  "repair_begin": "2020-10-02 10:45:07.888744",
-  "repair_end": "2020-10-02 10:45:08.572591",
+  "repair_begin": "2020-10-08 16:47:33.507869",
+  "repair_end": "2020-10-08 16:47:40.625670",
   "patches": [
     {
-      "target_file": "BitBlaster/src/main.c",
-      "fix": "no repair found",
-      "edits": []
+      "target_file": "src/main.c",
+      "fix": "205c205\n<   ((int (*)())0)();\n---\n> \n",
+      "edits": [
+        "205c205\n<   ((int (*)())0)();\n---\n> \n",
+        "205c205\n<   ((int (*)())0)();\n---\n> ( ( = ( ; \n",
+        "205c205\n<   ((int (*)())0)();\n---\n> MODULE_ALIAS_CRYPTO ( int ) 0 ; \n",
+        "205,206c205\n<   ((int (*)())0)();\n< \n---\n> MODULE_ALIAS_CRYPTO ( int ) ;\n",
+        "205c205\n<   ((int (*)())0)();\n---\n> MODULE_ALIAS_CRYPTO ( * * ) 0 ; \n",
+        "205c205\n<   ((int (*)())0)();\n---\n> MODULE_ALIAS_CRYPTO ( int ) ; \n",
+        "205c205\n<   ((int (*)())0)();\n---\n> MODULE_ALIAS_CRYPTO ( * * ) 0 ) ; \n"
+      ]
     }
   ]
 }
