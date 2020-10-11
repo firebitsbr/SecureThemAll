@@ -1,11 +1,5 @@
 {
-  "repair_begin": "2020-09-17 23:32:50.418573",
-  "repair_end": "2020-09-17 23:33:01.088029",
-  "patches": [
-    {
-      "target_file": "src/file.i",
-      "fix": "",
-      "edits": []
-    }
-  ]
+  "repair_begin": null,
+  "repair_end": null,
+  "patches": []
 }

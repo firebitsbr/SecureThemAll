@@ -1,23 +1,11 @@
 {
-  "repair_begin": "2020-09-18 00:38:03.246101",
-  "repair_end": "2020-09-18 00:48:06.058760",
+  "repair_begin": "2020-10-11 10:21:23.219866",
+  "repair_end": "2020-10-11 10:21:23.937065",
   "patches": [
     {
       "target_file": "src/operation.i",
-      "fix": "",
-      "edits": [
-        "436c436\n<   bytes_written = (int16_t )0;\n---\n> \n",
-        "483c483\n<     bytes_remaining = (int16_t )((int )bytes_remaining - (int )bytes_written);\n---\n> \n",
-        "431c431,432\n<   while (! (tmp >= 1362U)) {\n---\n>   while (1) {\n> \n",
-        "166a167\n>   {\n167a169,170\n> \n>   }\n",
-        "431c431,436\n<   while (! (tmp >= 1362U)) {\n---\n>   while (1) {\n>     if (tmp >= 1362U) {\n>       break;\n>     } else {\n>       return ((int )bytes_written);\n>     }\n448c453\n<   return ((int )bytes_written);\n---\n> \n",
-        "438c438\n<   bytes_received = (int16_t )tmp___0;\n---\n> \n",
-        "166c166\n<   num[0] = (uint16_t )0;\n---\n> \n",
-        "207c207\n<     cgc_haiku_list = cgc_list_create();\n---\n> \n431c431,436\n<   while (! (tmp >= 1362U)) {\n---\n>   while (1) {\n>     if (tmp >= 1362U) {\n>       break;\n>     } else {\n>       cgc_haiku_list = cgc_list_create();\n>     }\n",
-        "431c431,439\n<   while (! (tmp >= 1362U)) {\n---\n>   while (1) {\n>     if (tmp >= 1362U) {\n>       break;\n>     } else {\n>       {\n> \n>       return (0);\n>       }\n>     }\n",
-        "429a430\n>   {\n430a432,433\n> \n>   }\n",
-        "476a477\n>     {\n480a482,483\n>     }\n>     return ((uint8_t )1);\n"
-      ]
+      "fix": "no repair found",
+      "edits": []
     }
   ]
 }

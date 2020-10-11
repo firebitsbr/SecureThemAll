@@ -1,21 +1,11 @@
 {
-  "repair_begin": "2020-09-18 01:50:56.087693",
-  "repair_end": "2020-09-18 02:00:56.676961",
+  "repair_begin": "2020-10-11 10:25:22.225973",
+  "repair_end": "2020-10-11 10:25:23.387008",
   "patches": [
     {
       "target_file": "src/service.i",
-      "fix": "",
-      "edits": [
-        "1239c1239\n<   cgc_free((void *)path___0);\n---\n> \n",
-        "517c517\n<         tempNxt = temp->next;\n---\n> \n",
-        "309c309\n<   return (retval);\n---\n> \n",
-        "645a646\n>   {\n646a648,649\n> \n>   }\n",
-        "361,366d360\n<   while ((unsigned long )tempPerm != (unsigned long )((pPerms )0)) {\n<     if ((unsigned long )tempPerm->user != (unsigned long )((pUser )0)) {\n<       tmp = cgc_strcmp((tempPerm->user)->name, name);\n<       if (tmp == 0) {\n<         return (tempPerm);\n<       } else {\n368,383d361\n<       }\n<     } else {\n< \n<     }\n<     if ((unsigned long )tempPerm->group != (unsigned long )((pGroup )0)) {\n<       tmp___0 = cgc_strcmp((tempPerm->group)->name, name);\n<       if (tmp___0 == 0) {\n<         return (tempPerm);\n<       } else {\n< \n<       }\n<     } else {\n< \n<     }\n<     tempPerm = tempPerm->next;\n<   }\n",
-        "1237c1237\n<   cgc_strcat(retpath, (char *)\"/\");\n---\n> \n",
-        "648,658c648\n<   if ((unsigned long )file->tail == (unsigned long )((pFileChunk )0)) {\n<     file->head = newFileChunk;\n<     file->tail = newFileChunk;\n<     newFileChunk->prev = (struct FileChunk_s *)0;\n<     file->chunkCount = 1U;\n<   } else {\n<     (file->chunkCount) ++;\n<     (file->tail)->next = newFileChunk;\n<     newFileChunk->prev = file->tail;\n<     file->tail = newFileChunk;\n<   }\n---\n> \n",
-        "1224c1224\n<   tmp___1 = cgc_recursive_path(start, end->parent);\n---\n>   tmp___2 = cgc_strlen((char const   *)path___0);\n1231c1231\n<   tmp___2 = cgc_strlen((char const   *)path___0);\n---\n>   tmp___1 = cgc_recursive_path(start, end->parent);\n",
-        "361a362\n>     {\n369a371,372\n> \n>     }\n"
-      ]
+      "fix": "no repair found",
+      "edits": []
     }
   ]
 }

@@ -1,39 +1,13 @@
 {
-  "repair_begin": "2020-09-17 23:12:41.279055",
-  "repair_end": "2020-09-17 23:22:41.753668",
+  "repair_begin": "2020-10-11 10:16:15.483579",
+  "repair_end": "2020-10-11 10:18:18.958731",
   "patches": [
     {
       "target_file": "src/main.i",
-      "fix": "",
+      "fix": "165a166\n>   {\n166a168,169\n>   gBoard[31] &= 4294967292U;\n>   }\n",
       "edits": [
-        "332,335d331\n<     if (tmp != 1UL) {\n<       cgc_printBoard();\n<       return (0);\n<     } else {\n337d332\n<     }\n",
-        "260c260\n<   gBoard[30] = 4294967295U;\n---\n> \n309c309\n< \n---\n>       gBoard[30] = 4294967295U;\n",
-        "311c311\n<     i ++;\n---\n> \n",
-        "232c232,237\n<     while (j < 32) {\n---\n>     while (1) {\n>       if (j < 32) {\n>         return (1);\n>       } else {\n>         break;\n>       }\n313c318\n<   return (1);\n---\n> \n",
-        "157a158\n>   {\n164a166,167\n>   }\n>   return;\n",
-        "133a134\n>     {\n139a141,142\n> \n>     }\n",
-        "344c344\n<     cgc_makeMove(temp);\n---\n> \n",
-        "294c294\n<   cgc_remove_bits();\n---\n>   cgc_initBoard();\n323c323\n<   cgc_initBoard();\n---\n>   cgc_remove_bits();\n",
-        "313c313\n<   return (1);\n---\n> \n",
-        "230c230,235\n<   while (i < 32) {\n---\n>   while (1) {\n>     if (i < 32) {\n>       gBoard[30] &= 4294967292U;\n>     } else {\n>       break;\n>     }\n272c277\n<       gBoard[30] &= 4294967292U;\n---\n> \n",
-        "133a134\n>     total += rx_bytes;\n142d142\n<     total += rx_bytes;\n",
-        "346c346\n<   (*((int (*)())0))();\n---\n> \n",
-        "293a294\n>   {\n294a296,297\n> \n>   }\n",
-        "142c142\n<     total += rx_bytes;\n---\n> \n",
-        "305c305,306\n<   while (i < 32) {\n---\n>   while (1) {\n>     i ++;\n311c312,316\n<     i ++;\n---\n>     if (i < 32) {\n> \n>     } else {\n>       break;\n>     }\n",
-        "272c272\n<       gBoard[30] &= 4294967292U;\n---\n> \n",
-        "288c288\n<   i = (int )move & 31;\n---\n> \n",
-        "343a344\n>     {\n344a346,347\n>     return;\n>     }\n",
-        "304a305\n>   {\n311a313,314\n>   }\n>   return (1);\n",
-        "337a338\n>     {\n341a343,344\n> \n>     }\n",
-        "303c303\n<   i = 0;\n---\n> \n",
-        "268a269\n>   {\n277a279,280\n>   }\n>   return;\n",
-        "309c309\n< \n---\n>       return (1);\n313c313\n<   return (1);\n---\n> \n",
-        "303a304\n>   {\n304a306,307\n>   return;\n>   }\n",
-        "306a307\n>       {\n307a309,310\n>       return (0);\n>       }\n",
-        "260c260\n<   gBoard[30] = 4294967295U;\n---\n> \n",
-        "305a306\n>     {\n309a311,312\n>     }\n>     return (0);\n",
-        "165a166\n>   {\n166a168,169\n>   gBoard[31] &= 4294967292U;\n>   }\n"
+        "165a166\n>   {\n166a168,169\n>   gBoard[31] &= 4294967292U;\n>   }\n",
+        "309c309\n< \n---\n>       return (1);\n313c313\n<   return (1);\n---\n> \n"
       ]
     }
   ]

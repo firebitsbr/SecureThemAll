@@ -1,21 +1,11 @@
 {
-  "repair_begin": "2020-09-18 00:07:04.207114",
-  "repair_end": "2020-09-18 00:17:09.930801",
+  "repair_begin": "2020-10-11 10:18:45.738931",
+  "repair_end": "2020-10-11 10:20:59.573000",
   "patches": [
     {
       "target_file": "src/message.i",
       "fix": "",
-      "edits": [
-        "402,403c402\n<     tmp___0 = cgc_strcmp((char const   *)name,\n<                          (char const   *)(globs.listOfMessages[index][i].from));\n---\n> \n",
-        "274c274\n<   cgc_msg_count_login ++;\n---\n> \n",
-        "275c275\n<   (cgc_current_user->msg_count) ++;\n---\n> \n",
-        "219a220\n>     {\n224a226,227\n>     }\n>     return (1);\n",
-        "276c276\n<   return (1);\n---\n> \n430c430,435\n<   while (i < 20) {\n---\n>   while (1) {\n>     if (i < 20) {\n>       return (1);\n>     } else {\n>       break;\n>     }\n",
-        "242c242\n<     cgc_current_user->first_login = 0;\n---\n> \n",
-        "411a412\n>     {\n412a414,415\n>     i = 0;\n>     }\n",
-        "397c397,398\n<   tmp = cgc_get_user_index(name);\n---\n>   tmp___0 = cgc_strcmp((char const   *)name,\n>                        (char const   *)(globs.listOfMessages[index][i].from));\n402,403c403\n<     tmp___0 = cgc_strcmp((char const   *)name,\n<                          (char const   *)(globs.listOfMessages[index][i].from));\n---\n>     tmp = cgc_get_user_index(name);\n",
-        "259a260\n>     {\n260a262,263\n>     cur->is_draft = draft;\n>     }\n"
-      ]
+      "edits": []
     }
   ]
 }

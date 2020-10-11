@@ -1,26 +1,11 @@
 {
-  "repair_begin": "2020-09-17 23:44:13.742457",
-  "repair_end": "2020-09-17 23:54:15.762369",
+  "repair_begin": "2020-10-11 10:17:42.757421",
+  "repair_end": "2020-10-11 10:17:44.664720",
   "patches": [
     {
       "target_file": "src/casino.i",
-      "fix": "",
-      "edits": [
-        "574c574\n<     root_player = cgc_register_player(root_player);\n---\n> \n",
-        "462c462\n<   input = config_data;\n---\n> \n",
-        "546c546\n<     cgc_printf(\"1. Play Blackjack\\n\");\n---\n> \n",
-        "444,449d443\n<   if (config_size <= 0) {\n<     cgc__terminate(1U);\n<   } else\n<   if ((unsigned long )config_size > sizeof(cgc_payouts) * 2UL) {\n<     cgc__terminate(1U);\n<   } else {\n451d444\n<   }\n",
-        "250c250\n<   player = tmp___1;\n---\n> \n",
-        "247a248\n>   {\n248a250,251\n>   cgc_printf(\"How much cash do you want to spend?:\");\n>   }\n",
-        "301c301,305\n<     tmp___1 = cgc_lookup_by_number(new_player->number, root_player);\n---\n>     if (tmp___2 >= 12U) {\n>       break;\n>     } else {\n> \n>     }\n314c318,319\n<   while (! (tmp___2 >= 12U)) {\n---\n>   while (1) {\n>     tmp___1 = cgc_lookup_by_number(new_player->number, root_player);\n",
-        "404c404\n<       inp ++;\n---\n> \n",
-        "586a587\n>       {\n591a593,594\n>       }\n>       cgc_printf(\"Select a number:\");\n",
-        "405c405\n<       byte = (char)0;\n---\n> \n",
-        "527c527\n<   cgc_sprng(seed);\n---\n>   cgc_printf(\"6. Show Player Status\\n\");\n551c551\n<     cgc_printf(\"6. Show Player Status\\n\");\n---\n>     cgc_sprng(seed);\n",
-        "327a328\n>   {\n328a330,331\n> \n>   }\n",
-        "600,603d599\n<       } else\n<       if (current_player->slots_score == 0) {\n<         cgc_printf(\"But you didn\\'t even play slots :(\\n\");\n<         cgc__terminate(0U);\n605,606c601,616\n<         cgc_printf(\"Okay, you\\'ve had enough ;)\\n\");\n<         goto finish;\n---\n>         {\n>         if (current_player->slots_score == 0) {\n>           cgc_printf(\"But you didn\\'t even play slots :(\\n\");\n>           cgc__terminate(0U);\n>         } else {\n>           cgc_printf(\"Okay, you\\'ve had enough ;)\\n\");\n>           goto finish;\n>         }\n>         if (current_player->slots_score == 0) {\n>           cgc_printf(\"But you didn\\'t even play slots :(\\n\");\n>           cgc__terminate(0U);\n>         } else {\n>           cgc_printf(\"Okay, you\\'ve had enough ;)\\n\");\n>           goto finish__0;\n>         }\n>         }\n",
-        "553a554\n>     {\n554a556,557\n>     return;\n>     }\n"
-      ]
+      "fix": "no repair found",
+      "edits": []
     }
   ]
 }

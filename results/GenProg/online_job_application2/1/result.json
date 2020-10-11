@@ -1,11 +1,21 @@
 {
-  "repair_begin": "2020-09-18 03:09:59.963845",
-  "repair_end": "2020-09-18 03:10:18.329531",
+  "repair_begin": "2020-10-11 10:31:25.469613",
+  "repair_end": "2020-10-11 10:41:34.257711",
   "patches": [
     {
       "target_file": "src/form.i",
-      "fix": "",
-      "edits": []
+      "fix": "no repair found",
+      "edits": [
+        "638c638\n<       cgc_free((void *)input_buf);\n---\n> \n",
+        "277,281c277\n<   if ((unsigned long )arg == (unsigned long )((char *)0)) {\n<     return (-1);\n<   } else {\n< \n<   }\n---\n>   ret = (*(form->handlers[i]))(form, arg);\n295c291,295\n<   ret = (*(form->handlers[i]))(form, arg);\n---\n>   if ((unsigned long )arg == (unsigned long )((char *)0)) {\n>     return (-1);\n>   } else {\n> \n>   }\n",
+        "320a321\n>     {\n321a323,324\n> \n>     }\n",
+        "210c210\n<   tmp___0 = cgc_handler_index(form, buf);\n---\n> \n",
+        "637a638\n>       {\n638a640,641\n> \n>       }\n",
+        "706,708d705\n<     if (ret < 0) {\n<       return (-1);\n<     } else {\n710d706\n<     }\n",
+        "664c664\n<     cgc_print_page(form);\n---\n> \n",
+        "168,179c168\n<   while (1) {\n<     if ((int )*p == 42) {\n<       if (p - buf < 2L) {\n< \n<       } else {\n<         break;\n<       }\n<     } else {\n<       break;\n<     }\n<     p ++;\n<   }\n---\n>   p ++;\n",
+        "302c302\n<   return (ret);\n---\n> \n"
+      ]
     }
   ]
 }

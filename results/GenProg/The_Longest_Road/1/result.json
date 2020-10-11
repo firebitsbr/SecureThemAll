@@ -1,11 +1,13 @@
 {
-  "repair_begin": "2020-09-18 02:26:21.866782",
-  "repair_end": "2020-09-18 02:27:22.662199",
+  "repair_begin": "2020-10-11 10:28:05.854083",
+  "repair_end": "2020-10-11 10:31:49.609533",
   "patches": [
     {
       "target_file": "src/packet.i",
-      "fix": "",
-      "edits": []
+      "fix": "907c907\n<           x___1 = (signed char )(LAST_CHAR_POS - (offset - char_index___0));\n---\n>           *(data + i___2) = *(VALID_CHARS + x___1);\n911c911\n<         *(data + i___2) = *(VALID_CHARS + x___1);\n---\n>         x___1 = (signed char )(LAST_CHAR_POS - (offset - char_index___0));\n",
+      "edits": [
+        "907c907\n<           x___1 = (signed char )(LAST_CHAR_POS - (offset - char_index___0));\n---\n>           *(data + i___2) = *(VALID_CHARS + x___1);\n911c911\n<         *(data + i___2) = *(VALID_CHARS + x___1);\n---\n>         x___1 = (signed char )(LAST_CHAR_POS - (offset - char_index___0));\n"
+      ]
     }
   ]
 }

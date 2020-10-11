@@ -1,22 +1,24 @@
 {
-  "repair_begin": "2020-09-18 02:49:40.616668",
-  "repair_end": "2020-09-18 02:59:41.004534",
+  "repair_begin": "2020-10-11 10:29:57.302520",
+  "repair_end": "2020-10-11 10:39:57.503313",
   "patches": [
     {
       "target_file": "src/expression_parser.i",
-      "fix": "",
+      "fix": "no repair found",
       "edits": [
-        "301d300\n<     if (tmp) {\n303,305d301\n<     } else {\n<       break;\n<     }\n",
-        "878c878\n<         tmp___8 = cgc_peek_parser_stack();\n---\n> \n",
-        "231c231\n<   cgc_g_parseStackSize = (uint8_t )((int )cgc_g_parseStackSize + 1);\n---\n> \n",
-        "258a259\n>   {\n284a286,287\n>   }\n> \n",
-        "879c879\n<         item_peek_top___0 = tmp___8;\n---\n>         tmp___10 = cgc_is_symbol_result_operator(item_peek_top___0.data.symbol);\n892c892\n<           tmp___10 = cgc_is_symbol_result_operator(item_peek_top___0.data.symbol);\n---\n>           item_peek_top___0 = tmp___8;\n",
-        "953,994c953\n<             if (tmp___22) {\n<               tmp___17 = cgc_peek_parser_stack();\n<               item_peek_top___2 = tmp___17;\n<               if ((unsigned int )item_peek_top___2.type == 2U) {\n< \n<               } else\n<               if ((unsigned int )item_peek_top___2.type == 0U) {\n<                 tmp___19 = cgc_is_symbol_open_paran(item_peek_top___2.data.symbol);\n<                 if (tmp___19) {\n< \n<                 } else {\n<                   goto _L___0;\n<                 }\n<               } else\n<               _L___0: /* CIL Label */ \n<               if ((unsigned int )item_peek_top___2.type == 0U) {\n<                 tmp___20 = cgc_is_symbol_result_operator(item_peek_top___2.data.symbol);\n<                 if (tmp___20) {\n< \n<                 } else {\n<                   tmp___18 = cgc_get_current_exception_frame();\n<                   longjmp(tmp___18->jmpBuffer, 2);\n<                   return;\n<                 }\n<               } else {\n<                 tmp___18 = cgc_get_current_exception_frame();\n<                 longjmp(tmp___18->jmpBuffer, 2);\n<                 return;\n<               }\n<               new_item___1.type = (eItemType )0;\n<               new_item___1.data.symbol = cur_symbol;\n<               cgc_push_parser_stack(new_item___1);\n<             } else\n<             if ((unsigned int )cur_symbol == 13U) {\n<               bDone = 1;\n<             } else\n<             if ((unsigned int )cur_symbol == 12U) {\n<               tmp___21 = cgc_get_current_exception_frame();\n<               longjmp(tmp___21->jmpBuffer, 2);\n<             } else {\n< \n<             }\n---\n>             _L___0: ;\n",
-        "374c374\n<   return (0);\n---\n> \n",
-        "706,720c706\n<         if (tmp___2) {\n<           if ((unsigned int )cgc_g_memoryGlobal.parseStack[(int )cgc_g_parseStackSize - 3].type == 1U) {\n<             tmp = cgc_pop_parser_stack();\n<             rval = tmp;\n<             tmp___0 = cgc_pop_parser_stack();\n<             operator = tmp___0;\n<             tmp___1 = cgc_pop_parser_stack();\n<             lval = tmp___1;\n<             cgc_do_result_search(lval, operator.data.symbol, rval);\n<           } else {\n<             break;\n<           }\n<         } else {\n<           break;\n<         }\n---\n>         tmp___0 = cgc_pop_parser_stack();\n",
-        "324a325\n>       {\n325a327,328\n>       return (cgc_g_memoryGlobal.parseStack[cgc_g_parseStackSize]);\n>       }\n",
-        "343a344\n>     {\n344a346,347\n> \n>     }\n",
-        "909a910\n>         {\n995a997,998\n>         }\n> \n"
+        "884d883\n<           if ((unsigned int )item_peek_top___0.data.symbol == 0U) {\n886,888d884\n<           } else {\n<             goto _L;\n<           }\n",
+        "872c872\n<         pszCur ++;\n---\n> \n",
+        "315a316\n>     {\n319a321,322\n> \n>     }\n",
+        "835,839d834\n<         if ((int )*pszCur != 34) {\n<           tmp___5 = cgc_get_current_exception_frame();\n<           longjmp(tmp___5->jmpBuffer, 2);\n<           return;\n<         } else {\n841d835\n<         }\n",
+        "318c318\n<       return ((eParserSymbol )12);\n---\n>       return (g_parseTable[symIndex].symbol);\n328c328\n<       return (g_parseTable[symIndex].symbol);\n---\n>       return ((eParserSymbol )12);\n",
+        "316a317\n>       {\n317a319,320\n> \n>       }\n",
+        "828d827\n<           if (tmp___4) {\n830,832d828\n<           } else {\n<             break;\n<           }\n",
+        "959a960\n>                 {\n960a962,963\n> \n>                 }\n",
+        "519,542d518\n<   while (index < record_total) {\n<     tmp___0 = cgc_db_search_index(index);\n<     pCur = tmp___0;\n<     add_item = 0;\n<     switch ((unsigned int )object_type) {\n<     case 10U: \n<     comparison_result = cgc_strcmp(pCur->szUserName, pszSearchString);\n<     break;\n<     case 9U: \n<     comparison_result = cgc_strcmp(pCur->szFirstName, pszSearchString);\n<     break;\n<     case 8U: \n<     comparison_result = cgc_strcmp(pCur->szLastName, pszSearchString);\n<     break;\n<     default: \n<     tmp___1 = cgc_get_current_exception_frame();\n<     longjmp(tmp___1->jmpBuffer, 1);\n<     break;\n<     }\n<     switch ((unsigned int )comparison_symbol) {\n<     case 4U: \n<     if (comparison_result == -1) {\n<       add_item = 1;\n<     } else {\n544,580d519\n<     }\n<     break;\n<     case 5U: \n<     if (comparison_result == 1) {\n<       add_item = 1;\n<     } else {\n< \n<     }\n<     break;\n<     case 2U: \n<     if (comparison_result == 0) {\n<       add_item = 1;\n<     } else {\n< \n<     }\n<     break;\n<     case 3U: \n<     if (comparison_result != 0) {\n<       add_item = 1;\n<     } else {\n< \n<     }\n<     break;\n<     default: \n<     tmp___2 = cgc_get_current_exception_frame();\n<     longjmp(tmp___2->jmpBuffer, 1);\n<     break;\n<     }\n<     if (add_item) {\n<       tmp___3 = results.result_list_size;\n<       results.result_list_size = (uint8_t )((int )results.result_list_size + 1);\n<       results.data.result_list[tmp___3] = (uint8_t )index;\n<     } else {\n< \n<     }\n<     index ++;\n<   }\n",
+        "317a318\n>       {\n318a320,325\n>       if ((int )cgc_g_parseStackSize <= 2) {\n>         break;\n>       } else {\n> \n>       }\n>       }\n",
+        "858,862c858\n<           if (cur_pos >= 128U) {\n<             break;\n<           } else {\n< \n<           }\n---\n>           tmp___24 = cgc_is_symbol_close_paran(cur_symbol);\n909c905,909\n<         tmp___24 = cgc_is_symbol_close_paran(cur_symbol);\n---\n>         if (cur_pos >= 128U) {\n>           break;\n>         } else {\n> \n>         }\n",
+        "989a990\n>               {\n990a992,993\n>               tmp___21 = cgc_get_current_exception_frame();\n>               }\n",
+        "318c318\n<       return ((eParserSymbol )12);\n---\n> \n519c519,524\n<   while (index < record_total) {\n---\n>   while (1) {\n>     if (index < record_total) {\n>       return ((eParserSymbol )12);\n>     } else {\n>       break;\n>     }\n"
       ]
     }
   ]

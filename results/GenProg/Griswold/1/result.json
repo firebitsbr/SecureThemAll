@@ -1,25 +1,11 @@
 {
-  "repair_begin": "2020-09-18 00:31:23.294191",
-  "repair_end": "2020-09-18 00:41:23.558299",
+  "repair_begin": "2020-10-11 10:21:11.736493",
+  "repair_end": "2020-10-11 10:21:13.010318",
   "patches": [
     {
       "target_file": "src/assemble.i",
-      "fix": "",
-      "edits": [
-        "1425c1425\n<   tmp___0 = cgc_get_receptacle_by_id(receptacle_id);\n---\n> \n",
-        "1349c1349\n<   result->receptacle_ids_assigned_cnt = (uint8_t )2;\n---\n> \n",
-        "1375a1376\n>   {\n1379a1381,1386\n>   }\n>   if (0 == (int )tmp) {\n>     return ((int8_t )-42);\n>   } else {\n> \n>   }\n",
-        "314c314\n<       return ((int8_t )0);\n---\n> \n",
-        "1398a1399\n>   {\n1399a1401,1402\n> \n>   }\n",
-        "819c819\n<   tmp = cgc_breaker_id_is_installed(breaker_id);\n---\n> \n",
-        "1341c1341\n<     cgc_deallocate((void *)o, sizeof(outlet_t ));\n---\n> \n",
-        "1340a1341\n>     {\n1341a1343,1344\n>     return ((uint8_t )1);\n>     }\n",
-        "589,591d588\n<   outlet_list = tmp;\n<   tmp___0 = cgc_get_first_node(outlet_list);\n<   outlet_node_ptr = tmp___0;\n607a605,607\n>   tmp___0 = cgc_get_first_node(outlet_list);\n>   outlet_node_ptr = tmp___0;\n>   outlet_list = tmp;\n",
-        "622c622,627\n<     while (breaker_idx < (uint32_t )e_model->breakers_installed_cnt) {\n---\n>     while (1) {\n>       if (breaker_idx < (uint32_t )e_model->breakers_installed_cnt) {\n>         return (r);\n>       } else {\n>         break;\n>       }\n634c639\n<   return (r);\n---\n> \n",
-        "1342c1342\n<     return ((int8_t )-51);\n---\n> \n",
-        "396c396,408\n<   while (idx <= (uint32_t )splitter->receptacle_count) {\n---\n>   while (1) {\n>     if (idx <= (uint32_t )splitter->receptacle_count) {\n>       {\n> \n>       if ((unsigned long )((receptacle_t *)0) != (unsigned long )r) {\n>         break;\n>       } else {\n> \n>       }\n>       }\n>     } else {\n>       break;\n>     }\n",
-        "395a396\n>   {\n404a406,407\n>   }\n> \n"
-      ]
+      "fix": "no repair found",
+      "edits": []
     }
   ]
 }
