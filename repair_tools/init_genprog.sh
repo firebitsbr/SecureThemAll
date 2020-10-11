@@ -3,7 +3,7 @@
 CURRENT_DIR=$(pwd)
 DOWNLOAD_DIR="/tmp/genprog"
 WORKING_DIR=$CURRENT_DIR/genprog-code
-CIL_DIR=$WORKING_DIR/cil-cg
+CIL_DIR=$WORKING_DIR/cil-cg/cil-1.7.3
 
 echo "Installing Genprog dependencies..."
 apt -y install ocaml ocamlbuild || (echo "Failed to install ocaml dependencies." && exit 1)
