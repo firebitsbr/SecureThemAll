@@ -1,0 +1,12 @@
+{
+  "repair_begin": "2020-10-12 11:38:47.509406",
+  "repair_end": "2020-10-12 11:38:47.583443",
+  "patches": [
+    {
+      "target_file": "src/dive.ii",
+      "fix": "",
+      "edits": []
+    }
+  ],
+  "error": "cat: /etc/redhat-release: No such file or directory\n/tmp/GenProg_Divelogger2_0/Divelogger2/lib/cgc_string.h[4:0-0] : syntax error\nParsing errorFatal error: exception Frontc.ParseError(\"Parse error\")\n"
+}

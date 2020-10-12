@@ -1,0 +1,12 @@
+{
+  "repair_begin": "2020-10-12 12:15:46.954996",
+  "repair_end": "2020-10-12 12:18:37.718950",
+  "patches": [
+    {
+      "target_file": "src/main.i",
+      "fix": "no repair found",
+      "edits": []
+    }
+  ],
+  "error": "cat: /etc/redhat-release: No such file or directory\n/tmp/GenProg_stream_vm2_0/stream_vm2/src/main.c:320: Warning: Body of function main falls-through. Adding a return statement\n"
+}

@@ -1,0 +1,12 @@
+{
+  "repair_begin": "2020-10-12 12:02:47.644035",
+  "repair_end": "2020-10-12 12:02:48.430865",
+  "patches": [
+    {
+      "target_file": "src/service.i",
+      "fix": "no repair found",
+      "edits": []
+    }
+  ],
+  "error": "cat: /etc/redhat-release: No such file or directory\n/tmp/GenProg_basic_messaging_0/basic_messaging/src/service.c:434: Warning: Variable-sized local variable data\n"
+}

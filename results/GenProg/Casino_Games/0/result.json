@@ -1,0 +1,12 @@
+{
+  "repair_begin": "2020-10-12 11:38:31.048845",
+  "repair_end": "2020-10-12 11:38:32.862849",
+  "patches": [
+    {
+      "target_file": "src/casino.i",
+      "fix": "no repair found",
+      "edits": []
+    }
+  ],
+  "error": "cat: /etc/redhat-release: No such file or directory\n/tmp/GenProg_Casino_Games_0/Casino_Games/src/casino.c:406: Warning: Body of function main falls-through. Adding a return statement\n"
+}

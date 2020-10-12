@@ -1,0 +1,17 @@
+{
+  "repair_begin": "2020-10-12 11:45:22.955983",
+  "repair_end": "2020-10-12 11:55:40.673265",
+  "patches": [
+    {
+      "target_file": "src/main.i",
+      "fix": "no repair found",
+      "edits": [
+        "244a245\n>     {\n245a247,252\n>     if ((unsigned long )i <= sizeof(g_password) / sizeof(g_password[0])) {\n> \n>     } else {\n>       break;\n>     }\n>     }\n",
+        "1356a1357\n>   {\n1357a1359,1360\n>   welcome[16] = (char )'R';\n>   }\n",
+        "845,851c845\n<   if (tmp___1 != 0) {\n<     cgc_printf(\"[ERROR] Failed to remove.\\n\");\n<   } else {\n<     cgc_g_num_movies --;\n<     cgc_free_movie(movie);\n<     cgc_printf(\"Successfully removed the movie!\\n\");\n<   }\n---\n>   cgc_free_movie(movie);\n",
+        "1253c1253\n<   menu[47] = (char )'.';\n---\n> \n"
+      ]
+    }
+  ],
+  "error": "cat: /etc/redhat-release: No such file or directory\n"
+}

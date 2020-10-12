@@ -1,0 +1,14 @@
+{
+  "repair_begin": "2020-10-12 11:53:08.740651",
+  "repair_end": "2020-10-12 11:54:33.996143",
+  "patches": [
+    {
+      "target_file": "src/backlogitems.i",
+      "fix": "266c266\n<   newPBI->story_points = message->user_story_points;\n---\n>   tmp___1 = cgc_calloc(tmp___0 + 1UL);\n269c269\n<   tmp___1 = cgc_calloc(tmp___0 + 1UL);\n---\n>   newPBI->story_points = message->user_story_points;\n",
+      "edits": [
+        "266c266\n<   newPBI->story_points = message->user_story_points;\n---\n>   tmp___1 = cgc_calloc(tmp___0 + 1UL);\n269c269\n<   tmp___1 = cgc_calloc(tmp___0 + 1UL);\n---\n>   newPBI->story_points = message->user_story_points;\n"
+      ]
+    }
+  ],
+  "error": "cat: /etc/redhat-release: No such file or directory\n"
+}

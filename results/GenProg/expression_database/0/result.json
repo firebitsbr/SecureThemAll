@@ -1,0 +1,19 @@
+{
+  "repair_begin": "2020-10-12 12:04:54.000702",
+  "repair_end": "2020-10-12 12:15:29.478552",
+  "patches": [
+    {
+      "target_file": "src/expression_parser.i",
+      "fix": "no repair found",
+      "edits": [
+        "872c872\n<         pszCur ++;\n---\n> \n",
+        "315a316\n>     {\n319a321,322\n> \n>     }\n",
+        "828d827\n<           if (tmp___4) {\n830,832d828\n<           } else {\n<             break;\n<           }\n",
+        "959a960\n>                 {\n960a962,963\n> \n>                 }\n",
+        "858,862c858\n<           if (cur_pos >= 128U) {\n<             break;\n<           } else {\n< \n<           }\n---\n>           tmp___24 = cgc_is_symbol_close_paran(cur_symbol);\n909c905,909\n<         tmp___24 = cgc_is_symbol_close_paran(cur_symbol);\n---\n>         if (cur_pos >= 128U) {\n>           break;\n>         } else {\n> \n>         }\n",
+        "318c318\n<       return ((eParserSymbol )12);\n---\n> \n519c519,524\n<   while (index < record_total) {\n---\n>   while (1) {\n>     if (index < record_total) {\n>       return ((eParserSymbol )12);\n>     } else {\n>       break;\n>     }\n"
+      ]
+    }
+  ],
+  "error": "cat: /etc/redhat-release: No such file or directory\n"
+}

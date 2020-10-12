@@ -1,0 +1,15 @@
+{
+  "repair_begin": "2020-10-12 11:47:53.053800",
+  "repair_end": "2020-10-12 11:50:08.791298",
+  "patches": [
+    {
+      "target_file": "src/fs.i",
+      "fix": "509a510\n>         {\n510a512,513\n> \n>         }\n",
+      "edits": [
+        "509a510\n>         {\n510a512,513\n> \n>         }\n",
+        "467,472c467\n<       if (tmp) {\n<         cgc_puts((char *)\"Failed to allocate inode page\\n\");\n<         return ((inode *)0);\n<       } else {\n< \n<       }\n---\n>       return (in);\n482c477,482\n<         return (in);\n---\n>         if (tmp) {\n>           cgc_puts((char *)\"Failed to allocate inode page\\n\");\n>           return ((inode *)0);\n>         } else {\n> \n>         }\n"
+      ]
+    }
+  ],
+  "error": "cat: /etc/redhat-release: No such file or directory\n"
+}

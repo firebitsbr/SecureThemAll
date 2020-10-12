@@ -1,0 +1,14 @@
+{
+  "repair_begin": "2020-10-12 11:56:29.933020",
+  "repair_end": "2020-10-12 11:59:10.676726",
+  "patches": [
+    {
+      "target_file": "src/service.i",
+      "fix": "720c720,725\n<   while (i___0 < rows * (columns / 2)) {\n---\n>   while (1) {\n>     if (i___0 < rows * (columns / 2)) {\n>       cgc_updateBullets();\n>     } else {\n>       break;\n>     }\n821c826\n<       cgc_updateBullets();\n---\n> \n",
+      "edits": [
+        "720c720,725\n<   while (i___0 < rows * (columns / 2)) {\n---\n>   while (1) {\n>     if (i___0 < rows * (columns / 2)) {\n>       cgc_updateBullets();\n>     } else {\n>       break;\n>     }\n821c826\n<       cgc_updateBullets();\n---\n> \n"
+      ]
+    }
+  ],
+  "error": "cat: /etc/redhat-release: No such file or directory\n"
+}
