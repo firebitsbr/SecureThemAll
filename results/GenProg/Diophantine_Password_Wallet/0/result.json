@@ -1,12 +1,14 @@
 {
-  "repair_begin": "2020-10-12 11:38:25.718842",
-  "repair_end": "2020-10-12 11:38:27.383687",
+  "repair_begin": "2020-10-12 16:28:52.074667",
+  "repair_end": "2020-10-12 16:39:42.439203",
   "patches": [
     {
       "target_file": "src/main.i",
       "fix": "no repair found",
-      "edits": []
+      "edits": [
+        "804c804\n<     cgc_my_printf(\"First Secret\\n\");\n---\n>     z = cgc_strToUint32((char const   *)(buf));\n812c812\n<     z = cgc_strToUint32((char const   *)(buf));\n---\n>     cgc_my_printf(\"First Secret\\n\");\n"
+      ]
     }
   ],
-  "error": "cat: /etc/redhat-release: No such file or directory\n"
+  "error": "cat: /etc/redhat-release: No such file or directory\nsh: 1: kill: No such process\n\n"
 }

@@ -1,12 +1,12 @@
 {
-  "repair_begin": "2020-10-12 11:51:18.758047",
-  "repair_end": "2020-10-12 11:52:52.545593",
+  "repair_begin": "2020-10-12 16:57:26.508699",
+  "repair_end": "2020-10-12 16:58:43.121369",
   "patches": [
     {
       "target_file": "src/sadface.i",
-      "fix": "705,714c705\n<     if ((unsigned long )cur->next == (unsigned long )((struct sad_node *)0)) {\n<       if (stack->length != 0U) {\n<         tmp___4 = cgc_stack_pop(stack);\n<         cur = (sad_node_t *)tmp___4;\n<       } else {\n< \n<       }\n<     } else {\n< \n<     }\n---\n>     tmp___4 = cgc_stack_pop(stack);\n",
+      "fix": "524c524\n<     section->__annonCompField1.child = child;\n---\n>     tmp___15 = cgc_stack_peek(stack);\n535c535\n<     tmp___15 = cgc_stack_peek(stack);\n---\n>     section->__annonCompField1.child = child;\n",
       "edits": [
-        "705,714c705\n<     if ((unsigned long )cur->next == (unsigned long )((struct sad_node *)0)) {\n<       if (stack->length != 0U) {\n<         tmp___4 = cgc_stack_pop(stack);\n<         cur = (sad_node_t *)tmp___4;\n<       } else {\n< \n<       }\n<     } else {\n< \n<     }\n---\n>     tmp___4 = cgc_stack_pop(stack);\n"
+        "524c524\n<     section->__annonCompField1.child = child;\n---\n>     tmp___15 = cgc_stack_peek(stack);\n535c535\n<     tmp___15 = cgc_stack_peek(stack);\n---\n>     section->__annonCompField1.child = child;\n"
       ]
     }
   ],

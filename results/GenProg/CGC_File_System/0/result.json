@@ -1,11 +1,13 @@
 {
-  "repair_begin": "2020-10-12 11:27:36.179867",
-  "repair_end": "2020-10-12 11:37:43.003081",
+  "repair_begin": "2020-10-12 16:17:44.186137",
+  "repair_end": "2020-10-12 16:27:54.401326",
   "patches": [
     {
       "target_file": "src/file.i",
       "fix": "no repair found",
-      "edits": []
+      "edits": [
+        "233,234c233,242\n<   if ((unsigned long )parent->data == (unsigned long )((char *)0)) {\n<     return (0);\n---\n>   if (tmp == 0) {\n>     if (t->type == 1U) {\n>       cgc_printf(\"[ERROR] Cannot delete a directory\\n\");\n>       return (0);\n>     } else {\n> \n>     }\n>     cgc_free_file(t);\n>     *(list + index) = (pfile )0;\n>     return (1);\n248,257c256,257\n<     if (tmp == 0) {\n<       if (t->type == 1U) {\n<         cgc_printf(\"[ERROR] Cannot delete a directory\\n\");\n<         return (0);\n<       } else {\n< \n<       }\n<       cgc_free_file(t);\n<       *(list + index) = (pfile )0;\n<       return (1);\n---\n>     if ((unsigned long )parent->data == (unsigned long )((char *)0)) {\n>       return (0);\n"
+      ]
     }
   ],
   "error": "cat: /etc/redhat-release: No such file or directory\n"

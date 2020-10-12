@@ -1,15 +1,11 @@
 {
-  "repair_begin": "2020-10-12 12:04:36.206710",
-  "repair_end": "2020-10-12 12:05:09.590271",
+  "repair_begin": "2020-10-12 17:10:53.618877",
+  "repair_end": "2020-10-12 17:10:54.879202",
   "patches": [
     {
       "target_file": "src/service.i",
-      "fix": "259,263c259\n<     if ((int )inst.opcode & 8) {\n<       op2 = (unsigned int )((((int )*(scratch + inst.op2) | ((int )*(scratch + (inst.op2 + 1U)) << 8)) | ((int )*(scratch + (inst.op2 + 2U)) << 16)) | ((int )*(scratch + (inst.op2 + 3U)) << 24));\n<     } else {\n<       op2 = inst.op2;\n<     }\n---\n> \n",
-      "edits": [
-        "338a339\n>     {\n339a341,342\n> \n>     }\n",
-        "259,263c259\n<     if ((int )inst.opcode & 8) {\n<       op2 = (unsigned int )((((int )*(scratch + inst.op2) | ((int )*(scratch + (inst.op2 + 1U)) << 8)) | ((int )*(scratch + (inst.op2 + 2U)) << 16)) | ((int )*(scratch + (inst.op2 + 3U)) << 24));\n<     } else {\n<       op2 = inst.op2;\n<     }\n---\n> \n",
-        "236,249c236,253\n<     } else\n<     _L___0: /* CIL Label */ \n<     if (! ((int )inst.opcode & 1)) {\n<       if ((int )inst.opcode & 2) {\n<         op1 = acc;\n<       } else {\n<         goto _L;\n<       }\n<     } else\n<     _L: /* CIL Label */ \n<     if (! ((int )inst.opcode & 1)) {\n<       if (! ((int )inst.opcode & 2)) {\n<         if ((int )inst.opcode & 4) {\n<           op1 = (unsigned int )((((int )*(scratch + inst.op1) | ((int )*(scratch + (inst.op1 + 1U)) << 8)) | ((int )*(scratch + (inst.op1 + 2U)) << 16)) | ((int )*(scratch + (inst.op1 + 3U)) << 24));\n---\n>     } else {\n>       {\n>       _L___0: /* CIL Label */ \n>       if (! ((int )inst.opcode & 1)) {\n>         if ((int )inst.opcode & 2) {\n>           op1 = acc;\n>         } else {\n>           goto _L;\n>         }\n>       } else\n>       _L: /* CIL Label */ \n>       if (! ((int )inst.opcode & 1)) {\n>         if (! ((int )inst.opcode & 2)) {\n>           if ((int )inst.opcode & 4) {\n>             op1 = (unsigned int )((((int )*(scratch + inst.op1) | ((int )*(scratch + (inst.op1 + 1U)) << 8)) | ((int )*(scratch + (inst.op1 + 2U)) << 16)) | ((int )*(scratch + (inst.op1 + 3U)) << 24));\n>           } else {\n>             op1 = inst.op1;\n>           }\n251c255\n<           op1 = inst.op1;\n---\n> \n256d259\n<     } else {\n257a261\n>       }\n"
-      ]
+      "fix": "no repair found",
+      "edits": []
     }
   ],
   "error": "cat: /etc/redhat-release: No such file or directory\n"

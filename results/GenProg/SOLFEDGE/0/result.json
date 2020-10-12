@@ -1,11 +1,14 @@
 {
-  "repair_begin": "2020-10-12 11:50:42.909422",
-  "repair_end": "2020-10-12 11:50:44.153191",
+  "repair_begin": "2020-10-12 16:53:11.618465",
+  "repair_end": "2020-10-12 17:03:30.856893",
   "patches": [
     {
       "target_file": "src/operation.i",
       "fix": "no repair found",
-      "edits": []
+      "edits": [
+        "410a411\n>     {\n422a424,425\n>     }\n>     return (4);\n",
+        "132c132\n<   *(syllable_buf + 1) = (char )'e';\n---\n>   *(syllable_buf + 2) = (char )'l';\n145c145\n<   *(syllable_buf + 2) = (char )'l';\n---\n>   *(syllable_buf + 1) = (char )'e';\n"
+      ]
     }
   ],
   "error": "cat: /etc/redhat-release: No such file or directory\n"

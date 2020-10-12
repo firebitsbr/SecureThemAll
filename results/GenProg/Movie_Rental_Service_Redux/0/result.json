@@ -1,11 +1,15 @@
 {
-  "repair_begin": "2020-10-12 11:45:39.086128",
-  "repair_end": "2020-10-12 11:45:39.962052",
+  "repair_begin": "2020-10-12 16:44:54.845123",
+  "repair_end": "2020-10-12 16:46:02.210301",
   "patches": [
     {
       "target_file": "src/cmdb_backend.i",
-      "fix": "no repair found",
-      "edits": []
+      "fix": "588a589\n>     {\n589a591,596\n>     if (g_num_rented) {\n> \n>     } else {\n>       break;\n>     }\n>     }\n",
+      "edits": [
+        "620a621\n>     {\n621a623,628\n>     if (! g_cmdb) {\n>       return (-1);\n>     } else {\n> \n>     }\n>     }\n",
+        "588a589\n>     {\n589a591,596\n>     if (g_num_rented) {\n> \n>     } else {\n>       break;\n>     }\n>     }\n",
+        "586,587c586\n<   while ((cgc_size_t )i < g_num_genres) {\n<     cgc_fdprintf(1, \"\\n %d. \", i + 1);\n---\n>   while (1) {\n588a588,593\n>     cgc_fdprintf(1, \"\\n %d. \", i + 1);\n>     if ((cgc_size_t )i < g_num_genres) {\n> \n>     } else {\n>       break;\n>     }\n"
+      ]
     }
   ],
   "error": "cat: /etc/redhat-release: No such file or directory\n"

@@ -1,6 +1,6 @@
 {
-  "repair_begin": "2020-10-12 12:00:03.195546",
-  "repair_end": "2020-10-12 12:04:40.196362",
+  "repair_begin": "2020-10-12 17:04:51.434875",
+  "repair_end": "2020-10-12 17:09:26.238142",
   "patches": [
     {
       "target_file": "src/packet.i",
@@ -10,5 +10,5 @@
       ]
     }
   ],
-  "error": "cat: /etc/redhat-release: No such file or directory\n"
+  "error": "cat: /etc/redhat-release: No such file or directory\nsh: 1: kill: No such process\n\n"
 }

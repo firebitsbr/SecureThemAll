@@ -1,11 +1,31 @@
 {
-  "repair_begin": "2020-10-12 11:50:57.755919",
-  "repair_end": "2020-10-12 11:50:58.929132",
+  "repair_begin": "2020-10-12 16:54:34.238046",
+  "repair_end": "2020-10-12 16:59:14.272629",
   "patches": [
     {
       "target_file": "src/service.i",
-      "fix": "no repair found",
-      "edits": []
+      "fix": "422c422\n< \n---\n>     newPerms->next = (struct Perms_s *)0;\n453c453\n<     newPerms->next = (struct Perms_s *)0;\n---\n> \n",
+      "edits": [
+        "483a484\n>   {\n484a486,487\n> \n>   }\n",
+        "1239c1239\n<   cgc_free((void *)path___0);\n---\n> \n",
+        "513c513,514\n<   while ((unsigned long )temp != (unsigned long )((pPerms )0)) {\n---\n>   while (1) {\n> \n531c532,533\n<     } else {\n---\n>     } else\n>     if ((unsigned long )temp != (unsigned long )((pPerms )0)) {\n532a535,536\n>     } else {\n>       break;\n",
+        "361a362\n>     {\n369a371,372\n> \n>     }\n",
+        "465a466\n>     {\n466a468,469\n> \n>     }\n",
+        "872,875d871\n<   while ((unsigned long )temp != (unsigned long )((pUser )0)) {\n<     if ((unsigned long )temp == (unsigned long )user) {\n<       return (1);\n<     } else {\n877,879d872\n<     }\n<     temp = temp->next;\n<   }\n",
+        "799c799\n<   newDirectory->directoryTailNode = (struct Node_s *)0;\n---\n> \n",
+        "515a516\n>       {\n519a521,522\n>       }\n> \n",
+        "395,411c395\n<   if ((unsigned long )user == (unsigned long )((pUser )0)) {\n<     if ((unsigned long )group == (unsigned long )((pGroup )0)) {\n<       cgc_die((char *)\"Bad call to _add_perm\");\n<     } else {\n<       goto _L;\n<     }\n<   } else\n<   _L: /* CIL Label */ \n<   if ((unsigned long )user != (unsigned long )((pUser )0)) {\n<     if ((unsigned long )group != (unsigned long )((pGroup )0)) {\n<       cgc_die((char *)\"Bad call to _add_perm\");\n<     } else {\n< \n<     }\n<   } else {\n< \n<   }\n---\n>   _L: ;\n",
+        "1235c1235\n<   retpath = (char *)tmp___4;\n---\n> \n",
+        "872a873\n>     {\n875a877,878\n> \n>     }\n",
+        "422c422\n< \n---\n>     newPerms->next = (struct Perms_s *)0;\n453c453\n<     newPerms->next = (struct Perms_s *)0;\n---\n> \n",
+        "1237c1237\n<   cgc_strcat(retpath, (char *)\"/\");\n---\n> \n",
+        "1285c1285\n<       return (temp);\n---\n> \n",
+        "1251d1250\n<   cgc_strcpy(path, newPath);\n1252a1252\n>   cgc_strcpy(path, newPath);\n",
+        "872c872,873\n<   while ((unsigned long )temp != (unsigned long )((pUser )0)) {\n---\n>   while (1) {\n>     return (1);\n874c875,879\n<       return (1);\n---\n>       if ((unsigned long )temp != (unsigned long )((pUser )0)) {\n> \n>       } else {\n>         break;\n>       }\n",
+        "515c515\n<       tmp = cgc_is_user_valid(temp->user, workingData);\n---\n> \n",
+        "1301a1302\n>   {\n1308a1310,1311\n>   }\n> \n",
+        "1238c1238\n<   cgc_strcat(retpath, end->name);\n---\n> \n"
+      ]
     }
   ],
   "error": "cat: /etc/redhat-release: No such file or directory\n"

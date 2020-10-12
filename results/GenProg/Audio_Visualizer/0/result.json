@@ -1,15 +1,11 @@
 {
-  "repair_begin": "2020-10-12 11:27:07.009893",
-  "repair_end": "2020-10-12 11:29:42.143212",
+  "repair_begin": "2020-10-12 16:17:29.552177",
+  "repair_end": "2020-10-12 16:17:30.346779",
   "patches": [
     {
       "target_file": "src/uwfc.i",
-      "fix": "238,251c238,239\n<           if (header->sample_rate != 32000U) {\n<             if (header->sample_rate != 44100U) {\n<               if (header->sample_rate != 48000U) {\n<                 if (header->sample_rate != 4000U) {\n<                   return (- (1 << 7));\n<                 } else {\n< \n<                 }\n<               } else {\n< \n<               }\n<             } else {\n< \n<             }\n---\n>           if ((int )header->block_align != ((int )header->num_channels * (int )header->bits_per_sample) / 8) {\n>             return (- (1 << 8));\n272,273c260,273\n<   if ((int )header->block_align != ((int )header->num_channels * (int )header->bits_per_sample) / 8) {\n<     return (- (1 << 8));\n---\n>   if (header->sample_rate != 32000U) {\n>     if (header->sample_rate != 44100U) {\n>       if (header->sample_rate != 48000U) {\n>         if (header->sample_rate != 4000U) {\n>           return (- (1 << 7));\n>         } else {\n> \n>         }\n>       } else {\n> \n>       }\n>     } else {\n> \n>     }\n",
-      "edits": [
-        "346a347\n>       {\n347a349,359\n>       if (tmp___0 != 0) {\n>         cgc_free((void *)track);\n>         return ((uwfc_t *)0);\n>       } else\n>       if (rx != (cgc_size_t )UWFC_HEADER_SIZE) {\n>         cgc_free((void *)track);\n>         return ((uwfc_t *)0);\n>       } else {\n> \n>       }\n>       }\n",
-        "238,251c238,239\n<           if (header->sample_rate != 32000U) {\n<             if (header->sample_rate != 44100U) {\n<               if (header->sample_rate != 48000U) {\n<                 if (header->sample_rate != 4000U) {\n<                   return (- (1 << 7));\n<                 } else {\n< \n<                 }\n<               } else {\n< \n<               }\n<             } else {\n< \n<             }\n---\n>           if ((int )header->block_align != ((int )header->num_channels * (int )header->bits_per_sample) / 8) {\n>             return (- (1 << 8));\n272,273c260,273\n<   if ((int )header->block_align != ((int )header->num_channels * (int )header->bits_per_sample) / 8) {\n<     return (- (1 << 8));\n---\n>   if (header->sample_rate != 32000U) {\n>     if (header->sample_rate != 44100U) {\n>       if (header->sample_rate != 48000U) {\n>         if (header->sample_rate != 4000U) {\n>           return (- (1 << 7));\n>         } else {\n> \n>         }\n>       } else {\n> \n>       }\n>     } else {\n> \n>     }\n",
-        "285a286\n>   {\n287a289,290\n> \n>   }\n"
-      ]
+      "fix": "no repair found",
+      "edits": []
     }
   ],
   "error": "cat: /etc/redhat-release: No such file or directory\n/tmp/GenProg_Audio_Visualizer_0/Audio_Visualizer/src/uwfc.c:211: Warning: Variable-sized local variable line\n/tmp/GenProg_Audio_Visualizer_0/Audio_Visualizer/src/uwfc.c:237: Warning: Variable-sized local variable line\n/tmp/GenProg_Audio_Visualizer_0/Audio_Visualizer/src/uwfc.c:291: Warning: Variable-sized local variable line\n"

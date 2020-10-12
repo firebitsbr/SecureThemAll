@@ -1,11 +1,17 @@
 {
-  "repair_begin": "2020-10-12 11:44:51.303443",
-  "repair_end": "2020-10-12 11:45:17.391297",
+  "repair_begin": "2020-10-12 16:42:17.522796",
+  "repair_end": "2020-10-12 16:52:59.484158",
   "patches": [
     {
       "target_file": "src/service.i",
       "fix": "no repair found",
-      "edits": []
+      "edits": [
+        "221c221\n<   cgc_printf(\"Unsolved area problems @d\\n\", game_stats.num_lost_area);\n---\n>   cgc_receive(0, (void *)(name), sizeof(name) + 45UL, (cgc_size_t *)0);\n241c241\n<     cgc_receive(0, (void *)(name), sizeof(name) + 45UL, (cgc_size_t *)0);\n---\n>     cgc_printf(\"Unsolved area problems @d\\n\", game_stats.num_lost_area);\n",
+        "230a231\n>     {\n231a233,234\n>     cgc_printf(\"5. Solve Volume\\n\");\n>     }\n",
+        "324a325\n>       {\n325a327,328\n>       (game_stats.num_won_area) ++;\n>       }\n",
+        "226c226\n<     cgc_printf(\"Good job, @s!\\n\", name);\n---\n>     cgc_printf(\"Wow, you solved 20 equations! What\\'s your name?:\");\n231c231\n<     cgc_printf(\"Wow, you solved 20 equations! What\\'s your name?:\");\n---\n>     cgc_printf(\"Good job, @s!\\n\", name);\n",
+        "282c282\n<   game_stats = __constr_expr_0;\n---\n> \n"
+      ]
     }
   ],
   "error": "cat: /etc/redhat-release: No such file or directory\n"

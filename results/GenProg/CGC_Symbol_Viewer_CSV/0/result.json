@@ -1,12 +1,16 @@
 {
-  "repair_begin": "2020-10-12 11:30:02.280796",
-  "repair_end": "2020-10-12 11:40:29.078378",
+  "repair_begin": "2020-10-12 16:18:58.541732",
+  "repair_end": "2020-10-12 16:29:46.441258",
   "patches": [
     {
       "target_file": "src/cgcf.i",
       "fix": "no repair found",
       "edits": [
-        "325,328c325\n<   } else {\n< \n<   }\n<   shnum = (short )ehdr.e_shnum;\n---\n>   } else\n336a334,335\n>   shnum = (short )ehdr.e_shnum;\n> \n"
+        "315c315\n<   if ((unsigned long )shdr == (unsigned long )((cgcf_Shdr *)0)) {\n---\n>   if ((cgc_size_t )(ehdr.e_shoff + (unsigned int )((int )ehdr.e_shentsize * (int )idx)) + sz > buf_len) {\n323c323\n<   if ((cgc_size_t )(ehdr.e_shoff + (unsigned int )((int )ehdr.e_shentsize * (int )idx)) + sz > buf_len) {\n---\n>   if ((unsigned long )shdr == (unsigned long )((cgcf_Shdr *)0)) {\n",
+        "289,291d288\n<   } else\n<   if ((unsigned long )hdr == (unsigned long )((cgcf_Ehdr *)0)) {\n<     return (-1);\n292a290,293\n>     {\n>     if ((unsigned long )hdr == (unsigned long )((cgcf_Ehdr *)0)) {\n>       return (-1);\n>     } else {\n293a295,297\n>     }\n> \n>     }\n",
+        "329a330\n>     {\n332a334,335\n>     return (0);\n>     }\n",
+        "325,328c325\n<   } else {\n< \n<   }\n<   shnum = (short )ehdr.e_shnum;\n---\n>   } else\n336a334,335\n>   shnum = (short )ehdr.e_shnum;\n> \n",
+        "320c320\n<   shnum = (short)0;\n---\n> \n"
       ]
     }
   ],
