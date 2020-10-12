@@ -24,10 +24,11 @@ echo "Building CIL..."
 make
 make cillib
 export CIL=$CIL_DIR
+# set variable permanent
+# omake src
 echo "Building GenProg..."
 popd || exit
 pushd "$WORKING_DIR" || (echo "Failed to move to working directory." && exit 1)
 make
 popd || exit
-
 echo "Successfully initialized GenProg"

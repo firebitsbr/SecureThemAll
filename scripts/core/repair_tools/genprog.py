@@ -26,7 +26,7 @@ class GenProg(RepairTool):
 
         self._init_log_file(folder=Path(self.name, challenge.name, str(self.seed)),
                             file=Path("tool.log"))
-
+        err = None
         try:
             repair_cmd = self._get_repair_cmd(benchmark=benchmark, challenge=challenge)
             self.begin()
@@ -42,7 +42,7 @@ class GenProg(RepairTool):
 
         finally:
             repair_task.status = repair_task.results(self.repair_begin, self.repair_end, self.patches)
-            repair_task.results.write()
+            repair_task.results.write(err)
             rm_cmd = f"rm -rf {challenge.working_dir}"
             # super().__call__(cmd_str=rm_cmd)
 
@@ -86,10 +86,7 @@ class GenProg(RepairTool):
         arguments["--prefix"] = prefix
 
         pos_tests, neg_tests = benchmark.count_tests(challenge)
-        if int(pos_tests) > 100:
-            raise ValueError("Too many tests")
-        if int(neg_tests) == 0:
-            raise ValueError("No negative tests")
+
         arguments["--pos-tests"] = str(pos_tests)
         arguments["--neg-tests"] = str(neg_tests)
         arguments["--rep"] = "cilpatch" if challenge.manifest.multi_file else "c"

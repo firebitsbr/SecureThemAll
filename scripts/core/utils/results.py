@@ -22,12 +22,15 @@ class Results:
             return "PATCHED"
         return "FINISHED"
 
-    def write(self):
+    def write(self, err: str = None):
         results = {
             "repair_begin": self.begin,
             "repair_end": self.end,
             "patches": self.patches
         }
+
+        if err:
+            results["error"] = err
 
         with self.out_path.open("w+") as res:
             json.dump(results, res, indent=2)
