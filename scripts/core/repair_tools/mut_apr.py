@@ -112,7 +112,7 @@ class MutApr(RepairTool):
                 # TODO: Fix parsing errorFatal error: exception Frontc.ParseError from coverage program
                 #  mainly with source code
                 out, err = super().__call__(cmd_str=inst_cmd)
-                print(out, err)
+                # print(out, err)
                 # TODO: fix this, for some reason the tool creates wrong path for coverage in the
                 #  instrumented source code
                 out = out.replace("fopen(\".//", 'fopen(\"/')
