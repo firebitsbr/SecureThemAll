@@ -1,0 +1,11 @@
+{
+  "repair_begin": "2020-10-15 09:12:59.857500",
+  "repair_end": "2020-10-15 09:13:10.421193",
+  "patches": [
+    {
+      "target_file": "src/sentence.i",
+      "fix": "",
+      "edits": []
+    }
+  ]
+}

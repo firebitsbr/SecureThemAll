@@ -1,0 +1,13 @@
+{
+  "repair_begin": "2020-10-15 09:13:20.585600",
+  "repair_end": "2020-10-15 09:18:37.073792",
+  "patches": [
+    {
+      "target_file": "src/map.i",
+      "fix": "191c191\n<   while ((unsigned long )map_ptr != (unsigned long )((Map *)0)) {\n---\n>   while ((unsigned long )map_ptr == (unsigned long )((Map *)0)) {\n",
+      "edits": [
+        "191c191\n<   while ((unsigned long )map_ptr != (unsigned long )((Map *)0)) {\n---\n>   while ((unsigned long )map_ptr == (unsigned long )((Map *)0)) {\n"
+      ]
+    }
+  ]
+}

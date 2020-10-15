@@ -1,0 +1,11 @@
+{
+  "repair_begin": "2020-10-15 09:20:10.337290",
+  "repair_end": "2020-10-15 09:20:20.967798",
+  "patches": [
+    {
+      "target_file": "src/admin.i",
+      "fix": "",
+      "edits": []
+    }
+  ]
+}

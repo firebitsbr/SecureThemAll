@@ -1,0 +1,14 @@
+{
+  "repair_begin": "2020-10-15 09:26:45.178600",
+  "repair_end": "2020-10-15 09:44:53.553857",
+  "patches": [
+    {
+      "target_file": "src/service.i",
+      "fix": "",
+      "edits": [
+        "289c289\n<   if (0 != ret) {\n---\n>   if (0 == ret) {\n",
+        "289c289\n<   if (0 != ret) {\n---\n>   if (0 <= ret) {\n"
+      ]
+    }
+  ]
+}

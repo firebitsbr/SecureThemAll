@@ -1,0 +1,13 @@
+{
+  "repair_begin": "2020-10-15 09:13:23.738374",
+  "repair_end": "2020-10-15 09:13:53.995656",
+  "patches": [
+    {
+      "target_file": "src/file.i",
+      "fix": "435c435\n<   if ((unsigned long )name == (unsigned long )((char *)0)) {\n---\n>   if ((unsigned long )name != (unsigned long )((char *)0)) {\n",
+      "edits": [
+        "435c435\n<   if ((unsigned long )name == (unsigned long )((char *)0)) {\n---\n>   if ((unsigned long )name != (unsigned long )((char *)0)) {\n"
+      ]
+    }
+  ]
+}

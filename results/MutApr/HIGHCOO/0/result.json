@@ -1,0 +1,13 @@
+{
+  "repair_begin": "2020-10-15 09:17:14.343458",
+  "repair_end": "2020-10-15 09:27:26.301262",
+  "patches": [
+    {
+      "target_file": "src/operation.i",
+      "fix": "",
+      "edits": [
+        "480c480\n<   if (0 == (int )tmp) {\n---\n>   if (0 != (int )tmp) {\n"
+      ]
+    }
+  ]
+}

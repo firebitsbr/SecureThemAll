@@ -1,0 +1,14 @@
+{
+  "repair_begin": "2020-10-15 09:26:36.433459",
+  "repair_end": "2020-10-15 09:27:52.157651",
+  "patches": [
+    {
+      "target_file": "src/service.i",
+      "fix": "479c479\n<       if (dst.x == src.x - 1) {\n---\n>       if (dst.x <= src.x - 1) {\n",
+      "edits": [
+        "479c479\n<       if (dst.x == src.x - 1) {\n---\n>       if (dst.x != src.x - 1) {\n",
+        "479c479\n<       if (dst.x == src.x - 1) {\n---\n>       if (dst.x <= src.x - 1) {\n"
+      ]
+    }
+  ]
+}

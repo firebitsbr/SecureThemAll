@@ -1,0 +1,11 @@
+{
+  "repair_begin": "2020-10-15 09:25:13.619868",
+  "repair_end": "2020-10-15 09:25:24.145414",
+  "patches": [
+    {
+      "target_file": "src/map.i",
+      "fix": "",
+      "edits": []
+    }
+  ]
+}
