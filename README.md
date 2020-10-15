@@ -9,7 +9,7 @@ Automatic Repair Framework based on the modified Cyber Grand Challenge Event Cor
 ---
 These notes might save you some time:
 
-* More Documentation about usages will be added soon. 
+* Ensure that sh is symlinked to bash, not dash
 
 ## Getting Started
 
@@ -22,6 +22,7 @@ Install the necessary dependencies for cb-multios and GenProg before running the
 ##### Software:
 * [Python (3.7.5)](https://www.python.org/)
 * [GenProg v3.2](https://github.com/squaresLab/genprog-code.git)
+* [MUT-APR](https://fyassiri.wixsite.com/mutapr)
 
 #### 1) Clone this repo with submodule
 ``` console
