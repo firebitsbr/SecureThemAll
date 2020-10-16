@@ -48,6 +48,8 @@ class Stats:
     def edits_score(self):
         # within 10 edits the score > 0.1
         if not self.edits:
+            if self.fix:
+                return 1
             return 0
         return inv_eq(self.edits, 40)
 

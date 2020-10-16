@@ -57,8 +57,6 @@ class MutApr(RepairTool):
         self._init_log_file(folder=Path(self.name, challenge.name, str(self.seed)),
                             file=Path("tool.log"))
 
-        out = []
-        err = ""
         try:
             self.begin()
             repair_dir = challenge.working_dir / self.configuration.dirs.repair
@@ -79,8 +77,8 @@ class MutApr(RepairTool):
             for file in vuln_files:
                 tout, terr = self._modify(prefix / file, benchmark=benchmark, challenge=challenge,
                                           repair_dir=repair_dir / Path(file.parent, file.stem))
-                out.append(tout)
-                err += terr
+                self.output += tout
+                self.error += terr
 
             self.end()
 
@@ -88,29 +86,12 @@ class MutApr(RepairTool):
                 self._get_patches(prefix=prefix, target_file=file,
                                   edits_path=repair_dir / Path(file.parent, file.stem))
 
-            return '\n'.join(out)
+            return self.output
 
         finally:
-            mutapr_stats = {}
-
-            for o in out:
-                res = parse_stats(o)
-                for k, v in res.items():
-                    if k not in mutapr_stats:
-                        mutapr_stats[k] = v
-                    else:
-                        mutapr_stats[k] += v
-
-            duration = (self.repair_end - self.repair_begin).total_seconds()
-            edits_count = sum([len(patch["edits"]) for patch in self.patches])
-            has_fix = len(self.patches) > 0
-            stats = Stats(**mutapr_stats, exec_time=duration, fix=has_fix, edits=edits_count,
-                          time_limit=self.timeout)
-            stats_dict = stats()
-            repair_task.status = repair_task.results(str(self.repair_begin), str(self.repair_end), self.patches)
-            repair_task.results.write(stats_dict, err)
-            rm_cmd = f"rm -rf {challenge.working_dir};"
-            # super().__call__(cmd_str=rm_cmd)
+            # TODO: fix this to parse multiple output results
+            repair_task.status = self.stats(repair_task.results, parse_output_func=parse_stats)
+            # self.dispose(challenge.working_dir)
 
     def _get_patches(self, prefix: Path, target_file: Path, edits_path: Path):
         target_file_str = str(target_file)

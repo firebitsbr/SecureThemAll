@@ -5,8 +5,10 @@
 import json
 import datetime
 from pathlib import Path
-from typing import List
+from typing import Callable
 
+from core.utils.stats import Stats
+from core.utils.results import Results
 from core.setting import Setting
 
 
@@ -17,6 +19,8 @@ class RepairTool(Setting):
         super(RepairTool, self).__init__(**kwargs)
         self.repair_config = None
         self.patches = []
+        self.output = ""
+        self.error = ""
         self.repair_begin = None
         self.repair_end = None
         program = self._set_repair_config(repair_config)
@@ -58,8 +62,22 @@ class RepairTool(Setting):
         self._write_result(repair_task)
         pass
 
+    def stats(self, results: Results, parse_output_func: Callable):
+        parsed_output = parse_output_func(self.output)
+        duration = (self.repair_end - self.repair_begin).total_seconds()
+        edits_count = sum([len(patch["edits"]) for patch in self.patches])
+        has_fix = len(self.patches) > 0
+        stats = Stats(**parsed_output, exec_time=duration, fix=has_fix, edits=edits_count,
+                      time_limit=self.timeout)
+        stats_dict = stats()
+        status = results(str(self.repair_begin), str(self.repair_end), self.patches)
+        results.write(stats_dict, self.error)
+
+        return status
+
     def __str__(self):
         return self.name
 
     def dispose(self, working_dir: Path):
-        pass
+        rm_cmd = f"rm -rf {working_dir}"
+        super().__call__(cmd_str=rm_cmd)

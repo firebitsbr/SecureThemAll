@@ -5,7 +5,6 @@ from typing import List
 from core.input_parser import add_repair_tool
 from core.repair_tool import RepairTool
 from core.runner.repair_task import RepairTask
-from core.utils.stats import Stats
 
 
 def parse_stats(results: str):
@@ -50,33 +49,23 @@ class GenProg(RepairTool):
 
         self._init_log_file(folder=Path(self.name, challenge.name, str(self.seed)),
                             file=Path("tool.log"))
-        err = None
-        out = None
+
         try:
             repair_cmd = self._get_repair_cmd(benchmark=benchmark, challenge=challenge)
             self.begin()
-            out, err = super().__call__(cmd_str=repair_cmd,
-                                        cmd_cwd=str(challenge.working_dir))
+            self.output, self.error = super().__call__(cmd_str=repair_cmd,
+                                                       cmd_cwd=str(challenge.working_dir))
 
             self.end()
 
             for file_path in challenge.manifest(preprocessed=True):
                 self._get_patches(challenge.working_dir, file_path, challenge.working_dir)
 
-            return out
+            return self.output
 
         finally:
-            genprog_stats = parse_stats(out)
-            duration = (self.repair_end - self.repair_begin).total_seconds()
-            edits_count = sum([len(patch["edits"]) for patch in self.patches])
-            has_fix = len(self.patches) > 0
-            stats = Stats(**genprog_stats, exec_time=duration, fix=has_fix, edits=edits_count,
-                          time_limit=self.timeout)
-            stats_dict = stats()
-            repair_task.status = repair_task.results(str(self.repair_begin), str(self.repair_end), self.patches)
-            repair_task.results.write(stats_dict, err)
-            rm_cmd = f"rm -rf {challenge.working_dir}"
-            # super().__call__(cmd_str=rm_cmd)
+            repair_task.status = self.stats(repair_task.results, parse_output_func=parse_stats)
+            # self.dispose(challenge.working_dir)
 
     def _get_patches(self, prefix: Path, target_file: Path, edits_path: Path):
         target_file_str = str(target_file)
