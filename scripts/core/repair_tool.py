@@ -47,10 +47,10 @@ class RepairTool(Setting):
         return ""
 
     def begin(self):
-        self.repair_begin = datetime.datetime.now().__str__()
+        self.repair_begin = datetime.datetime.now()
 
     def end(self):
-        self.repair_end = datetime.datetime.now().__str__()
+        self.repair_end = datetime.datetime.now()
 
     def repair(self, repair_task):
         self.begin()

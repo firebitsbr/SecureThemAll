@@ -4,6 +4,24 @@ from pathlib import Path
 from core.input_parser import add_repair_tool
 from core.repair_tool import RepairTool
 from core.runner.repair_task import RepairTask
+from core.utils.stats import Stats
+
+
+def parse_stats(results: str):
+    stats = {"comps": 0, "failed_comps": 0}
+
+    if not results:
+        return stats
+
+    match_comp_count = re.search(r"Compile attempts: (\d+)", results)
+    match_comp_fails = re.search(r"Compile failures: (\d+)", results)
+
+    if match_comp_fails:
+        stats["failed_comps"] = int(match_comp_fails.group(1))
+    if match_comp_count:
+        stats["comps"] = int(match_comp_count.group(1)) - stats["failed_comps"]
+
+    return stats
 
 
 class CquenceR(RepairTool):
@@ -26,7 +44,8 @@ class CquenceR(RepairTool):
 
         self._init_log_file(folder=Path(self.name, challenge.name, str(self.seed)),
                             file=Path("tool.log"))
-
+        out = ""
+        err = ""
         try:
             repair_cmd = self._get_repair_cmd(benchmark=benchmark, challenge=challenge)
             self.begin()
@@ -41,8 +60,15 @@ class CquenceR(RepairTool):
             return out
 
         finally:
-            repair_task.status = repair_task.results(self.repair_begin, self.repair_end, self.patches)
-            repair_task.results.write()
+            cquencer_stats = parse_stats(out)
+            duration = (self.repair_end - self.repair_begin).total_seconds()
+            edits_count = sum([len(patch["edits"]) for patch in self.patches])
+            has_fix = len(self.patches) > 0
+            stats = Stats(**cquencer_stats, exec_time=duration, fix=has_fix, edits=edits_count,
+                          time_limit=self.timeout)
+            stats_dict = stats()
+            repair_task.status = repair_task.results(str(self.repair_begin), str(self.repair_end), self.patches)
+            repair_task.results.write(stats_dict, err)
             rm_cmd = f"rm -rf {challenge.working_dir}"
             #super().__call__(cmd_str=rm_cmd)
 
@@ -84,8 +110,6 @@ class CquenceR(RepairTool):
 
         pos_tests, neg_tests = benchmark.count_tests(challenge)
 
-        if int(pos_tests) > 100:
-            raise ValueError("Too many tests")
         if int(neg_tests) == 0:
             raise ValueError("No negative tests")
 

@@ -5,6 +5,30 @@ from typing import List
 from core.input_parser import add_repair_tool
 from core.repair_tool import RepairTool
 from core.runner.repair_task import RepairTask
+from core.utils.stats import Stats
+
+
+def parse_stats(results: str):
+    stats = {"comps": 0, "failed_comps": 0, "passed_tests": 0, "failed_tests": 0}
+
+    if not results:
+        return stats
+
+    match_queries = re.search(r"Variant Test Case Queries: (\d+)", results)
+    match_comp_fails = re.search(r"Compile Failures: (\d+)", results)
+    match_comp_count = re.search(r"\s+compile\s+(\d+)", results)
+    match_test_count = re.search(r"\s+test\s+(\d+)", results)
+
+    if match_queries:
+        stats["passed_tests"] = int(match_queries.group(1))
+    if match_comp_fails:
+        stats["failed_comps"] = int(match_comp_fails.group(1))
+    if match_comp_count:
+        stats["comps"] = int(match_comp_count.group(1)) - stats["failed_comps"]
+    if match_test_count:
+        stats["failed_tests"] = int(match_test_count.group(1)) - stats["passed_tests"]
+
+    return stats
 
 
 class GenProg(RepairTool):
@@ -27,6 +51,7 @@ class GenProg(RepairTool):
         self._init_log_file(folder=Path(self.name, challenge.name, str(self.seed)),
                             file=Path("tool.log"))
         err = None
+        out = None
         try:
             repair_cmd = self._get_repair_cmd(benchmark=benchmark, challenge=challenge)
             self.begin()
@@ -41,8 +66,15 @@ class GenProg(RepairTool):
             return out
 
         finally:
-            repair_task.status = repair_task.results(self.repair_begin, self.repair_end, self.patches)
-            repair_task.results.write(err)
+            genprog_stats = parse_stats(out)
+            duration = (self.repair_end - self.repair_begin).total_seconds()
+            edits_count = sum([len(patch["edits"]) for patch in self.patches])
+            has_fix = len(self.patches) > 0
+            stats = Stats(**genprog_stats, exec_time=duration, fix=has_fix, edits=edits_count,
+                          time_limit=self.timeout)
+            stats_dict = stats()
+            repair_task.status = repair_task.results(str(self.repair_begin), str(self.repair_end), self.patches)
+            repair_task.results.write(stats_dict, err)
             rm_cmd = f"rm -rf {challenge.working_dir}"
             # super().__call__(cmd_str=rm_cmd)
 

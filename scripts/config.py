@@ -48,7 +48,7 @@ configuration = Configuration(
     bench_paths=bench_paths,
     dirs=config_dirs,
     lock_file="LOCK_CHALS_INIT",
-    tools_timeout=600,
+    tools_timeout=1200,
     command_timeout=10,
     local_threads=2
 )

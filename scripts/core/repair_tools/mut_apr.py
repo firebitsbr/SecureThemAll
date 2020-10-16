@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+import re
+
 from typing import List
 from pathlib import Path
 
@@ -7,6 +9,24 @@ from core.repair_tool import RepairTool
 from core.input_parser import add_repair_tool
 from core.runner.repair_task import RepairTask
 from distutils.dir_util import copy_tree
+from core.utils.stats import Stats
+
+
+def parse_stats(results: str):
+    stats = {"comps": 0, "failed_comps": 0}
+
+    if not results:
+        return stats
+
+    match_comp_fails = re.search(r"Percent of unique variants that failed to compile: (\d+)", results)
+    match_comp_count = re.search(r"\s+compile\s+(\d+)", results)
+
+    if match_comp_fails:
+        stats["failed_comps"] = int(match_comp_fails.group(1))
+    if match_comp_count:
+        stats["comps"] = int(match_comp_count.group(1)) - stats["failed_comps"]
+
+    return stats
 
 
 def _regex_file(folder: Path, name: str, regex: str):
@@ -37,9 +57,10 @@ class MutApr(RepairTool):
         self._init_log_file(folder=Path(self.name, challenge.name, str(self.seed)),
                             file=Path("tool.log"))
 
+        out = []
+        err = ""
         try:
             self.begin()
-            results = ""
             repair_dir = challenge.working_dir / self.configuration.dirs.repair
             prefix = benchmark.prefix(challenge)
             vuln_files = challenge.manifest(preprocessed=True)
@@ -56,8 +77,10 @@ class MutApr(RepairTool):
                            prefix=prefix)
 
             for file in vuln_files:
-                results += self._modify(prefix / file, benchmark=benchmark, challenge=challenge,
-                                        repair_dir=repair_dir / Path(file.parent, file.stem))
+                tout, terr = self._modify(prefix / file, benchmark=benchmark, challenge=challenge,
+                                          repair_dir=repair_dir / Path(file.parent, file.stem))
+                out.append(tout)
+                err += terr
 
             self.end()
 
@@ -65,13 +88,29 @@ class MutApr(RepairTool):
                 self._get_patches(prefix=prefix, target_file=file,
                                   edits_path=repair_dir / Path(file.parent, file.stem))
 
-            return results
+            return '\n'.join(out)
 
         finally:
-            repair_task.status = repair_task.results(self.repair_begin, self.repair_end, self.patches)
-            repair_task.results.write()
+            mutapr_stats = {}
+
+            for o in out:
+                res = parse_stats(o)
+                for k, v in res.items():
+                    if k not in mutapr_stats:
+                        mutapr_stats[k] = v
+                    else:
+                        mutapr_stats[k] += v
+
+            duration = (self.repair_end - self.repair_begin).total_seconds()
+            edits_count = sum([len(patch["edits"]) for patch in self.patches])
+            has_fix = len(self.patches) > 0
+            stats = Stats(**mutapr_stats, exec_time=duration, fix=has_fix, edits=edits_count,
+                          time_limit=self.timeout)
+            stats_dict = stats()
+            repair_task.status = repair_task.results(str(self.repair_begin), str(self.repair_end), self.patches)
+            repair_task.results.write(stats_dict, err)
             rm_cmd = f"rm -rf {challenge.working_dir};"
-            #super().__call__(cmd_str=rm_cmd)
+            # super().__call__(cmd_str=rm_cmd)
 
     def _get_patches(self, prefix: Path, target_file: Path, edits_path: Path):
         target_file_str = str(target_file)
@@ -133,7 +172,6 @@ class MutApr(RepairTool):
 
         copy_tree(cov_dir, prefix)
 
-
     def _fault_localization(self):
         # fault localization
         # print("Fault Localization")
@@ -175,7 +213,7 @@ class MutApr(RepairTool):
         out, err = super().__call__(cmd_str=modify_cmd,
                                     cmd_cwd=repair_dir)
 
-        return out
+        return out, err
 
 
 def mut_apr_args(input_parser):

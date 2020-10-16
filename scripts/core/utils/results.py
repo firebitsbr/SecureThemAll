@@ -22,11 +22,12 @@ class Results:
             return "PATCHED"
         return "FINISHED"
 
-    def write(self, err: str = None):
+    def write(self, stats: dict, err: str = None):
         results = {
             "repair_begin": self.begin,
             "repair_end": self.end,
-            "patches": self.patches
+            "patches": self.patches,
+            "stats": stats
         }
 
         if err:
