@@ -49,7 +49,7 @@ class Setting:
         return self.configuration.paths.repair_tools
 
     def _init_log_file(self, folder: Path, file: Path, parents: bool = True, exists_ok: bool = True):
-        self.log_dir = self.configuration.paths.out_dir / folder
+        self.log_dir = self.configuration.paths.log_dir / folder
         self.log_file = self.log_dir / file
 
         if not self.log_dir.exists():
