@@ -1,0 +1,29 @@
+{
+  "repair_begin": "2020-10-16 11:00:20.587914",
+  "repair_end": "2020-10-16 11:20:20.617621",
+  "patches": [
+    {
+      "target_file": "src/main.c",
+      "fix": "no repair found",
+      "edits": [
+        "152c152\n<     \n---\n> len = machine -> registers ; \n",
+        "152c152\n<     \n---\n> \t \t \n",
+        "152c152\n<     \n---\n> \t \n",
+        "152c152\n<     \n---\n> len = machine -> registers [ 8 ] ; \n",
+        "152c152\n<     \n---\n> len = machine -> registers [ 8 ] ; \n",
+        "152c152\n<     \n---\n> len = \n",
+        "152c152\n<     \n---\n> len = machine -> registers [ 8 ] ; \n",
+        "152c152,153\n<     \n---\n> len = machine -> registers [ 8 ] ; \n> \n",
+        "152c152\n<     \n---\n> \n",
+        "152c152\n<     \n---\n> len = machine -> registers ; \n",
+        "152c152\n<     \n---\n> len = machine -> registers [ 8 ] ; \n"
+      ]
+    }
+  ],
+  "stats": {
+    "compile success rate": 0,
+    "edits score": 0.5623413251903491,
+    "time score": 0.09999429992118088,
+    "score": 0.66233562511153
+  }
+}

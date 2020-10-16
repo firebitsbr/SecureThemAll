@@ -1,0 +1,23 @@
+{
+  "repair_begin": "2020-10-16 10:13:00.560544",
+  "repair_end": "2020-10-16 10:14:54.527660",
+  "patches": [
+    {
+      "target_file": "src/sentence.c",
+      "fix": "95a96\n> \t \n",
+      "edits": [
+        "95a96\n> ss -> p_ais_msg_idx = ( ; \n",
+        "95a96,97\n> ss -> p_ais_msg_idx = ( ; \n> return ERR_INVALID_SENTENCE ; \n",
+        "95a96\n> \n",
+        "95a96\n> \t \n"
+      ]
+    }
+  ],
+  "stats": {
+    "compile success rate": 0.5,
+    "edits score": 0.8413951416451951,
+    "time score": 0.8035768250837492,
+    "score": 2.144971966728944
+  },
+  "error": "Return code: 1\nReturn code: 1\nReturn code: 1\n"
+}

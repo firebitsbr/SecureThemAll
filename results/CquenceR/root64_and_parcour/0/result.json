@@ -1,0 +1,29 @@
+{
+  "repair_begin": "2020-10-16 10:55:10.642697",
+  "repair_end": "2020-10-16 10:57:42.410491",
+  "patches": [
+    {
+      "target_file": "src/main.c",
+      "fix": "281c281\n<         \n---\n> if ( cgc_strlen ( data ) == 0 ) \n",
+      "edits": [
+        "281c281\n<         \n---\n> if ( 3 < 0 || cgc_strlen > 4 ) \n",
+        "281c281\n<         \n---\n> if ( cgc_strlen < 0 || cgc_strlen > 4 ) \n",
+        "281c281\n<         \n---\n> \t \n",
+        "281c281,283\n<         \n---\n> if ( cgc_strlen ( data ) ) \n> break ; \n> \n",
+        "281c281\n<         \n---\n> \t \t \n",
+        "281c281\n<         \n---\n> { \n",
+        "281c281,283\n<         \n---\n> if ( cgc_strlen ( data ) ) \n> break ; \n> \n",
+        "281c281\n<         \n---\n> \n",
+        "281c281\n<         \n---\n> if ( cgc_strlen ( data ) == 0 ) \n",
+        "281c281\n<         \n---\n> if ( cgc_strlen < 0 || cgc_strlen > 4 ) \n"
+      ]
+    }
+  ],
+  "stats": {
+    "compile success rate": 0.7,
+    "edits score": 0.5956621435290105,
+    "time score": 0.7473548174581555,
+    "score": 2.043016960987166
+  },
+  "error": "Return code: 1\nReturn code: 1\nReturn code: 1\nReturn code: 1\nReturn code: 1\nReturn code: 1\nReturn code: 1\nReturn code: 1\nReturn code: 1\n"
+}
