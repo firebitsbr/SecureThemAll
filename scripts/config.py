@@ -49,6 +49,6 @@ configuration = Configuration(
     dirs=config_dirs,
     lock_file="LOCK_CHALS_INIT",
     tools_timeout=1200,
-    command_timeout=10,
-    local_threads=2
+    command_timeout=30,
+    local_threads=4
 )

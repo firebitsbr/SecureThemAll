@@ -10,6 +10,7 @@ Automatic Repair Framework based on the modified Cyber Grand Challenge Event Cor
 These notes might save you some time:
 
 * Ensure that sh is symlinked to bash, not dash
+* If some commands don't work, change the timeout in the configuration file, depending on the system, the commands might take more time to execute.
 
 ## Getting Started
 
