@@ -13,11 +13,12 @@ from .utils.lock_file import LockFile
 class Benchmark(Setting):
     """Benchmark"""
 
-    def __init__(self, **kwargs):
+    def __init__(self, debug: bool = False, **kwargs):
         super(Benchmark, self).__init__(name="Benchmark", **kwargs)
         self.paths = self.configuration.bench_paths
         self.challenges = None
         self.verbose = True
+        self.debug = debug
         self._init_log_file(folder=Path("benchmark", str(self.seed)),
                             file=Path("benchmark.log"))
         self.get_challenges()
@@ -65,6 +66,9 @@ class Benchmark(Setting):
                  vuln_hunks: bool = False) -> Challenge:
         cmd_str = f"{self.paths.program} checkout -wd {working_directory} -cn {challenge_name}"
 
+        if self.debug:
+            cmd_str += " -v"
+
         if remove_patch:
             cmd_str += " -rp"
 
@@ -96,6 +100,9 @@ class Benchmark(Setting):
 
         if log_file:
             cmd_str += f" -l {log_file}"
+
+        if self.debug:
+            cmd_str += " -v"
 
         if preprocess:
             out, err = super().__call__(cmd_str=cmd_str,
@@ -140,6 +147,9 @@ class Benchmark(Setting):
 
         if log_file:
             cmd_str += f" -l {log_file}"
+
+        if self.debug:
+            cmd_str += " -v"
 
         if coverage:
             cmd_str += " " + ' '.join([f"--{opt} {arg}" for opt, arg in coverage.items()])
