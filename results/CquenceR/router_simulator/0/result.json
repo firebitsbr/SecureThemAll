@@ -1,0 +1,19 @@
+{
+  "repair_begin": "2020-10-16 10:56:15.019076",
+  "repair_end": "2020-10-16 10:58:00.774643",
+  "patches": [
+    {
+      "target_file": "src/main.c",
+      "fix": "699,700c699\n<     \n<     if (asn > MAX_ROUTERS)\n---\n> \n",
+      "edits": [
+        "699,700c699\n<     \n<     if (asn > MAX_ROUTERS)\n---\n> \n"
+      ]
+    }
+  ],
+  "stats": {
+    "compile success rate": 1.0,
+    "edits score": 0,
+    "time score": 0.8163386536415104,
+    "score": 1.8163386536415103
+  }
+}

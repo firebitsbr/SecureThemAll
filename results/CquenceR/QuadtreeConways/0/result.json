@@ -1,0 +1,28 @@
+{
+  "repair_begin": "2020-10-16 10:33:59.224485",
+  "repair_end": "2020-10-16 10:36:49.565568",
+  "patches": [
+    {
+      "target_file": "src/gld.c",
+      "fix": "123c123,126\n<                     \n---\n> if ( dead_cell -> is_alive != 0 ) { \n> return FALSE ; \n>  } \n> \n",
+      "edits": [
+        "123c123,126\n<                     \n---\n> if ( dead_cell -> is_alive == FALSE ) { \n> return FALSE ; \n>  } \n> \n",
+        "123c123,124\n<                     \n---\n> \n> \n",
+        "123c123\n<                     \n---\n> \t \t \t \t \n",
+        "123c123\n<                     \n---\n> \t \n",
+        "123c123\n<                     \n---\n> \t \t \t \n",
+        "123c123,126\n<                     \n---\n> if ( ! pixel -> px == FALSE ) { \n> return FALSE ; \n>  } \n> \n",
+        "123c123,126\n<                     \n---\n> if ( dead_cell -> is_alive != 0 ) { \n> return FALSE ; \n>  } \n> \n",
+        "123c123\n<                     \n---\n> \n",
+        "123c123\n<                     \n---\n> \t \t \t \t \t \n"
+      ]
+    }
+  ],
+  "stats": {
+    "compile success rate": 0.8888888888888888,
+    "edits score": 0.6309573444801932,
+    "time score": 0.7211890058365281,
+    "score": 2.24103523920561
+  },
+  "error": "Return code: 1\nReturn code: 1\nReturn code: 1\nReturn code: 1\nReturn code: 1\nReturn code: 1\nReturn code: 1\nReturn code: 1\n"
+}
