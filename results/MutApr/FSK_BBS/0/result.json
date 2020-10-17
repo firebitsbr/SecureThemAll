@@ -1,11 +1,28 @@
 {
-  "repair_begin": "2020-10-15 09:14:49.478194",
-  "repair_end": "2020-10-15 09:15:00.033840",
+  "repair_begin": "2020-10-17 09:44:33.184355",
+  "repair_end": "2020-10-17 10:07:06.486889",
   "patches": [
     {
       "target_file": "src/bbs.i",
       "fix": "",
-      "edits": []
+      "edits": [
+        "596c596\n<   if (tmp == 0UL) {\n---\n>   if (tmp >= 0UL) {\n",
+        "599c599\n<   if (g_state.state == 0) {\n---\n>   if (g_state.state > 0) {\n",
+        "596c596\n<   if (tmp == 0UL) {\n---\n>   if (tmp < 0UL) {\n",
+        "596c596\n<   if (tmp == 0UL) {\n---\n>   if (tmp != 0UL) {\n",
+        "599c599\n<   if (g_state.state == 0) {\n---\n>   if (g_state.state != 0) {\n",
+        "599c599\n<   if (g_state.state == 0) {\n---\n>   if (g_state.state >= 0) {\n",
+        "596c596\n<   if (tmp == 0UL) {\n---\n>   if (tmp > 0UL) {\n",
+        "599c599\n<   if (g_state.state == 0) {\n---\n>   if (g_state.state < 0) {\n",
+        "599c599\n<   if (g_state.state == 0) {\n---\n>   if (g_state.state <= 0) {\n",
+        "596c596\n<   if (tmp == 0UL) {\n---\n>   if (tmp <= 0UL) {\n"
+      ]
     }
-  ]
+  ],
+  "stats": {
+    "compile success rate": 0,
+    "edits score": 0.5956621435290105,
+    "time score": 0.07451571763246988,
+    "score": 0.6701778611614804
+  }
 }

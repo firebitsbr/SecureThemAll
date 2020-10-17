@@ -1,11 +1,20 @@
 {
-  "repair_begin": "2020-10-15 09:24:52.891290",
-  "repair_end": "2020-10-15 09:25:03.413115",
+  "repair_begin": "2020-10-17 10:42:48.769318",
+  "repair_end": "2020-10-17 10:44:50.581157",
   "patches": [
     {
       "target_file": "src/squarerabbit.i",
-      "fix": "",
-      "edits": []
+      "fix": "315c315\n<   if ((int )temp->busted == 0) {\n---\n>   if ((int )temp->busted <= 0) {\n",
+      "edits": [
+        "315c315\n<   if ((int )temp->busted == 0) {\n---\n>   if ((int )temp->busted != 0) {\n",
+        "315c315\n<   if ((int )temp->busted == 0) {\n---\n>   if ((int )temp->busted <= 0) {\n"
+      ]
     }
-  ]
+  ],
+  "stats": {
+    "compile success rate": 1.0,
+    "edits score": 0.9440608762859234,
+    "time score": 0.7915714723535952,
+    "score": 2.7356323486395184
+  }
 }

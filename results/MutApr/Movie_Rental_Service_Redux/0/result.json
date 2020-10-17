@@ -1,11 +1,20 @@
 {
-  "repair_begin": "2020-10-15 09:20:51.886757",
-  "repair_end": "2020-10-15 09:21:02.573309",
+  "repair_begin": "2020-10-17 10:18:55.191458",
+  "repair_end": "2020-10-17 10:19:30.582989",
   "patches": [
     {
       "target_file": "src/cmdb_backend.i",
-      "fix": "",
-      "edits": []
+      "fix": "566c566\n<   if (g_num_genres < 10UL) {\n---\n>   if (g_num_genres != 10UL) {\n",
+      "edits": [
+        "566c566\n<   if (g_num_genres < 10UL) {\n---\n>   if (g_num_genres == 10UL) {\n",
+        "566c566\n<   if (g_num_genres < 10UL) {\n---\n>   if (g_num_genres != 10UL) {\n"
+      ]
     }
-  ]
+  ],
+  "stats": {
+    "compile success rate": 1.0,
+    "edits score": 0.9440608762859234,
+    "time score": 0.9343445516947503,
+    "score": 2.8784054279806734
+  }
 }

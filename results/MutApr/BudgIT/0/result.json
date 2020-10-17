@@ -1,6 +1,6 @@
 {
-  "repair_begin": "2020-10-15 09:13:20.585600",
-  "repair_end": "2020-10-15 09:18:37.073792",
+  "repair_begin": "2020-10-17 09:36:08.357773",
+  "repair_end": "2020-10-17 09:41:44.684020",
   "patches": [
     {
       "target_file": "src/map.i",
@@ -9,5 +9,11 @@
         "191c191\n<   while ((unsigned long )map_ptr != (unsigned long )((Map *)0)) {\n---\n>   while ((unsigned long )map_ptr == (unsigned long )((Map *)0)) {\n"
       ]
     }
-  ]
+  ],
+  "stats": {
+    "compile success rate": 1.0,
+    "edits score": 1,
+    "time score": 0.5244790285709201,
+    "score": 2.52447902857092
+  }
 }

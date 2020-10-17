@@ -1,11 +1,19 @@
 {
-  "repair_begin": "2020-10-15 09:14:08.046096",
-  "repair_end": "2020-10-15 09:14:18.656477",
+  "repair_begin": "2020-10-17 09:40:46.677920",
+  "repair_end": "2020-10-17 09:41:53.692023",
   "patches": [
     {
       "target_file": "src/main.i",
-      "fix": "",
-      "edits": []
+      "fix": "503c503\n<       while (k < 50) {\n---\n>       while (k == 50) {\n",
+      "edits": [
+        "503c503\n<       while (k < 50) {\n---\n>       while (k == 50) {\n"
+      ]
     }
-  ]
+  ],
+  "stats": {
+    "compile success rate": 1.0,
+    "edits score": 1,
+    "time score": 0.8793361227731857,
+    "score": 2.8793361227731857
+  }
 }

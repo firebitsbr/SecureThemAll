@@ -1,11 +1,20 @@
 {
-  "repair_begin": "2020-10-15 09:20:10.337290",
-  "repair_end": "2020-10-15 09:20:20.967798",
+  "repair_begin": "2020-10-17 10:15:05.621618",
+  "repair_end": "2020-10-17 10:17:41.972474",
   "patches": [
     {
       "target_file": "src/admin.i",
-      "fix": "",
-      "edits": []
+      "fix": "126c126\n<   if (tmp == -1) {\n---\n>   if (tmp <= -1) {\n",
+      "edits": [
+        "126c126\n<   if (tmp == -1) {\n---\n>   if (tmp != -1) {\n",
+        "126c126\n<   if (tmp == -1) {\n---\n>   if (tmp <= -1) {\n"
+      ]
     }
-  ]
+  ],
+  "stats": {
+    "compile success rate": 1.0,
+    "edits score": 0.9440608762859234,
+    "time score": 0.7408113370910092,
+    "score": 2.6848722133769325
+  }
 }

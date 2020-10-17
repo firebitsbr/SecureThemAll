@@ -1,11 +1,19 @@
 {
-  "repair_begin": "2020-10-15 09:21:54.642154",
-  "repair_end": "2020-10-15 09:22:05.154437",
+  "repair_begin": "2020-10-17 10:22:33.986380",
+  "repair_end": "2020-10-17 10:25:04.974598",
   "patches": [
     {
       "target_file": "src/gld.i",
-      "fix": "",
-      "edits": []
+      "fix": "1208c1208\n<   if ((unsigned long )bomb == (unsigned long )((conway_pixel_t *)0)) {\n---\n>   if ((unsigned long )bomb != (unsigned long )((conway_pixel_t *)0)) {\n",
+      "edits": [
+        "1208c1208\n<   if ((unsigned long )bomb == (unsigned long )((conway_pixel_t *)0)) {\n---\n>   if ((unsigned long )bomb != (unsigned long )((conway_pixel_t *)0)) {\n"
+      ]
     }
-  ]
+  ],
+  "stats": {
+    "compile success rate": 1.0,
+    "edits score": 1,
+    "time score": 0.7484735972294828,
+    "score": 2.748473597229483
+  }
 }

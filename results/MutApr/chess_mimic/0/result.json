@@ -1,6 +1,6 @@
 {
-  "repair_begin": "2020-10-15 09:26:36.433459",
-  "repair_end": "2020-10-15 09:27:52.157651",
+  "repair_begin": "2020-10-17 11:03:54.925968",
+  "repair_end": "2020-10-17 11:05:12.045673",
   "patches": [
     {
       "target_file": "src/service.i",
@@ -10,5 +10,11 @@
         "479c479\n<       if (dst.x == src.x - 1) {\n---\n>       if (dst.x <= src.x - 1) {\n"
       ]
     }
-  ]
+  ],
+  "stats": {
+    "compile success rate": 1.0,
+    "edits score": 0.9440608762859234,
+    "time score": 0.8624493101960204,
+    "score": 2.806510186481944
+  }
 }

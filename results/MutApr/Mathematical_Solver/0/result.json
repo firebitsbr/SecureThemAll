@@ -1,11 +1,19 @@
 {
-  "repair_begin": "2020-10-15 09:19:49.396702",
-  "repair_end": "2020-10-15 09:19:59.947986",
+  "repair_begin": "2020-10-17 10:13:03.717687",
+  "repair_end": "2020-10-17 10:14:46.539084",
   "patches": [
     {
       "target_file": "src/service.i",
-      "fix": "",
-      "edits": []
+      "fix": "298c298\n<     if (tmp___1 == 1) {\n---\n>     if (tmp___1 != 1) {\n",
+      "edits": [
+        "298c298\n<     if (tmp___1 == 1) {\n---\n>     if (tmp___1 != 1) {\n"
+      ]
     }
-  ]
+  ],
+  "stats": {
+    "compile success rate": 1.0,
+    "edits score": 1,
+    "time score": 0.8209477227534644,
+    "score": 2.8209477227534645
+  }
 }

@@ -1,11 +1,22 @@
 {
-  "repair_begin": "2020-10-15 09:20:31.121622",
-  "repair_end": "2020-10-15 09:20:41.727478",
+  "repair_begin": "2020-10-17 10:17:57.805946",
+  "repair_end": "2020-10-17 10:22:15.270542",
   "patches": [
     {
       "target_file": "src/main.i",
-      "fix": "",
-      "edits": []
+      "fix": "729c729\n<   while ((unsigned long )node != (unsigned long )((movie_node_t *)0)) {\n---\n>   while ((unsigned long )node > (unsigned long )((movie_node_t *)0)) {\n",
+      "edits": [
+        "729c729\n<   while ((unsigned long )node != (unsigned long )((movie_node_t *)0)) {\n---\n>   while ((unsigned long )node > (unsigned long )((movie_node_t *)0)) {\n",
+        "729c729\n<   while ((unsigned long )node != (unsigned long )((movie_node_t *)0)) {\n---\n>   while ((unsigned long )node < (unsigned long )((movie_node_t *)0)) {\n",
+        "729c729\n<   while ((unsigned long )node != (unsigned long )((movie_node_t *)0)) {\n---\n>   while ((unsigned long )node == (unsigned long )((movie_node_t *)0)) {\n",
+        "729c729\n<   while ((unsigned long )node != (unsigned long )((movie_node_t *)0)) {\n---\n>   while ((unsigned long )node <= (unsigned long )((movie_node_t *)0)) {\n"
+      ]
     }
-  ]
+  ],
+  "stats": {
+    "compile success rate": 1.0,
+    "edits score": 0.8413951416451951,
+    "time score": 0.6101634233265459,
+    "score": 2.451558564971741
+  }
 }

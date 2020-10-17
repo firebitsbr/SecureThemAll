@@ -1,11 +1,19 @@
 {
-  "repair_begin": "2020-10-15 09:12:59.857500",
-  "repair_end": "2020-10-15 09:13:10.421193",
+  "repair_begin": "2020-10-17 09:35:43.393504",
+  "repair_end": "2020-10-17 09:36:53.093582",
   "patches": [
     {
       "target_file": "src/sentence.i",
-      "fix": "",
-      "edits": []
+      "fix": "470c470\n<       if (! (0 != (int )*str)) {\n---\n>       if (! (0 == (int )*str)) {\n",
+      "edits": [
+        "470c470\n<       if (! (0 != (int )*str)) {\n---\n>       if (! (0 == (int )*str)) {\n"
+      ]
     }
-  ]
+  ],
+  "stats": {
+    "compile success rate": 1.0,
+    "edits score": 1,
+    "time score": 0.8748157666858872,
+    "score": 2.874815766685887
+  }
 }

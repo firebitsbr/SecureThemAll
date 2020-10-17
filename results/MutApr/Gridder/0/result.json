@@ -1,11 +1,18 @@
 {
-  "repair_begin": "2020-10-15 09:16:12.282061",
-  "repair_end": "2020-10-15 09:16:22.817247",
+  "repair_begin": "2020-10-17 10:00:39.561734",
+  "repair_end": "2020-10-17 10:01:10.190733",
   "patches": [
     {
       "target_file": "src/service.ii",
       "fix": "",
       "edits": []
     }
-  ]
+  ],
+  "stats": {
+    "compile success rate": 0,
+    "edits score": 1.0592537251772889,
+    "time score": 0.9429221421464281,
+    "score": 2.002175867323717
+  },
+  "error": "Fatal error: exception Sys_error(\"/tmp/MutApr_Gridder_0/build/Gridder/CMakeFiles/Gridder.dir/src/service.ii.ast: No such file or directory\")\n"
 }

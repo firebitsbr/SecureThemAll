@@ -1,14 +1,21 @@
 {
-  "repair_begin": "2020-10-15 09:13:02.342732",
-  "repair_end": "2020-10-15 09:13:15.413746",
+  "repair_begin": "2020-10-17 09:35:40.049801",
+  "repair_end": "2020-10-17 09:35:57.161902",
   "patches": [
     {
       "target_file": "src/main.i",
-      "fix": "122c122\n<   if ((unsigned long )buf == (unsigned long )((char *)0)) {\n---\n>   if ((unsigned long )buf <= (unsigned long )((char *)0)) {\n",
+      "fix": "122c122\n<   if ((unsigned long )buf == (unsigned long )((char *)0)) {\n---\n>   if ((unsigned long )buf < (unsigned long )((char *)0)) {\n",
       "edits": [
+        "122c122\n<   if ((unsigned long )buf == (unsigned long )((char *)0)) {\n---\n>   if ((unsigned long )buf < (unsigned long )((char *)0)) {\n",
         "122c122\n<   if ((unsigned long )buf == (unsigned long )((char *)0)) {\n---\n>   if ((unsigned long )buf != (unsigned long )((char *)0)) {\n",
         "122c122\n<   if ((unsigned long )buf == (unsigned long )((char *)0)) {\n---\n>   if ((unsigned long )buf <= (unsigned long )((char *)0)) {\n"
       ]
     }
-  ]
+  ],
+  "stats": {
+    "compile success rate": 1.0,
+    "edits score": 0.8912509381337456,
+    "time score": 0.9676981612442361,
+    "score": 2.858949099377982
+  }
 }
