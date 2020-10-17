@@ -1,4 +1,6 @@
 
+from core.utils.metrics import Metrics
+
 # Low bound constant
 c = 10
 
@@ -8,31 +10,22 @@ def inv_eq(x: int, upper: int):
 
 
 class Stats:
-    def __init__(self, time_limit: int, comps: int = 0, failed_comps: int = 0, exec_time: int = None, fix: bool = False,
-                 edits: int = None, **kwargs):
+    def __init__(self, time_limit: int = 0, comps: int = 0, failed_comps: int = 0, duration: int = None,
+                 fix: bool = False, edits: int = None, **kwargs):
         self.comps = comps
         self.failed_comps = failed_comps
         # self.passed_tests = passed_tests
         # self.failed_tests = failed_tests
         # in seconds
-        self.exec_time = exec_time
+        self.duration = duration
         self.edits = edits-1 if fix else edits
         self.fix = fix
         self.time_limit = time_limit
 
     def __call__(self):
-        csr = self.compilation_success_rate()
-        # tsr = self.testing_success_rate()
-        es = self.edits_score()
-        ts = self.time_score()
-        score = csr + es + ts
-
-        return {
-            "compile success rate": csr,
-            "edits score": es,
-            "time score": ts,
-            "score": score
-        }
+        return Metrics(compile_success_rate=self.compilation_success_rate(),
+                       edits_score=self.edits_score(),
+                       time_score=self.time_score())
 
     def compilation_success_rate(self):
         if self.comps == 0:
@@ -56,12 +49,12 @@ class Stats:
     def time_score(self):
         # inversely proportional to the time limit
         # e^(-x/time_limit)
-        if not self.exec_time or self.exec_time <= 1:
+        if not self.duration or self.duration <= 1:
             return 0
         # when the time limit is passed and fix is not found
-        if self.exec_time > self.time_limit - 1 and not self.fix:
+        if self.duration > self.time_limit - 1 and not self.fix:
             return 0
-        return inv_eq(self.exec_time, self.time_limit)
+        return inv_eq(self.duration, self.time_limit)
 
     def __str__(self):
         pass

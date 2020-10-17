@@ -63,7 +63,7 @@ class RepairTool(Setting):
         if self.error:
             results["error"] = self.error
 
-        self.results_path = self.results_path / Path(challenge_name, str(self.seed), "result.json")
+        self.results_path = self.results_path / Path(challenge_name, f"result_{self.seed}.json")
         self.results_path.parent.mkdir(parents=True, exist_ok=True)
 
         with self.results_path.open("w+") as res:

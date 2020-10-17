@@ -33,6 +33,6 @@ if __name__ == "__main__":
                 tasks.append(task)
         except Exception as e:
             with open("repair_exceptions.log", "w") as f:
-                f.write(challenge + ": " + str(e)+"\n")
+                f.write(challenge + ": " + str(e.__traceback__)+"\n")
 
     LocalRunner(tasks, configuration.local_threads, args).execute()
