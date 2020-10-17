@@ -29,6 +29,7 @@ config_paths = ConfigPaths(root=Path(ROOT_DIR),
                            working_dir=Path("/tmp"),
                            out_dir=Path(ROOT_DIR, "results"),
                            log_dir=Path(ROOT_DIR, "logs"),
+                           data_dir=Path(ROOT_DIR, "data"),
                            repair_tools=Path(ROOT_DIR, "repair_tools")
                            )
 

@@ -27,9 +27,10 @@ class ConfigPaths:
     working_dir: Path
     out_dir: Path
     log_dir: Path
+    data_dir: Path
     repair_tools: Path
 
     def validate(self):
         return self.src.exists() and self.root.exists() \
                and self.working_dir.exists() and self.out_dir.exists() \
-               and self.repair_tools.exists() and self.log_dir.exists()
+               and self.repair_tools.exists() and self.log_dir.exists() and self.data_dir.exists()

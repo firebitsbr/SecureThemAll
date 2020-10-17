@@ -7,7 +7,7 @@ from core.repair_tool import RepairTool
 from core.runner.repair_task import RepairTask
 
 
-def parse_stats(results: str):
+def parse_output(results: str):
     stats = {"comps": 0, "failed_comps": 0, "passed_tests": 0, "failed_tests": 0}
 
     if not results:
@@ -33,10 +33,8 @@ def parse_stats(results: str):
 class GenProg(RepairTool):
     """GenProg"""
 
-    def __init__(self, pos_tests: int, neg_tests: int, **kwargs):
+    def __init__(self, **kwargs):
         super(GenProg, self).__init__(name="GenProg", **kwargs)
-        self.pos_tests = pos_tests
-        self.neg_tests = neg_tests
 
     def repair(self, repair_task: RepairTask):
         """"
@@ -64,7 +62,8 @@ class GenProg(RepairTool):
             return self.output
 
         finally:
-            repair_task.status = self.stats(repair_task.results, parse_output_func=parse_stats)
+            repair_task.status = self.status()
+            self.save(parse_output_func=parse_output, challenge_name=challenge.name)
             # self.dispose(challenge.working_dir)
 
     def _get_patches(self, prefix: Path, target_file: Path, edits_path: Path):
@@ -96,7 +95,7 @@ class GenProg(RepairTool):
                 op.write(f"{file}\n")
 
     def _get_repair_cmd(self, benchmark, challenge):
-        arguments = self.repair_config["arguments"]
+        arguments = self.tool_configs["arguments"]
         prefix = benchmark.prefix(challenge)
         arguments["--compiler-command"] = benchmark.compile(challenge, fix_files=["__SOURCE_NAME__"],
                                                             instrumented_files=[str(file) for file in

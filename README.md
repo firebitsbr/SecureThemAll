@@ -11,6 +11,7 @@ These notes might save you some time:
 
 * Ensure that sh is symlinked to bash, not dash
 * If some commands don't work, change the timeout in the configuration file, depending on the system, the commands might take more time to execute.
+* If you have to interrupt the execution of the tool, make sure to delete the generated file LOCK_CHALS_INIT.
 
 ## Getting Started
 

@@ -6,7 +6,7 @@ from core.repair_tool import RepairTool
 from core.runner.repair_task import RepairTask
 
 
-def parse_stats(results: str):
+def parse_output(results: str):
     stats = {"comps": 0, "failed_comps": 0}
 
     if not results:
@@ -26,10 +26,8 @@ def parse_stats(results: str):
 class CquenceR(RepairTool):
     """CquenceR"""
 
-    def __init__(self, pos_tests: int, neg_tests: int, **kwargs):
+    def __init__(self, **kwargs):
         super(CquenceR, self).__init__(name="CquenceR", **kwargs)
-        self.pos_tests = pos_tests
-        self.neg_tests = neg_tests
 
     def repair(self, repair_task: RepairTask):
         """"
@@ -58,7 +56,8 @@ class CquenceR(RepairTool):
             return self.output
 
         finally:
-            repair_task.status = self.stats(repair_task.results, parse_output_func=parse_stats)
+            repair_task.status = self.status()
+            self.save(parse_output_func=parse_output, challenge_name=challenge.name)
             # self.dispose(challenge.working_dir)
 
     def _get_patches(self, working_dir: Path, target_file: Path, source_path: Path):
@@ -86,7 +85,7 @@ class CquenceR(RepairTool):
         self.patches.append(patch)
 
     def _get_repair_cmd(self, benchmark, challenge):
-        arguments = self.repair_config["arguments"]
+        arguments = self.tool_configs["arguments"]
         prefix = challenge.working_dir / Path(challenge.name)
         arguments["--compile_script"] = benchmark.compile(challenge, fix_files=["__SOURCE_NAME__"],
                                                           instrumented_files=[str(file) for file in

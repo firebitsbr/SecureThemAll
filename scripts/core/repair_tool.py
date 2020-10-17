@@ -7,40 +7,33 @@ import datetime
 from pathlib import Path
 from typing import Callable
 
-from core.utils.stats import Stats
-from core.utils.results import Results
 from core.setting import Setting
 
 
 class RepairTool(Setting):
-    def __init__(self,
-                 repair_config: str,
-                 **kwargs):
+    def __init__(self, **kwargs):
         super(RepairTool, self).__init__(**kwargs)
         self.repair_config = None
         self.patches = []
         self.output = ""
         self.error = ""
+        self.results_path = self.configuration.paths.out_dir / Path(self.name)
         self.repair_begin = None
         self.repair_end = None
-        program = self._set_repair_config(repair_config)
-        self.program = self.get_repair_tools_path() / program
+        self.tool_config_path = self.configuration.paths.data_dir / Path(f"{self.name.lower()}.json")
+
+        if not self.tool_config_path.exists():
+            raise ValueError(f"No such file {self.tool_config_path}.")
+
+        with self.tool_config_path.open(mode="r") as tc:
+            self.tool_configs = json.load(tc)
+
+            if "program" in self.tool_configs:
+                self.program = self.get_repair_tools_path() / Path(self.tool_configs["program"])
+            else:
+                raise ValueError(f"Tool binding failed. No program key in tool's configurations.")
 
         print(f"Discarded arguments {kwargs}")
-
-    def _set_repair_config(self, config_file: str) -> Path:
-        path = Path(config_file)
-        
-        if not path.exists():
-            raise ValueError(f"No such file {path}.")
-        
-        with path.open(mode="r") as config_file:
-            self.repair_config = json.load(config_file)
-
-            if "program" in self.repair_config:
-                return Path(self.repair_config["program"])
-
-            return Path("")
 
     def diff(self, path: Path, path_compare: Path, cwd_path: Path = None):
         diff_cmd = f"diff {path} {path_compare}"
@@ -62,18 +55,24 @@ class RepairTool(Setting):
         self._write_result(repair_task)
         pass
 
-    def stats(self, results: Results, parse_output_func: Callable):
-        parsed_output = parse_output_func(self.output)
-        duration = (self.repair_end - self.repair_begin).total_seconds()
-        edits_count = sum([len(patch["edits"]) for patch in self.patches])
-        has_fix = len(self.patches) > 0
-        stats = Stats(**parsed_output, exec_time=duration, fix=has_fix, edits=edits_count,
-                      time_limit=self.timeout)
-        stats_dict = stats()
-        status = results(str(self.repair_begin), str(self.repair_end), self.patches)
-        results.write(stats_dict, self.error)
+    def save(self, parse_output_func: Callable, challenge_name: str):
+        results = {"repair_begin": str(self.repair_begin), "repair_end": str(self.repair_end), "patches": self.patches}
+        results.update(parse_output_func(self.output))
+        results["duration"] = (self.repair_end - self.repair_begin).total_seconds()
 
-        return status
+        if self.error:
+            results["error"] = self.error
+
+        self.results_path = self.results_path / Path(challenge_name, str(self.seed), "result.json")
+        self.results_path.parent.mkdir(parents=True, exist_ok=True)
+
+        with self.results_path.open("w+") as res:
+            json.dump(results, res, indent=2)
+
+    def status(self):
+        if len(self.patches) > 0:
+            return "PATCHED"
+        return "FINISHED"
 
     def __str__(self):
         return self.name

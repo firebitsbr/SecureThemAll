@@ -28,10 +28,7 @@ class RepairTask(Setting):
         self.benchmark = benchmark
         self._init_log_file(folder=Path(self.tool.name, self.challenge, str(self.tool.seed)),
                             file=Path("repair.log"))
-
-        self.results = Results(out_path=self.log_dir / Path("result.json"))
         self.status = None
-        self.id = None
         self.starting_date = None
         self.end_date = None
 

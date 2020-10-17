@@ -9,10 +9,9 @@ from core.repair_tool import RepairTool
 from core.input_parser import add_repair_tool
 from core.runner.repair_task import RepairTask
 from distutils.dir_util import copy_tree
-from core.utils.stats import Stats
 
 
-def parse_stats(results: str):
+def parse_output(results: str):
     stats = {"comps": 0, "failed_comps": 0}
 
     if not results:
@@ -40,10 +39,8 @@ def _regex_file(folder: Path, name: str, regex: str):
 class MutApr(RepairTool):
     """MUT-APR"""
 
-    def __init__(self, pos_tests: int, neg_tests: int, **kwargs):
+    def __init__(self, **kwargs):
         super(MutApr, self).__init__(name="MutApr", **kwargs)
-        self.pos_tests = pos_tests
-        self.neg_tests = neg_tests
 
     def repair(self, repair_task: RepairTask):
         """"
@@ -63,10 +60,10 @@ class MutApr(RepairTool):
             prefix = benchmark.prefix(challenge)
             vuln_files = challenge.manifest(preprocessed=True)
             # instrument manifest files
-            inst_program_path = self.get_repair_tools_path() / Path(self.repair_config["inst"]["program"])
+            inst_program_path = self.get_repair_tools_path() / Path(self.tool_configs["inst"]["program"])
             inst_files = self._instrument(working_dir=challenge.working_dir,
                                           program_path=inst_program_path,
-                                          args=self.repair_config["inst"]["args"],
+                                          args=self.tool_configs["inst"]["args"],
                                           files=vuln_files,
                                           prefix=prefix)
             self._coverage(inst_files=inst_files,
@@ -90,7 +87,8 @@ class MutApr(RepairTool):
 
         finally:
             # TODO: fix this to parse multiple output results
-            repair_task.status = self.stats(repair_task.results, parse_output_func=parse_stats)
+            repair_task.status = self.status()
+            self.save(parse_output_func=parse_output, challenge_name=challenge.name)
             # self.dispose(challenge.working_dir)
 
     def _get_patches(self, prefix: Path, target_file: Path, edits_path: Path):
@@ -170,11 +168,11 @@ class MutApr(RepairTool):
 
     def _modify(self, target_file: Path, benchmark, challenge, repair_dir: Path):
         repair_dir.mkdir(parents=True, exist_ok=True)
-        args_str = ' '.join([f"{opt} {arg}" for opt, arg in self.repair_config["args"].items()])
+        args_str = ' '.join([f"{opt} {arg}" for opt, arg in self.tool_configs["args"].items()])
 
-        cre = _regex_file(challenge.working_dir, "compile.txt", self.repair_config["regex"]["compile"])
-        gre = _regex_file(challenge.working_dir, "good.txt", self.repair_config["regex"]["good"])
-        bre = _regex_file(challenge.working_dir, "bad.txt", self.repair_config["regex"]["bad"])
+        cre = _regex_file(challenge.working_dir, "compile.txt", self.tool_configs["regex"]["compile"])
+        gre = _regex_file(challenge.working_dir, "good.txt", self.tool_configs["regex"]["good"])
+        bre = _regex_file(challenge.working_dir, "bad.txt", self.tool_configs["regex"]["bad"])
         log_arg = f"{benchmark.log_file}"
 
         test_good = benchmark.test(challenge=challenge, regex=str(gre), pos_tests=True, prefix=str(repair_dir),
