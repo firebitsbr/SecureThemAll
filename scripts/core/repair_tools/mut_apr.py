@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-import re
-
 from typing import List
 from pathlib import Path
 
@@ -9,23 +7,6 @@ from core.repair_tool import RepairTool
 from core.input_parser import add_repair_tool
 from core.runner.repair_task import RepairTask
 from distutils.dir_util import copy_tree
-
-
-def parse_output(results: str):
-    stats = {"comps": 0, "failed_comps": 0}
-
-    if not results:
-        return stats
-
-    match_comp_fails = re.search(r"Percent of unique variants that failed to compile: (\d+)", results)
-    match_comp_count = re.search(r"\s+compile\s+(\d+)", results)
-
-    if match_comp_fails:
-        stats["failed_comps"] = int(match_comp_fails.group(1))
-    if match_comp_count:
-        stats["comps"] = int(match_comp_count.group(1)) - stats["failed_comps"]
-
-    return stats
 
 
 def _regex_file(folder: Path, name: str, regex: str):
@@ -51,8 +32,7 @@ class MutApr(RepairTool):
         challenge = benchmark.init_challenge(self.name, repair_task.challenge)
         # tool works with preprocessed files, makes part of the init
         benchmark.compile(challenge, preprocess=True)
-        self._init_log_file(folder=Path(self.name, challenge.name, str(self.seed)),
-                            file=Path("tool.log"))
+        self._init_log_file(folder=Path(self.name, challenge.name), file=Path(f"tool_{self.seed}.log"))
 
         try:
             self.begin()
@@ -66,10 +46,7 @@ class MutApr(RepairTool):
                                           args=self.tool_configs["inst"]["args"],
                                           files=vuln_files,
                                           prefix=prefix)
-            self._coverage(inst_files=inst_files,
-                           benchmark=benchmark,
-                           challenge=challenge,
-                           prefix=prefix)
+            self._coverage(inst_files=inst_files, benchmark=benchmark, challenge=challenge, prefix=prefix)
 
             for file in vuln_files:
                 tout, terr = self._modify(prefix / file, benchmark=benchmark, challenge=challenge,
@@ -88,7 +65,7 @@ class MutApr(RepairTool):
         finally:
             # TODO: fix this to parse multiple output results
             repair_task.status = self.status()
-            self.save(parse_output_func=parse_output, challenge_name=challenge.name)
+            self.save(working_dir=challenge.working_dir, challenge_name=challenge.name)
             # self.dispose(challenge.working_dir)
 
     def _get_patches(self, prefix: Path, target_file: Path, edits_path: Path):

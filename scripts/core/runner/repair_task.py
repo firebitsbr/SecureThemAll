@@ -6,7 +6,6 @@ from pathlib import Path
 
 from core.repair_tool import RepairTool
 from core.benchmark import Benchmark
-from core.utils.results import Results
 from ..setting import Setting
 
 

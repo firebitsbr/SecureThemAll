@@ -6,23 +6,6 @@ from core.repair_tool import RepairTool
 from core.runner.repair_task import RepairTask
 
 
-def parse_output(results: str):
-    stats = {"comps": 0, "failed_comps": 0}
-
-    if not results:
-        return stats
-
-    match_comp_count = re.search(r"Compile attempts: (\d+)", results)
-    match_comp_fails = re.search(r"Compile failures: (\d+)", results)
-
-    if match_comp_fails:
-        stats["failed_comps"] = int(match_comp_fails.group(1))
-    if match_comp_count:
-        stats["comps"] = int(match_comp_count.group(1)) - stats["failed_comps"]
-
-    return stats
-
-
 class CquenceR(RepairTool):
     """CquenceR"""
 
@@ -38,9 +21,7 @@ class CquenceR(RepairTool):
         challenge = benchmark.init_challenge(self.name, challenge_name=repair_task.challenge, remove_patch=True,
                                              vuln_hunks=True)
         benchmark.compile(challenge, preprocess=True)
-
-        self._init_log_file(folder=Path(self.name, challenge.name, str(self.seed)),
-                            file=Path("tool.log"))
+        self._init_log_file(folder=Path(self.name, challenge.name), file=Path(f"tool_{self.seed}.log"))
 
         try:
             repair_cmd = self._get_repair_cmd(benchmark=benchmark, challenge=challenge)
@@ -57,7 +38,7 @@ class CquenceR(RepairTool):
 
         finally:
             repair_task.status = self.status()
-            self.save(parse_output_func=parse_output, challenge_name=challenge.name)
+            self.save(working_dir=challenge.working_dir, challenge_name=challenge.name)
             # self.dispose(challenge.working_dir)
 
     def _get_patches(self, working_dir: Path, target_file: Path, source_path: Path):

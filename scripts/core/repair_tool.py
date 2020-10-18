@@ -5,7 +5,6 @@
 import json
 import datetime
 from pathlib import Path
-from typing import Callable
 
 from core.setting import Setting
 
@@ -55,9 +54,12 @@ class RepairTool(Setting):
         self._write_result(repair_task)
         pass
 
-    def save(self, parse_output_func: Callable, challenge_name: str):
+    def save(self, working_dir: Path, challenge_name: str):
         results = {"repair_begin": str(self.repair_begin), "repair_end": str(self.repair_end), "patches": self.patches}
-        results.update(parse_output_func(self.output))
+        compile_results = working_dir / Path('stats', 'compile.txt')
+        test_results = working_dir / Path('stats', 'tests.txt')
+        parsed_results = self.parse_stats(compile_results=compile_results, test_results=test_results)
+        results.update(parsed_results)
         results["duration"] = (self.repair_end - self.repair_begin).total_seconds()
 
         if self.error:
@@ -68,6 +70,34 @@ class RepairTool(Setting):
 
         with self.results_path.open("w+") as res:
             json.dump(results, res, indent=2)
+
+    def parse_stats(self, compile_results: Path, test_results: Path):
+        results = {"comps": 0, "failed_comps": 0, "passed_tests": 0, "failed_tests": 0}
+        try:
+            with compile_results.open(mode="r") as cr:
+                compile_attempts = cr.read().splitlines()
+                results["comps"] = compile_attempts.count('0')
+                results["failed_comps"] = compile_attempts.count('1')
+
+            with test_results.open(mode="r") as tr:
+                test_attempts = tr.read().splitlines()
+
+                for ta in test_attempts:
+                    test, outcome = ta.split()
+
+                    if test[0] == 'n' and int(outcome) >= 1:
+                        results["failed_tests"] += 1
+                    elif test[0] == 'n' and int(outcome) == 0:
+                        results["passed_tests"] += 1
+                    elif int(outcome) == 1:
+                        results["passed_tests"] += 1
+                    else:
+                        results["failed_tests"] += 1
+
+        except Exception as e:
+            self._log(str(e))
+        finally:
+            return results
 
     def status(self):
         if len(self.patches) > 0:
