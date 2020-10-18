@@ -17,6 +17,12 @@ class Metrics:
             "time score": self.time_score
         }
 
+    def efficiency(self):
+        return self.edits_score + self.time_score
+
+    def efficacy(self):
+        return self.compile_success_rate + self.testing_success_rate
+
     def __add__(self, other):
         if not isinstance(other, Metrics):
             return NotImplemented

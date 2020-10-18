@@ -51,3 +51,12 @@ class ToolResults:
         metrics /= len(self.challenge_results)
 
         return metrics()
+
+    def performance(self):
+        metrics = Metrics()
+
+        for cr in self.challenge_results:
+            metrics += cr.metrics
+        metrics /= len(self.challenge_results)
+
+        return {"efficiency": metrics.efficiency(), "efficacy": metrics.efficacy()}

@@ -2,12 +2,13 @@
 from typing import List
 
 import matplotlib.pyplot as plt
+import numpy as np
 import argparse
 from pathlib import Path
 
 from config import configuration
 from core.benchmark import Benchmark
-from core.utils.charts import star_chart
+from core.utils.charts import star_chart, plot_stacked_bar
 from core.utils.results import ToolResults
 
 #benchmark = Benchmark(config=configuration, seed=8888)
@@ -44,6 +45,24 @@ def plot_star(star_data: List[ToolResults], challenges_count: int):
                title=f"{tools_count} tools' profiling on {challenges_count} challenges with {len(spoke_labels)} metrics.")
 
 
+def plot_stacked(data: List[List[float]], series_labels: List[str], category_labels: List[str]):
+    labels_count = len(series_labels)
+    colors = colors_list[:labels_count]
+    print(data)
+    plot_stacked_bar(
+        data,
+        series_labels,
+        category_labels=category_labels,
+        show_values=True,
+        value_format="{:.1f}",
+        colors=colors,
+        y_label="Score"
+    )
+
+    plt.savefig('bar.png')
+    plt.show()
+
+
 if __name__ == "__main__":
     args = parser.parse_args()
 #    scores = get_scores(args.seed)
@@ -53,4 +72,10 @@ if __name__ == "__main__":
 #    plot_ranks(ranks, list(scores.keys()), ['red', 'green', 'yellow'])
     results_path = configuration.paths.out_dir
     results = get_tools_results(results_path, args.seed)
-    plot_star(results, 69)
+    tools_names = [tool.name for tool in results]
+    tools_performance = [tool.performance() for tool in results]
+    print(tools_performance)
+    performance_labels = [list(tp.keys()) for tp in tools_performance]
+    plot_stacked(data=np.transpose([list(tp.values()) for tp in tools_performance]), series_labels=performance_labels[0],
+                 category_labels=tools_names)
+    #plot_star(results, 69)
