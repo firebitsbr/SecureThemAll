@@ -1,0 +1,37 @@
+{
+  "repair_begin": "2020-10-18 22:01:52.422823",
+  "repair_end": "2020-10-18 22:09:53.205330",
+  "patches": [
+    {
+      "target_file": "src/packet.i",
+      "fix": "219a220\n>   {\n220a222,223\n>   return (1);\n>   }\n",
+      "edits": [
+        "180a181,183\n>   } else\n>   if (tmp < 0) {\n>     return (0);\n194,196d196\n<     if (tmp < 0) {\n<       return (0);\n<     } else {\n198d197\n<     }\n",
+        "389c389\n<   pkt_type = *(pkt + 2);\n---\n> \n",
+        "284c284\n<   cgc_bzero((void *)(name), (cgc_size_t )128);\n---\n>   pm = cgc_SearchVARS(name);\n293c293\n<   pm = cgc_SearchVARS(name);\n---\n>   cgc_bzero((void *)(name), (cgc_size_t )128);\n",
+        "220a221\n>   {\n223a225,226\n> \n>   }\n",
+        "216c216\n<   pkt[1] = (unsigned char)3;\n---\n> \n",
+        "220c220\n<   tmp = cgc_write((void const   *)(pkt), (cgc_size_t )5);\n---\n> \n",
+        "294,297d293\n<   if ((unsigned long )pm == (unsigned long )((vars_t *)0)) {\n<     cgc_SendError(request_id, (uint8_t )4);\n<     return (0);\n<   } else {\n299d294\n<   }\n",
+        "218c218\n<   pkt[3] = request_id;\n---\n> \n",
+        "278,280d277\n<   if (! pkt) {\n<     return (0);\n<   } else {\n282d278\n<   }\n",
+        "219d218\n<   pkt[4] = error;\n220a220\n>   pkt[4] = error;\n",
+        "205a206\n>   {\n206a208,209\n> \n>   }\n",
+        "219a220\n>   {\n220a222,223\n>   return (1);\n>   }\n",
+        "283a284\n>   {\n284a286,287\n> \n>   }\n",
+        "173a174\n>   {\n176a178,179\n> \n>   }\n",
+        "159a160\n>     {\n161a163,164\n>     return (0);\n>     }\n",
+        "174,176d173\n<   if ((int )*(pkt + 0) != 0) {\n<     return (0);\n<   } else {\n178d174\n<   }\n179a176,178\n>     return (0);\n>   } else\n>   if ((int )*(pkt + 0) != 0) {\n",
+        "190,196d189\n<   while (total_bytes != (uint32_t )pkt_len) {\n<     tmp = cgc_receive(0, (void *)(pkt + total_bytes),\n<                       (cgc_size_t )((uint32_t )pkt_len - total_bytes),\n<                       & rx_bytes);\n<     if (tmp < 0) {\n<       return (0);\n<     } else {\n198,205d190\n<     }\n<     if (rx_bytes == 0UL) {\n<       return (0);\n<     } else {\n< \n<     }\n<     total_bytes = (uint32_t )((cgc_size_t )total_bytes + rx_bytes);\n<   }\n",
+        "295a296\n>     {\n296a298,299\n>     return (1);\n>     }\n",
+        "172c172\n<     total_bytes = (uint32_t )((cgc_size_t )total_bytes + rx_bytes);\n---\n> \n"
+      ]
+    }
+  ],
+  "comps": 22,
+  "failed_comps": 0,
+  "passed_tests": 190,
+  "failed_tests": 52,
+  "duration": 480.782507,
+  "error": "cat: /etc/redhat-release: No such file or directory\n"
+}

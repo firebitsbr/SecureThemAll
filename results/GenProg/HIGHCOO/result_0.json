@@ -1,0 +1,21 @@
+{
+  "repair_begin": "2020-10-18 21:57:31.222487",
+  "repair_end": "2020-10-18 22:00:09.506776",
+  "patches": [
+    {
+      "target_file": "src/operation.i",
+      "fix": "166a167\n>   {\n167a169,170\n> \n>   }\n",
+      "edits": [
+        "476a477\n>     {\n480a482,483\n>     }\n>     return ((uint8_t )1);\n",
+        "166a167\n>   {\n167a169,170\n> \n>   }\n",
+        "207c207\n<     cgc_haiku_list = cgc_list_create();\n---\n> \n431c431,436\n<   while (! (tmp >= 1362U)) {\n---\n>   while (1) {\n>     if (tmp >= 1362U) {\n>       break;\n>     } else {\n>       cgc_haiku_list = cgc_list_create();\n>     }\n"
+      ]
+    }
+  ],
+  "comps": 6,
+  "failed_comps": 0,
+  "passed_tests": 51,
+  "failed_tests": 15,
+  "duration": 158.284289,
+  "error": "cat: /etc/redhat-release: No such file or directory\n"
+}

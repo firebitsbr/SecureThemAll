@@ -1,0 +1,20 @@
+{
+  "repair_begin": "2020-10-18 21:51:46.559700",
+  "repair_end": "2020-10-18 21:53:28.660452",
+  "patches": [
+    {
+      "target_file": "src/main.i",
+      "fix": "165a166\n>   {\n166a168,169\n>   gBoard[31] &= 4294967292U;\n>   }\n",
+      "edits": [
+        "165a166\n>   {\n166a168,169\n>   gBoard[31] &= 4294967292U;\n>   }\n",
+        "309c309\n< \n---\n>       return (1);\n313c313\n<   return (1);\n---\n> \n"
+      ]
+    }
+  ],
+  "comps": 5,
+  "failed_comps": 0,
+  "passed_tests": 40,
+  "failed_tests": 15,
+  "duration": 102.100752,
+  "error": "cat: /etc/redhat-release: No such file or directory\n/tmp/GenProg_BitBlaster_0/BitBlaster/src/main.c:210: Warning: Body of function main falls-through. Adding a return statement\n"
+}

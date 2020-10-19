@@ -1,0 +1,19 @@
+{
+  "repair_begin": "2020-10-18 22:15:21.968970",
+  "repair_end": "2020-10-18 22:15:39.070033",
+  "patches": [
+    {
+      "target_file": "src/main.i",
+      "fix": "360,365c360\n<   if ((unsigned long )arg == (unsigned long )((char *)0)) {\n<     tmp___0 = send_error(500);\n<     return (tmp___0);\n<   } else {\n< \n<   }\n---\n>   tmp___3 = cgc_fdprintf(1, \"OK\\n\");\n375c370,375\n<   tmp___3 = cgc_fdprintf(1, \"OK\\n\");\n---\n>   if ((unsigned long )arg == (unsigned long )((char *)0)) {\n>     tmp___0 = send_error(500);\n>     return (tmp___0);\n>   } else {\n> \n>   }\n",
+      "edits": [
+        "360,365c360\n<   if ((unsigned long )arg == (unsigned long )((char *)0)) {\n<     tmp___0 = send_error(500);\n<     return (tmp___0);\n<   } else {\n< \n<   }\n---\n>   tmp___3 = cgc_fdprintf(1, \"OK\\n\");\n375c370,375\n<   tmp___3 = cgc_fdprintf(1, \"OK\\n\");\n---\n>   if ((unsigned long )arg == (unsigned long )((char *)0)) {\n>     tmp___0 = send_error(500);\n>     return (tmp___0);\n>   } else {\n> \n>   }\n"
+      ]
+    }
+  ],
+  "comps": 4,
+  "failed_comps": 0,
+  "passed_tests": 15,
+  "failed_tests": 5,
+  "duration": 17.101063,
+  "error": "cat: /etc/redhat-release: No such file or directory\n"
+}

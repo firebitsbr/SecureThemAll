@@ -1,0 +1,30 @@
+{
+  "repair_begin": "2020-10-18 21:52:47.413126",
+  "repair_end": "2020-10-18 22:00:50.232697",
+  "patches": [
+    {
+      "target_file": "src/main.i",
+      "fix": "802c802\n<     cgc_readLine(0, buf, (cgc_size_t )64);\n---\n> \n",
+      "edits": [
+        "180c180\n<     tempOp1 = (uint64_t )op1->bytes[(32UL / sizeof(uint32_t ) - 1UL) - (unsigned long )i];\n---\n> \n",
+        "202c202,203\n<   while ((unsigned long )i < 32UL / sizeof(uint32_t ) - 1UL) {\n---\n>   while (1) {\n> \n",
+        "179c179,187\n<   while ((unsigned long )i < 32UL / sizeof(uint32_t )) {\n---\n>   while (1) {\n>     {\n>     if ((unsigned long )i < 32UL / sizeof(uint32_t )) {\n> \n>     } else {\n>       break;\n>     }\n> \n>     }\n",
+        "802c802\n<     cgc_readLine(0, buf, (cgc_size_t )64);\n---\n> \n",
+        "299c299\n<   i = 0;\n---\n> \n",
+        "764c764\n<   cgc_largeIntMul(& tempProduct, px, px);\n---\n> \n",
+        "102a103\n>   {\n105a107,108\n> \n>   }\n",
+        "795a796\n>   {\n796a798,799\n>   cgc_my_printf(\" : \");\n>   }\n",
+        "169,174d168\n<   } else\n<   if ((unsigned long )op1 == (unsigned long )((ulargeint_t *)0)) {\n<     return;\n<   } else\n<   if ((unsigned long )op2 == (unsigned long )((ulargeint_t *)0)) {\n<     return;\n175a170,176\n>     {\n>     if ((unsigned long )op1 == (unsigned long )((ulargeint_t *)0)) {\n>       return;\n>     } else\n>     if ((unsigned long )op2 == (unsigned long )((ulargeint_t *)0)) {\n>       return;\n>     } else {\n176a178,180\n>     }\n>     cgc_my_printf(\" , \");\n>     }\n",
+        "804c804\n<     cgc_my_printf(\"First Secret\\n\");\n---\n>     z = cgc_strToUint32((char const   *)(buf));\n812c812\n<     z = cgc_strToUint32((char const   *)(buf));\n---\n>     cgc_my_printf(\"First Secret\\n\");\n",
+        "565a566\n>   {\n566a568,569\n>   cgc_my_printf(\"Welcome to the Diophantine Password Wallet\\n\");\n>   }\n",
+        "766c766\n<   cgc_largeIntAdd(& tempSum, & tempSum, & tempProduct);\n---\n> \n"
+      ]
+    }
+  ],
+  "comps": 15,
+  "failed_comps": 0,
+  "passed_tests": 151,
+  "failed_tests": 74,
+  "duration": 482.819571,
+  "error": "cat: /etc/redhat-release: No such file or directory\n"
+}

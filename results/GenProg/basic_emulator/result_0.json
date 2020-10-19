@@ -1,0 +1,22 @@
+{
+  "repair_begin": "2020-10-18 22:12:56.308410",
+  "repair_end": "2020-10-18 22:14:26.382261",
+  "patches": [
+    {
+      "target_file": "src/gb.i",
+      "fix": "282c282\n<   gb->ticks_ly = 0U;\n---\n> \n",
+      "edits": [
+        "261a262\n>   {\n262a264,265\n>   return;\n>   }\n",
+        "242a243\n>   {\n243a245,246\n>   *(gb->mem + 65315) = (uint8_t )191;\n>   }\n",
+        "253c253\n<   *(gb->mem + 65297) = (uint8_t )191;\n---\n>   *(gb->mem + 65344) = (uint8_t )144;\n270c270\n<   *(gb->mem + 65344) = (uint8_t )144;\n---\n>   *(gb->mem + 65297) = (uint8_t )191;\n",
+        "282c282\n<   gb->ticks_ly = 0U;\n---\n> \n"
+      ]
+    }
+  ],
+  "comps": 7,
+  "failed_comps": 0,
+  "passed_tests": 75,
+  "failed_tests": 16,
+  "duration": 90.073851,
+  "error": "cat: /etc/redhat-release: No such file or directory\n"
+}

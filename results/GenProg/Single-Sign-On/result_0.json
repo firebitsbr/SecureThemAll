@@ -1,0 +1,17 @@
+{
+  "repair_begin": "2020-10-18 22:06:38.265612",
+  "repair_end": "2020-10-18 22:06:47.659973",
+  "patches": [
+    {
+      "target_file": "src/service.i",
+      "fix": "no repair found",
+      "edits": []
+    }
+  ],
+  "comps": 3,
+  "failed_comps": 0,
+  "passed_tests": 11,
+  "failed_tests": 1,
+  "duration": 9.394361,
+  "error": "cat: /etc/redhat-release: No such file or directory\n"
+}

@@ -1,0 +1,30 @@
+{
+  "repair_begin": "2020-10-18 22:10:19.742520",
+  "repair_end": "2020-10-18 22:12:38.670442",
+  "patches": [
+    {
+      "target_file": "src/map.i",
+      "fix": "702,712d701\n<   while ((unsigned long )curRouteList->thisRoad != (unsigned long )((proad )0)) {\n<     curRoad = curRouteList->thisRoad;\n<     if ((unsigned long )(curRoad->intersectionList)->listRoot != (unsigned long )((pdListNode )0)) {\n<       thisIntersection = (pintersection )(((curRoad->intersectionList)->listRoot)->data);\n<     } else {\n<       thisIntersection = (pintersection )0;\n<     }\n<     while ((unsigned long )thisIntersection != (unsigned long )((pintersection )0)) {\n<       intersectionOtherRoad = thisIntersection->other_road;\n<       tmp___1 = cgc_is_in_turn_list(turnList, intersectionOtherRoad);\n<       if (tmp___1) {\n714,737d702\n<       } else {\n<         tmp___0 = cgc_push_to_turn_list(thisMap, turnList,\n<                                         intersectionOtherRoad, curRouteList);\n<         result = tmp___0;\n<         if ((unsigned long )result == (unsigned long )((prouteList )0)) {\n<           return ((psList )0);\n<         } else {\n< \n<         }\n<         if ((unsigned long )intersectionOtherRoad == (unsigned long )targetRoad) {\n<           return (turnList);\n<         } else {\n< \n<         }\n<       }\n<       if ((unsigned long )(thisIntersection->self)->next != (unsigned long )((struct dListNode_s *)0)) {\n<         thisIntersection = (pintersection )(((thisIntersection->self)->next)->data);\n<       } else {\n<         thisIntersection = (pintersection )0;\n<       }\n<     }\n<     curRouteListCount ++;\n<     curRouteList = (prouteList )((unsigned int )curRouteList + (unsigned int )sizeof(routeList ));\n<   }\n",
+      "edits": [
+        "358c358\n<   thisAddress->thisRoad = thisRoad;\n---\n> \n",
+        "713c713\n< \n---\n>         thisIntersection = (pintersection )0;\n732c732\n<         thisIntersection = (pintersection )0;\n---\n> \n",
+        "638a639\n>       {\n639a641,642\n> \n>       }\n",
+        "702,712d701\n<   while ((unsigned long )curRouteList->thisRoad != (unsigned long )((proad )0)) {\n<     curRoad = curRouteList->thisRoad;\n<     if ((unsigned long )(curRoad->intersectionList)->listRoot != (unsigned long )((pdListNode )0)) {\n<       thisIntersection = (pintersection )(((curRoad->intersectionList)->listRoot)->data);\n<     } else {\n<       thisIntersection = (pintersection )0;\n<     }\n<     while ((unsigned long )thisIntersection != (unsigned long )((pintersection )0)) {\n<       intersectionOtherRoad = thisIntersection->other_road;\n<       tmp___1 = cgc_is_in_turn_list(turnList, intersectionOtherRoad);\n<       if (tmp___1) {\n714,737d702\n<       } else {\n<         tmp___0 = cgc_push_to_turn_list(thisMap, turnList,\n<                                         intersectionOtherRoad, curRouteList);\n<         result = tmp___0;\n<         if ((unsigned long )result == (unsigned long )((prouteList )0)) {\n<           return ((psList )0);\n<         } else {\n< \n<         }\n<         if ((unsigned long )intersectionOtherRoad == (unsigned long )targetRoad) {\n<           return (turnList);\n<         } else {\n< \n<         }\n<       }\n<       if ((unsigned long )(thisIntersection->self)->next != (unsigned long )((struct dListNode_s *)0)) {\n<         thisIntersection = (pintersection )(((thisIntersection->self)->next)->data);\n<       } else {\n<         thisIntersection = (pintersection )0;\n<       }\n<     }\n<     curRouteListCount ++;\n<     curRouteList = (prouteList )((unsigned int )curRouteList + (unsigned int )sizeof(routeList ));\n<   }\n",
+        "410a411\n>   {\n414a416,417\n>   }\n>   nextIntersection = (pintersection )((newNode->next)->data);\n",
+        "410c410\n<   nextIntersection = (pintersection )0;\n---\n> \n",
+        "676a677\n>   {\n677a679,680\n> \n>   }\n",
+        "277c277\n<   return (thisRoad);\n---\n> \n",
+        "413a414\n>     {\n414a416,417\n> \n>     }\n",
+        "637c637,642\n<   while ((unsigned long )thisRouteList->thisRoad != (unsigned long )((proad )0)) {\n---\n>   while (1) {\n>     if ((unsigned long )thisRouteList->thisRoad != (unsigned long )((proad )0)) {\n>       i ++;\n>     } else {\n>       break;\n>     }\n644c649\n<     i ++;\n---\n> \n",
+        "427a428\n>     {\n428a430,431\n> \n>     }\n",
+        "441c441\n<   newIntersection->distance_to_next = distance_to_next;\n---\n> \n"
+      ]
+    }
+  ],
+  "comps": 15,
+  "failed_comps": 0,
+  "passed_tests": 151,
+  "failed_tests": 14,
+  "duration": 138.927922,
+  "error": "cat: /etc/redhat-release: No such file or directory\n"
+}

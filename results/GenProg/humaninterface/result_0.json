@@ -1,0 +1,17 @@
+{
+  "repair_begin": "2020-10-18 22:14:32.186926",
+  "repair_end": "2020-10-18 22:14:32.253447",
+  "patches": [
+    {
+      "target_file": "src/session.i",
+      "fix": "",
+      "edits": []
+    }
+  ],
+  "comps": 1,
+  "failed_comps": 0,
+  "passed_tests": 0,
+  "failed_tests": 0,
+  "duration": 0.066521,
+  "error": "cat: /etc/redhat-release: No such file or directory\n/tmp/GenProg_humaninterface_0/humaninterface/src/session.c[73:37-38] : syntax error\nParsing errorFatal error: exception Frontc.ParseError(\"Parse error\")\n"
+}

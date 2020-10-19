@@ -1,0 +1,17 @@
+{
+  "repair_begin": "2020-10-18 22:10:48.848175",
+  "repair_end": "2020-10-18 22:10:49.998695",
+  "patches": [
+    {
+      "target_file": "src/trex.i",
+      "fix": "no repair found",
+      "edits": []
+    }
+  ],
+  "comps": 2,
+  "failed_comps": 0,
+  "passed_tests": 1,
+  "failed_tests": 1,
+  "duration": 1.15052,
+  "error": "cat: /etc/redhat-release: No such file or directory\n/tmp/GenProg_TextSearch_0/TextSearch/src/trex.c:116: Warning: Return statement with a value in function returning void\n"
+}

@@ -1,0 +1,17 @@
+{
+  "repair_begin": "2020-10-18 22:00:28.392535",
+  "repair_end": "2020-10-18 22:00:42.682336",
+  "patches": [
+    {
+      "target_file": "src/cmdb_backend.i",
+      "fix": "no repair found",
+      "edits": []
+    }
+  ],
+  "comps": 3,
+  "failed_comps": 0,
+  "passed_tests": 11,
+  "failed_tests": 1,
+  "duration": 14.289801,
+  "error": "cat: /etc/redhat-release: No such file or directory\n"
+}

@@ -1,0 +1,14 @@
+{
+  "repair_begin": "2020-10-15 08:57:33.522416",
+  "repair_end": "2020-10-15 09:07:52.072287",
+  "patches": [
+    {
+      "target_file": "src/main.i",
+      "fix": "no repair found",
+      "edits": [
+        "309c309\n< \n---\n>       return (1);\n313c313\n<   return (1);\n---\n> \n"
+      ]
+    }
+  ],
+  "error": "cat: /etc/redhat-release: No such file or directory\n"
+}
