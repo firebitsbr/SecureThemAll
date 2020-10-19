@@ -1,0 +1,18 @@
+{
+  "repair_begin": "2020-10-19 11:01:28.452955",
+  "repair_end": "2020-10-19 11:02:30.521230",
+  "patches": [
+    {
+      "target_file": "src/gld.i",
+      "fix": "1091c1091\n<               if (iter___0->px.point.y < temp->px.point.y) {\n---\n>               if (iter___0->px.point.y == temp->px.point.y) {\n",
+      "edits": [
+        "1091c1091\n<               if (iter___0->px.point.y < temp->px.point.y) {\n---\n>               if (iter___0->px.point.y == temp->px.point.y) {\n"
+      ]
+    }
+  ],
+  "comps": 3,
+  "failed_comps": 0,
+  "passed_tests": 17,
+  "failed_tests": 4,
+  "duration": 62.068275
+}

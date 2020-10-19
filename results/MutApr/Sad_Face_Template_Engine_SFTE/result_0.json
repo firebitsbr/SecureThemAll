@@ -1,0 +1,19 @@
+{
+  "repair_begin": "2020-10-19 11:05:30.113760",
+  "repair_end": "2020-10-19 11:06:21.849988",
+  "patches": [
+    {
+      "target_file": "src/sadface.i",
+      "fix": "470c470\n<     if ((unsigned long )child == (unsigned long )((sad_node_t *)0)) {\n---\n>     if ((unsigned long )child <= (unsigned long )((sad_node_t *)0)) {\n",
+      "edits": [
+        "470c470\n<     if ((unsigned long )child == (unsigned long )((sad_node_t *)0)) {\n---\n>     if ((unsigned long )child != (unsigned long )((sad_node_t *)0)) {\n",
+        "470c470\n<     if ((unsigned long )child == (unsigned long )((sad_node_t *)0)) {\n---\n>     if ((unsigned long )child <= (unsigned long )((sad_node_t *)0)) {\n"
+      ]
+    }
+  ],
+  "comps": 4,
+  "failed_comps": 0,
+  "passed_tests": 32,
+  "failed_tests": 4,
+  "duration": 51.736228
+}

@@ -1,0 +1,18 @@
+{
+  "repair_begin": "2020-10-19 10:28:49.170092",
+  "repair_end": "2020-10-19 10:29:42.361976",
+  "patches": [
+    {
+      "target_file": "src/asl6.i",
+      "fix": "584c584\n<       if (i >= e->length) {\n---\n>       if (i == e->length) {\n",
+      "edits": [
+        "584c584\n<       if (i >= e->length) {\n---\n>       if (i == e->length) {\n"
+      ]
+    }
+  ],
+  "comps": 3,
+  "failed_comps": 0,
+  "passed_tests": 22,
+  "failed_tests": 4,
+  "duration": 53.191884
+}

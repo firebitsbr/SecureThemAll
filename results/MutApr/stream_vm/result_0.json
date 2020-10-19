@@ -1,0 +1,18 @@
+{
+  "repair_begin": "2020-10-19 11:34:48.380228",
+  "repair_end": "2020-10-19 11:36:52.044547",
+  "patches": [
+    {
+      "target_file": "src/main.i",
+      "fix": "392c392\n<     if (tmp___1 != 0) {\n---\n>     if (tmp___1 == 0) {\n",
+      "edits": [
+        "392c392\n<     if (tmp___1 != 0) {\n---\n>     if (tmp___1 == 0) {\n"
+      ]
+    }
+  ],
+  "comps": 3,
+  "failed_comps": 0,
+  "passed_tests": 2,
+  "failed_tests": 14,
+  "duration": 123.664319
+}

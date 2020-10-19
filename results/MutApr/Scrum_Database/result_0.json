@@ -1,0 +1,18 @@
+{
+  "repair_begin": "2020-10-19 11:05:58.055719",
+  "repair_end": "2020-10-19 11:06:09.629215",
+  "patches": [
+    {
+      "target_file": "src/backlogitems.i",
+      "fix": "329c329\n<     if ((unsigned long )database != (unsigned long )((productDefType *)0)) {\n---\n>     if ((unsigned long )database == (unsigned long )((productDefType *)0)) {\n",
+      "edits": [
+        "329c329\n<     if ((unsigned long )database != (unsigned long )((productDefType *)0)) {\n---\n>     if ((unsigned long )database == (unsigned long )((productDefType *)0)) {\n"
+      ]
+    }
+  ],
+  "comps": 3,
+  "failed_comps": 0,
+  "passed_tests": 20,
+  "failed_tests": 2,
+  "duration": 11.573496
+}

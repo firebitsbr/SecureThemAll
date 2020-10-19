@@ -1,0 +1,26 @@
+{
+  "repair_begin": "2020-10-19 11:23:05.628408",
+  "repair_end": "2020-10-19 11:30:33.906846",
+  "patches": [
+    {
+      "target_file": "src/memcpy_fast.i",
+      "fix": "134c134\n<     if (! (i < length / 16UL)) {\n---\n>     if (! (i == length / 16UL)) {\n",
+      "edits": [
+        "122c122\n<   if ((intptr_t )dst % 16U) {\n---\n>   if ((intptr_t )dst / 16U) {\n",
+        "122c122\n<   if ((intptr_t )dst % 16U) {\n---\n>   if ((intptr_t )dst * 16U) {\n",
+        "122c122\n<   if ((intptr_t )dst % 16U) {\n---\n>   if ((intptr_t )dst + 16U) {\n",
+        "126c126\n<   if ((intptr_t )src % 16U) {\n---\n>   if ((intptr_t )src - 16U) {\n",
+        "134c134\n<     if (! (i < length / 16UL)) {\n---\n>     if (! (i == length / 16UL)) {\n",
+        "126c126\n<   if ((intptr_t )src % 16U) {\n---\n>   if ((intptr_t )src + 16U) {\n",
+        "126c126\n<   if ((intptr_t )src % 16U) {\n---\n>   if ((intptr_t )src / 16U) {\n",
+        "126c126\n<   if ((intptr_t )src % 16U) {\n---\n>   if ((intptr_t )src * 16U) {\n",
+        "122c122\n<   if ((intptr_t )dst % 16U) {\n---\n>   if ((intptr_t )dst - 16U) {\n"
+      ]
+    }
+  ],
+  "comps": 11,
+  "failed_comps": 0,
+  "passed_tests": 87,
+  "failed_tests": 21,
+  "duration": 448.278438
+}

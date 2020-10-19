@@ -1,0 +1,45 @@
+{
+  "repair_begin": "2020-10-19 11:18:27.179183",
+  "repair_end": "2020-10-19 11:39:08.901516",
+  "patches": [
+    {
+      "target_file": "src/service.i",
+      "fix": "",
+      "edits": [
+        "188c188\n<     if (tmp___0 == 0) {\n---\n>     if (tmp___0 <= 0) {\n",
+        "188c188\n<     if (tmp___0 == 0) {\n---\n>     if (tmp___0 != 0) {\n",
+        "181c181\n<   if (tmp > 15UL) {\n---\n>   if (tmp != 15UL) {\n",
+        "181c181\n<   if (tmp > 15UL) {\n---\n>   if (tmp == 15UL) {\n",
+        "174c174\n<   if ((unsigned long )pum == (unsigned long )((puser_manager )0)) {\n---\n>   if ((unsigned long )pum > (unsigned long )((puser_manager )0)) {\n",
+        "151c151\n<   if (tmp != 0) {\n---\n>   if (tmp > 0) {\n",
+        "616c616\n<   if ((unsigned long )pum == (unsigned long )((puser_manager )0)) {\n---\n>   if ((unsigned long )pum > (unsigned long )((puser_manager )0)) {\n",
+        "174c174\n<   if ((unsigned long )pum == (unsigned long )((puser_manager )0)) {\n---\n>   if ((unsigned long )pum >= (unsigned long )((puser_manager )0)) {\n",
+        "174c174\n<   if ((unsigned long )pum == (unsigned long )((puser_manager )0)) {\n---\n>   if ((unsigned long )pum <= (unsigned long )((puser_manager )0)) {\n",
+        "151c151\n<   if (tmp != 0) {\n---\n>   if (tmp < 0) {\n",
+        "177c177\n<   if ((unsigned long )username == (unsigned long )((char *)0)) {\n---\n>   if ((unsigned long )username <= (unsigned long )((char *)0)) {\n",
+        "181c181\n<   if (tmp > 15UL) {\n---\n>   if (tmp < 15UL) {\n",
+        "151c151\n<   if (tmp != 0) {\n---\n>   if (tmp == 0) {\n",
+        "616c616\n<   if ((unsigned long )pum == (unsigned long )((puser_manager )0)) {\n---\n>   if ((unsigned long )pum != (unsigned long )((puser_manager )0)) {\n",
+        "616c616\n<   if ((unsigned long )pum == (unsigned long )((puser_manager )0)) {\n---\n>   if ((unsigned long )pum >= (unsigned long )((puser_manager )0)) {\n",
+        "174c174\n<   if ((unsigned long )pum == (unsigned long )((puser_manager )0)) {\n---\n>   if ((unsigned long )pum < (unsigned long )((puser_manager )0)) {\n",
+        "177c177\n<   if ((unsigned long )username == (unsigned long )((char *)0)) {\n---\n>   if ((unsigned long )username >= (unsigned long )((char *)0)) {\n",
+        "151c151\n<   if (tmp != 0) {\n---\n>   if (tmp >= 0) {\n",
+        "177c177\n<   if ((unsigned long )username == (unsigned long )((char *)0)) {\n---\n>   if ((unsigned long )username != (unsigned long )((char *)0)) {\n",
+        "177c177\n<   if ((unsigned long )username == (unsigned long )((char *)0)) {\n---\n>   if ((unsigned long )username > (unsigned long )((char *)0)) {\n",
+        "177c177\n<   if ((unsigned long )username == (unsigned long )((char *)0)) {\n---\n>   if ((unsigned long )username < (unsigned long )((char *)0)) {\n",
+        "616c616\n<   if ((unsigned long )pum == (unsigned long )((puser_manager )0)) {\n---\n>   if ((unsigned long )pum < (unsigned long )((puser_manager )0)) {\n",
+        "616c616\n<   if ((unsigned long )pum == (unsigned long )((puser_manager )0)) {\n---\n>   if ((unsigned long )pum <= (unsigned long )((puser_manager )0)) {\n",
+        "174c174\n<   if ((unsigned long )pum == (unsigned long )((puser_manager )0)) {\n---\n>   if ((unsigned long )pum != (unsigned long )((puser_manager )0)) {\n",
+        "181c181\n<   if (tmp > 15UL) {\n---\n>   if (tmp >= 15UL) {\n",
+        "181c181\n<   if (tmp > 15UL) {\n---\n>   if (tmp <= 15UL) {\n",
+        "188c188\n<     if (tmp___0 == 0) {\n---\n>     if (tmp___0 < 0) {\n",
+        "151c151\n<   if (tmp != 0) {\n---\n>   if (tmp <= 0) {\n"
+      ]
+    }
+  ],
+  "comps": 30,
+  "failed_comps": 0,
+  "passed_tests": 257,
+  "failed_tests": 54,
+  "duration": 1241.722333
+}

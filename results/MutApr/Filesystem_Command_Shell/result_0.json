@@ -1,0 +1,49 @@
+{
+  "repair_begin": "2020-10-19 10:40:08.174808",
+  "repair_end": "2020-10-19 11:01:09.255429",
+  "patches": [
+    {
+      "target_file": "src/filesystem.i",
+      "fix": "",
+      "edits": [
+        "355c355\n<           if (fileCursors[x].dirEntryNum == (unsigned int )i) {\n---\n>           if (fileCursors[x].dirEntryNum < (unsigned int )i) {\n",
+        "355c355\n<           if (fileCursors[x].dirEntryNum == (unsigned int )i) {\n---\n>           if (fileCursors[x].dirEntryNum <= (unsigned int )i) {\n",
+        "949c949\n<     i ++;\n---\n>     i *= 1;\n",
+        "949c949\n<     i ++;\n---\n>     i --;\n",
+        "675c675\n<   if (fileCursors[fh].readPos >= fileCursors[fh].fileSize) {\n---\n>   if (fileCursors[fh].readPos > fileCursors[fh].fileSize) {\n",
+        "685c685\n<   if (fileCursors[fh].readPos >= fileCursors[fh].fileSize) {\n---\n>   if (fileCursors[fh].readPos <= fileCursors[fh].fileSize) {\n",
+        "671c671\n<   if (tmp != 0) {\n---\n>   if (tmp >= 0) {\n",
+        "675c675\n<   if (fileCursors[fh].readPos >= fileCursors[fh].fileSize) {\n---\n>   if (fileCursors[fh].readPos <= fileCursors[fh].fileSize) {\n",
+        "366c366\n<         x ++;\n---\n>         x --;\n",
+        "675c675\n<   if (fileCursors[fh].readPos >= fileCursors[fh].fileSize) {\n---\n>   if (fileCursors[fh].readPos != fileCursors[fh].fileSize) {\n",
+        "685c685\n<   if (fileCursors[fh].readPos >= fileCursors[fh].fileSize) {\n---\n>   if (fileCursors[fh].readPos < fileCursors[fh].fileSize) {\n",
+        "404c404\n<     if (securityID != 1) {\n---\n>     if (securityID <= 1) {\n",
+        "949c949\n<     i ++;\n---\n>     i /= 1;\n",
+        "685c685\n<   if (fileCursors[fh].readPos >= fileCursors[fh].fileSize) {\n---\n>   if (fileCursors[fh].readPos == fileCursors[fh].fileSize) {\n",
+        "671c671\n<   if (tmp != 0) {\n---\n>   if (tmp == 0) {\n",
+        "671c671\n<   if (tmp != 0) {\n---\n>   if (tmp > 0) {\n",
+        "675c675\n<   if (fileCursors[fh].readPos >= fileCursors[fh].fileSize) {\n---\n>   if (fileCursors[fh].readPos < fileCursors[fh].fileSize) {\n",
+        "404c404\n<     if (securityID != 1) {\n---\n>     if (securityID > 1) {\n",
+        "685c685\n<   if (fileCursors[fh].readPos >= fileCursors[fh].fileSize) {\n---\n>   if (fileCursors[fh].readPos > fileCursors[fh].fileSize) {\n",
+        "404c404\n<     if (securityID != 1) {\n---\n>     if (securityID == 1) {\n",
+        "404c404\n<     if (securityID != 1) {\n---\n>     if (securityID >= 1) {\n",
+        "404c404\n<     if (securityID != 1) {\n---\n>     if (securityID < 1) {\n",
+        "671c671\n<   if (tmp != 0) {\n---\n>   if (tmp < 0) {\n",
+        "366c366\n<         x ++;\n---\n>         x /= 1;\n",
+        "671c671\n<   if (tmp != 0) {\n---\n>   if (tmp <= 0) {\n",
+        "675c675\n<   if (fileCursors[fh].readPos >= fileCursors[fh].fileSize) {\n---\n>   if (fileCursors[fh].readPos == fileCursors[fh].fileSize) {\n",
+        "355c355\n<           if (fileCursors[x].dirEntryNum == (unsigned int )i) {\n---\n>           if (fileCursors[x].dirEntryNum != (unsigned int )i) {\n",
+        "949c949\n<     i ++;\n---\n>     i %= 1;\n",
+        "355c355\n<           if (fileCursors[x].dirEntryNum == (unsigned int )i) {\n---\n>           if (fileCursors[x].dirEntryNum > (unsigned int )i) {\n",
+        "355c355\n<           if (fileCursors[x].dirEntryNum == (unsigned int )i) {\n---\n>           if (fileCursors[x].dirEntryNum >= (unsigned int )i) {\n",
+        "685c685\n<   if (fileCursors[fh].readPos >= fileCursors[fh].fileSize) {\n---\n>   if (fileCursors[fh].readPos != fileCursors[fh].fileSize) {\n",
+        "366c366\n<         x ++;\n---\n>         x *= 1;\n"
+      ]
+    }
+  ],
+  "comps": 34,
+  "failed_comps": 0,
+  "passed_tests": 332,
+  "failed_tests": 28,
+  "duration": 1261.080621
+}

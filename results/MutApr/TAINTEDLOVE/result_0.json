@@ -1,0 +1,18 @@
+{
+  "repair_begin": "2020-10-19 11:08:59.673400",
+  "repair_end": "2020-10-19 11:11:13.981346",
+  "patches": [
+    {
+      "target_file": "src/service.i",
+      "fix": "376c376\n<   if (0 != ret) {\n---\n>   if (0 == ret) {\n",
+      "edits": [
+        "376c376\n<   if (0 != ret) {\n---\n>   if (0 == ret) {\n"
+      ]
+    }
+  ],
+  "comps": 3,
+  "failed_comps": 0,
+  "passed_tests": 3,
+  "failed_tests": 17,
+  "duration": 134.307946
+}

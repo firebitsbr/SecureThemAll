@@ -1,0 +1,19 @@
+{
+  "repair_begin": "2020-10-19 11:07:13.809821",
+  "repair_end": "2020-10-19 11:08:48.451756",
+  "patches": [
+    {
+      "target_file": "src/service.i",
+      "fix": "785c785\n<   if (cgc_lost == -1) {\n---\n>   if (cgc_lost <= -1) {\n",
+      "edits": [
+        "785c785\n<   if (cgc_lost == -1) {\n---\n>   if (cgc_lost != -1) {\n",
+        "785c785\n<   if (cgc_lost == -1) {\n---\n>   if (cgc_lost <= -1) {\n"
+      ]
+    }
+  ],
+  "comps": 4,
+  "failed_comps": 0,
+  "passed_tests": 30,
+  "failed_tests": 2,
+  "duration": 94.641935
+}

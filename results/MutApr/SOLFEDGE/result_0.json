@@ -1,0 +1,19 @@
+{
+  "repair_begin": "2020-10-19 11:03:37.926351",
+  "repair_end": "2020-10-19 11:05:43.204835",
+  "patches": [
+    {
+      "target_file": "src/operation.i",
+      "fix": "413c413\n<       if (3 == ret) {\n---\n>       if (3 <= ret) {\n",
+      "edits": [
+        "413c413\n<       if (3 == ret) {\n---\n>       if (3 != ret) {\n",
+        "413c413\n<       if (3 == ret) {\n---\n>       if (3 <= ret) {\n"
+      ]
+    }
+  ],
+  "comps": 4,
+  "failed_comps": 0,
+  "passed_tests": 24,
+  "failed_tests": 12,
+  "duration": 125.278484
+}

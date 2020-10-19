@@ -1,0 +1,23 @@
+{
+  "repair_begin": "2020-10-19 10:58:49.417495",
+  "repair_end": "2020-10-19 11:05:54.692234",
+  "patches": [
+    {
+      "target_file": "src/render.i",
+      "fix": "168c168\n<     while (grid_y < 20U) {\n---\n>     while (grid_y == 20U) {\n",
+      "edits": [
+        "157c157\n<   if (tmp != 0) {\n---\n>   if (tmp > 0) {\n",
+        "157c157\n<   if (tmp != 0) {\n---\n>   if (tmp < 0) {\n",
+        "157c157\n<   if (tmp != 0) {\n---\n>   if (tmp == 0) {\n",
+        "168c168\n<     while (grid_y < 20U) {\n---\n>     while (grid_y == 20U) {\n",
+        "157c157\n<   if (tmp != 0) {\n---\n>   if (tmp >= 0) {\n",
+        "157c157\n<   if (tmp != 0) {\n---\n>   if (tmp <= 0) {\n"
+      ]
+    }
+  ],
+  "comps": 8,
+  "failed_comps": 0,
+  "passed_tests": 45,
+  "failed_tests": 32,
+  "duration": 425.274739
+}

@@ -1,0 +1,18 @@
+{
+  "repair_begin": "2020-10-19 11:02:22.446913",
+  "repair_end": "2020-10-19 11:02:38.676127",
+  "patches": [
+    {
+      "target_file": "src/fs.i",
+      "fix": "451c451\n<       if ((uint32_t )(i * 4096) >= fs.fs_size) {\n---\n>       if ((uint32_t )(i * 4096) == fs.fs_size) {\n",
+      "edits": [
+        "451c451\n<       if ((uint32_t )(i * 4096) >= fs.fs_size) {\n---\n>       if ((uint32_t )(i * 4096) == fs.fs_size) {\n"
+      ]
+    }
+  ],
+  "comps": 3,
+  "failed_comps": 0,
+  "passed_tests": 12,
+  "failed_tests": 4,
+  "duration": 16.229214
+}

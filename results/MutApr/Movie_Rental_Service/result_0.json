@@ -1,0 +1,21 @@
+{
+  "repair_begin": "2020-10-19 10:56:58.947604",
+  "repair_end": "2020-10-19 10:58:39.980152",
+  "patches": [
+    {
+      "target_file": "src/main.i",
+      "fix": "729c729\n<   while ((unsigned long )node != (unsigned long )((movie_node_t *)0)) {\n---\n>   while ((unsigned long )node > (unsigned long )((movie_node_t *)0)) {\n",
+      "edits": [
+        "729c729\n<   while ((unsigned long )node != (unsigned long )((movie_node_t *)0)) {\n---\n>   while ((unsigned long )node > (unsigned long )((movie_node_t *)0)) {\n",
+        "729c729\n<   while ((unsigned long )node != (unsigned long )((movie_node_t *)0)) {\n---\n>   while ((unsigned long )node < (unsigned long )((movie_node_t *)0)) {\n",
+        "729c729\n<   while ((unsigned long )node != (unsigned long )((movie_node_t *)0)) {\n---\n>   while ((unsigned long )node == (unsigned long )((movie_node_t *)0)) {\n",
+        "729c729\n<   while ((unsigned long )node != (unsigned long )((movie_node_t *)0)) {\n---\n>   while ((unsigned long )node <= (unsigned long )((movie_node_t *)0)) {\n"
+      ]
+    }
+  ],
+  "comps": 6,
+  "failed_comps": 0,
+  "passed_tests": 50,
+  "failed_tests": 5,
+  "duration": 101.032548
+}

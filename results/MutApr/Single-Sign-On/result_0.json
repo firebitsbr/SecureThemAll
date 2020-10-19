@@ -1,0 +1,19 @@
+{
+  "repair_begin": "2020-10-19 11:06:32.817246",
+  "repair_end": "2020-10-19 11:07:06.658781",
+  "patches": [
+    {
+      "target_file": "src/service.i",
+      "fix": "370c370\n<     if (user_ptr->id == id) {\n---\n>     if (user_ptr->id <= id) {\n",
+      "edits": [
+        "370c370\n<     if (user_ptr->id == id) {\n---\n>     if (user_ptr->id != id) {\n",
+        "370c370\n<     if (user_ptr->id == id) {\n---\n>     if (user_ptr->id <= id) {\n"
+      ]
+    }
+  ],
+  "comps": 4,
+  "failed_comps": 0,
+  "passed_tests": 30,
+  "failed_tests": 3,
+  "duration": 33.841535
+}

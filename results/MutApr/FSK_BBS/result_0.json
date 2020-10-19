@@ -1,0 +1,44 @@
+{
+  "repair_begin": "2020-10-19 10:35:09.230264",
+  "repair_end": "2020-10-19 10:47:26.227402",
+  "patches": [
+    {
+      "target_file": "src/bbs.i",
+      "fix": "",
+      "edits": [
+        "",
+        "614c614\n<   if (g_state.state == 0) {\n---\n>   if (g_state.state <= 0) {\n",
+        "614c614\n<   if (g_state.state == 0) {\n---\n>   if (g_state.state != 0) {\n",
+        "553c553\n<   if ((int const   )*(str + 1) != 0) {\n---\n>   if ((int const   )*(str + 1) >= 0) {\n",
+        "596c596\n<   if (tmp == 0UL) {\n---\n>   if (tmp >= 0UL) {\n",
+        "599c599\n<   if (g_state.state == 0) {\n---\n>   if (g_state.state > 0) {\n",
+        "553c553\n<   if ((int const   )*(str + 1) != 0) {\n---\n>   if ((int const   )*(str + 1) > 0) {\n",
+        "553c553\n<   if ((int const   )*(str + 1) != 0) {\n---\n>   if ((int const   )*(str + 1) <= 0) {\n",
+        "596c596\n<   if (tmp == 0UL) {\n---\n>   if (tmp < 0UL) {\n",
+        "554c554\n<     if ((int const   )*(str + 1) != 32) {\n---\n>     if ((int const   )*(str + 1) <= 32) {\n",
+        "614c614\n<   if (g_state.state == 0) {\n---\n>   if (g_state.state < 0) {\n",
+        "596c596\n<   if (tmp == 0UL) {\n---\n>   if (tmp != 0UL) {\n",
+        "599c599\n<   if (g_state.state == 0) {\n---\n>   if (g_state.state != 0) {\n",
+        "599c599\n<   if (g_state.state == 0) {\n---\n>   if (g_state.state >= 0) {\n",
+        "553c553\n<   if ((int const   )*(str + 1) != 0) {\n---\n>   if ((int const   )*(str + 1) < 0) {\n",
+        "554c554\n<     if ((int const   )*(str + 1) != 32) {\n---\n>     if ((int const   )*(str + 1) > 32) {\n",
+        "596c596\n<   if (tmp == 0UL) {\n---\n>   if (tmp > 0UL) {\n",
+        "554c554\n<     if ((int const   )*(str + 1) != 32) {\n---\n>     if ((int const   )*(str + 1) == 32) {\n",
+        "554c554\n<     if ((int const   )*(str + 1) != 32) {\n---\n>     if ((int const   )*(str + 1) >= 32) {\n",
+        "554c554\n<     if ((int const   )*(str + 1) != 32) {\n---\n>     if ((int const   )*(str + 1) < 32) {\n",
+        "599c599\n<   if (g_state.state == 0) {\n---\n>   if (g_state.state < 0) {\n",
+        "599c599\n<   if (g_state.state == 0) {\n---\n>   if (g_state.state <= 0) {\n",
+        "553c553\n<   if ((int const   )*(str + 1) != 0) {\n---\n>   if ((int const   )*(str + 1) == 0) {\n",
+        "614c614\n<   if (g_state.state == 0) {\n---\n>   if (g_state.state > 0) {\n",
+        "614c614\n<   if (g_state.state == 0) {\n---\n>   if (g_state.state >= 0) {\n",
+        "596c596\n<   if (tmp == 0UL) {\n---\n>   if (tmp <= 0UL) {\n"
+      ]
+    }
+  ],
+  "comps": 28,
+  "failed_comps": 0,
+  "passed_tests": 23,
+  "failed_tests": 85,
+  "duration": 736.997138,
+  "error": "Fatal error: exception Not_found\n"
+}

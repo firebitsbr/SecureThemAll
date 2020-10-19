@@ -1,0 +1,19 @@
+{
+  "repair_begin": "2020-10-19 10:30:05.897722",
+  "repair_end": "2020-10-19 10:32:05.215703",
+  "patches": [
+    {
+      "target_file": "src/parseCVF.i",
+      "fix": "807c807\n<   if ((unsigned long )pbs == (unsigned long )((pBitStream )0)) {\n---\n>   if ((unsigned long )pbs <= (unsigned long )((pBitStream )0)) {\n",
+      "edits": [
+        "807c807\n<   if ((unsigned long )pbs == (unsigned long )((pBitStream )0)) {\n---\n>   if ((unsigned long )pbs != (unsigned long )((pBitStream )0)) {\n",
+        "807c807\n<   if ((unsigned long )pbs == (unsigned long )((pBitStream )0)) {\n---\n>   if ((unsigned long )pbs <= (unsigned long )((pBitStream )0)) {\n"
+      ]
+    }
+  ],
+  "comps": 4,
+  "failed_comps": 0,
+  "passed_tests": 21,
+  "failed_tests": 12,
+  "duration": 119.317981
+}

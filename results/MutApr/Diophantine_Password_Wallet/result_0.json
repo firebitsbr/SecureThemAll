@@ -1,0 +1,18 @@
+{
+  "repair_begin": "2020-10-19 10:32:44.147870",
+  "repair_end": "2020-10-19 10:33:52.355698",
+  "patches": [
+    {
+      "target_file": "src/main.i",
+      "fix": "503c503\n<       while (k < 50) {\n---\n>       while (k == 50) {\n",
+      "edits": [
+        "503c503\n<       while (k < 50) {\n---\n>       while (k == 50) {\n"
+      ]
+    }
+  ],
+  "comps": 3,
+  "failed_comps": 0,
+  "passed_tests": 17,
+  "failed_tests": 10,
+  "duration": 68.207828
+}

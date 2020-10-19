@@ -1,0 +1,19 @@
+{
+  "repair_begin": "2020-10-19 11:30:58.115033",
+  "repair_end": "2020-10-19 11:34:32.591308",
+  "patches": [
+    {
+      "target_file": "src/main.i",
+      "fix": "271c271\n<     if ((unsigned long )note->buf == (unsigned long )((void *)0)) {\n---\n>     if ((unsigned long )note->buf <= (unsigned long )((void *)0)) {\n",
+      "edits": [
+        "271c271\n<     if ((unsigned long )note->buf == (unsigned long )((void *)0)) {\n---\n>     if ((unsigned long )note->buf != (unsigned long )((void *)0)) {\n",
+        "271c271\n<     if ((unsigned long )note->buf == (unsigned long )((void *)0)) {\n---\n>     if ((unsigned long )note->buf <= (unsigned long )((void *)0)) {\n"
+      ]
+    }
+  ],
+  "comps": 4,
+  "failed_comps": 0,
+  "passed_tests": 12,
+  "failed_tests": 16,
+  "duration": 214.476275
+}

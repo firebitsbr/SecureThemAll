@@ -1,0 +1,18 @@
+{
+  "repair_begin": "2020-10-19 10:28:48.942073",
+  "repair_end": "2020-10-19 10:29:53.777470",
+  "patches": [
+    {
+      "target_file": "src/sentence.i",
+      "fix": "470c470\n<       if (! (0 != (int )*str)) {\n---\n>       if (! (0 == (int )*str)) {\n",
+      "edits": [
+        "470c470\n<       if (! (0 != (int )*str)) {\n---\n>       if (! (0 == (int )*str)) {\n"
+      ]
+    }
+  ],
+  "comps": 3,
+  "failed_comps": 0,
+  "passed_tests": 15,
+  "failed_tests": 4,
+  "duration": 64.835397
+}

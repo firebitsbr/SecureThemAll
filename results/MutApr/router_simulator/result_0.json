@@ -1,0 +1,23 @@
+{
+  "repair_begin": "2020-10-19 11:27:18.741813",
+  "repair_end": "2020-10-19 11:36:33.879163",
+  "patches": [
+    {
+      "target_file": "src/main.i",
+      "fix": "372c372\n<     if ((route->ip & mask) != (ip & mask)) {\n---\n>     if ((route->ip & mask) == (ip & mask)) {\n",
+      "edits": [
+        "525c525\n<   if ((unsigned long )parent->right == (unsigned long )route) {\n---\n>   if ((unsigned long )parent->right >= (unsigned long )route) {\n",
+        "525c525\n<   if ((unsigned long )parent->right == (unsigned long )route) {\n---\n>   if ((unsigned long )parent->right < (unsigned long )route) {\n",
+        "525c525\n<   if ((unsigned long )parent->right == (unsigned long )route) {\n---\n>   if ((unsigned long )parent->right != (unsigned long )route) {\n",
+        "372c372\n<     if ((route->ip & mask) != (ip & mask)) {\n---\n>     if ((route->ip & mask) == (ip & mask)) {\n",
+        "525c525\n<   if ((unsigned long )parent->right == (unsigned long )route) {\n---\n>   if ((unsigned long )parent->right > (unsigned long )route) {\n",
+        "525c525\n<   if ((unsigned long )parent->right == (unsigned long )route) {\n---\n>   if ((unsigned long )parent->right <= (unsigned long )route) {\n"
+      ]
+    }
+  ],
+  "comps": 8,
+  "failed_comps": 0,
+  "passed_tests": 30,
+  "failed_tests": 47,
+  "duration": 555.13735
+}

@@ -1,0 +1,19 @@
+{
+  "repair_begin": "2020-10-19 11:02:42.760089",
+  "repair_end": "2020-10-19 11:04:34.421399",
+  "patches": [
+    {
+      "target_file": "src/packet.i",
+      "fix": "163c163\n<     if (retval < 0) {\n---\n>     if (retval != 0) {\n",
+      "edits": [
+        "163c163\n<     if (retval < 0) {\n---\n>     if (retval == 0) {\n",
+        "163c163\n<     if (retval < 0) {\n---\n>     if (retval != 0) {\n"
+      ]
+    }
+  ],
+  "comps": 4,
+  "failed_comps": 0,
+  "passed_tests": 21,
+  "failed_tests": 12,
+  "duration": 111.66131
+}

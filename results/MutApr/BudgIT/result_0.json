@@ -1,0 +1,21 @@
+{
+  "repair_begin": "2020-10-19 10:29:06.235335",
+  "repair_end": "2020-10-19 10:35:46.791343",
+  "patches": [
+    {
+      "target_file": "src/map.i",
+      "fix": "230c230\n<     if ((unsigned long )map_ptr != (unsigned long )((Map *)0)) {\n---\n>     if ((unsigned long )map_ptr > (unsigned long )((Map *)0)) {\n",
+      "edits": [
+        "230c230\n<     if ((unsigned long )map_ptr != (unsigned long )((Map *)0)) {\n---\n>     if ((unsigned long )map_ptr > (unsigned long )((Map *)0)) {\n",
+        "230c230\n<     if ((unsigned long )map_ptr != (unsigned long )((Map *)0)) {\n---\n>     if ((unsigned long )map_ptr < (unsigned long )((Map *)0)) {\n",
+        "230c230\n<     if ((unsigned long )map_ptr != (unsigned long )((Map *)0)) {\n---\n>     if ((unsigned long )map_ptr == (unsigned long )((Map *)0)) {\n",
+        "230c230\n<     if ((unsigned long )map_ptr != (unsigned long )((Map *)0)) {\n---\n>     if ((unsigned long )map_ptr <= (unsigned long )((Map *)0)) {\n"
+      ]
+    }
+  ],
+  "comps": 6,
+  "failed_comps": 0,
+  "passed_tests": 8,
+  "failed_tests": 44,
+  "duration": 400.556008
+}

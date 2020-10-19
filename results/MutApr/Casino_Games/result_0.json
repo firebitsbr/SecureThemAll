@@ -1,0 +1,19 @@
+{
+  "repair_begin": "2020-10-19 10:32:15.455578",
+  "repair_end": "2020-10-19 10:32:43.371646",
+  "patches": [
+    {
+      "target_file": "src/casino.i",
+      "fix": "220c220\n<     if (player->number == number) {\n---\n>     if (player->number <= number) {\n",
+      "edits": [
+        "220c220\n<     if (player->number == number) {\n---\n>     if (player->number != number) {\n",
+        "220c220\n<     if (player->number == number) {\n---\n>     if (player->number <= number) {\n"
+      ]
+    }
+  ],
+  "comps": 3,
+  "failed_comps": 0,
+  "passed_tests": 32,
+  "failed_tests": 1,
+  "duration": 27.916068
+}

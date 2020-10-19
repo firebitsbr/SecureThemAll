@@ -1,0 +1,19 @@
+{
+  "repair_begin": "2020-10-19 10:30:01.103430",
+  "repair_end": "2020-10-19 10:31:44.550331",
+  "patches": [
+    {
+      "target_file": "src/cgcf.i",
+      "fix": "277c277\n<   return (tmp == 0);\n---\n>   return (tmp <= 0);\n",
+      "edits": [
+        "277c277\n<   return (tmp == 0);\n---\n>   return (tmp != 0);\n",
+        "277c277\n<   return (tmp == 0);\n---\n>   return (tmp <= 0);\n"
+      ]
+    }
+  ],
+  "comps": 4,
+  "failed_comps": 0,
+  "passed_tests": 25,
+  "failed_tests": 17,
+  "duration": 103.446901
+}

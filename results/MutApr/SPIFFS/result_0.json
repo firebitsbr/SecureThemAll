@@ -1,0 +1,18 @@
+{
+  "repair_begin": "2020-10-19 11:04:47.384064",
+  "repair_end": "2020-10-19 11:05:11.242095",
+  "patches": [
+    {
+      "target_file": "src/service.i",
+      "fix": "1175c1175\n<   while ((unsigned long )temp != (unsigned long )((pNode )0)) {\n---\n>   while ((unsigned long )temp == (unsigned long )((pNode )0)) {\n",
+      "edits": [
+        "1175c1175\n<   while ((unsigned long )temp != (unsigned long )((pNode )0)) {\n---\n>   while ((unsigned long )temp == (unsigned long )((pNode )0)) {\n"
+      ]
+    }
+  ],
+  "comps": 3,
+  "failed_comps": 0,
+  "passed_tests": 13,
+  "failed_tests": 3,
+  "duration": 23.858031
+}

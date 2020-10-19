@@ -1,0 +1,18 @@
+{
+  "repair_begin": "2020-10-19 10:36:34.955029",
+  "repair_end": "2020-10-19 10:39:08.599063",
+  "patches": [
+    {
+      "target_file": "src/service.i",
+      "fix": "291c291\n<     while ((unsigned long )nextField->next != (unsigned long )((struct field_t *)0)) {\n---\n>     while ((unsigned long )nextField->next == (unsigned long )((struct field_t *)0)) {\n",
+      "edits": [
+        "291c291\n<     while ((unsigned long )nextField->next != (unsigned long )((struct field_t *)0)) {\n---\n>     while ((unsigned long )nextField->next == (unsigned long )((struct field_t *)0)) {\n"
+      ]
+    }
+  ],
+  "comps": 3,
+  "failed_comps": 0,
+  "passed_tests": 6,
+  "failed_tests": 19,
+  "duration": 153.644034
+}

@@ -1,0 +1,19 @@
+{
+  "repair_begin": "2020-10-19 10:57:16.413306",
+  "repair_end": "2020-10-19 10:57:52.186614",
+  "patches": [
+    {
+      "target_file": "src/cmdb_backend.i",
+      "fix": "566c566\n<   if (g_num_genres < 10UL) {\n---\n>   if (g_num_genres != 10UL) {\n",
+      "edits": [
+        "566c566\n<   if (g_num_genres < 10UL) {\n---\n>   if (g_num_genres == 10UL) {\n",
+        "566c566\n<   if (g_num_genres < 10UL) {\n---\n>   if (g_num_genres != 10UL) {\n"
+      ]
+    }
+  ],
+  "comps": 4,
+  "failed_comps": 0,
+  "passed_tests": 31,
+  "failed_tests": 2,
+  "duration": 35.773308
+}
