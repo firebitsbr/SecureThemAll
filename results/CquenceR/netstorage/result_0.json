@@ -1,0 +1,21 @@
+{
+  "repair_begin": "2020-10-19 13:33:27.498913",
+  "repair_end": "2020-10-19 13:35:20.977997",
+  "patches": [
+    {
+      "target_file": "src/memcpy_fast.c",
+      "fix": "35a36,37\n> \n> \n",
+      "edits": [
+        "35a36\n> \t \n",
+        "35a36,37\n> \n> \n",
+        "35a36\n> \n"
+      ]
+    }
+  ],
+  "comps": 4,
+  "failed_comps": 0,
+  "passed_tests": 24,
+  "failed_tests": 2,
+  "duration": 113.479084,
+  "error": "Return code: 1\nReturn code: 1\n"
+}

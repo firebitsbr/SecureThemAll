@@ -1,0 +1,17 @@
+{
+  "repair_begin": "2020-10-19 13:29:09.571988",
+  "repair_end": "2020-10-19 13:29:10.468276",
+  "patches": [
+    {
+      "target_file": "src/main.c",
+      "fix": "no repair found",
+      "edits": []
+    }
+  ],
+  "comps": 1,
+  "failed_comps": 0,
+  "passed_tests": 0,
+  "failed_tests": 0,
+  "duration": 0.896288,
+  "error": "Traceback (most recent call last):\n  File \"/home/eduard/SecureThemAll/repair_tools/CquenceR/CquenceR.py\", line 12, in <module>\n    run(**vars_args)\n  File \"/home/eduard/SecureThemAll/repair_tools/CquenceR/utils/cmd_parser.py\", line 43, in run\n    cmd = command(**kwargs)\n  File \"/home/eduard/SecureThemAll/repair_tools/CquenceR/utils/commands/repair.py\", line 39, in __init__\n    raise ValueError('Insufficient number of tests.')\nValueError: Insufficient number of tests.\n"
+}

@@ -1,0 +1,21 @@
+{
+  "repair_begin": "2020-10-19 13:22:56.653635",
+  "repair_end": "2020-10-19 13:23:26.486068",
+  "patches": [
+    {
+      "target_file": "src/eval.c",
+      "fix": "261c261\n<       \n---\n> \t \t \n349c349\n<     CDR(CDR(cake)) = n;\n---\n> CDR ( l ) ; \n",
+      "edits": [
+        "261c261\n<       \n---\n> \t \n349c349\n<     CDR(CDR(cake)) = n;\n---\n> CDR ( CDR ( cake ) ) = n ; \n",
+        "261c261\n<       \n---\n> \t \t \n349c349\n<     CDR(CDR(cake)) = n;\n---\n> CDR ( l ) ; \n",
+        "261c261\n<       \n---\n> \n349c349\n<     CDR(CDR(cake)) = n;\n---\n> CDR ( CDR ) ; \n"
+      ]
+    }
+  ],
+  "comps": 3,
+  "failed_comps": 1,
+  "passed_tests": 22,
+  "failed_tests": 1,
+  "duration": 29.832433,
+  "error": "Return code: 1\nReturn code: 1\n"
+}

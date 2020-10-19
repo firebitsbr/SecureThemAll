@@ -1,0 +1,18 @@
+{
+  "repair_begin": "2020-10-19 13:07:19.948107",
+  "repair_end": "2020-10-19 13:09:17.354366",
+  "patches": [
+    {
+      "target_file": "src/uwfc.c",
+      "fix": "122c122\n<     \n---\n> \n141c141\n<     track_size = cgc_validate_header(track); //track->sub_chunk2_size (size of data)\n---\n> track_size = cgc_validate_header ( track ) ; \n",
+      "edits": [
+        "122c122\n<     \n---\n> \n141c141\n<     track_size = cgc_validate_header(track); //track->sub_chunk2_size (size of data)\n---\n> track_size = cgc_validate_header ( track ) ; \n"
+      ]
+    }
+  ],
+  "comps": 2,
+  "failed_comps": 0,
+  "passed_tests": 11,
+  "failed_tests": 0,
+  "duration": 117.406259
+}
