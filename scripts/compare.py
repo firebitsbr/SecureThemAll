@@ -8,19 +8,23 @@ from pathlib import Path
 
 from config import configuration
 from core.benchmark import Benchmark
-from core.utils.charts import star_chart, plot_stacked_bar
+from core.utils.charts import star_chart, plot_stacked_bar, plot_heatmap
 from core.utils.results import ToolResults
 
-#benchmark = Benchmark(config=configuration, seed=8888)
+benchmark = Benchmark(config=configuration, seed=8888)
+benchmark.verbose = False
+patches = {cn: benchmark.patch(cn) for cn in benchmark.challenges}
 
 parser = argparse.ArgumentParser(prog="compare", description='Compares tools results')
-parser.add_argument("--seed", type=int, help="The seed number of the results", default=0, required=True)
+parser.add_argument("--seed", type=int, help="The seed number of the results", default=0)
+parser.add_argument("--plot", choices=["stacked", "star", "heatmap"], required=True,
+                    type=str, help="The seed number of the results")
 tools_timeout = configuration.tools_timeout
 colors_list = ['b', 'g', 'r', 'c', 'm', 'y', 'k', 'orange', 'gray', 'brown', 'lime', 'tan', 'teal']
 
 
 def get_tools_results(results_dir: Path, seed_target: int = 0):
-    return [ToolResults(tool, tools_timeout, seed_target) for tool in results_dir.iterdir() if tool.is_dir()]
+    return [ToolResults(tool, tools_timeout, patches, seed_target) for tool in results_dir.iterdir() if tool.is_dir()]
 
 
 def plot_ranks(scores: List[int], tools: List[str], colors: List[str]):
@@ -42,7 +46,7 @@ def plot_star(star_data: List[ToolResults], challenges_count: int):
     spoke_labels = [list(metrics.keys()) for metrics in tools_metrics]
 
     star_chart(tools_results, spoke_labels=spoke_labels[0], colors=colors_list[:tools_count], labels=tools_names,
-               title=f"{tools_count} tools' profiling on {challenges_count} challenges with {len(spoke_labels)} metrics.")
+               title=f"{tools_count} tools' profiling on {challenges_count} challenges with {len(spoke_labels[0])} metrics.")
 
 
 def plot_stacked(data: List[List[float]], series_labels: List[str], category_labels: List[str]):
@@ -72,10 +76,18 @@ if __name__ == "__main__":
 #    plot_ranks(ranks, list(scores.keys()), ['red', 'green', 'yellow'])
     results_path = configuration.paths.out_dir
     results = get_tools_results(results_path, args.seed)
-    tools_names = [tool.name for tool in results]
-    tools_performance = [tool.performance() for tool in results]
-    print(tools_performance)
-    performance_labels = [list(tp.keys()) for tp in tools_performance]
-    plot_stacked(data=np.transpose([list(tp.values()) for tp in tools_performance]), series_labels=performance_labels[0],
-                 category_labels=tools_names)
-    #plot_star(results, 69)
+    if args.plot == "star":
+        plot_star(results, 69)
+    elif args.plot == "stacked":
+        tools_names = [tool.name for tool in results]
+        tools_performance = [tool.performance() for tool in results]
+        print(tools_performance)
+        performance_labels = [list(tp.keys()) for tp in tools_performance]
+        plot_stacked(data=np.transpose([list(tp.values()) for tp in tools_performance]), series_labels=performance_labels[0],
+                     category_labels=tools_names)
+    elif args.plot == "heatmap":
+        tools_names = [tool.name for tool in results]
+        challenges_names = [[cr.path.parent.name for cr in tool.challenge_results] for tool in results]
+        tools_fix_score = [[cr.metrics.fix_score for cr in tool.challenge_results] for tool in results]
+        plot_heatmap(matrix=tools_fix_score, x_labels=challenges_names[0], y_labels=tools_names,
+                     title="Fixed challenges heatmap")

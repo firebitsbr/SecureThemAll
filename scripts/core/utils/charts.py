@@ -192,3 +192,30 @@ def plot_stacked_bar(data, series_labels, category_labels=None,
                 plt.text(bar.get_x() + w/2, bar.get_y() + h/2,
                          value_format.format(h), ha="center",
                          va="center")
+
+
+# source https://matplotlib.org/3.3.1/gallery/images_contours_and_fields/image_annotated_heatmap.html
+def plot_heatmap(matrix: List[List[int]], x_labels: List[str], y_labels: List[str], title: str):
+    fig, ax = plt.subplots(figsize=(20, 10))
+    im = ax.imshow(matrix)
+
+    # We want to show all ticks...
+    ax.set_xticks(np.arange(len(x_labels)))
+    ax.set_yticks(np.arange(len(y_labels)))
+    # ... and label them with the respective list entries
+    ax.set_xticklabels(x_labels)
+    ax.set_yticklabels(y_labels)
+
+    # Rotate the tick labels and set their alignment.
+    plt.setp(ax.get_xticklabels(), rotation=45, ha="right",
+             rotation_mode="anchor")
+
+    # Loop over data dimensions and create text annotations.
+    for i in range(len(y_labels)):
+        for j in range(len(x_labels)):
+            text = ax.text(j, i, matrix[i][j],
+                           ha="center", va="center", color="w")
+
+    ax.set_title(title)
+    fig.tight_layout()
+    plt.show()

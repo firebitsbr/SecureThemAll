@@ -171,6 +171,14 @@ class Benchmark(Setting):
 
         return ""
 
+    def patch(self, challenge_name: str):
+        out, err = super().__call__(cmd_str=f"{self.paths.program} patch -cn {challenge_name}")
+
+        if err:
+            return ""
+
+        return out
+
     def count_tests(self, challenge: Challenge):
         out, err = super().__call__(cmd_str=f"{self.paths.program} info -t count_tests -wd {challenge.working_dir} " +
                                             f"-cn {challenge.name}",

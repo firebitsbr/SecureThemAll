@@ -1,4 +1,4 @@
-
+import Levenshtein
 from core.utils.metrics import Metrics
 
 # Low bound constant
@@ -11,7 +11,8 @@ def inv_eq(x: int, upper: int):
 
 class Stats:
     def __init__(self, time_limit: int = 0, comps: int = 0, failed_comps: int = 0, duration: int = None,
-                 fix: bool = False, edits: int = None, passed_tests: int = 0, failed_tests: int = 0, **kwargs):
+                 fix: str = None, patch: str = None, edits: int = None, passed_tests: int = 0, failed_tests: int = 0,
+                 **kwargs):
         self.comps = comps
         self.failed_comps = failed_comps
         self.passed_tests = passed_tests
@@ -20,12 +21,15 @@ class Stats:
         self.duration = duration
         self.edits = edits-1 if fix else edits
         self.fix = fix
+        self.patch = patch
         self.time_limit = time_limit
 
     def __call__(self):
         return Metrics(compile_success_rate=self.compilation_success_rate(),
                        testing_success_rate=self.testing_success_rate(),
                        edits_score=self.edits_score(),
+                       fix_score=self.fix_score(),
+                       similarity=self.similarity_ratio(),
                        time_score=self.time_score())
 
     def compilation_success_rate(self):
@@ -37,6 +41,13 @@ class Stats:
         if self.passed_tests == 0:
             return 0
         return self.passed_tests / (self.passed_tests + self.failed_tests)
+
+    def fix_score(self):
+
+        #if not self.fix:
+        #    return round(1/4 * self.edits_score(), 2) if self.edits > 0 else 0
+
+        return 1 if self.fix else 0
 
     def edits_score(self):
         # within 10 edits the score > 0.1
@@ -55,6 +66,11 @@ class Stats:
         if self.duration > self.time_limit - 1 and not self.fix:
             return 0
         return inv_eq(self.duration, self.time_limit)
+
+    def similarity_ratio(self):
+        if self.patch and self.fix:
+            return Levenshtein.ratio(self.patch, self.fix)
+        return 0
 
     def __str__(self):
         pass
