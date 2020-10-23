@@ -1,19 +1,18 @@
 {
-  "repair_begin": "2020-10-19 10:48:36.451943",
-  "repair_end": "2020-10-19 10:50:56.105012",
+  "repair_begin": "2020-10-23 19:58:03.713693",
+  "repair_end": "2020-10-23 19:59:11.708768",
   "patches": [
     {
       "target_file": "src/main.i",
-      "fix": "163c163\n<     i ++;\n---\n>     i *= 1UL;\n",
+      "fix": "222c222\n<       if (i % 2) {\n---\n>       if (i + 2) {\n",
       "edits": [
-        "163c163\n<     i ++;\n---\n>     i --;\n",
-        "163c163\n<     i ++;\n---\n>     i *= 1UL;\n"
+        "222c222\n<       if (i % 2) {\n---\n>       if (i + 2) {\n"
       ]
     }
   ],
-  "comps": 4,
+  "comps": 3,
   "failed_comps": 0,
-  "passed_tests": 16,
-  "failed_tests": 12,
-  "duration": 139.653069
+  "passed_tests": 10,
+  "failed_tests": 3,
+  "duration": 67.995075
 }

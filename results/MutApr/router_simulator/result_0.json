@@ -1,23 +1,18 @@
 {
-  "repair_begin": "2020-10-19 11:27:18.741813",
-  "repair_end": "2020-10-19 11:36:33.879163",
+  "repair_begin": "2020-10-23 20:52:25.321569",
+  "repair_end": "2020-10-23 20:55:00.570837",
   "patches": [
     {
       "target_file": "src/main.i",
-      "fix": "372c372\n<     if ((route->ip & mask) != (ip & mask)) {\n---\n>     if ((route->ip & mask) == (ip & mask)) {\n",
+      "fix": "949c949\n<   if ((unsigned long )word == (unsigned long )((char *)0)) {\n---\n>   if ((unsigned long )word != (unsigned long )((char *)0)) {\n",
       "edits": [
-        "525c525\n<   if ((unsigned long )parent->right == (unsigned long )route) {\n---\n>   if ((unsigned long )parent->right >= (unsigned long )route) {\n",
-        "525c525\n<   if ((unsigned long )parent->right == (unsigned long )route) {\n---\n>   if ((unsigned long )parent->right < (unsigned long )route) {\n",
-        "525c525\n<   if ((unsigned long )parent->right == (unsigned long )route) {\n---\n>   if ((unsigned long )parent->right != (unsigned long )route) {\n",
-        "372c372\n<     if ((route->ip & mask) != (ip & mask)) {\n---\n>     if ((route->ip & mask) == (ip & mask)) {\n",
-        "525c525\n<   if ((unsigned long )parent->right == (unsigned long )route) {\n---\n>   if ((unsigned long )parent->right > (unsigned long )route) {\n",
-        "525c525\n<   if ((unsigned long )parent->right == (unsigned long )route) {\n---\n>   if ((unsigned long )parent->right <= (unsigned long )route) {\n"
+        "949c949\n<   if ((unsigned long )word == (unsigned long )((char *)0)) {\n---\n>   if ((unsigned long )word != (unsigned long )((char *)0)) {\n"
       ]
     }
   ],
-  "comps": 8,
+  "comps": 3,
   "failed_comps": 0,
-  "passed_tests": 30,
-  "failed_tests": 47,
-  "duration": 555.13735
+  "passed_tests": 12,
+  "failed_tests": 2,
+  "duration": 155.249268
 }

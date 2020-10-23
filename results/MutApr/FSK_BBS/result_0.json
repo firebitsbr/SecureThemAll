@@ -1,6 +1,6 @@
 {
-  "repair_begin": "2020-10-19 10:35:09.230264",
-  "repair_end": "2020-10-19 10:47:26.227402",
+  "repair_begin": "2020-10-23 19:36:24.850867",
+  "repair_end": "2020-10-23 19:42:19.005326",
   "patches": [
     {
       "target_file": "src/bbs.i",
@@ -37,8 +37,8 @@
   ],
   "comps": 28,
   "failed_comps": 0,
-  "passed_tests": 23,
-  "failed_tests": 85,
-  "duration": 736.997138,
+  "passed_tests": 28,
+  "failed_tests": 26,
+  "duration": 354.154459,
   "error": "Fatal error: exception Not_found\n"
 }

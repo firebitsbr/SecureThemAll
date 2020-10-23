@@ -1,25 +1,19 @@
 {
-  "repair_begin": "2020-10-19 10:29:54.524926",
-  "repair_end": "2020-10-19 10:43:12.727613",
+  "repair_begin": "2020-10-23 19:30:45.895033",
+  "repair_end": "2020-10-23 19:35:16.475655",
   "patches": [
     {
       "target_file": "src/file.i",
-      "fix": "159c159\n<   if ((unsigned long )parent->data == (unsigned long )((char *)0)) {\n---\n>   if ((unsigned long )parent->data < (unsigned long )((char *)0)) {\n",
+      "fix": "156c156\n<   if ((unsigned long )parent == (unsigned long )((pfile )0)) {\n---\n>   if ((unsigned long )parent <= (unsigned long )((pfile )0)) {\n",
       "edits": [
-        "156c156\n<   if ((unsigned long )parent == (unsigned long )((pfile )0)) {\n---\n>   if ((unsigned long )parent >= (unsigned long )((pfile )0)) {\n",
-        "156c156\n<   if ((unsigned long )parent == (unsigned long )((pfile )0)) {\n---\n>   if ((unsigned long )parent < (unsigned long )((pfile )0)) {\n",
         "156c156\n<   if ((unsigned long )parent == (unsigned long )((pfile )0)) {\n---\n>   if ((unsigned long )parent != (unsigned long )((pfile )0)) {\n",
-        "159c159\n<   if ((unsigned long )parent->data == (unsigned long )((char *)0)) {\n---\n>   if ((unsigned long )parent->data != (unsigned long )((char *)0)) {\n",
-        "156c156\n<   if ((unsigned long )parent == (unsigned long )((pfile )0)) {\n---\n>   if ((unsigned long )parent > (unsigned long )((pfile )0)) {\n",
-        "159c159\n<   if ((unsigned long )parent->data == (unsigned long )((char *)0)) {\n---\n>   if ((unsigned long )parent->data < (unsigned long )((char *)0)) {\n",
-        "159c159\n<   if ((unsigned long )parent->data == (unsigned long )((char *)0)) {\n---\n>   if ((unsigned long )parent->data <= (unsigned long )((char *)0)) {\n",
         "156c156\n<   if ((unsigned long )parent == (unsigned long )((pfile )0)) {\n---\n>   if ((unsigned long )parent <= (unsigned long )((pfile )0)) {\n"
       ]
     }
   ],
-  "comps": 10,
+  "comps": 4,
   "failed_comps": 0,
-  "passed_tests": 28,
-  "failed_tests": 64,
-  "duration": 798.202687
+  "passed_tests": 24,
+  "failed_tests": 1,
+  "duration": 270.580622
 }

@@ -1,18 +1,18 @@
 {
-  "repair_begin": "2020-10-19 11:35:37.384589",
-  "repair_end": "2020-10-19 11:37:21.668812",
+  "repair_begin": "2020-10-23 21:05:54.722932",
+  "repair_end": "2020-10-23 21:08:22.030033",
   "patches": [
     {
       "target_file": "src/main.i",
-      "fix": "330c330\n<     if (machine->registers[1] == 0U) {\n---\n>     if (machine->registers[1] != 0U) {\n",
+      "fix": "417c417\n<     machine->registers[dst] /= (uint32_t )val;\n---\n>     machine->registers[dst] += (uint32_t )val;\n",
       "edits": [
-        "330c330\n<     if (machine->registers[1] == 0U) {\n---\n>     if (machine->registers[1] != 0U) {\n"
+        "417c417\n<     machine->registers[dst] /= (uint32_t )val;\n---\n>     machine->registers[dst] += (uint32_t )val;\n"
       ]
     }
   ],
   "comps": 3,
   "failed_comps": 0,
-  "passed_tests": 10,
-  "failed_tests": 5,
-  "duration": 104.284223
+  "passed_tests": 13,
+  "failed_tests": 1,
+  "duration": 147.307101
 }

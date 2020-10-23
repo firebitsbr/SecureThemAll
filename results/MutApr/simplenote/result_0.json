@@ -1,19 +1,24 @@
 {
-  "repair_begin": "2020-10-19 11:30:58.115033",
-  "repair_end": "2020-10-19 11:34:32.591308",
+  "repair_begin": "2020-10-23 20:52:39.155969",
+  "repair_end": "2020-10-23 21:07:22.270648",
   "patches": [
     {
       "target_file": "src/main.i",
-      "fix": "271c271\n<     if ((unsigned long )note->buf == (unsigned long )((void *)0)) {\n---\n>     if ((unsigned long )note->buf <= (unsigned long )((void *)0)) {\n",
+      "fix": "292c292\n<     if ((unsigned long )cgc_note_store[i] == (unsigned long )note) {\n---\n>     if ((unsigned long )cgc_note_store[i] <= (unsigned long )note) {\n",
       "edits": [
+        "271c271\n<     if ((unsigned long )note->buf == (unsigned long )((void *)0)) {\n---\n>     if ((unsigned long )note->buf >= (unsigned long )((void *)0)) {\n",
+        "271c271\n<     if ((unsigned long )note->buf == (unsigned long )((void *)0)) {\n---\n>     if ((unsigned long )note->buf < (unsigned long )((void *)0)) {\n",
         "271c271\n<     if ((unsigned long )note->buf == (unsigned long )((void *)0)) {\n---\n>     if ((unsigned long )note->buf != (unsigned long )((void *)0)) {\n",
+        "292c292\n<     if ((unsigned long )cgc_note_store[i] == (unsigned long )note) {\n---\n>     if ((unsigned long )cgc_note_store[i] != (unsigned long )note) {\n",
+        "271c271\n<     if ((unsigned long )note->buf == (unsigned long )((void *)0)) {\n---\n>     if ((unsigned long )note->buf > (unsigned long )((void *)0)) {\n",
+        "292c292\n<     if ((unsigned long )cgc_note_store[i] == (unsigned long )note) {\n---\n>     if ((unsigned long )cgc_note_store[i] <= (unsigned long )note) {\n",
         "271c271\n<     if ((unsigned long )note->buf == (unsigned long )((void *)0)) {\n---\n>     if ((unsigned long )note->buf <= (unsigned long )((void *)0)) {\n"
       ]
     }
   ],
-  "comps": 4,
+  "comps": 9,
   "failed_comps": 0,
-  "passed_tests": 12,
-  "failed_tests": 16,
-  "duration": 214.476275
+  "passed_tests": 34,
+  "failed_tests": 8,
+  "duration": 883.114679
 }

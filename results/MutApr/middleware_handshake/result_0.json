@@ -1,21 +1,37 @@
 {
-  "repair_begin": "2020-10-19 11:23:01.549843",
-  "repair_end": "2020-10-19 11:24:51.520105",
+  "repair_begin": "2020-10-23 20:50:14.550981",
+  "repair_end": "2020-10-23 21:11:13.739055",
   "patches": [
     {
       "target_file": "src/main.i",
-      "fix": "657c657\n<   if (tmp != 0) {\n---\n>   if (tmp > 0) {\n",
+      "fix": "",
       "edits": [
+        "665c665\n<   if (tmp___1 != 0) {\n---\n>   if (tmp___1 >= 0) {\n",
         "657c657\n<   if (tmp != 0) {\n---\n>   if (tmp > 0) {\n",
+        "661c661\n<   if (tmp___0 != 0) {\n---\n>   if (tmp___0 >= 0) {\n",
+        "665c665\n<   if (tmp___1 != 0) {\n---\n>   if (tmp___1 > 0) {\n",
+        "665c665\n<   if (tmp___1 != 0) {\n---\n>   if (tmp___1 <= 0) {\n",
         "657c657\n<   if (tmp != 0) {\n---\n>   if (tmp < 0) {\n",
+        "669c669\n<   if (tmp___2 != 0) {\n---\n>   if (tmp___2 <= 0) {\n",
         "657c657\n<   if (tmp != 0) {\n---\n>   if (tmp == 0) {\n",
+        "661c661\n<   if (tmp___0 != 0) {\n---\n>   if (tmp___0 == 0) {\n",
+        "661c661\n<   if (tmp___0 != 0) {\n---\n>   if (tmp___0 > 0) {\n",
+        "665c665\n<   if (tmp___1 != 0) {\n---\n>   if (tmp___1 < 0) {\n",
+        "669c669\n<   if (tmp___2 != 0) {\n---\n>   if (tmp___2 > 0) {\n",
+        "657c657\n<   if (tmp != 0) {\n---\n>   if (tmp >= 0) {\n",
+        "669c669\n<   if (tmp___2 != 0) {\n---\n>   if (tmp___2 == 0) {\n",
+        "669c669\n<   if (tmp___2 != 0) {\n---\n>   if (tmp___2 >= 0) {\n",
+        "669c669\n<   if (tmp___2 != 0) {\n---\n>   if (tmp___2 < 0) {\n",
+        "661c661\n<   if (tmp___0 != 0) {\n---\n>   if (tmp___0 < 0) {\n",
+        "661c661\n<   if (tmp___0 != 0) {\n---\n>   if (tmp___0 <= 0) {\n",
+        "665c665\n<   if (tmp___1 != 0) {\n---\n>   if (tmp___1 == 0) {\n",
         "657c657\n<   if (tmp != 0) {\n---\n>   if (tmp <= 0) {\n"
       ]
     }
   ],
-  "comps": 6,
+  "comps": 22,
   "failed_comps": 0,
-  "passed_tests": 5,
-  "failed_tests": 15,
-  "duration": 109.970262
+  "passed_tests": 0,
+  "failed_tests": 22,
+  "duration": 1259.188074
 }

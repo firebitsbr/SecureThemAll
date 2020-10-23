@@ -1,29 +1,37 @@
 {
-  "repair_begin": "2020-10-19 11:14:29.269279",
-  "repair_end": "2020-10-19 11:35:20.139849",
+  "repair_begin": "2020-10-23 20:28:25.671054",
+  "repair_end": "2020-10-23 20:49:27.451480",
   "patches": [
     {
       "target_file": "src/service.i",
       "fix": "",
       "edits": [
-        "393c393\n<   if ((int )err != 0) {\n---\n>   if ((int )err > 0) {\n",
-        "715c715\n<   if ((cgc_size_t )tmp != size) {\n---\n>   if ((cgc_size_t )tmp >= size) {\n",
-        "719c719\n<   if ((int )err == 0) {\n---\n>   if ((int )err <= 0) {\n",
-        "393c393\n<   if ((int )err != 0) {\n---\n>   if ((int )err < 0) {\n",
-        "393c393\n<   if ((int )err != 0) {\n---\n>   if ((int )err == 0) {\n",
-        "715c715\n<   if ((cgc_size_t )tmp != size) {\n---\n>   if ((cgc_size_t )tmp == size) {\n",
-        "715c715\n<   if ((cgc_size_t )tmp != size) {\n---\n>   if ((cgc_size_t )tmp > size) {\n",
+        "361c361\n<   if ((int )err != 0) {\n---\n>   if ((int )err >= 0) {\n",
+        "537c537\n<     if ((int )err != 0) {\n---\n>     if ((int )err > 0) {\n",
         "393c393\n<   if ((int )err != 0) {\n---\n>   if ((int )err >= 0) {\n",
-        "715c715\n<   if ((cgc_size_t )tmp != size) {\n---\n>   if ((cgc_size_t )tmp < size) {\n",
-        "715c715\n<   if ((cgc_size_t )tmp != size) {\n---\n>   if ((cgc_size_t )tmp <= size) {\n",
-        "719c719\n<   if ((int )err == 0) {\n---\n>   if ((int )err != 0) {\n",
-        "393c393\n<   if ((int )err != 0) {\n---\n>   if ((int )err <= 0) {\n"
+        "361c361\n<   if ((int )err != 0) {\n---\n>   if ((int )err > 0) {\n",
+        "361c361\n<   if ((int )err != 0) {\n---\n>   if ((int )err <= 0) {\n",
+        "537c537\n<     if ((int )err != 0) {\n---\n>     if ((int )err < 0) {\n",
+        "381c381\n<   if ((int )err != 0) {\n---\n>   if ((int )err <= 0) {\n",
+        "537c537\n<     if ((int )err != 0) {\n---\n>     if ((int )err == 0) {\n",
+        "393c393\n<   if ((int )err != 0) {\n---\n>   if ((int )err == 0) {\n",
+        "393c393\n<   if ((int )err != 0) {\n---\n>   if ((int )err > 0) {\n",
+        "361c361\n<   if ((int )err != 0) {\n---\n>   if ((int )err < 0) {\n",
+        "381c381\n<   if ((int )err != 0) {\n---\n>   if ((int )err > 0) {\n",
+        "537c537\n<     if ((int )err != 0) {\n---\n>     if ((int )err >= 0) {\n",
+        "381c381\n<   if ((int )err != 0) {\n---\n>   if ((int )err == 0) {\n",
+        "381c381\n<   if ((int )err != 0) {\n---\n>   if ((int )err >= 0) {\n",
+        "381c381\n<   if ((int )err != 0) {\n---\n>   if ((int )err < 0) {\n",
+        "393c393\n<   if ((int )err != 0) {\n---\n>   if ((int )err < 0) {\n",
+        "393c393\n<   if ((int )err != 0) {\n---\n>   if ((int )err <= 0) {\n",
+        "361c361\n<   if ((int )err != 0) {\n---\n>   if ((int )err == 0) {\n",
+        "537c537\n<     if ((int )err != 0) {\n---\n>     if ((int )err <= 0) {\n"
       ]
     }
   ],
-  "comps": 14,
+  "comps": 22,
   "failed_comps": 0,
-  "passed_tests": 2,
-  "failed_tests": 132,
-  "duration": 1250.87057
+  "passed_tests": 1,
+  "failed_tests": 20,
+  "duration": 1261.780426
 }

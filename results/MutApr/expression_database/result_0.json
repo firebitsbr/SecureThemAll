@@ -1,19 +1,21 @@
 {
-  "repair_begin": "2020-10-19 11:20:12.411491",
-  "repair_end": "2020-10-19 11:21:06.706972",
+  "repair_begin": "2020-10-23 20:47:52.455766",
+  "repair_end": "2020-10-23 20:51:12.623654",
   "patches": [
     {
       "target_file": "src/expression_parser.i",
-      "fix": "902c902\n<             if ((unsigned int )cur_symbol == 12U) {\n---\n>             if ((unsigned int )cur_symbol <= 12U) {\n",
+      "fix": "902c902\n<             if ((unsigned int )cur_symbol == 12U) {\n---\n>             if ((unsigned int )cur_symbol >= 12U) {\n",
       "edits": [
+        "902c902\n<             if ((unsigned int )cur_symbol == 12U) {\n---\n>             if ((unsigned int )cur_symbol >= 12U) {\n",
+        "902c902\n<             if ((unsigned int )cur_symbol == 12U) {\n---\n>             if ((unsigned int )cur_symbol < 12U) {\n",
         "902c902\n<             if ((unsigned int )cur_symbol == 12U) {\n---\n>             if ((unsigned int )cur_symbol != 12U) {\n",
         "902c902\n<             if ((unsigned int )cur_symbol == 12U) {\n---\n>             if ((unsigned int )cur_symbol <= 12U) {\n"
       ]
     }
   ],
-  "comps": 4,
+  "comps": 6,
   "failed_comps": 0,
-  "passed_tests": 18,
-  "failed_tests": 3,
-  "duration": 54.295481
+  "passed_tests": 31,
+  "failed_tests": 4,
+  "duration": 200.167888
 }

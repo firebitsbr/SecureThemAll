@@ -1,6 +1,6 @@
 {
-  "repair_begin": "2020-10-19 10:30:05.897722",
-  "repair_end": "2020-10-19 10:32:05.215703",
+  "repair_begin": "2020-10-23 19:31:24.040360",
+  "repair_end": "2020-10-23 19:32:45.177169",
   "patches": [
     {
       "target_file": "src/parseCVF.i",
@@ -13,7 +13,7 @@
   ],
   "comps": 4,
   "failed_comps": 0,
-  "passed_tests": 21,
-  "failed_tests": 12,
-  "duration": 119.317981
+  "passed_tests": 20,
+  "failed_tests": 3,
+  "duration": 81.136809
 }

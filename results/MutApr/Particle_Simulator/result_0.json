@@ -1,23 +1,20 @@
 {
-  "repair_begin": "2020-10-19 10:58:49.417495",
-  "repair_end": "2020-10-19 11:05:54.692234",
+  "repair_begin": "2020-10-23 20:07:09.773145",
+  "repair_end": "2020-10-23 20:10:15.783189",
   "patches": [
     {
       "target_file": "src/render.i",
-      "fix": "168c168\n<     while (grid_y < 20U) {\n---\n>     while (grid_y == 20U) {\n",
+      "fix": "157c157\n<   if (tmp != 0) {\n---\n>   if (tmp < 0) {\n",
       "edits": [
-        "157c157\n<   if (tmp != 0) {\n---\n>   if (tmp > 0) {\n",
         "157c157\n<   if (tmp != 0) {\n---\n>   if (tmp < 0) {\n",
         "157c157\n<   if (tmp != 0) {\n---\n>   if (tmp == 0) {\n",
-        "168c168\n<     while (grid_y < 20U) {\n---\n>     while (grid_y == 20U) {\n",
-        "157c157\n<   if (tmp != 0) {\n---\n>   if (tmp >= 0) {\n",
         "157c157\n<   if (tmp != 0) {\n---\n>   if (tmp <= 0) {\n"
       ]
     }
   ],
-  "comps": 8,
+  "comps": 5,
   "failed_comps": 0,
-  "passed_tests": 45,
-  "failed_tests": 32,
-  "duration": 425.274739
+  "passed_tests": 19,
+  "failed_tests": 4,
+  "duration": 186.010044
 }

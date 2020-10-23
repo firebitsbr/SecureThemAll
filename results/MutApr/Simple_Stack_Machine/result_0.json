@@ -1,18 +1,23 @@
 {
-  "repair_begin": "2020-10-19 11:06:22.203748",
-  "repair_end": "2020-10-19 11:06:53.655555",
+  "repair_begin": "2020-10-23 20:17:28.695982",
+  "repair_end": "2020-10-23 20:21:59.714866",
   "patches": [
     {
       "target_file": "src/main.i",
-      "fix": "739c739\n<     if (temp___0 < 0) {\n---\n>     if (temp___0 == 0) {\n",
+      "fix": "743c743\n<     if (temp___0 > curTop) {\n---\n>     if (temp___0 == curTop) {\n",
       "edits": [
-        "739c739\n<     if (temp___0 < 0) {\n---\n>     if (temp___0 == 0) {\n"
+        "739c739\n<     if (temp___0 < 0) {\n---\n>     if (temp___0 > 0) {\n",
+        "739c739\n<     if (temp___0 < 0) {\n---\n>     if (temp___0 <= 0) {\n",
+        "739c739\n<     if (temp___0 < 0) {\n---\n>     if (temp___0 == 0) {\n",
+        "743c743\n<     if (temp___0 > curTop) {\n---\n>     if (temp___0 == curTop) {\n",
+        "739c739\n<     if (temp___0 < 0) {\n---\n>     if (temp___0 >= 0) {\n",
+        "739c739\n<     if (temp___0 < 0) {\n---\n>     if (temp___0 != 0) {\n"
       ]
     }
   ],
-  "comps": 3,
+  "comps": 8,
   "failed_comps": 0,
-  "passed_tests": 19,
-  "failed_tests": 7,
-  "duration": 31.451807
+  "passed_tests": 45,
+  "failed_tests": 10,
+  "duration": 271.018884
 }

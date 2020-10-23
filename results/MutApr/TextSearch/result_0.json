@@ -1,18 +1,20 @@
 {
-  "repair_begin": "2020-10-19 11:09:25.213377",
-  "repair_end": "2020-10-19 11:11:17.725659",
+  "repair_begin": "2020-10-23 20:23:11.629364",
+  "repair_end": "2020-10-23 20:29:10.967761",
   "patches": [
     {
       "target_file": "src/trex.i",
-      "fix": "231c231\n<     if ((unsigned int )match_type == 0U) {\n---\n>     if ((unsigned int )match_type != 0U) {\n",
+      "fix": "398c398\n<     if ((unsigned long )stack == (unsigned long )g_stack) {\n---\n>     if ((unsigned long )stack < (unsigned long )g_stack) {\n",
       "edits": [
-        "231c231\n<     if ((unsigned int )match_type == 0U) {\n---\n>     if ((unsigned int )match_type != 0U) {\n"
+        "398c398\n<     if ((unsigned long )stack == (unsigned long )g_stack) {\n---\n>     if ((unsigned long )stack < (unsigned long )g_stack) {\n",
+        "398c398\n<     if ((unsigned long )stack == (unsigned long )g_stack) {\n---\n>     if ((unsigned long )stack != (unsigned long )g_stack) {\n",
+        "398c398\n<     if ((unsigned long )stack == (unsigned long )g_stack) {\n---\n>     if ((unsigned long )stack <= (unsigned long )g_stack) {\n"
       ]
     }
   ],
-  "comps": 3,
+  "comps": 5,
   "failed_comps": 0,
-  "passed_tests": 10,
-  "failed_tests": 6,
-  "duration": 112.512282
+  "passed_tests": 33,
+  "failed_tests": 1,
+  "duration": 359.338397
 }

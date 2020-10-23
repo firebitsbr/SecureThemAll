@@ -1,6 +1,6 @@
 {
-  "repair_begin": "2020-10-19 11:08:49.008008",
-  "repair_end": "2020-10-19 11:09:05.767316",
+  "repair_begin": "2020-10-23 20:22:13.576644",
+  "repair_end": "2020-10-23 20:22:33.145021",
   "patches": [
     {
       "target_file": "src/map.i",
@@ -14,5 +14,5 @@
   "failed_comps": 0,
   "passed_tests": 20,
   "failed_tests": 2,
-  "duration": 16.759308
+  "duration": 19.568377
 }

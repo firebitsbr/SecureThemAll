@@ -1,18 +1,34 @@
 {
-  "repair_begin": "2020-10-19 11:11:29.109365",
-  "repair_end": "2020-10-19 11:11:40.540296",
+  "repair_begin": "2020-10-23 20:26:13.463505",
+  "repair_end": "2020-10-23 20:27:55.354067",
   "patches": [
     {
       "target_file": "src/service.i",
-      "fix": "188c188\n<   if ((int )idx > 127) {\n---\n>   if ((int )idx == 127) {\n",
+      "fix": "263c263\n<   while ((int )i < (int )req->data.data[5]) {\n---\n>   while ((int )i != (int )req->data.data[5]) {\n",
       "edits": [
-        "188c188\n<   if ((int )idx > 127) {\n---\n>   if ((int )idx == 127) {\n"
+        "248c248\n<   while (i < max) {\n---\n>   while (i >= max) {\n",
+        "188c188\n<   if ((int )idx > 127) {\n---\n>   if ((int )idx <= 127) {\n",
+        "244c244\n<   if (max > 1.10001) {\n---\n>   if (max >= 1.10001) {\n",
+        "248c248\n<   while (i < max) {\n---\n>   while (i > max) {\n",
+        "248c248\n<   while (i < max) {\n---\n>   while (i != max) {\n",
+        "188c188\n<   if ((int )idx > 127) {\n---\n>   if ((int )idx < 127) {\n",
+        "263c263\n<   while ((int )i < (int )req->data.data[5]) {\n---\n>   while ((int )i != (int )req->data.data[5]) {\n",
+        "188c188\n<   if ((int )idx > 127) {\n---\n>   if ((int )idx == 127) {\n",
+        "244c244\n<   if (max > 1.10001) {\n---\n>   if (max == 1.10001) {\n",
+        "244c244\n<   if (max > 1.10001) {\n---\n>   if (max <= 1.10001) {\n",
+        "248c248\n<   while (i < max) {\n---\n>   while (i <= max) {\n",
+        "188c188\n<   if ((int )idx > 127) {\n---\n>   if ((int )idx >= 127) {\n",
+        "263c263\n<   while ((int )i < (int )req->data.data[5]) {\n---\n>   while ((int )i == (int )req->data.data[5]) {\n",
+        "244c244\n<   if (max > 1.10001) {\n---\n>   if (max < 1.10001) {\n",
+        "244c244\n<   if (max > 1.10001) {\n---\n>   if (max != 1.10001) {\n",
+        "248c248\n<   while (i < max) {\n---\n>   while (i == max) {\n",
+        "188c188\n<   if ((int )idx > 127) {\n---\n>   if ((int )idx != 127) {\n"
       ]
     }
   ],
-  "comps": 3,
+  "comps": 19,
   "failed_comps": 0,
-  "passed_tests": 27,
-  "failed_tests": 5,
-  "duration": 11.430931
+  "passed_tests": 196,
+  "failed_tests": 30,
+  "duration": 101.890562
 }

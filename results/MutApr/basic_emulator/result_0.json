@@ -1,6 +1,6 @@
 {
-  "repair_begin": "2020-10-19 11:17:37.643992",
-  "repair_end": "2020-10-19 11:18:12.618767",
+  "repair_begin": "2020-10-23 20:29:29.010398",
+  "repair_end": "2020-10-23 20:30:04.426608",
   "patches": [
     {
       "target_file": "src/gb.i",
@@ -14,7 +14,7 @@
   ],
   "comps": 5,
   "failed_comps": 0,
-  "passed_tests": 46,
+  "passed_tests": 34,
   "failed_tests": 6,
-  "duration": 34.974775
+  "duration": 35.41621
 }

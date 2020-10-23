@@ -1,6 +1,6 @@
 {
-  "repair_begin": "2020-10-19 10:32:15.455578",
-  "repair_end": "2020-10-19 10:32:43.371646",
+  "repair_begin": "2020-10-23 19:33:00.543372",
+  "repair_end": "2020-10-23 19:33:32.391907",
   "patches": [
     {
       "target_file": "src/casino.i",
@@ -15,5 +15,5 @@
   "failed_comps": 0,
   "passed_tests": 32,
   "failed_tests": 1,
-  "duration": 27.916068
+  "duration": 31.848535
 }

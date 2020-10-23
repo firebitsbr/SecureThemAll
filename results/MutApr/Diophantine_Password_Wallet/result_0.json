@@ -1,18 +1,21 @@
 {
-  "repair_begin": "2020-10-19 10:32:44.147870",
-  "repair_end": "2020-10-19 10:33:52.355698",
+  "repair_begin": "2020-10-23 19:33:45.180032",
+  "repair_end": "2020-10-23 19:35:58.361687",
   "patches": [
     {
       "target_file": "src/main.i",
-      "fix": "503c503\n<       while (k < 50) {\n---\n>       while (k == 50) {\n",
+      "fix": "503c503\n<       while (k < 50) {\n---\n>       while (k > 50) {\n",
       "edits": [
-        "503c503\n<       while (k < 50) {\n---\n>       while (k == 50) {\n"
+        "503c503\n<       while (k < 50) {\n---\n>       while (k > 50) {\n",
+        "503c503\n<       while (k < 50) {\n---\n>       while (k <= 50) {\n",
+        "503c503\n<       while (k < 50) {\n---\n>       while (k == 50) {\n",
+        "503c503\n<       while (k < 50) {\n---\n>       while (k != 50) {\n"
       ]
     }
   ],
-  "comps": 3,
+  "comps": 6,
   "failed_comps": 0,
-  "passed_tests": 17,
-  "failed_tests": 10,
-  "duration": 68.207828
+  "passed_tests": 50,
+  "failed_tests": 17,
+  "duration": 133.181655
 }

@@ -1,19 +1,18 @@
 {
-  "repair_begin": "2020-10-19 11:25:10.348561",
-  "repair_end": "2020-10-19 11:26:38.611097",
+  "repair_begin": "2020-10-23 20:51:31.987315",
+  "repair_end": "2020-10-23 20:52:14.999360",
   "patches": [
     {
       "target_file": "src/form.i",
-      "fix": "344c344\n<   if (tmp___1 == 0) {\n---\n>   if (tmp___1 <= 0) {\n",
+      "fix": "431c431\n<   if ((unsigned long )(form->cur_page)->title == (unsigned long )((char const   *)0)) {\n---\n>   if ((unsigned long )(form->cur_page)->title != (unsigned long )((char const   *)0)) {\n",
       "edits": [
-        "344c344\n<   if (tmp___1 == 0) {\n---\n>   if (tmp___1 != 0) {\n",
-        "344c344\n<   if (tmp___1 == 0) {\n---\n>   if (tmp___1 <= 0) {\n"
+        "431c431\n<   if ((unsigned long )(form->cur_page)->title == (unsigned long )((char const   *)0)) {\n---\n>   if ((unsigned long )(form->cur_page)->title != (unsigned long )((char const   *)0)) {\n"
       ]
     }
   ],
-  "comps": 4,
+  "comps": 3,
   "failed_comps": 0,
-  "passed_tests": 28,
-  "failed_tests": 3,
-  "duration": 88.262536
+  "passed_tests": 17,
+  "failed_tests": 2,
+  "duration": 43.012045
 }

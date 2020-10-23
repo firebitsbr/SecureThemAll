@@ -1,23 +1,37 @@
 {
-  "repair_begin": "2020-10-19 10:50:38.901901",
-  "repair_end": "2020-10-19 11:02:09.084688",
+  "repair_begin": "2020-10-23 19:59:04.184777",
+  "repair_end": "2020-10-23 20:19:18.539383",
   "patches": [
     {
       "target_file": "src/service.i",
-      "fix": "322c322\n<     if (i < (unsigned int )sess->count) {\n---\n>     if (i != (unsigned int )sess->count) {\n",
+      "fix": "352c352\n<       i ++;\n---\n>       i --;\n",
       "edits": [
+        "345c345\n<         if ((unsigned int )(cur->msg)->mid == i) {\n---\n>         if ((unsigned int )(cur->msg)->mid != i) {\n",
         "329c329\n<     i ++;\n---\n>     i %= 1U;\n",
+        "331c331\n<   if (i == (unsigned int )sess->count) {\n---\n>   if (i != (unsigned int )sess->count) {\n",
+        "331c331\n<   if (i == (unsigned int )sess->count) {\n---\n>   if (i > (unsigned int )sess->count) {\n",
+        "331c331\n<   if (i == (unsigned int )sess->count) {\n---\n>   if (i < (unsigned int )sess->count) {\n",
         "329c329\n<     i ++;\n---\n>     i /= 1U;\n",
+        "345c345\n<         if ((unsigned int )(cur->msg)->mid == i) {\n---\n>         if ((unsigned int )(cur->msg)->mid < i) {\n",
         "329c329\n<     i ++;\n---\n>     i --;\n",
         "322c322\n<     if (i < (unsigned int )sess->count) {\n---\n>     if (i != (unsigned int )sess->count) {\n",
+        "322c322\n<     if (i < (unsigned int )sess->count) {\n---\n>     if (i >= (unsigned int )sess->count) {\n",
+        "331c331\n<   if (i == (unsigned int )sess->count) {\n---\n>   if (i >= (unsigned int )sess->count) {\n",
+        "345c345\n<         if ((unsigned int )(cur->msg)->mid == i) {\n---\n>         if ((unsigned int )(cur->msg)->mid > i) {\n",
         "322c322\n<     if (i < (unsigned int )sess->count) {\n---\n>     if (i == (unsigned int )sess->count) {\n",
+        "345c345\n<         if ((unsigned int )(cur->msg)->mid == i) {\n---\n>         if ((unsigned int )(cur->msg)->mid <= i) {\n",
+        "352c352\n<       i ++;\n---\n>       i --;\n",
+        "345c345\n<         if ((unsigned int )(cur->msg)->mid == i) {\n---\n>         if ((unsigned int )(cur->msg)->mid >= i) {\n",
+        "322c322\n<     if (i < (unsigned int )sess->count) {\n---\n>     if (i > (unsigned int )sess->count) {\n",
+        "322c322\n<     if (i < (unsigned int )sess->count) {\n---\n>     if (i <= (unsigned int )sess->count) {\n",
+        "331c331\n<   if (i == (unsigned int )sess->count) {\n---\n>   if (i <= (unsigned int )sess->count) {\n",
         "329c329\n<     i ++;\n---\n>     i *= 1U;\n"
       ]
     }
   ],
-  "comps": 8,
+  "comps": 22,
   "failed_comps": 0,
-  "passed_tests": 18,
-  "failed_tests": 73,
-  "duration": 690.182787
+  "passed_tests": 39,
+  "failed_tests": 25,
+  "duration": 1214.354606
 }

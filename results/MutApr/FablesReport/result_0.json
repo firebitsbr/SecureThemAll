@@ -1,18 +1,30 @@
 {
-  "repair_begin": "2020-10-19 10:36:34.955029",
-  "repair_end": "2020-10-19 10:39:08.599063",
+  "repair_begin": "2020-10-23 19:42:40.082934",
+  "repair_end": "2020-10-23 19:54:19.144010",
   "patches": [
     {
       "target_file": "src/service.i",
-      "fix": "291c291\n<     while ((unsigned long )nextField->next != (unsigned long )((struct field_t *)0)) {\n---\n>     while ((unsigned long )nextField->next == (unsigned long )((struct field_t *)0)) {\n",
+      "fix": "369c369\n<         while ((unsigned long )key != (unsigned long )((Field *)0)) {\n---\n>         while ((unsigned long )key < (unsigned long )((Field *)0)) {\n",
       "edits": [
-        "291c291\n<     while ((unsigned long )nextField->next != (unsigned long )((struct field_t *)0)) {\n---\n>     while ((unsigned long )nextField->next == (unsigned long )((struct field_t *)0)) {\n"
+        "154c154\n<     if (58 == (int )character) {\n---\n>     if (58 >= (int )character) {\n",
+        "153c153\n<   while (59 != (int )character) {\n---\n>   while (59 >= (int )character) {\n",
+        "369c369\n<         while ((unsigned long )key != (unsigned long )((Field *)0)) {\n---\n>         while ((unsigned long )key <= (unsigned long )((Field *)0)) {\n",
+        "154c154\n<     if (58 == (int )character) {\n---\n>     if (58 < (int )character) {\n",
+        "154c154\n<     if (58 == (int )character) {\n---\n>     if (58 != (int )character) {\n",
+        "153c153\n<   while (59 != (int )character) {\n---\n>   while (59 == (int )character) {\n",
+        "153c153\n<   while (59 != (int )character) {\n---\n>   while (59 > (int )character) {\n",
+        "369c369\n<         while ((unsigned long )key != (unsigned long )((Field *)0)) {\n---\n>         while ((unsigned long )key < (unsigned long )((Field *)0)) {\n",
+        "154c154\n<     if (58 == (int )character) {\n---\n>     if (58 > (int )character) {\n",
+        "153c153\n<   while (59 != (int )character) {\n---\n>   while (59 < (int )character) {\n",
+        "153c153\n<   while (59 != (int )character) {\n---\n>   while (59 <= (int )character) {\n",
+        "369c369\n<         while ((unsigned long )key != (unsigned long )((Field *)0)) {\n---\n>         while ((unsigned long )key == (unsigned long )((Field *)0)) {\n",
+        "154c154\n<     if (58 == (int )character) {\n---\n>     if (58 <= (int )character) {\n"
       ]
     }
   ],
-  "comps": 3,
+  "comps": 15,
   "failed_comps": 0,
-  "passed_tests": 6,
-  "failed_tests": 19,
-  "duration": 153.644034
+  "passed_tests": 37,
+  "failed_tests": 27,
+  "duration": 699.061076
 }

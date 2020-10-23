@@ -1,6 +1,6 @@
 {
-  "repair_begin": "2020-10-19 11:07:23.337975",
-  "repair_end": "2020-10-19 11:08:35.577580",
+  "repair_begin": "2020-10-23 20:21:15.949526",
+  "repair_end": "2020-10-23 20:23:23.706638",
   "patches": [
     {
       "target_file": "src/squarerabbit.i",
@@ -15,5 +15,5 @@
   "failed_comps": 0,
   "passed_tests": 30,
   "failed_tests": 3,
-  "duration": 72.239605
+  "duration": 127.757112
 }

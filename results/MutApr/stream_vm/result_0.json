@@ -1,18 +1,28 @@
 {
-  "repair_begin": "2020-10-19 11:34:48.380228",
-  "repair_end": "2020-10-19 11:36:52.044547",
+  "repair_begin": "2020-10-23 20:55:17.414074",
+  "repair_end": "2020-10-23 21:06:25.219425",
   "patches": [
     {
       "target_file": "src/main.i",
-      "fix": "392c392\n<     if (tmp___1 != 0) {\n---\n>     if (tmp___1 == 0) {\n",
+      "fix": "291c291\n<   state.registers[rdst] ^= tmp___3 | (unsigned int )((short )lval);\n---\n>   state.registers[rdst] &= tmp___3 | (unsigned int )((short )lval);\n",
       "edits": [
-        "392c392\n<     if (tmp___1 != 0) {\n---\n>     if (tmp___1 == 0) {\n"
+        "392c392\n<     if (tmp___1 != 0) {\n---\n>     if (tmp___1 > 0) {\n",
+        "398c398\n<     if (tmp___2 != 0) {\n---\n>     if (tmp___2 >= 0) {\n",
+        "392c392\n<     if (tmp___1 != 0) {\n---\n>     if (tmp___1 < 0) {\n",
+        "392c392\n<     if (tmp___1 != 0) {\n---\n>     if (tmp___1 == 0) {\n",
+        "398c398\n<     if (tmp___2 != 0) {\n---\n>     if (tmp___2 == 0) {\n",
+        "398c398\n<     if (tmp___2 != 0) {\n---\n>     if (tmp___2 > 0) {\n",
+        "392c392\n<     if (tmp___1 != 0) {\n---\n>     if (tmp___1 >= 0) {\n",
+        "398c398\n<     if (tmp___2 != 0) {\n---\n>     if (tmp___2 < 0) {\n",
+        "398c398\n<     if (tmp___2 != 0) {\n---\n>     if (tmp___2 <= 0) {\n",
+        "291c291\n<   state.registers[rdst] ^= tmp___3 | (unsigned int )((short )lval);\n---\n>   state.registers[rdst] &= tmp___3 | (unsigned int )((short )lval);\n",
+        "392c392\n<     if (tmp___1 != 0) {\n---\n>     if (tmp___1 <= 0) {\n"
       ]
     }
   ],
-  "comps": 3,
+  "comps": 13,
   "failed_comps": 0,
-  "passed_tests": 2,
+  "passed_tests": 10,
   "failed_tests": 14,
-  "duration": 123.664319
+  "duration": 667.805351
 }

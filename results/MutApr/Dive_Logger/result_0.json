@@ -1,18 +1,29 @@
 {
-  "repair_begin": "2020-10-19 10:32:59.928106",
-  "repair_end": "2020-10-19 10:34:48.282666",
+  "repair_begin": "2020-10-23 19:33:53.275986",
+  "repair_end": "2020-10-23 19:54:57.855743",
   "patches": [
     {
       "target_file": "src/ui.i",
-      "fix": "567c567\n<             if (year % 4UL == 0UL) {\n---\n>             if (year % 4UL != 0UL) {\n",
+      "fix": "",
       "edits": [
-        "567c567\n<             if (year % 4UL == 0UL) {\n---\n>             if (year % 4UL != 0UL) {\n"
+        "914c914\n<   while ((unsigned long )DiveEntryListThis != (unsigned long )((pDiveEntryListNode )0)) {\n---\n>   while ((unsigned long )DiveEntryListThis > (unsigned long )((pDiveEntryListNode )0)) {\n",
+        "596c596\n<             if (day >= 1UL) {\n---\n>             if (day > 1UL) {\n",
+        "871c871\n<   if ((unsigned long )DiveEntryListThis != (unsigned long )((pDiveEntryListNode )0)) {\n---\n>   if ((unsigned long )DiveEntryListThis <= (unsigned long )((pDiveEntryListNode )0)) {\n",
+        "914c914\n<   while ((unsigned long )DiveEntryListThis != (unsigned long )((pDiveEntryListNode )0)) {\n---\n>   while ((unsigned long )DiveEntryListThis < (unsigned long )((pDiveEntryListNode )0)) {\n",
+        "914c914\n<   while ((unsigned long )DiveEntryListThis != (unsigned long )((pDiveEntryListNode )0)) {\n---\n>   while ((unsigned long )DiveEntryListThis == (unsigned long )((pDiveEntryListNode )0)) {\n",
+        "596c596\n<             if (day >= 1UL) {\n---\n>             if (day == 1UL) {\n",
+        "596c596\n<             if (day >= 1UL) {\n---\n>             if (day <= 1UL) {\n",
+        "914c914\n<   while ((unsigned long )DiveEntryListThis != (unsigned long )((pDiveEntryListNode )0)) {\n---\n>   while ((unsigned long )DiveEntryListThis >= (unsigned long )((pDiveEntryListNode )0)) {\n",
+        "596c596\n<             if (day >= 1UL) {\n---\n>             if (day < 1UL) {\n",
+        "596c596\n<             if (day >= 1UL) {\n---\n>             if (day != 1UL) {\n",
+        "871c871\n<   if ((unsigned long )DiveEntryListThis != (unsigned long )((pDiveEntryListNode )0)) {\n---\n>   if ((unsigned long )DiveEntryListThis == (unsigned long )((pDiveEntryListNode )0)) {\n",
+        "914c914\n<   while ((unsigned long )DiveEntryListThis != (unsigned long )((pDiveEntryListNode )0)) {\n---\n>   while ((unsigned long )DiveEntryListThis <= (unsigned long )((pDiveEntryListNode )0)) {\n"
       ]
     }
   ],
-  "comps": 3,
+  "comps": 14,
   "failed_comps": 0,
-  "passed_tests": 13,
-  "failed_tests": 8,
-  "duration": 108.35456
+  "passed_tests": 91,
+  "failed_tests": 12,
+  "duration": 1264.579757
 }

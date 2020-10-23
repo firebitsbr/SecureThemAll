@@ -1,6 +1,6 @@
 {
-  "repair_begin": "2020-10-19 10:48:25.494981",
-  "repair_end": "2020-10-19 10:50:27.845230",
+  "repair_begin": "2020-10-23 19:56:22.534102",
+  "repair_end": "2020-10-23 19:57:47.266500",
   "patches": [
     {
       "target_file": "src/operation.i",
@@ -14,6 +14,6 @@
   "comps": 4,
   "failed_comps": 0,
   "passed_tests": 20,
-  "failed_tests": 13,
-  "duration": 122.350249
+  "failed_tests": 3,
+  "duration": 84.732398
 }
