@@ -153,9 +153,9 @@ class MutApr(RepairTool):
         log_arg = f"{benchmark.log_file}"
 
         test_good = benchmark.test(challenge=challenge, regex=str(gre), pos_tests=True, prefix=str(repair_dir),
-                                   log_file=log_arg)
+                                   log_file=log_arg, exit_fail=True)
         test_bad = benchmark.test(challenge=challenge, regex=str(bre), neg_tests=True, prefix=str(repair_dir),
-                                  log_file=log_arg)
+                                  log_file=log_arg, exit_fail=True)
         compile_cmd = benchmark.compile(challenge=challenge, instrumented_files=[str(target_file)], regex=str(cre),
                                         log_file=log_arg, prefix=str(repair_dir), cpp_files=True)
 
