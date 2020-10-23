@@ -1,6 +1,6 @@
 {
-  "repair_begin": "2020-10-19 13:07:19.948107",
-  "repair_end": "2020-10-19 13:09:17.354366",
+  "repair_begin": "2020-10-23 18:09:07.371225",
+  "repair_end": "2020-10-23 18:10:56.011074",
   "patches": [
     {
       "target_file": "src/uwfc.c",
@@ -14,5 +14,5 @@
   "failed_comps": 0,
   "passed_tests": 11,
   "failed_tests": 0,
-  "duration": 117.406259
+  "duration": 108.639849
 }

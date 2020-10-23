@@ -1,29 +1,41 @@
 {
-  "repair_begin": "2020-10-19 13:07:19.227948",
-  "repair_end": "2020-10-19 13:08:15.209466",
+  "repair_begin": "2020-10-23 18:09:12.319952",
+  "repair_end": "2020-10-23 18:10:16.962090",
   "patches": [
     {
       "target_file": "src/main.c",
       "fix": "205c205\n<   ((int (*)())0)();\n---\n> \n",
       "edits": [
-        "205,206c205\n<   ((int (*)())0)();\n< \n---\n> MODULE_ALIAS_CRYPTO ( int ) ;\n",
-        "205c205\n<   ((int (*)())0)();\n---\n> MODULE_ALIAS_CRYPTO ( int ) ( ) ; \n",
-        "205c205\n<   ((int (*)())0)();\n---\n> MODULE_ALIAS_CRYPTO ( * * ) 0 ) ; \n",
+        "205c205\n<   ((int (*)())0)();\n---\n> MODULE_ALIAS_CRYPTO ( * * ) 0 ; \n",
+        "205,206c205\n<   ((int (*)())0)();\n< \n---\n> MODULE_ALIAS_CRYPTO ( * * ) 0 ) ;\n",
         "205c205\n<   ((int (*)())0)();\n---\n> \n",
+        "205c205\n<   ((int (*)())0)();\n---\n> MODULE_ALIAS_CRYPTO ( * * * 2 ) ; \n",
         "205c205\n<   ((int (*)())0)();\n---\n> MODULE_ALIAS_CRYPTO ( int ) ( 1 ) ; \n",
+        "205c205\n<   ((int (*)())0)();\n---\n> MODULE_ALIAS_CRYPTO ( * ( * ) ( i ) 0 ) ; \n",
         "205c205\n<   ((int (*)())0)();\n---\n> MODULE_ALIAS_CRYPTO ( int ) 0 ; \n",
+        "205c205\n<   ((int (*)())0)();\n---\n> MODULE_ALIAS_CRYPTO ( * ) ; \n",
+        "205c205\n<   ((int (*)())0)();\n---\n> MODULE_ALIAS_CRYPTO ( int ) ( ; \n",
+        "205c205\n<   ((int (*)())0)();\n---\n> MODULE_ALIAS_CRYPTO ( * ( * ) ( 0x10000000 - 2 ) ) ; \n",
+        "205c205\n<   ((int (*)())0)();\n---\n> MODULE_ALIAS_CRYPTO ( * ) ( 0 ) ; \n",
+        "205c205\n<   ((int (*)())0)();\n---\n> MODULE_ALIAS_CRYPTO ( int ) ( ) ; \n",
+        "205c205\n<   ((int (*)())0)();\n---\n> MODULE_ALIAS_CRYPTO ( * * * ) 0 ) ; \n",
         "205c205\n<   ((int (*)())0)();\n---\n> MODULE_ALIAS_CRYPTO ( int ) ; \n",
+        "205c205\n<   ((int (*)())0)();\n---\n> MODULE_ALIAS_CRYPTO ( * * * 1 ) ; \n",
+        "205c205\n<   ((int (*)())0)();\n---\n> MODULE_ALIAS_CRYPTO ( * ( * ) 0 ) ; \n",
+        "205c205\n<   ((int (*)())0)();\n---\n> MODULE_ALIAS_CRYPTO ( * ) ( ) ; \n",
         "205c205\n<   ((int (*)())0)();\n---\n> MODULE_ALIAS_CRYPTO ( gBoard ) ; \n",
-        "205c205\n<   ((int (*)())0)();\n---\n> MODULE_ALIAS_CRYPTO ( int ) ; \n",
+        "205c205\n<   ((int (*)())0)();\n---\n> MODULE_ALIAS_CRYPTO ( * * ) 0 ) ; \n",
+        "205c205\n<   ((int (*)())0)();\n---\n> MODULE_ALIAS_CRYPTO ( * ( * ) ) ; \n",
         "205c205\n<   ((int (*)())0)();\n---\n> MODULE_ALIAS_CRYPTO ( int ) ( \n",
-        "205c205\n<   ((int (*)())0)();\n---\n> MODULE_ALIAS_CRYPTO ( int ) ( 0 ) ; \n"
+        "205c205\n<   ((int (*)())0)();\n---\n> MODULE_ALIAS_CRYPTO ( int ) ( 0 ) ; \n",
+        "205c205\n<   ((int (*)())0)();\n---\n> MODULE_ALIAS_CRYPTO ( * ) ( 1 ) ; \n"
       ]
     }
   ],
   "comps": 2,
-  "failed_comps": 10,
+  "failed_comps": 22,
   "passed_tests": 11,
   "failed_tests": 0,
-  "duration": 55.981518,
-  "error": "Return code: 1\nReturn code: 1\nReturn code: 1\nReturn code: 1\nReturn code: 1\nReturn code: 1\nReturn code: 1\nReturn code: 1\nReturn code: 1\nReturn code: 1\n"
+  "duration": 64.642138,
+  "error": "Return code: 1\nReturn code: 1\nReturn code: 1\nReturn code: 1\nReturn code: 1\nReturn code: 1\nReturn code: 1\nReturn code: 1\nReturn code: 1\nReturn code: 1\nReturn code: 1\nReturn code: 1\nReturn code: 1\nReturn code: 1\nReturn code: 1\nReturn code: 1\nReturn code: 1\nReturn code: 1\nReturn code: 1\nReturn code: 1\nReturn code: 1\nReturn code: 1\n"
 }
