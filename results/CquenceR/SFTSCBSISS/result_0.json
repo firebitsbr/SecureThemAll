@@ -1,18 +1,31 @@
 {
-  "repair_begin": "2020-10-19 13:22:28.073531",
-  "repair_end": "2020-10-19 13:22:45.594433",
+  "repair_begin": "2020-10-23 18:34:49.465560",
+  "repair_end": "2020-10-23 18:38:03.760987",
   "patches": [
     {
       "target_file": "src/packet.c",
-      "fix": "174a175\n> \n",
+      "fix": "174a175,177\n> \t if ( 5 < 5 ) { \n> \t \t return - EINVAL ; \n> \t } \n",
       "edits": [
-        "174a175\n> \n"
+        "174a175,177\n> if ( ! uint8_t & 5 ) { \n> return NULL ; \n>  } \n",
+        "174a175\n> uint8_t / cgc_strncpy(name < 5 > NULL ; \n",
+        "174a175\n> \t \n",
+        "174a175,179\n> if ( 5 ) { \n>  ( 5 ) ; \n> return - EINVAL ; \n>  } \n> \n",
+        "174a175,177\n> \t if ( 5 < 5 ) { \n> \t \t return - EINVAL ; \n> \t } \n",
+        "174a175,178\n> if ( 5 ) { \n>  ( 5 ) ; \n> return - EINVAL ; \n>  } \n",
+        "174a175,178\n> if ( ! uint8_t & 5 ) { \n> return NULL ; \n>  } \n> \n",
+        "174a175\n> uint8_t value ( 5 ) ; \n",
+        "174a175,178\n> if ( ! uint8_t & 5 ) { \n>  ( 5 ) ; \n> return - EINVAL ; \n>  } \n",
+        "174a175,179\n> if ( ! uint8_t & 5 ) { \n>  ( 5 ) ; \n> return - EINVAL ; \n>  } \n> \n",
+        "174a175\n> \n",
+        "174a175,178\n> \t if ( 5 < 5 ) { \n> \t \t return - EINVAL ; \n> \t } \n> \n",
+        "174a175,176\n> \n> \n"
       ]
     }
   ],
-  "comps": 2,
-  "failed_comps": 0,
-  "passed_tests": 11,
-  "failed_tests": 0,
-  "duration": 17.520902
+  "comps": 8,
+  "failed_comps": 6,
+  "passed_tests": 59,
+  "failed_tests": 6,
+  "duration": 194.295427,
+  "error": "Return code: 1\nReturn code: 1\nReturn code: 1\nReturn code: 1\nReturn code: 1\nReturn code: 1\nReturn code: 1\nReturn code: 1\nReturn code: 1\nReturn code: 1\nReturn code: 1\nReturn code: 1\n"
 }
