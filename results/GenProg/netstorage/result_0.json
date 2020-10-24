@@ -1,17 +1,21 @@
 {
-  "repair_begin": "2020-10-18 22:14:48.590358",
-  "repair_end": "2020-10-18 22:14:49.316371",
+  "repair_begin": "2020-10-23 23:02:39.460390",
+  "repair_end": "2020-10-23 23:15:35.308288",
   "patches": [
     {
       "target_file": "src/memcpy_fast.i",
-      "fix": "no repair found",
-      "edits": []
+      "fix": "124,127d123\n<   } else\n<   if ((intptr_t )src % 16U) {\n<     tmp = cgc_memcpy(dst, (void const   *)src, length);\n<     return (tmp);\n128a125,129\n>     {\n>     if ((intptr_t )src % 16U) {\n>       tmp = cgc_memcpy(dst, (void const   *)src, length);\n>       return (tmp);\n>     } else {\n129a131,133\n>     }\n>     return (dst);\n>     }\n",
+      "edits": [
+        "116a117\n>   {\n129a131,132\n>   }\n>   *((uint128_t *)dst + i) = *((uint128_t *)src + i);\n",
+        "124,127d123\n<   } else\n<   if ((intptr_t )src % 16U) {\n<     tmp = cgc_memcpy(dst, (void const   *)src, length);\n<     return (tmp);\n128a125,129\n>     {\n>     if ((intptr_t )src % 16U) {\n>       tmp = cgc_memcpy(dst, (void const   *)src, length);\n>       return (tmp);\n>     } else {\n129a131,133\n>     }\n>     return (dst);\n>     }\n",
+        "117,124d116\n<   if (length % 16UL) {\n<     tmp = cgc_memcpy(dst, (void const   *)src, length);\n<     return (tmp);\n<   } else\n<   if ((intptr_t )dst % 16U) {\n<     tmp = cgc_memcpy(dst, (void const   *)src, length);\n<     return (tmp);\n<   } else\n"
+      ]
     }
   ],
-  "comps": 2,
+  "comps": 6,
   "failed_comps": 0,
-  "passed_tests": 1,
-  "failed_tests": 0,
-  "duration": 0.726013,
+  "passed_tests": 52,
+  "failed_tests": 14,
+  "duration": 775.847898,
   "error": "cat: /etc/redhat-release: No such file or directory\n"
 }

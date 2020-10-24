@@ -1,17 +1,19 @@
 {
-  "repair_begin": "2020-10-18 22:11:02.921832",
-  "repair_end": "2020-10-18 22:12:05.439867",
+  "repair_begin": "2020-10-23 22:46:02.509839",
+  "repair_end": "2020-10-23 22:50:56.298193",
   "patches": [
     {
       "target_file": "src/packet.i",
-      "fix": "no repair found",
-      "edits": []
+      "fix": "907c907\n<           x___1 = (signed char )(LAST_CHAR_POS - (offset - char_index___0));\n---\n>           *(data + i___2) = *(VALID_CHARS + x___1);\n911c911\n<         *(data + i___2) = *(VALID_CHARS + x___1);\n---\n>         x___1 = (signed char )(LAST_CHAR_POS - (offset - char_index___0));\n",
+      "edits": [
+        "907c907\n<           x___1 = (signed char )(LAST_CHAR_POS - (offset - char_index___0));\n---\n>           *(data + i___2) = *(VALID_CHARS + x___1);\n911c911\n<         *(data + i___2) = *(VALID_CHARS + x___1);\n---\n>         x___1 = (signed char )(LAST_CHAR_POS - (offset - char_index___0));\n"
+      ]
     }
   ],
-  "comps": 3,
+  "comps": 4,
   "failed_comps": 0,
-  "passed_tests": 11,
-  "failed_tests": 1,
-  "duration": 62.518035,
+  "passed_tests": 40,
+  "failed_tests": 4,
+  "duration": 293.788354,
   "error": "cat: /etc/redhat-release: No such file or directory\n"
 }

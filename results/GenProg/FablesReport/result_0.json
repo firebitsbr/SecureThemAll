@@ -1,17 +1,23 @@
 {
-  "repair_begin": "2020-10-18 21:55:05.870485",
-  "repair_end": "2020-10-18 21:55:43.576730",
+  "repair_begin": "2020-10-23 21:54:25.546018",
+  "repair_end": "2020-10-23 22:14:36.339501",
   "patches": [
     {
       "target_file": "src/service.i",
       "fix": "no repair found",
-      "edits": []
+      "edits": [
+        "402c402\n<         cgc_free((void *)record);\n---\n>         tmp___2 = cgc_startswith(command, (char *)\"ERROR\");\n418c418\n<           tmp___2 = cgc_startswith(command, (char *)\"ERROR\");\n---\n>           cgc_free((void *)record);\n",
+        "274a275\n>   {\n281a283,288\n>   }\n>   if (! head->next) {\n>     return;\n>   } else {\n> \n>   }\n",
+        "158a159\n>       {\n159a161,162\n> \n>       }\n",
+        "221,226c221\n<       if ((unsigned long )fast != (unsigned long )((Record *)0)) {\n<         slow = slow->next;\n<         fast = fast->next;\n<       } else {\n< \n<       }\n---\n>       *back = slow->next;\n229c224,229\n<     *back = slow->next;\n---\n>     if ((unsigned long )fast != (unsigned long )((Record *)0)) {\n>       slow = slow->next;\n>       fast = fast->next;\n>     } else {\n> \n>     }\n",
+        "446c446\n<   cgc_newReport(& report);\n---\n> \n"
+      ]
     }
   ],
-  "comps": 2,
+  "comps": 8,
   "failed_comps": 0,
-  "passed_tests": 5,
-  "failed_tests": 6,
-  "duration": 37.706245,
+  "passed_tests": 61,
+  "failed_tests": 51,
+  "duration": 1210.793483,
   "error": "cat: /etc/redhat-release: No such file or directory\n"
 }

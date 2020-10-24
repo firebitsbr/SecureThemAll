@@ -1,17 +1,20 @@
 {
-  "repair_begin": "2020-10-18 22:10:48.848175",
-  "repair_end": "2020-10-18 22:10:49.998695",
+  "repair_begin": "2020-10-23 22:43:31.803130",
+  "repair_end": "2020-10-23 22:58:25.694053",
   "patches": [
     {
       "target_file": "src/trex.i",
-      "fix": "no repair found",
-      "edits": []
+      "fix": "357,368c357,369\n<     } else\n<     if ((int )*tstr == 0) {\n<       _L: /* CIL Label */ \n<       if (*tstr) {\n<         end_of_str = 0;\n<       } else {\n<         end_of_str = 1;\n<       }\n<       *tstr = (unsigned char )'\\000';\n<       while (1) {\n<         if (! match_len) {\n<           if (*tline) {\n---\n>     } else {\n>       {\n>       if ((int )*tstr == 0) {\n>         _L: /* CIL Label */ \n>         if (*tstr) {\n>           end_of_str = 0;\n>         } else {\n>           end_of_str = 1;\n>         }\n>         *tstr = (unsigned char )'\\000';\n>         while (1) {\n>           if (! match_len) {\n>             if (*tline) {\n369a371,373\n>             } else {\n>               break;\n>             }\n373,389c377,391\n<         } else {\n<           break;\n<         }\n<         i = 0;\n<         while (i < 1000) {\n<           *(g_epsilon_loop + i) = 1000;\n<           i ++;\n<         }\n<         match_len = cgc_match_helper(state, tline, 0, match_type);\n<         if (match_len) {\n<           cgc_fdprintf(1, \"%s\\n\", line);\n<           break;\n<         } else\n<         if ((unsigned int )match_type == 1U) {\n<           break;\n<         } else {\n<           tline ++;\n---\n>           i = 0;\n>           while (i < 1000) {\n>             *(g_epsilon_loop + i) = 1000;\n>             i ++;\n>           }\n>           match_len = cgc_match_helper(state, tline, 0, match_type);\n>           if (match_len) {\n>             cgc_fdprintf(1, \"%s\\n\", line);\n>             break;\n>           } else\n>           if ((unsigned int )match_type == 1U) {\n>             break;\n>           } else {\n>             tline ++;\n>           }\n391,396c393,397\n<       }\n<       match_len = 0;\n<       tstr ++;\n<       line = tstr;\n<       tline = line;\n<     } else {\n---\n>         match_len = 0;\n>         tstr ++;\n>         line = tstr;\n>         tline = line;\n>       } else {\n397a399,401\n>       }\n>       tline = tstr;\n>       }\n",
+      "edits": [
+        "357,368c357,369\n<     } else\n<     if ((int )*tstr == 0) {\n<       _L: /* CIL Label */ \n<       if (*tstr) {\n<         end_of_str = 0;\n<       } else {\n<         end_of_str = 1;\n<       }\n<       *tstr = (unsigned char )'\\000';\n<       while (1) {\n<         if (! match_len) {\n<           if (*tline) {\n---\n>     } else {\n>       {\n>       if ((int )*tstr == 0) {\n>         _L: /* CIL Label */ \n>         if (*tstr) {\n>           end_of_str = 0;\n>         } else {\n>           end_of_str = 1;\n>         }\n>         *tstr = (unsigned char )'\\000';\n>         while (1) {\n>           if (! match_len) {\n>             if (*tline) {\n369a371,373\n>             } else {\n>               break;\n>             }\n373,389c377,391\n<         } else {\n<           break;\n<         }\n<         i = 0;\n<         while (i < 1000) {\n<           *(g_epsilon_loop + i) = 1000;\n<           i ++;\n<         }\n<         match_len = cgc_match_helper(state, tline, 0, match_type);\n<         if (match_len) {\n<           cgc_fdprintf(1, \"%s\\n\", line);\n<           break;\n<         } else\n<         if ((unsigned int )match_type == 1U) {\n<           break;\n<         } else {\n<           tline ++;\n---\n>           i = 0;\n>           while (i < 1000) {\n>             *(g_epsilon_loop + i) = 1000;\n>             i ++;\n>           }\n>           match_len = cgc_match_helper(state, tline, 0, match_type);\n>           if (match_len) {\n>             cgc_fdprintf(1, \"%s\\n\", line);\n>             break;\n>           } else\n>           if ((unsigned int )match_type == 1U) {\n>             break;\n>           } else {\n>             tline ++;\n>           }\n391,396c393,397\n<       }\n<       match_len = 0;\n<       tstr ++;\n<       line = tstr;\n<       tline = line;\n<     } else {\n---\n>         match_len = 0;\n>         tstr ++;\n>         line = tstr;\n>         tline = line;\n>       } else {\n397a399,401\n>       }\n>       tline = tstr;\n>       }\n",
+        "439c439,442\n<     if ((unsigned long )stack == (unsigned long )g_stack) {\n---\n>     while (1) {\n>       stack --;\n>       arg1 = *stack;\n>       *stack = (state_t *)0;\n441,442d443\n<     } else {\n< \n497,500c498\n<     while (1) {\n<       stack --;\n<       arg1 = *stack;\n<       *stack = (state_t *)0;\n---\n>     if ((unsigned long )stack == (unsigned long )g_stack) {\n501a500,501\n>     } else {\n> \n"
+      ]
     }
   ],
-  "comps": 2,
+  "comps": 5,
   "failed_comps": 0,
-  "passed_tests": 1,
-  "failed_tests": 1,
-  "duration": 1.15052,
+  "passed_tests": 47,
+  "failed_tests": 8,
+  "duration": 893.890923,
   "error": "cat: /etc/redhat-release: No such file or directory\n/tmp/GenProg_TextSearch_0/TextSearch/src/trex.c:116: Warning: Return statement with a value in function returning void\n"
 }

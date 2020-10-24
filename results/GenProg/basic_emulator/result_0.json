@@ -1,22 +1,32 @@
 {
-  "repair_begin": "2020-10-18 22:12:56.308410",
-  "repair_end": "2020-10-18 22:14:26.382261",
+  "repair_begin": "2020-10-23 22:51:47.798775",
+  "repair_end": "2020-10-23 23:07:54.326945",
   "patches": [
     {
       "target_file": "src/gb.i",
-      "fix": "282c282\n<   gb->ticks_ly = 0U;\n---\n> \n",
+      "fix": "320c320\n<   cgc_memcpy((void *)gb->rom, (void const   *)cartridge, (cgc_size_t )32768);\n---\n> \n",
       "edits": [
+        "263c263\n<   *(gb->mem + 65312) = (uint8_t )255;\n---\n> \n",
+        "321,322d320\n<   hdr = (hdr_t *)(gb->rom + 256);\n<   copy_title(gb->title, (hdr_t const   *)hdr);\n323a322,323\n>   copy_title(gb->title, (hdr_t const   *)hdr);\n>   hdr = (hdr_t *)(gb->rom + 256);\n",
         "261a262\n>   {\n262a264,265\n>   return;\n>   }\n",
+        "267a268\n>   {\n268a270,271\n>   *(gb->mem + 65350) = (uint8_t )255;\n>   }\n",
+        "222c222\n<   gb->rom = gb->mem + 0;\n---\n> \n",
+        "278a279\n>   {\n279a281,282\n> \n>   }\n",
+        "272c272\n<   *(gb->mem + 65347) = (uint8_t )0;\n---\n> \n",
+        "320c320\n<   cgc_memcpy((void *)gb->rom, (void const   *)cartridge, (cgc_size_t )32768);\n---\n> \n",
         "242a243\n>   {\n243a245,246\n>   *(gb->mem + 65315) = (uint8_t )191;\n>   }\n",
+        "283c283\n<   gb->ticks_divider = 0U;\n---\n> \n",
+        "230,232d229\n<   if (tmp___1 != 0) {\n<     return (0);\n<   } else {\n234d230\n<   }\n",
         "253c253\n<   *(gb->mem + 65297) = (uint8_t )191;\n---\n>   *(gb->mem + 65344) = (uint8_t )144;\n270c270\n<   *(gb->mem + 65344) = (uint8_t )144;\n---\n>   *(gb->mem + 65297) = (uint8_t )191;\n",
+        "274a275\n>   {\n275a277,278\n>   *(gb->mem + 65352) = (uint8_t )255;\n>   }\n",
         "282c282\n<   gb->ticks_ly = 0U;\n---\n> \n"
       ]
     }
   ],
-  "comps": 7,
+  "comps": 17,
   "failed_comps": 0,
-  "passed_tests": 75,
-  "failed_tests": 16,
-  "duration": 90.073851,
+  "passed_tests": 156,
+  "failed_tests": 65,
+  "duration": 966.52817,
   "error": "cat: /etc/redhat-release: No such file or directory\n"
 }

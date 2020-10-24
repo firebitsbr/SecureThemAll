@@ -1,17 +1,20 @@
 {
-  "repair_begin": "2020-10-18 22:15:46.532486",
-  "repair_end": "2020-10-18 22:15:47.822422",
+  "repair_begin": "2020-10-23 23:08:12.577882",
+  "repair_end": "2020-10-23 23:18:21.924203",
   "patches": [
     {
       "target_file": "src/main.i",
-      "fix": "no repair found",
-      "edits": []
+      "fix": "249a250\n>   {\n250a252,253\n>   return (0);\n>   }\n",
+      "edits": [
+        "249a250\n>   {\n250a252,253\n>   return (0);\n>   }\n",
+        "1047,1050d1046\n<   asn = (unsigned int )tmp___0;\n<   if (asn == 0U) {\n<     goto bad_arguments;\n<   } else\n1052c1048\n<     goto bad_arguments;\n---\n>     goto bad_arguments__0;\n1054a1051,1055\n>   }\n>   if (asn == 0U) {\n>     goto bad_arguments;\n>   } else {\n>     asn = (unsigned int )tmp___0;\n"
+      ]
     }
   ],
-  "comps": 2,
-  "failed_comps": 0,
-  "passed_tests": 1,
-  "failed_tests": 1,
-  "duration": 1.289936,
-  "error": "cat: /etc/redhat-release: No such file or directory\n"
+  "comps": 4,
+  "failed_comps": 1,
+  "passed_tests": 41,
+  "failed_tests": 3,
+  "duration": 609.346321,
+  "error": "cat: /etc/redhat-release: No such file or directory\nBug: BF(Liveness): stmtStartData is not initialized for 496: bad_arguments__0: \n#line 646 \"/tmp/GenProg_router_simulator_0/router_simulator/src/main.c\"\nprint(\"BAD ARGUMENTS\\n\");\nLiveness failed on function:\n static void cmd_add_router(char *line ) \n{ \n  char *word ;\n  char *tmp ;\n  unsigned int asn ;\n  unsigned long tmp___0 ;\n  router_t *router ;\n  router_t *tmp___1 ;\n  int tmp___2 ;\n\n  {\n   474: /* CIL Label */ \n#line 628\n  tmp = cgc_strsep(& line, \" \");\n   475: /* CIL Label */ \n#line 628\n  word = tmp;\n   476: /* CIL Label */ \n#line 629\n  if ((unsigned long )word == (unsigned long )((char *)0)) {\n     -477: /* CIL Label */ \n#line 630\n    goto  496;\n  } else {\n     478: /* CIL Label */ ;\n  }\n   479: /* CIL Label */ \n#line 632\n  tmp___0 = cgc_strtoul((char const   *)word, (char **)0, 10);\n   0: /* CIL Label */ \n#line 633\n  if (asn > 65535U) {\n     0: /* CIL Label */ \n#line 634\n    goto bad_arguments__0;\n  } else {\n     0: /* CIL Label */ ;\n  }\n   481: /* CIL Label */ \n#line 633\n  if (asn == 0U) {\n     -482: /* CIL Label */ \n#line 634\n    goto  496;\n  } else {\n     0: /* CIL Label */ \n#line 632\n    asn = (unsigned int )tmp___0;\n  }\n   486: /* CIL Label */ \n#line 636\n  tmp___1 = get_router(asn);\n   487: /* CIL Label */ \n#line 636\n  router = tmp___1;\n   488: /* CIL Label */ \n#line 637\n  tmp___2 = valid_router(router);\n   489: /* CIL Label */ \n#line 637\n  if (tmp___2) {\n     -490: /* CIL Label */ \n#line 638\n    goto  496;\n  } else {\n     491: /* CIL Label */ ;\n  }\n   492: /* CIL Label */ \n#line 640\n  cgc_memset((void *)router, 0, sizeof(router_t ));\n   493: /* CIL Label */ \n#line 641\n  router->asn = asn;\n   494: /* CIL Label */ \n#line 642\n  cgc_prompt_edit_router(router);\n   495: /* CIL Label */ \n#line 643\n  return;\n   496: /* CIL Label */ \n  bad_arguments: \n#line 646\n  print(\"BAD ARGUMENTS\\n\");\n   497: /* CIL Label */ \n#line 647\n  return;\n}\n}\n\n"
 }

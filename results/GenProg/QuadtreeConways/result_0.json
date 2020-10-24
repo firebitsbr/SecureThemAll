@@ -1,6 +1,6 @@
 {
-  "repair_begin": "2020-10-18 22:01:14.745457",
-  "repair_end": "2020-10-18 22:01:15.984236",
+  "repair_begin": "2020-10-23 22:17:00.994281",
+  "repair_end": "2020-10-23 22:19:49.479622",
   "patches": [
     {
       "target_file": "src/gld.i",
@@ -8,10 +8,10 @@
       "edits": []
     }
   ],
-  "comps": 2,
+  "comps": 3,
   "failed_comps": 0,
-  "passed_tests": 1,
-  "failed_tests": 0,
-  "duration": 1.238779,
+  "passed_tests": 13,
+  "failed_tests": 3,
+  "duration": 168.485341,
   "error": "cat: /etc/redhat-release: No such file or directory\n"
 }

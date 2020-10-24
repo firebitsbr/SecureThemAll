@@ -1,17 +1,24 @@
 {
-  "repair_begin": "2020-10-18 21:52:10.559088",
-  "repair_end": "2020-10-18 21:52:36.343873",
+  "repair_begin": "2020-10-23 21:32:21.473753",
+  "repair_end": "2020-10-23 21:52:56.768611",
   "patches": [
     {
       "target_file": "src/parseCVF.i",
-      "fix": "",
-      "edits": []
+      "fix": "no repair found",
+      "edits": [
+        "386c386,391\n<   if ((unsigned long )pNewImage == (unsigned long )((pcvf )0)) {\n---\n>   if (xbits >= length) {\n>     cgc_printf(\"[ERROR] Index out of image bounds\\n\");\n>     cgc_free((void *)newFrame->image);\n>     newFrame->image = (char *)0;\n>     cgc_free((void *)newFrame);\n>     newFrame = (pframe )0;\n579,584c584\n<       if (xbits >= length) {\n<         cgc_printf(\"[ERROR] Index out of image bounds\\n\");\n<         cgc_free((void *)newFrame->image);\n<         newFrame->image = (char *)0;\n<         cgc_free((void *)newFrame);\n<         newFrame = (pframe )0;\n---\n>       if ((unsigned long )pNewImage == (unsigned long )((pcvf )0)) {\n",
+        "330c330,338\n<   while (size) {\n---\n>   while (1) {\n>     if (size) {\n>       {\n> \n> \n>       }\n>     } else {\n>       break;\n>     }\n",
+        "472c472\n<   length = pNewImage->height * pNewImage->width;\n---\n> \n",
+        "906a907\n>   {\n907a909,910\n> \n>   }\n",
+        "370c370,379\n<   custom_dict = (unsigned char)0;\n---\n>   if (pNewImage->rCount == 0U) {\n>     if ((int )frame_type != 0) {\n>       cgc_printf(\"[ERROR] First frame must be full\\n\");\n>       return (0);\n>     } else {\n> \n>     }\n>   } else {\n> \n>   }\n407,416c416\n<   if (pNewImage->rCount == 0U) {\n<     if ((int )frame_type != 0) {\n<       cgc_printf(\"[ERROR] First frame must be full\\n\");\n<       return (0);\n<     } else {\n< \n<     }\n<   } else {\n< \n<   }\n---\n>   custom_dict = (unsigned char)0;\n",
+        "970,972d969\n<   if ((unsigned long )NewImage == (unsigned long )((pcvf )0)) {\n<     return;\n<   } else {\n974d970\n<   }\n"
+      ]
     }
   ],
-  "comps": 3,
+  "comps": 9,
   "failed_comps": 0,
-  "passed_tests": 31,
-  "failed_tests": 2,
-  "duration": 25.784785,
+  "passed_tests": 68,
+  "failed_tests": 27,
+  "duration": 1235.294858,
   "error": "cat: /etc/redhat-release: No such file or directory\n"
 }

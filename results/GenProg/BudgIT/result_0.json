@@ -1,6 +1,6 @@
 {
-  "repair_begin": "2020-10-18 21:51:58.869660",
-  "repair_end": "2020-10-18 21:51:59.519688",
+  "repair_begin": "2020-10-23 21:31:28.967070",
+  "repair_end": "2020-10-23 21:31:30.397440",
   "patches": [
     {
       "target_file": "src/map.i",
@@ -12,6 +12,6 @@
   "failed_comps": 0,
   "passed_tests": 1,
   "failed_tests": 0,
-  "duration": 0.650028,
+  "duration": 1.43037,
   "error": "cat: /etc/redhat-release: No such file or directory\n"
 }

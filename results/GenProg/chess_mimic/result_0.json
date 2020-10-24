@@ -1,17 +1,19 @@
 {
-  "repair_begin": "2020-10-18 22:13:30.787348",
-  "repair_end": "2020-10-18 22:13:31.592263",
+  "repair_begin": "2020-10-23 22:53:22.375847",
+  "repair_end": "2020-10-23 22:55:03.071377",
   "patches": [
     {
       "target_file": "src/service.i",
-      "fix": "no repair found",
-      "edits": []
+      "fix": "883c883,893\n<   tmp___0 = cgc_verifyFormat(buf, (int )size);\n---\n>   if (tmp.dst.x != 77) {\n>     if (tmp.dst.y != 77) {\n>       movers->src = tmp.src;\n>       movers->dst = tmp.dst;\n>       return (1);\n>     } else {\n>       return (0);\n>     }\n>   } else {\n>     return (0);\n>   }\n918,928c928\n<       if (tmp.dst.x != 77) {\n<         if (tmp.dst.y != 77) {\n<           movers->src = tmp.src;\n<           movers->dst = tmp.dst;\n<           return (1);\n<         } else {\n<           return (0);\n<         }\n<       } else {\n<         return (0);\n<       }\n---\n>       tmp___0 = cgc_verifyFormat(buf, (int )size);\n",
+      "edits": [
+        "883c883,893\n<   tmp___0 = cgc_verifyFormat(buf, (int )size);\n---\n>   if (tmp.dst.x != 77) {\n>     if (tmp.dst.y != 77) {\n>       movers->src = tmp.src;\n>       movers->dst = tmp.dst;\n>       return (1);\n>     } else {\n>       return (0);\n>     }\n>   } else {\n>     return (0);\n>   }\n918,928c928\n<       if (tmp.dst.x != 77) {\n<         if (tmp.dst.y != 77) {\n<           movers->src = tmp.src;\n<           movers->dst = tmp.dst;\n<           return (1);\n<         } else {\n<           return (0);\n<         }\n<       } else {\n<         return (0);\n<       }\n---\n>       tmp___0 = cgc_verifyFormat(buf, (int )size);\n"
+      ]
     }
   ],
-  "comps": 2,
+  "comps": 4,
   "failed_comps": 0,
-  "passed_tests": 1,
-  "failed_tests": 0,
-  "duration": 0.804915,
+  "passed_tests": 40,
+  "failed_tests": 4,
+  "duration": 100.69553,
   "error": "cat: /etc/redhat-release: No such file or directory\n"
 }

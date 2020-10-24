@@ -1,6 +1,6 @@
 {
-  "repair_begin": "2020-10-18 22:05:50.796507",
-  "repair_end": "2020-10-18 22:06:27.284200",
+  "repair_begin": "2020-10-23 22:31:16.335401",
+  "repair_end": "2020-10-23 22:32:58.758866",
   "patches": [
     {
       "target_file": "src/backlogitems.i",
@@ -14,6 +14,6 @@
   "failed_comps": 0,
   "passed_tests": 40,
   "failed_tests": 4,
-  "duration": 36.487693,
+  "duration": 102.423465,
   "error": "cat: /etc/redhat-release: No such file or directory\n"
 }

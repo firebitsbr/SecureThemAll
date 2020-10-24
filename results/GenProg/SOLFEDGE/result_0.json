@@ -1,17 +1,22 @@
 {
-  "repair_begin": "2020-10-18 22:04:23.852698",
-  "repair_end": "2020-10-18 22:04:25.092876",
+  "repair_begin": "2020-10-23 22:24:54.608803",
+  "repair_end": "2020-10-23 22:45:47.882471",
   "patches": [
     {
       "target_file": "src/operation.i",
       "fix": "no repair found",
-      "edits": []
+      "edits": [
+        "410a411\n>     {\n422a424,425\n>     }\n>     return (4);\n",
+        "413a414\n>           {\n414a416,417\n>           return (0);\n>           }\n",
+        "132c132\n<   *(syllable_buf + 1) = (char )'e';\n---\n>   *(syllable_buf + 2) = (char )'l';\n145c145\n<   *(syllable_buf + 2) = (char )'l';\n---\n>   *(syllable_buf + 1) = (char )'e';\n",
+        "424c424\n<     note_id = cgc_get_next_note_id((char const   *)n_buf_ptr);\n---\n> \n"
+      ]
     }
   ],
-  "comps": 2,
+  "comps": 7,
   "failed_comps": 0,
-  "passed_tests": 1,
-  "failed_tests": 1,
-  "duration": 1.240178,
+  "passed_tests": 51,
+  "failed_tests": 27,
+  "duration": 1253.273668,
   "error": "cat: /etc/redhat-release: No such file or directory\n"
 }

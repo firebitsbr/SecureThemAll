@@ -1,6 +1,6 @@
 {
-  "repair_begin": "2020-10-18 21:53:04.418832",
-  "repair_end": "2020-10-18 21:53:14.979445",
+  "repair_begin": "2020-10-23 21:42:14.896826",
+  "repair_end": "2020-10-23 21:43:16.081252",
   "patches": [
     {
       "target_file": "src/ui.i",
@@ -12,6 +12,6 @@
   "failed_comps": 0,
   "passed_tests": 0,
   "failed_tests": 1,
-  "duration": 10.560613,
+  "duration": 61.184426,
   "error": "cat: /etc/redhat-release: No such file or directory\n"
 }

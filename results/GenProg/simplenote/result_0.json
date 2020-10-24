@@ -1,6 +1,6 @@
 {
-  "repair_begin": "2020-10-18 22:16:02.688862",
-  "repair_end": "2020-10-18 22:16:03.854405",
+  "repair_begin": "2020-10-23 23:08:37.187043",
+  "repair_end": "2020-10-23 23:11:40.476305",
   "patches": [
     {
       "target_file": "src/main.i",
@@ -10,8 +10,8 @@
   ],
   "comps": 2,
   "failed_comps": 0,
-  "passed_tests": 1,
-  "failed_tests": 0,
-  "duration": 1.165543,
+  "passed_tests": 5,
+  "failed_tests": 3,
+  "duration": 183.289262,
   "error": "cat: /etc/redhat-release: No such file or directory\nsrc/main.c:459: Warning: Body of function main falls-through. Adding a return statement\n"
 }

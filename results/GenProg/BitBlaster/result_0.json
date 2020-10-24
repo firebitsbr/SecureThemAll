@@ -1,6 +1,6 @@
 {
-  "repair_begin": "2020-10-18 21:51:46.559700",
-  "repair_end": "2020-10-18 21:53:28.660452",
+  "repair_begin": "2020-10-23 21:31:11.836213",
+  "repair_end": "2020-10-23 21:41:56.576222",
   "patches": [
     {
       "target_file": "src/main.i",
@@ -15,6 +15,6 @@
   "failed_comps": 0,
   "passed_tests": 40,
   "failed_tests": 15,
-  "duration": 102.100752,
+  "duration": 644.740009,
   "error": "cat: /etc/redhat-release: No such file or directory\n/tmp/GenProg_BitBlaster_0/BitBlaster/src/main.c:210: Warning: Body of function main falls-through. Adding a return statement\n"
 }

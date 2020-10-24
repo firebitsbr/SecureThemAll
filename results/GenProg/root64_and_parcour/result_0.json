@@ -1,19 +1,22 @@
 {
-  "repair_begin": "2020-10-18 22:15:21.968970",
-  "repair_end": "2020-10-18 22:15:39.070033",
+  "repair_begin": "2020-10-23 23:05:27.645477",
+  "repair_end": "2020-10-23 23:08:11.442573",
   "patches": [
     {
       "target_file": "src/main.i",
-      "fix": "360,365c360\n<   if ((unsigned long )arg == (unsigned long )((char *)0)) {\n<     tmp___0 = send_error(500);\n<     return (tmp___0);\n<   } else {\n< \n<   }\n---\n>   tmp___3 = cgc_fdprintf(1, \"OK\\n\");\n375c370,375\n<   tmp___3 = cgc_fdprintf(1, \"OK\\n\");\n---\n>   if ((unsigned long )arg == (unsigned long )((char *)0)) {\n>     tmp___0 = send_error(500);\n>     return (tmp___0);\n>   } else {\n> \n>   }\n",
+      "fix": "429c429\n<   tmp___6 = cgc_strlen(var->name);\n---\n> \n",
       "edits": [
-        "360,365c360\n<   if ((unsigned long )arg == (unsigned long )((char *)0)) {\n<     tmp___0 = send_error(500);\n<     return (tmp___0);\n<   } else {\n< \n<   }\n---\n>   tmp___3 = cgc_fdprintf(1, \"OK\\n\");\n375c370,375\n<   tmp___3 = cgc_fdprintf(1, \"OK\\n\");\n---\n>   if ((unsigned long )arg == (unsigned long )((char *)0)) {\n>     tmp___0 = send_error(500);\n>     return (tmp___0);\n>   } else {\n> \n>   }\n"
+        "300a301\n>       {\n301a303,304\n>       tmp___2 = cgc_strcmp((char const   *)tok, \"BYE\");\n>       }\n",
+        "418a419\n>   {\n419a421,422\n>   tmp___0 = cgc_strsep(& input, \" \");\n>   }\n",
+        "360,365c360\n<   if ((unsigned long )arg == (unsigned long )((char *)0)) {\n<     tmp___0 = send_error(500);\n<     return (tmp___0);\n<   } else {\n< \n<   }\n---\n>   tmp___3 = cgc_fdprintf(1, \"OK\\n\");\n375c370,375\n<   tmp___3 = cgc_fdprintf(1, \"OK\\n\");\n---\n>   if ((unsigned long )arg == (unsigned long )((char *)0)) {\n>     tmp___0 = send_error(500);\n>     return (tmp___0);\n>   } else {\n> \n>   }\n",
+        "429c429\n<   tmp___6 = cgc_strlen(var->name);\n---\n> \n"
       ]
     }
   ],
-  "comps": 4,
+  "comps": 7,
   "failed_comps": 0,
-  "passed_tests": 15,
-  "failed_tests": 5,
-  "duration": 17.101063,
+  "passed_tests": 21,
+  "failed_tests": 14,
+  "duration": 163.797096,
   "error": "cat: /etc/redhat-release: No such file or directory\n"
 }

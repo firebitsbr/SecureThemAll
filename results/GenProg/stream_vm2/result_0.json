@@ -1,6 +1,6 @@
 {
-  "repair_begin": "2020-10-18 22:16:21.381899",
-  "repair_end": "2020-10-18 22:16:32.334237",
+  "repair_begin": "2020-10-23 23:11:27.849087",
+  "repair_end": "2020-10-23 23:12:50.175110",
   "patches": [
     {
       "target_file": "src/main.i",
@@ -10,8 +10,8 @@
   ],
   "comps": 2,
   "failed_comps": 0,
-  "passed_tests": 0,
+  "passed_tests": 2,
   "failed_tests": 2,
-  "duration": 10.952338,
+  "duration": 82.326023,
   "error": "cat: /etc/redhat-release: No such file or directory\n/tmp/GenProg_stream_vm2_0/stream_vm2/src/main.c:320: Warning: Body of function main falls-through. Adding a return statement\n"
 }

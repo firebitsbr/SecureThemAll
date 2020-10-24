@@ -1,6 +1,6 @@
 {
-  "repair_begin": "2020-10-18 21:57:19.872956",
-  "repair_end": "2020-10-18 21:57:19.940031",
+  "repair_begin": "2020-10-23 21:56:05.304145",
+  "repair_end": "2020-10-23 21:56:05.366944",
   "patches": [
     {
       "target_file": "src/interface.ii",
@@ -12,6 +12,6 @@
   "failed_comps": 0,
   "passed_tests": 0,
   "failed_tests": 0,
-  "duration": 0.067075,
+  "duration": 0.062799,
   "error": "cat: /etc/redhat-release: No such file or directory\n/tmp/GenProg_Grit_0/Grit/src/cgc_gain.h[25:0-0] : syntax error\nParsing errorFatal error: exception Frontc.ParseError(\"Parse error\")\n"
 }

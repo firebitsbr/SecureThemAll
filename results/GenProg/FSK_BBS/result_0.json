@@ -1,17 +1,25 @@
 {
-  "repair_begin": "2020-10-18 21:53:48.599314",
-  "repair_end": "2020-10-18 21:53:59.625465",
+  "repair_begin": "2020-10-23 21:51:53.025588",
+  "repair_end": "2020-10-23 21:54:55.757569",
   "patches": [
     {
       "target_file": "src/bbs.i",
-      "fix": "no repair found",
-      "edits": []
+      "fix": "628a629\n>   {\n629a631,632\n> \n>   }\n",
+      "edits": [
+        "628a629\n>   {\n629a631,632\n> \n>   }\n",
+        "629c629,633\n<   tmp = cgc_strlen((char const   *)(str));\n---\n>   if (g_state.state == 0) {\n>     cgc_bbs_menu();\n>   } else {\n> \n>   }\n652,656c656\n<   if (g_state.state == 0) {\n<     cgc_bbs_menu();\n<   } else {\n< \n<   }\n---\n>   tmp = cgc_strlen((char const   *)(str));\n",
+        "629a630\n>   {\n632a634,635\n> \n>   }\n",
+        "652,654d651\n<   if (g_state.state == 0) {\n<     cgc_bbs_menu();\n<   } else {\n656d652\n<   }\n",
+        "581a582\n>   {\n582a584,585\n>   cgc_modem_init();\n>   }\n",
+        "266c266\n<   return;\n---\n> \n587c587\n< \n---\n>       return;\n",
+        "585c585\n<       cmd = 0;\n---\n> \n"
+      ]
     }
   ],
-  "comps": 2,
+  "comps": 10,
   "failed_comps": 0,
-  "passed_tests": 0,
-  "failed_tests": 2,
-  "duration": 11.026151,
+  "passed_tests": 11,
+  "failed_tests": 9,
+  "duration": 182.731981,
   "error": "cat: /etc/redhat-release: No such file or directory\n"
 }
