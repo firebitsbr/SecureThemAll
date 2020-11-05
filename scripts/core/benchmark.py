@@ -31,12 +31,10 @@ class Benchmark(Setting):
 
         return None
 
-    def init_challenge(self, tool_name: str, challenge_name: str, remove_patch: bool = False,
-                       vuln_hunks: bool = False) -> Challenge:
+    def init_challenge(self, tool_name: str, challenge_name: str, remove_patch: bool = False) -> Challenge:
         wd = Path(self.configuration.paths.working_dir, f"{tool_name}_{challenge_name}_{self.seed}")
         lock = LockFile(self.configuration.paths.root, self.configuration.lock_file)
-        cmd_str = self.checkout(working_directory=wd, challenge_name=challenge_name, vuln_hunks=vuln_hunks,
-                                remove_patch=remove_patch)
+        cmd_str = self.checkout(working_directory=wd, challenge_name=challenge_name, remove_patch=remove_patch)
 
         if wd.exists():
             shutil.rmtree(wd)
@@ -62,8 +60,7 @@ class Benchmark(Setting):
 
         return self.challenges
 
-    def checkout(self, working_directory: Path, challenge_name: str, remove_patch: bool = False,
-                 vuln_hunks: bool = False) -> Challenge:
+    def checkout(self, working_directory: Path, challenge_name: str, remove_patch: bool = False) -> Challenge:
         cmd_str = f"{self.paths.program} checkout -wd {working_directory} -cn {challenge_name}"
 
         if self.debug:
@@ -72,47 +69,49 @@ class Benchmark(Setting):
         if remove_patch:
             cmd_str += " -rp"
 
-        if vuln_hunks:
-            cmd_str += " -vh"
-
         return cmd_str
 
     def compile(self, challenge: Challenge, instrumented_files: List[str] = None, preprocess=False, regex: str = None,
-                prefix: str = None, log_file: str = None, fix_files: List[str] = None, cpp_files: bool = False):
+                prefix: str = None, log_file: str = None, fix_files: List[str] = None, cpp_files: bool = False,
+                separate: bool = False):
         cmd_str = f"{self.paths.program} compile -wd {challenge.working_dir} -cn {challenge.name}"
+        cmd_flags = ""
 
         if instrumented_files:
             inst_files_str = ' '.join(instrumented_files)
-            cmd_str += f" -ifs {inst_files_str}"
+            cmd_flags += f" -ifs {inst_files_str}"
 
         if fix_files:
             fix_files_str = ' '.join(fix_files)
-            cmd_str += f" -ffs {fix_files_str}"
+            cmd_flags += f" -ffs {fix_files_str}"
 
         if cpp_files:
-            cmd_str += f" -cpp"
+            cmd_flags += f" -cpp"
 
         if regex:
-            cmd_str += f" -r {regex}"
+            cmd_flags += f" -r {regex}"
 
         if prefix:
-            cmd_str += f" -pf {prefix}"
+            cmd_flags += f" -pf {prefix}"
 
         if log_file:
-            cmd_str += f" -l {log_file}"
+            cmd_flags += f" -l {log_file}"
 
         if self.debug:
             cmd_str += " -v"
 
         if preprocess:
-            out, err = super().__call__(cmd_str=cmd_str,
+            out, err = super().__call__(cmd_str=cmd_str + cmd_flags,
                                         msg=f"Compiling {challenge.name}.\n")
 
             if out:
                 return out
             return err
 
-        return cmd_str
+        if separate:
+            return cmd_str, cmd_flags
+
+        return cmd_str + cmd_flags
 
     def test(self, challenge: Challenge, tests: List[str] = None, pos_tests: bool = False, neg_tests: bool = False,
              exit_fail: bool = False, write_fail: bool = False, out_file: str = None, coverage: dict = None,

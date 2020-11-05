@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Tuple
 
 import numpy as np
 
@@ -7,6 +7,7 @@ from matplotlib.path import Path
 from matplotlib.spines import Spine
 from matplotlib.projections.polar import PolarAxes
 from matplotlib.projections import register_projection
+from matplotlib_venn import venn3, venn3_circles
 
 
 # source https://matplotlib.org/gallery/api/radar_chart.html
@@ -219,3 +220,11 @@ def plot_heatmap(matrix: List[List[int]], x_labels: List[str], y_labels: List[st
     ax.set_title(title)
     fig.tight_layout()
     plt.show()
+
+
+def plot_venn3(subsets: Tuple[set, set, set], labels: Tuple[str, str, str]):
+    # Custom text labels: change the label of group A
+    v = venn3(subsets=subsets, set_labels=labels)
+    c = venn3_circles(subsets=subsets, linestyle='dashed', linewidth=1, color="grey")
+    plt.show()
+

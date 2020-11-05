@@ -11,7 +11,8 @@ class Challenge:
         self.name = name
         self.working_dir = working_dir
         self.source = working_dir / Path(name)
-        self.manifest = Manifest(path=self.working_dir / Path(self.name, "manifest.txt"))
+        self.manifest = Manifest(path=self.source / Path("manifest"))
+        self.vuln = self.source / Path("vuln")
 
     def __str__(self):
         return f"{self.name}: {self.manifest}"

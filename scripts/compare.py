@@ -8,16 +8,23 @@ from pathlib import Path
 
 from config import configuration
 from core.benchmark import Benchmark
-from core.utils.charts import star_chart, plot_stacked_bar, plot_heatmap
+from core.utils.charts import star_chart, plot_stacked_bar, plot_heatmap, plot_venn3
 from core.utils.results import ToolResults
+from core.utils.stream import progress
+
 
 benchmark = Benchmark(config=configuration, seed=8888)
 benchmark.verbose = False
-patches = {cn: benchmark.patch(cn) for cn in benchmark.challenges}
+challenges_count = len(benchmark.challenges)
+patches = {}
+
+for i, cn in enumerate(benchmark.challenges):
+    progress(i+1, challenges_count, suffix=f"Querying patch for {cn}")
+    patches[cn] = benchmark.patch(cn)
 
 parser = argparse.ArgumentParser(prog="compare", description='Compares tools results')
 parser.add_argument("--seed", type=int, help="The seed number of the results", default=0)
-parser.add_argument("--plot", choices=["stacked", "star", "heatmap"], required=True,
+parser.add_argument("--plot", choices=["stacked", "star", "heatmap", "venn"], required=True,
                     type=str, help="The seed number of the results")
 tools_timeout = configuration.tools_timeout
 colors_list = ['b', 'g', 'r', 'c', 'm', 'y', 'k', 'orange', 'gray', 'brown', 'lime', 'tan', 'teal']
@@ -91,3 +98,7 @@ if __name__ == "__main__":
         tools_fix_score = [[cr.metrics.fix_score for cr in tool.challenge_results] for tool in results]
         plot_heatmap(matrix=tools_fix_score, x_labels=challenges_names[0], y_labels=tools_names,
                      title="Fixed challenges heatmap")
+    elif args.plot == "venn":
+        tools_names = tuple(tool.name for tool in results)
+        tools_results = tuple(set(cr.path.parent.name for cr in tool.challenge_results if cr.stats.fix) for tool in results)
+        plot_venn3(subsets=tools_results, labels=tools_names)

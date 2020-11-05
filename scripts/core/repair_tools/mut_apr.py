@@ -64,7 +64,7 @@ class MutApr(RepairTool):
 
         finally:
             # TODO: fix this to parse multiple output results
-            repair_task.status = self.status()
+            repair_task.status = self.repair_status()
             self.save(working_dir=challenge.working_dir, challenge_name=challenge.name)
             # self.dispose(challenge.working_dir)
 

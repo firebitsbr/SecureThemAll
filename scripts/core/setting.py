@@ -4,6 +4,7 @@ from typing import Tuple, Union
 
 from config import Configuration
 from .utils.command import Command
+from .utils.stream import ColorPrint
 
 
 class Setting:
@@ -43,6 +44,9 @@ class Setting:
                        timeout=timeout if timeout else self.timeout,
                        exit_err=exit_err,
                        file=self.log_file)
+        if err:
+            ColorPrint.print_fail(err)
+
         return out, err
 
     def get_repair_tools_path(self):
@@ -54,6 +58,20 @@ class Setting:
 
         if not self.log_dir.exists():
             self.log_dir.mkdir(parents=parents, exist_ok=exists_ok)
+
+    def status(self, message: str, err: bool = False, bold: bool = False, ok: bool = False, warn: bool = False):
+        if ok:
+            ColorPrint.print_pass(message)
+        elif err:
+            ColorPrint.print_fail(message)
+        elif bold:
+            ColorPrint.print_bold(message)
+        elif warn:
+            ColorPrint.print_warn(message)
+        else:
+            ColorPrint.print_info(message)
+
+        self._log(message)
 
     def _log(self, msg: str):
         if self.log_file and msg:

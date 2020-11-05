@@ -60,6 +60,13 @@ class RepairTool(Setting):
         test_results = working_dir / Path('stats', 'tests.txt')
         parsed_results = self.parse_stats(compile_results=compile_results, test_results=test_results)
         results.update(parsed_results)
+
+        if not self.repair_begin:
+            self.begin()
+
+        if not self.repair_end:
+            self.end()
+
         results["duration"] = (self.repair_end - self.repair_begin).total_seconds()
 
         if self.error:
@@ -99,7 +106,7 @@ class RepairTool(Setting):
         finally:
             return results
 
-    def status(self):
+    def repair_status(self):
         if len(self.patches) > 0:
             return "PATCHED"
         return "FINISHED"

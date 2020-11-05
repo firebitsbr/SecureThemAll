@@ -37,7 +37,7 @@ class GenProg(RepairTool):
             return self.output
 
         finally:
-            repair_task.status = self.status()
+            repair_task.status = self.repair_status()
             self.save(working_dir=challenge.working_dir, challenge_name=challenge.name)
             # self.dispose(challenge.working_dir)
 
@@ -85,7 +85,7 @@ class GenProg(RepairTool):
         arguments["--pos-tests"] = str(pos_tests)
         arguments["--neg-tests"] = str(neg_tests)
         arguments["--rep"] = "cilpatch" if challenge.manifest.multi_file else "c"
-        manifest_file = challenge.working_dir / Path('gen_prog_manifest.txt')
+        manifest_file = challenge.working_dir / Path('gen_prog_manifest')
         self.write_manifest(challenge.manifest(preprocessed=True), manifest_file)
         arguments["--program"] = str(manifest_file)
 

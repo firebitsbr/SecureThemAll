@@ -1,3 +1,4 @@
+import json
 import re
 from pathlib import Path
 
@@ -18,8 +19,7 @@ class CquenceR(RepairTool):
         """
         # checkouts the challenge binary to a temporary path
         benchmark = repair_task.benchmark
-        challenge = benchmark.init_challenge(self.name, challenge_name=repair_task.challenge, remove_patch=True,
-                                             vuln_hunks=True)
+        challenge = benchmark.init_challenge(self.name, challenge_name=repair_task.challenge, remove_patch=True)
         benchmark.compile(challenge, preprocess=True)
         self._init_log_file(folder=Path(self.name, challenge.name), file=Path(f"tool_{self.seed}.log"))
 
@@ -37,7 +37,7 @@ class CquenceR(RepairTool):
             return self.output
 
         finally:
-            repair_task.status = self.status()
+            repair_task.status = self.repair_status()
             self.save(working_dir=challenge.working_dir, challenge_name=challenge.name)
             # self.dispose(challenge.working_dir)
 
@@ -65,18 +65,29 @@ class CquenceR(RepairTool):
 
         self.patches.append(patch)
 
+    def write_manifest(self, vuln_file: Path, out_path: Path):
+        with vuln_file.open(mode="r") as vf, out_path.open(mode="w") as op:
+            for file, hunk in json.load(vf).items():
+                hunks = ""
+                for start, lines in hunk.items():
+                    hunks += f"{start},{int(start) + len(lines)};"
+                op.write(f"{file}: {hunks}\n")
+
     def _get_repair_cmd(self, benchmark, challenge):
         arguments = self.tool_configs["arguments"]
         prefix = challenge.working_dir / Path(challenge.name)
-        arguments["--compile_script"] = benchmark.compile(challenge, fix_files=["__SOURCE_NAME__"],
-                                                          instrumented_files=[str(file) for file in
-                                                                              challenge.manifest(prefix=prefix)])
+        cmp_cmd, cmp_args = benchmark.compile(challenge, fix_files=["__SOURCE_NAME__"], separate=True,
+                                              instrumented_files=[str(file) for file in challenge.manifest(prefix=prefix)])
+        arguments["--compile_script"] = cmp_cmd
+        arguments["--compile_args"] = cmp_args
         arguments["--test_script"] = benchmark.test(challenge, tests=["__TEST_NAME__"], exit_fail=True, neg_pov=True)
         arguments["--working_dir"] = str(challenge.working_dir)
         arguments["--prefix"] = str(prefix)
         arguments["--seed"] = str(self.seed)
         arguments["--verbose"] = ''
-        arguments["--manifest_path"] = str(challenge.manifest.path)
+        manifest_file = challenge.working_dir / Path('hunk_manifest')
+        self.write_manifest(challenge.vuln, manifest_file)
+        arguments["--manifest_path"] = str(manifest_file)
 
         pos_tests, neg_tests = benchmark.count_tests(challenge)
 
